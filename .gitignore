@@ -22,3 +22,6 @@ TakeMyTime.BLL/obj/Debug/netcoreapp3.0/TakeMyTime.BLL.assets.cache
 .vs/TakeMyTime.NETCore/v16/Server/sqlite3/storage.ide
 .vs/TakeMyTime.NETCore/v16/.suo
 .vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
+*.ide
+.vs/TakeMyTime.NETCore/v16/.suo
+.vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
