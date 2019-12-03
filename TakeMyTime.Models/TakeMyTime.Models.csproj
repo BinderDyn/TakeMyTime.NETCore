@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TakeMyTime.Common\TakeMyTime.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BinderDyn.LoggingUtility">
+      <HintPath>..\Libs\BinderDyn.LoggingUtility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

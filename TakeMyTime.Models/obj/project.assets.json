@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.0": {}
+    ".NETCoreApp,Version=v3.0": {
+      "TakeMyTime.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "compile": {
+          "bin/placeholder/TakeMyTime.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TakeMyTime.Common.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TakeMyTime.Common/1.0.0": {
+      "type": "project",
+      "path": "../TakeMyTime.Common/TakeMyTime.Common.csproj",
+      "msbuildProject": "../TakeMyTime.Common/TakeMyTime.Common.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.0": []
+    ".NETCoreApp,Version=v3.0": [
+      "TakeMyTime.Common >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\marvi\\.nuget\\packages\\": {}
@@ -32,7 +51,11 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj": {
+              "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

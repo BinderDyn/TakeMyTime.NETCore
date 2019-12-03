@@ -1,0 +1,13 @@
+TakeMyTime.BLL/bin
+TakeMyTime.BLL/obj
+TakeMyTime.Common/bin
+TakeMyTime.Common/obj
+TakeMyTime.DAL/bin
+TakeMyTime.DAL/obj
+TakeMyTime.Models/bin
+TakeMyTime.Models/obj
+TakeMyTime.WPF/bin
+TakeMyTime.WPF/obj
+**/.svn
+**/.vs
+**/v16
