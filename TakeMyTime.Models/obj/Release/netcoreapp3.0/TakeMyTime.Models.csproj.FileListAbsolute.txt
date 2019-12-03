@@ -1,0 +1,12 @@
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\TakeMyTime.Models.deps.json
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\TakeMyTime.Models.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\TakeMyTime.Models.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\BinderDyn.LoggingUtility.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\TakeMyTime.Common.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\bin\Release\netcoreapp3.0\TakeMyTime.Common.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.csprojAssemblyReference.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.AssemblyInfoInputs.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.AssemblyInfo.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.csproj.CopyComplete
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Models\obj\Release\netcoreapp3.0\TakeMyTime.Models.pdb

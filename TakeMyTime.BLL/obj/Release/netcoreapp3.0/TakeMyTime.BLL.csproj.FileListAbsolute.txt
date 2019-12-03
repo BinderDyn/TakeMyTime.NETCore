@@ -1,0 +1,16 @@
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.BLL.deps.json
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.BLL.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.BLL.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\BinderDyn.LoggingUtility.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.Common.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.Models.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.Common.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\bin\Release\netcoreapp3.0\TakeMyTime.Models.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.csprojAssemblyReference.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.AssemblyInfoInputs.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.AssemblyInfo.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.csproj.CopyComplete
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.BLL\obj\Release\netcoreapp3.0\TakeMyTime.BLL.pdb

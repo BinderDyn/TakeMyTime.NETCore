@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "TakeMyTime.Models/1.0.0": {
+        "dependencies": {
+          "TakeMyTime.Common": "1.0.0",
+          "BinderDyn.LoggingUtility": "1.0.0.0"
+        },
+        "runtime": {
+          "TakeMyTime.Models.dll": {}
+        }
+      },
+      "TakeMyTime.Common/1.0.0": {
+        "runtime": {
+          "TakeMyTime.Common.dll": {}
+        }
+      },
+      "BinderDyn.LoggingUtility/1.0.0.0": {
+        "runtime": {
+          "BinderDyn.LoggingUtility.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TakeMyTime.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TakeMyTime.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BinderDyn.LoggingUtility/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

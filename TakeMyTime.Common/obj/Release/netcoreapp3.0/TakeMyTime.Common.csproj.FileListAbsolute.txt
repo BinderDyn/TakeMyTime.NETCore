@@ -1,0 +1,8 @@
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\bin\Release\netcoreapp3.0\TakeMyTime.Common.deps.json
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\bin\Release\netcoreapp3.0\TakeMyTime.Common.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\bin\Release\netcoreapp3.0\TakeMyTime.Common.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\obj\Release\netcoreapp3.0\TakeMyTime.Common.csprojAssemblyReference.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\obj\Release\netcoreapp3.0\TakeMyTime.Common.AssemblyInfoInputs.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\obj\Release\netcoreapp3.0\TakeMyTime.Common.AssemblyInfo.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\obj\Release\netcoreapp3.0\TakeMyTime.Common.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.Common\obj\Release\netcoreapp3.0\TakeMyTime.Common.pdb

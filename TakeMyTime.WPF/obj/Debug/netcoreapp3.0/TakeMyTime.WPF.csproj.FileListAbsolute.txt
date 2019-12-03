@@ -1,0 +1,13 @@
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\bin\Debug\netcoreapp3.0\TakeMyTime.WPF.exe
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\bin\Debug\netcoreapp3.0\BinderDyn.LoggingUtility.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.csprojAssemblyReference.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF_MarkupCompile.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF_MarkupCompile.lref
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.g.resources
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.AssemblyInfoInputs.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.AssemblyInfo.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.csproj.CopyComplete
+C:\Development\takemytimeNETCORE\TakeMyTime.WPF\obj\Debug\netcoreapp3.0\TakeMyTime.WPF.pdb

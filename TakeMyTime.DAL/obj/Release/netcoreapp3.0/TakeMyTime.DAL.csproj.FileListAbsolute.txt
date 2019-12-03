@@ -1,0 +1,16 @@
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.deps.json
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.runtimeconfig.json
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.runtimeconfig.dev.json
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.DAL.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\BinderDyn.LoggingUtility.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.Common.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.Models.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.Models.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\bin\Release\netcoreapp3.0\TakeMyTime.Common.pdb
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.csprojAssemblyReference.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.AssemblyInfoInputs.cache
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.AssemblyInfo.cs
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.csproj.CopyComplete
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.dll
+C:\Development\takemytimeNETCORE\TakeMyTime.DAL\obj\Release\netcoreapp3.0\TakeMyTime.DAL.pdb
