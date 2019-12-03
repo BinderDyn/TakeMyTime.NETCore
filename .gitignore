@@ -11,3 +11,6 @@ TakeMyTime.WPF/obj
 **/.svn
 **/.vs
 **/v16
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/storage.ide
+.vs/TakeMyTime.NETCore/v16/.suo
+.vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
