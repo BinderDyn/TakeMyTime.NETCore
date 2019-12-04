@@ -14,6 +14,8 @@
         WindowStyle="None"
         WindowState="Normal"
         WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
         >
     <Grid>
         <Grid.Resources>
