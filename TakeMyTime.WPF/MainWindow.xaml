@@ -24,28 +24,31 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Center"
+        <StackPanel HorizontalAlignment="Left"
                     VerticalAlignment="Center">
+            <TextBlock
+                    x:Name="txt_Title"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="TakeMyTime"
+                    FontSize="18"
+                    FontFamily="Arial"
+                    Margin="10 0 10 0"
+                    ></TextBlock>
         </StackPanel>
         <Border x:Name="b_Toolbar"
                 MouseDown="sp_Toolbar_MouseDown"
                 Background="Transparent"
-                Grid.Row="0" BorderBrush="{StaticResource LightWhite}">
+                Grid.Row="0" BorderBrush="{StaticResource LightWhite}"
+                >
             <StackPanel
             x:Name="sp_Toolbar"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Orientation="Horizontal"
             Margin="10 0 10 0"
-            IsHitTestVisible="True"
             >
-                <!--<Button Style="{DynamicResource MaterialDesignFlatButton}"
-                    x:Name="btn_Drag"
-                    
-                    Width="1177">
-                    --><!--<materialDesign:PackIcon Kind="Minus" 
-                                             Foreground="{StaticResource LightWhite}"/>--><!--
-                </Button>-->
+                
                 <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     x:Name="btn_AppMinimize"
                     Click="btn_AppMinimize_Click"
@@ -57,7 +60,7 @@
                     x:Name="btn_ToggleWindow"
                     Click="btn_ToggleWindow_Click"
                     Padding="20 0 20 0">
-                    <materialDesign:PackIcon Kind="Square" 
+                    <materialDesign:PackIcon Kind="SquareInc" 
                                              Foreground="{StaticResource LightWhite}"/>
                 </Button>
                 <Button Style="{DynamicResource MaterialDesignFlatButton}"

@@ -16,7 +16,7 @@ namespace TakeMyTime.WPF
         {
             InitLogger();
             InitializeComponent();
-            // AddHandler(FrameworkElement.MouseDownEvent, new MouseButtonEventHandler(Grid_MouseDown), true);
+            txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         public void InitLogger()

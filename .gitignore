@@ -25,3 +25,5 @@ TakeMyTime.BLL/obj/Debug/netcoreapp3.0/TakeMyTime.BLL.assets.cache
 *.ide
 .vs/TakeMyTime.NETCore/v16/.suo
 .vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
+obj
+Debug
