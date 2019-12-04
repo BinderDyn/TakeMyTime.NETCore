@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "MaterialDesignColors": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[2.6.0, )"

@@ -4,9 +4,76 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TakeMyTime.WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="720" 
+        Width="1280" 
+        Background="#525252" 
+        Foreground="#e3e3e3"
+        WindowStyle="None"
+        WindowState="Normal"
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
-
+        <Grid.Resources>
+            <Storyboard x:Key="MenuOpen">
+            </Storyboard>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+        </StackPanel>
+        <Border x:Name="b_Toolbar"
+                MouseDown="sp_Toolbar_MouseDown"
+                Background="Transparent"
+                Grid.Row="0" BorderBrush="{StaticResource LightWhite}">
+            <StackPanel
+            x:Name="sp_Toolbar"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Margin="10 0 10 0"
+            IsHitTestVisible="True"
+            >
+                <!--<Button Style="{DynamicResource MaterialDesignFlatButton}"
+                    x:Name="btn_Drag"
+                    
+                    Width="1177">
+                    --><!--<materialDesign:PackIcon Kind="Minus" 
+                                             Foreground="{StaticResource LightWhite}"/>--><!--
+                </Button>-->
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                    x:Name="btn_AppMinimize"
+                    Click="btn_AppMinimize_Click"
+                    Padding="20 0 20 0">
+                    <materialDesign:PackIcon Kind="Minus" 
+                                             Foreground="{StaticResource LightWhite}"/>
+                </Button>
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                    x:Name="btn_ToggleWindow"
+                    Click="btn_ToggleWindow_Click"
+                    Padding="20 0 20 0">
+                    <materialDesign:PackIcon Kind="Square" 
+                                             Foreground="{StaticResource LightWhite}"/>
+                </Button>
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                    x:Name="btn_AppClose"
+                    Click="btn_AppClose_Click"
+                    Padding="30 0 30 0">
+                    <materialDesign:PackIcon Kind="Close" 
+                                             Foreground="{StaticResource Warning}"/>
+                </Button>
+            </StackPanel>
+        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
+
 </Window>
