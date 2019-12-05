@@ -26,22 +26,17 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
-            <TextBlock
-                    x:Name="txt_Title"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Text="TakeMyTime"
-                    FontSize="18"
-                    FontFamily="Arial"
-                    Margin="10 0 10 0"
-                    ></TextBlock>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
         <Border x:Name="b_Toolbar"
                 MouseDown="sp_Toolbar_MouseDown"
                 Background="Transparent"
-                Grid.Row="0" BorderBrush="{StaticResource LightWhite}"
+                Grid.Row="0" 
+                BorderBrush="{StaticResource LightWhite}"
+                Grid.Column="1"
                 >
             <StackPanel
             x:Name="sp_Toolbar"
@@ -50,7 +45,7 @@
             Orientation="Horizontal"
             Margin="10 0 10 0"
             >
-                
+
                 <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     x:Name="btn_AppMinimize"
                     Click="btn_AppMinimize_Click"
@@ -74,10 +69,46 @@
                 </Button>
             </StackPanel>
         </Border>
-        <Grid>
+        <Grid Grid.Row="0"
+              Background="#383838">
+        <StackPanel HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Grid.Column="1">
+            <TextBlock
+                    x:Name="txt_Title"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="TakeMyTime"
+                    FontSize="18"
+                    FontFamily="Arial"
+                    Foreground="{StaticResource LightWhite}"
+                    Margin="10 0 10 0"/>
+        </StackPanel>
+         </Grid>
+        <Grid Grid.Row="1"
+              Background="#383838">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                
+            </Grid.ColumnDefinitions>
+            <StackPanel 
+                        Grid.Row="1"
+                        Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            
         </Grid>
     </Grid>
 
