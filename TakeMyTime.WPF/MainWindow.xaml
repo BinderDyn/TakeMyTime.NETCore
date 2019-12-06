@@ -46,7 +46,6 @@
             Orientation="Horizontal"
             Margin="10 0 10 0"
             >
-
                 <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     x:Name="btn_AppMinimize"
                     Click="btn_AppMinimize_Click"
@@ -150,7 +149,6 @@
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
-                
             </StackPanel>
 
         </Grid>
