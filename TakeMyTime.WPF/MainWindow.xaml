@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TakeMyTime.WPF"
+        xmlns:resource="clr-namespace:TakeMyTime.WPF.Resources"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -11,9 +12,9 @@
         Width="1280" 
         Background="#525252" 
         Foreground="#e3e3e3"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         WindowState="Normal"
-        WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         >
@@ -27,7 +28,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.9*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
@@ -90,26 +91,73 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                
-            </Grid.ColumnDefinitions>
             <StackPanel 
                         Grid.Row="1"
-                        Grid.Column="0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                    </Grid.RowDefinitions>
-                </Grid>
+                        Grid.Column="0"
+                HorizontalAlignment="Left"
+                >
+                <ListView
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Folder"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                            <TextBlock
+                                Text="{x:Static resource:MainWindow.ProjectMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Assignment"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                            <TextBlock
+                                Text="{x:Static resource:MainWindow.AssignmentMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <Separator></Separator>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                            <TextBlock
+                                Text="{x:Static resource:MainWindow.SettingsMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+                
             </StackPanel>
 
         </Grid>
-        <Grid Grid.Row="1">
-            
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Frame x:Name="fr_Content" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
-    </Grid>
 
+    </Grid>
+    
 </Window>
