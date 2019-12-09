@@ -45,3 +45,8 @@ TakeMyTime.BLL/obj/TakeMyTime.BLL.csproj.nuget.dgspec.json
 TakeMyTime.BLL/obj/TakeMyTime.BLL.csproj.nuget.cache
 TakeMyTime.BLL/obj/project.assets.json
 TakeMyTime.BLL/obj/Debug/netcoreapp3.0/TakeMyTime.BLL.csprojAssemblyReference.cache
+*.ide
+.vs/TakeMyTime.NETCore/v16/.suo
+.vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
+obj
+Debug
