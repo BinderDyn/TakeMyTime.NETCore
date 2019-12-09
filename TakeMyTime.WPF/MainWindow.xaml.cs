@@ -30,6 +30,8 @@ namespace TakeMyTime.WPF
             Logger.Log(string.Format("{0}.InitLogger()", this.GetType().FullName));
         }
 
+        #region GUI Events
+
         private void btn_AppMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -59,5 +61,28 @@ namespace TakeMyTime.WPF
                 this.WindowState = WindowState.Maximized;
             }
         }
+
+        #region Menu Navigation
+
+        private void btn_Projects_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(new Projects.ProjectOverview());
+        }
+
+        private void btn_Assignments_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(null);
+        }
+
+        private void btn_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(null);
+        }
+
+        #endregion
+
+        #endregion
+
+
     }
 }

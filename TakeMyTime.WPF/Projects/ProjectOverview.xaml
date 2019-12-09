@@ -1,0 +1,105 @@
+﻿<Page x:Class="TakeMyTime.WPF.Projects.ProjectOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TakeMyTime.WPF.Projects"
+      xmlns:resources="clr-namespace:TakeMyTime.WPF.Resources"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProjectOverview"
+      Background="{StaticResource BackgroundGrey}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                BorderBrush="Transparent">
+            <StackPanel Margin="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <Button x:Name="btn_NewProject"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="ForestGreen"
+                        ToolTip="{x:Static resources:ProjectOverview.AddProjectTooltip}"
+                        Click="btn_NewProject_Click">
+                    <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_EditProject"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="Orange"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:ProjectOverview.EditProjectTooltip}"
+                        Click="btn_EditProject_Click">
+                    <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_DeleteProject"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Background="{StaticResource Warning}"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:ProjectOverview.DeleteProjectTooltip}"
+                        Click="btn_DeleteProject_Click">
+                    <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
+                </Button>
+            </StackPanel>
+        </Border>
+        <ListView x:Name="lv_Projects" 
+                      ItemsSource="{Binding Path=Projects}"
+                      HorizontalAlignment="Stretch"
+                      Grid.Row="1"
+                      Foreground="{StaticResource LightWhite}"
+                      Margin="18">
+            <!--<ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+                    <Setter Property="Background" Value="{StaticResource BackgroundGrey}"></Setter>
+                    <Setter Property="Foreground" Value="{StaticResource LightWhite}"></Setter>
+                    <Setter Property="BorderBrush" Value="{StaticResource BackgroundGrey}"></Setter>
+                    <Setter Property="FontFamily" Value="Arial"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                    <Setter Property="BorderThickness" Value="16"></Setter>
+                </Style>
+            </ListView.Resources>-->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                            Header="{x:Static resources:ProjectOverview.ColumnName}"
+                            Width="140"></GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:ProjectOverview.ColumnCategory}"
+                            Width="120"></GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:ProjectOverview.ColumnDescription}"
+                            Width="240"></GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:ProjectOverview.ColumnStatus}"
+                            Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<Image Source="{Binding Path=}"></Image>-->
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:ProjectOverview.ColumnCreated}"
+                            Width="120">
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!--</StackPanel>-->
+    </Grid>
+</Page>

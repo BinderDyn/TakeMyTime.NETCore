@@ -30,11 +30,9 @@ namespace TakeMyTime.Biz.Logic
                 Entry entry = new Entry();
                 entry.Id = element.Id;
                 entry.Pages = element.Pages ?? 0;
-                //entry.ParentIsBookProject = element.ParentIsBookProject;
                 entry.ProjectId = element.ProjectId;
                 entry.Started = element.Started;
                 entry.Ended = element.Ended;
-                //entry.Duration = element.Duration;
                 entry.DurationAsTicks = element.DurationAsTicks;
                 entry.Date = element.Date ?? DateTime.Now;
                 entry.Comment = element.Comment;
@@ -48,7 +46,6 @@ namespace TakeMyTime.Biz.Logic
             project.Id = result.Id;
             project.Description = result.Description;
             project.Name = result.Name;
-            //project.WorkingTime = result.WorkingTime;
             project.WorkingTimeAsTicks = result.WorkingTimeAsTicks;
             project.Entries = entries;
             project.ProjectType = result.ProjectType;
