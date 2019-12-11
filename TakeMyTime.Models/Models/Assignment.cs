@@ -6,13 +6,79 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TakeMyTime.Common.Exceptions;
 using TakeMyTime.DOM.Interfaces;
 using static Common.Enums.EnumDefinition;
 
 namespace TakeMyTime.DOM.Models
 {
-    public class Assignment : Entity<Assignment>, IInitiable, ICreatable<Assignment>
+    public class Assignment : Entity<Assignment>
     {
+        public Assignment Create(ICreateParam param)
+        {
+            Assignment assignment = new Assignment();
+            assignment.Init(param.Name, param.Description, param.DatePlanned, param.DateDue, param.DurationPlannedAsTicks, param.Project);
+            return assignment;
+        }
+
+        public void Init(string name, 
+            string description, 
+            DateTime? datePlanned, 
+            DateTime? dateDue, 
+            long? durationPlannedAsTicks, 
+            Project project)
+        {
+            this.Name = name;
+            this.Description = description;
+            this.DatePlanned = datePlanned;
+            this.DateDue = dateDue;
+            this.Project = project;
+            this.ProjectId = Project.Id;
+            this.DurationPlannedAsTicks = durationPlannedAsTicks;
+            this.Entries = new HashSet<Entry>();
+            this.SetCreated();
+        }
+
+        public void Update(IUpdateParam param)
+        {
+            this.Name = param.Name;
+            this.Description = param.Description;
+            this.DateDue = param.DateDue;
+            this.DatePlanned = param.DatePlanned;
+            this.DurationPlannedAsTicks = param.DurationPlannedAsTicks;
+            this.SetEdited();
+        }
+
+        public void UpdateStatus(AssignmentStatus status)
+        {
+            if (CanSetStatus(status))
+            {
+                this.AssignmentStatus = status;
+                this.SetEdited();
+            }
+        }
+
+        private bool CanSetStatus(AssignmentStatus status)
+        {
+            if (status == AssignmentStatus.Aborted) throw new CannotChangeStatusException("Cannot change status if already set to aborted");
+            if (status == AssignmentStatus.Done) throw new CannotChangeStatusException("Cannot change status if already set to done");
+            return true;
+        }
+
+        public interface IUpdateParam
+        {
+            string Name { get; set; }
+            string Description { get; set; }
+            DateTime? DatePlanned { get; set; }
+            DateTime? DateDue { get; set; }
+            long? DurationPlannedAsTicks { get; set; }
+        }
+
+        public interface ICreateParam : IUpdateParam
+        {
+            Project Project { get; set; }
+        }
+
         [Key]
         new public int Id { get; set; }
         [ForeignKey("Project")]
@@ -23,24 +89,8 @@ namespace TakeMyTime.DOM.Models
         public DateTime? DateDue { get; set; }
         public long? DurationPlannedAsTicks { get; set; }
         public AssignmentStatus AssignmentStatus { get; set; }
-        public int? Pages { get; set; }
-        public int? Words { get; set; }
-        public string Comment { get; set; }
-        public int? UserId { get; set; }
-        public virtual User User { get; set; }
+        public string Description { get; set; }
         public int TimesPushed { get; set; }
-
-        [ToDo]
-        public Assignment Create()
-        {
-            Assignment assignment = new Assignment();
-            return assignment;
-        }
-
-        public void Init()
-        {
-            this.Entries = new HashSet<Entry>();
-        }
     }
 
     

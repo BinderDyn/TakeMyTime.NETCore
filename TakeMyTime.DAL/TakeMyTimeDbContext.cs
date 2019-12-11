@@ -50,7 +50,6 @@ namespace TakeMyTime.DAL
         public DbSet<Project> Projects { get; set; }
         public DbSet<Entry> Entries { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
-        public DbSet<User> Users { get; set; }
 
     }
 }

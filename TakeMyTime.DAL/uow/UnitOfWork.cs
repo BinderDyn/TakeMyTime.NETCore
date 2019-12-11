@@ -21,13 +21,9 @@ namespace TakeMyTime.DAL.uow
             Assignments = new AssignmentRepository(context);
         }
 
-
         public IProjectRepository Projects { get; private set; }
         public IEntryRepository Entries { get; private set; }
         public IAssignmentRepository Assignments { get; private set; }
-
-       
-
 
         public int Complete()
         {

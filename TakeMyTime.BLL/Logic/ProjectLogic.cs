@@ -29,15 +29,12 @@ namespace TakeMyTime.Biz.Logic
             {
                 Entry entry = new Entry();
                 entry.Id = element.Id;
-                entry.Pages = element.Pages ?? 0;
                 entry.ProjectId = element.ProjectId;
                 entry.Started = element.Started;
                 entry.Ended = element.Ended;
                 entry.DurationAsTicks = element.DurationAsTicks;
-                entry.Date = element.Date ?? DateTime.Now;
                 entry.Comment = element.Comment;
                 entry.Name = element.Name;
-                entry.Words = element.Words;
 
                 entries.Add(entry);
             }
@@ -48,9 +45,7 @@ namespace TakeMyTime.Biz.Logic
             project.Name = result.Name;
             project.WorkingTimeAsTicks = result.WorkingTimeAsTicks;
             project.Entries = entries;
-            project.ProjectType = result.ProjectType;
             project.Created = result.Created;
-            project.ProjectType = result.ProjectType;
             project.ProjectStatus = result.ProjectStatus;
 
             return project;
@@ -83,7 +78,6 @@ namespace TakeMyTime.Biz.Logic
             {
                 edit.Name = project.Name;
                 edit.Edited = DateTime.Now;
-                edit.EditedBy = "User";
                 edit.Description = project.Description;
                 edit.Name = project.Name;
             }
@@ -107,7 +101,6 @@ namespace TakeMyTime.Biz.Logic
                         //edit.WorkingTime = project.WorkingTime;
                         edit.WorkingTimeAsTicks = project.WorkingTimeAsTicks;
                         edit.Edited = DateTime.Now;
-                        edit.EditedBy = "User";
                     }
                 }
             }
@@ -151,12 +144,12 @@ namespace TakeMyTime.Biz.Logic
 
         public int RetrievePages(int projectId)
         {
-            return unitOfWork.Projects.GetPages(projectId);
+            throw new NotImplementedException();
         }
 
         public int RetrieveWords(int projectId)
         {
-            return unitOfWork.Projects.GetWords(projectId);
+            throw new NotImplementedException();
         }
 
         public void ArchiveProject(int projectId)

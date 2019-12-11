@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
 
 namespace BinderDynamics.TakeMyTime.Biz.ViewModels
@@ -19,9 +20,7 @@ namespace BinderDynamics.TakeMyTime.Biz.ViewModels
         public ICollection<EntryViewModel> Entries { get; set; }
         public ICollection<AssignmentViewModel> Assignments { get; set; }
         public TimeSpan? WorkingTime { get; set; }
-        public ProjectType? ProjectType { get; set; }
-        public int? AllPages { get; set; }
-        public int? AllWords { get; set; }
+        public ProjectType ProjectType { get; set; }
         public bool HasEntries { get; set; }
         [NotMapped]
         public int AssignmentCount { get; set; }

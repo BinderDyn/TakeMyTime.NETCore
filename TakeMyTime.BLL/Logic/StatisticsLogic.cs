@@ -1,4 +1,5 @@
 ﻿using BinderDynamics.TakeMyTime.Biz.ViewModels;
+using Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace TakeMyTime.Biz.Logic
                     AverageEntryLength = CalculateAverageEntryLength(projectId),
                     GraphPoints = RetrieveGraphData(projectId),
                     Created = project.Created,
-                    LastWorkedOn = project.Entries.OrderByDescending(e => e.Created).FirstOrDefault()?.Date.Value ?? DateTime.Now,
+                    //LastWorkedOn = project.Entries.OrderByDescending(e => e.Created).FirstOrDefault()?.Date.Value ?? DateTime.Now,
                     ProjectName = project.Name
                 };
             }
@@ -86,19 +87,19 @@ namespace TakeMyTime.Biz.Logic
 
         private IEnumerable<DOM.Models.Assignment> GetDoneAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Done).ToList();
+            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done).ToList();
         }
 
         private IEnumerable<DOM.Models.Assignment> GetAbortedAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Aborted).ToList();
+            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Aborted).ToList();
         }
 
         private decimal CalculateDeadlineEfficiency(int projectId)
         {
             var assignments = GetDoneAssignments(projectId);
             var assignmentsFinishedInTime = assignments
-                .Where(a => a.Edited <= a.DateDue && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Done)
+                .Where(a => a.Edited <= a.DateDue && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done)
                 .Count();
             return (decimal)assignments.Count() != 0 ? (decimal)assignmentsFinishedInTime / (decimal)assignments.Count() : 0;
         }

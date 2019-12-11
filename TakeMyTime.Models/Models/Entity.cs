@@ -18,23 +18,21 @@ namespace TakeMyTime.DOM.Models
             get { return this.Id; }
         }
 
-        public string Name { get; set; }
-
-        private DateTime? created;
-        [DataType(DataType.DateTime)]
-        public DateTime Created
+        protected void SetCreated()
         {
-            get { return created ?? DateTime.Now; }
-            set { created = value; }
+            this.Created = DateTime.Now;
         }
 
+        protected void SetEdited()
+        {
+            this.Edited = DateTime.Now;
+        }
+
+        public string Name { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime Created { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime? Edited { get; set; }
-        public string CreatedBy { get; set; }
-        public string EditedBy { get; set; }
-        
-
-
         [Timestamp]
         public byte[] Version { get; set; }
     }

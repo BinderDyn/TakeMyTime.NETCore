@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DOM.Models;
 using TakeMyTime.DAL.uow;
+using Common.Enums;
 
 namespace TakeMyTime.Biz.Logic
 {
@@ -46,7 +47,6 @@ namespace TakeMyTime.Biz.Logic
 
             edit.Comment = entry.Comment;
             edit.Name = entry.Name;
-            edit.Pages = entry.Pages;
             edit.Edited = DateTime.Now;
 
             unitOfWork.Complete();
@@ -65,7 +65,6 @@ namespace TakeMyTime.Biz.Logic
                         edit.Name = entry.Name;
                         edit.Comment = entry.Comment;
                         edit.DurationAsTicks = entry.DurationAsTicks;
-                        edit.Pages = entry.Pages;
                         edit.Edited = DateTime.Now;
                     }
                 }
@@ -97,19 +96,19 @@ namespace TakeMyTime.Biz.Logic
             unitOfWork.Complete();
         }
 
-        public bool CheckForBookProject(Entry entry)
-        {
-            if (entry.ProjectId.HasValue)
-            {
-                var toBeChecked = unitOfWork.Projects.Get((int)entry.ProjectId);
-                return toBeChecked.ProjectType == Common.Enums.EnumDefinition.ProjectType.Book ? true : false; 
-            }
-            else
-            {
-                return false;
-            }
+        //public bool CheckForBookProject(Entry entry)
+        //{
+        //    if (entry.ProjectId.HasValue)
+        //    {
+        //        var toBeChecked = unitOfWork.Projects.Get((int)entry.ProjectId);
+        //        return toBeChecked.ProjectType == EnumDefinition.ProjectType.Book ? true : false; 
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
 
-        }
+        //}
 
         public void Dispose()
         {

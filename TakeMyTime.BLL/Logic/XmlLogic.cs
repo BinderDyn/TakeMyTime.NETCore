@@ -1,5 +1,4 @@
 ﻿using BinderDyn.LoggingUtility;
-using Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,11 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using TakeMyTime.Biz.ViewModels;
-using TakeMyTime.DAL.Interfaces;
-using TakeMyTime.DAL.Repositories;
 using TakeMyTime.DAL.uow;
-using TakeMyTime.DOM.Interfaces;
 using TakeMyTime.DOM.Models;
+using Common.Enums;
 
 namespace TakeMyTime.Biz.Logic
 {
@@ -95,13 +92,11 @@ namespace TakeMyTime.Biz.Logic
                 Project project = new Project
                 {
                     Created = ParseDate(p.Descendants("Created").FirstOrDefault().Value),
-                    CreatedBy = p.Descendants("CreatedBy").FirstOrDefault().Value,
                     Description = p.Descendants("Description").FirstOrDefault().Value,
                     Edited = ParseNullableDate(p.Descendants("Edited").FirstOrDefault().Value),
-                    EditedBy = "RestoreDatabaseWorker",
                     Name = projectName,
                     ProjectStatus = ParseProjectStatus(p.Descendants("ProjectStatus").FirstOrDefault().Value),
-                    ProjectType = ParseProjectType(p.Descendants("ProjectType").FirstOrDefault().Value),
+                    // ProjectType = ParseProjectType(p.Descendants("ProjectType").FirstOrDefault().Value),
                     WorkingTimeAsTicks = ParseNullableLong(p.Descendants("WorkingTimeAsTicks").FirstOrDefault().Value),
                     Assignments = new HashSet<Assignment>(),
                     Entries = new HashSet<Entry>()
@@ -138,22 +133,20 @@ namespace TakeMyTime.Biz.Logic
             var assignment = new Assignment
             {
                 AssignmentStatus = ParseAssignmentStatus(assignmentXml.Descendants("AssignmentStatus").FirstOrDefault().Value),
-                Comment = assignmentXml.Descendants("Comment").FirstOrDefault().Value,
+                Description = assignmentXml.Descendants("Comment").FirstOrDefault().Value,
                 Created = DateTime.Parse(assignmentXml.Descendants("Created").FirstOrDefault().Value),
-                CreatedBy = assignmentXml.Descendants("CreatedBy").FirstOrDefault().Value,
                 DateDue = DateTime.Parse(assignmentXml.Descendants("DateDue").FirstOrDefault().Value),
                 DatePlanned = DateTime.Parse(assignmentXml.Descendants("DatePlanned").FirstOrDefault().Value),
                 Name = assignmentXml.Descendants("Name").FirstOrDefault().Value,
                 Edited = DateTime.Now,
-                EditedBy = "RestoreDatabaseWorker",
                 Entries = new HashSet<Entry>()
             };
             assignment.Project = project;
-            assignment.Pages =  ParseNullableInt(assignmentXml.Descendants("Pages").FirstOrDefault().Value);
+            // assignment.Pages =  ParseNullableInt(assignmentXml.Descendants("Pages").FirstOrDefault().Value);
             assignment.TimesPushed = ParseInt(assignmentXml.Descendants("TimesPushed").FirstOrDefault().Value);
-            assignment.Words = ParseInt(assignmentXml.Descendants("Words").FirstOrDefault().Value);
-            //assignment.ProjectId = Int32.TryParse(assignmentXml.Descendants("ProjectId").FirstOrDefault().Value, out int projectId) ? projectId : 0;
-            //assignment.UserId = null; // Int32.TryParse(assignmentXml.Descendants("UserId").FirstOrDefault().Value, out int userId) ? userId : 0;
+            // assignment.Words = ParseInt(assignmentXml.Descendants("Words").FirstOrDefault().Value);
+            // assignment.ProjectId = Int32.TryParse(assignmentXml.Descendants("ProjectId").FirstOrDefault().Value, out int projectId) ? projectId : 0;
+            // assignment.UserId = null; // Int32.TryParse(assignmentXml.Descendants("UserId").FirstOrDefault().Value, out int userId) ? userId : 0;
             assignment.DurationPlannedAsTicks = ParseNullableLong(assignmentXml.Descendants("DurationPlannedAsTicks").FirstOrDefault().Value);
 
 
@@ -181,9 +174,7 @@ namespace TakeMyTime.Biz.Logic
             Entry entry = new Entry
             {
                 Comment = entryXml.Descendants("Comment").FirstOrDefault().Value,
-                CreatedBy = entryXml.Descendants("CreatedBy").FirstOrDefault().Value,
                 DurationAsTicks = long.Parse(entryXml.Descendants("DurationAsTicks").FirstOrDefault().Value),
-                EditedBy = "RestoreDatabaseWorker",
                 Name = entryXml.Descendants("Name").FirstOrDefault().Value,
                 Project = project
             };
@@ -191,10 +182,10 @@ namespace TakeMyTime.Biz.Logic
             entry.Ended = ParseNullableDate(entryXml.Descendants("Ended").FirstOrDefault().Value);
             entry.Started = ParseNullableDate(entryXml.Descendants("Started").FirstOrDefault().Value);
             entry.Edited = ParseNullableDate(entryXml.Descendants("Edited").FirstOrDefault().Value);
-            entry.Date = ParseNullableDate(entryXml.Descendants("Date").FirstOrDefault().Value);
+            // entry.Date = ParseNullableDate(entryXml.Descendants("Date").FirstOrDefault().Value);
             entry.Created = ParseDate(entryXml.Descendants("Created").FirstOrDefault().Value);
-            entry.Pages = ParseNullableInt(entryXml.Descendants("Pages").FirstOrDefault().Value);
-            entry.Words = ParseNullableInt(entryXml.Descendants("Words").FirstOrDefault().Value);
+            // entry.Pages = ParseNullableInt(entryXml.Descendants("Pages").FirstOrDefault().Value);
+            // entry.Words = ParseNullableInt(entryXml.Descendants("Words").FirstOrDefault().Value);
 
             if (assignment != null)
             {
@@ -350,15 +341,15 @@ namespace TakeMyTime.Biz.Logic
 
                 if (projects.Count(p => p.Name == name && p.Id == id || p.Name == name) > 0)
                 {
-                    list.Add(new EntityCollectionItem(id, Common.Enums.EnumDefinition.BackupEntityType.Project, name));
+                    list.Add(new EntityCollectionItem(id, EnumDefinition.BackupEntityType.Project, name));
                 }
                 else if (assignments.Count(a => a.Name == name && a.Id == id || a.Name == name) > 0)
                 {
-                    list.Add(new EntityCollectionItem(id, Common.Enums.EnumDefinition.BackupEntityType.Assignment, name));
+                    list.Add(new EntityCollectionItem(id, EnumDefinition.BackupEntityType.Assignment, name));
                 }
                 else if (entries.Count(en => en.Name == name && en.Id == id || en.Name == name) > 0)
                 {
-                    list.Add(new EntityCollectionItem(id, Common.Enums.EnumDefinition.BackupEntityType.Entry, name));
+                    list.Add(new EntityCollectionItem(id, EnumDefinition.BackupEntityType.Entry, name));
                 }
             }
 
@@ -378,7 +369,7 @@ namespace TakeMyTime.Biz.Logic
 
                 if (assignments.Count(assignment => assignment.Name == name && assignment.Id == id || assignment.Name == name) > 0)
                 {
-                    list.Add(new EntityCollectionItem(id, Common.Enums.EnumDefinition.BackupEntityType.Assignment, name));
+                    list.Add(new EntityCollectionItem(id, EnumDefinition.BackupEntityType.Assignment, name));
                 }
             }
 
@@ -398,7 +389,7 @@ namespace TakeMyTime.Biz.Logic
 
                 if (entries.Count(entry => entry.Name == name && entry.Id == id || entry.Name == name) > 0)
                 {
-                    list.Add(new EntityCollectionItem(id, Common.Enums.EnumDefinition.BackupEntityType.Entry, name));
+                    list.Add(new EntityCollectionItem(id, EnumDefinition.BackupEntityType.Entry, name));
                 }
             }
 
@@ -407,56 +398,56 @@ namespace TakeMyTime.Biz.Logic
 
 
 
-        private static Common.Enums.EnumDefinition.ProjectStatus ParseProjectStatus(string status)
+        private static EnumDefinition.ProjectStatus ParseProjectStatus(string status)
         {
             switch (status)
             {
                 case "Active":
-                    return Common.Enums.EnumDefinition.ProjectStatus.Active;
+                    return EnumDefinition.ProjectStatus.Active;
                 case "Archived":
-                    return Common.Enums.EnumDefinition.ProjectStatus.Archived;
+                    return EnumDefinition.ProjectStatus.Archived;
                 default:
-                    return Common.Enums.EnumDefinition.ProjectStatus.Active;
+                    return EnumDefinition.ProjectStatus.Active;
             }
         }
 
-        private static Common.Enums.EnumDefinition.ProjectType ParseProjectType(string type)
-        {
-            switch (type)
-            {
-                case "Standard":
-                    return Common.Enums.EnumDefinition.ProjectType.Default;
-                case "Writing":
-                    return Common.Enums.EnumDefinition.ProjectType.Book;
-                case "Language":
-                    return Common.Enums.EnumDefinition.ProjectType.Language;
-                case "Programming":
-                    return Common.Enums.EnumDefinition.ProjectType.Programming;
-                default:
-                    return Common.Enums.EnumDefinition.ProjectType.Default;
-            }
-        }
+        //private static EnumDefinition.ProjectType ParseProjectType(string type)
+        //{
+        //    switch (type)
+        //    {
+        //        case "Standard":
+        //            return EnumDefinition.ProjectType.Default;
+        //        case "Writing":
+        //            return EnumDefinition.ProjectType.Book;
+        //        case "Language":
+        //            return EnumDefinition.ProjectType.Language;
+        //        case "Programming":
+        //            return EnumDefinition.ProjectType.Programming;
+        //        default:
+        //            return EnumDefinition.ProjectType.Default;
+        //    }
+        //}
 
-        private static Common.Enums.EnumDefinition.AssignmentStatus ParseAssignmentStatus(string status)
+        private static EnumDefinition.AssignmentStatus ParseAssignmentStatus(string status)
         {
             switch (status)
             {
                 case "All":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Default;
+                    return EnumDefinition.AssignmentStatus.Default;
                 case "Active":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Active;
+                    return EnumDefinition.AssignmentStatus.Active;
                 case "Future":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Future;
+                    return EnumDefinition.AssignmentStatus.Future;
                 case "Done":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Done;
+                    return EnumDefinition.AssignmentStatus.Done;
                 case "Aborted":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Aborted;
+                    return EnumDefinition.AssignmentStatus.Aborted;
                 case "Postponed":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Postponed;
+                    return EnumDefinition.AssignmentStatus.Postponed;
                 case "Upcoming":
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Upcoming;
+                    return EnumDefinition.AssignmentStatus.Upcoming;
                 default:
-                    return Common.Enums.EnumDefinition.AssignmentStatus.Default;
+                    return EnumDefinition.AssignmentStatus.Default;
             }
         }
 

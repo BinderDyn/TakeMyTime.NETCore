@@ -15,10 +15,7 @@ namespace TakeMyTime.DOM.Interfaces
         object Id { get; }
         DateTime Created { get; set; }
         DateTime? Edited { get; set; }
-        string CreatedBy { get; set; }
-        string EditedBy { get; set; }
         byte[] Version { get; set; }
-
     }
 
     /// <summary>

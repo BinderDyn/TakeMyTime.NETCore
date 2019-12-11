@@ -9,8 +9,6 @@ namespace TakeMyTime.DAL.Interfaces
 {
     public interface IProjectRepository : IRepository<Project>
     {
-        int GetPages(int projectId);
-        int GetWords(int projectId);
         TimeSpan RetrieveWorkingTime(int projectId);
         void ArchiveProject(int projectId);
     }
