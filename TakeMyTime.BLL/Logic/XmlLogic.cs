@@ -125,7 +125,7 @@ namespace TakeMyTime.Biz.Logic
             }
 
             var projectLogic = new ProjectLogic();
-            projectLogic.InsertProjects(projectEntities);
+            // projectLogic.InsertProjects(projectEntities);
         }
 
         private Assignment RestoreAssignment(IProgress<RestoreProgress> progress, XElement assignmentXml, Project project, ref int counter, int total)

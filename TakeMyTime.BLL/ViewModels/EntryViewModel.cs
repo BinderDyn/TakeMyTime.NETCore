@@ -1,5 +1,5 @@
-﻿using BinderDynamics.TakeMyTime.Biz.ViewModels;
-using System;
+﻿using System;
+using TakeMyTime.BLL.ViewModels;
 
 namespace BinderDynamics.TakeMyTime.Biz.ViewModels
 {

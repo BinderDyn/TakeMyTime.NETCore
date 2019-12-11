@@ -29,45 +29,16 @@ namespace TakeMyTime.DAL.Repositories
             project.ProjectStatus = EnumDefinition.ProjectStatus.Archived;
         }
 
-        //public int GetPages(int projectId)
-        //{
-        //    var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-        //    int allPages = 0;
-        //    foreach (var entry in entries)
-        //    {
-        //        if (entry.Pages != null)
-        //        {
-        //            allPages += (int)entry.Pages;
-        //        }
-        //    }
-        //    return allPages;
-        //}
-
-        //public int GetWords(int projectId)
-        //{
-        //    var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-        //    int allWords = 0;
-        //    foreach (var entry in entries)
-        //    {
-        //        if (entry.Words != null)
-        //        {
-        //            allWords += (int)entry.Words;
-        //        }
-        //    }
-        //    return allWords;
-        //}
-
         public TimeSpan RetrieveWorkingTime(int projectId)
         {
-            var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-            var completeWorkingTime = new TimeSpan();
-            foreach (var entry in entries)
+            var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
+            TimeSpan completeWorkingTime = new TimeSpan();
+            if (project != null)
             {
-                if (entry.DurationAsTicks != null)
-                {
-                    completeWorkingTime += TimeSpan.FromTicks(entry.DurationAsTicks.Value);
-                }
+                long duration = project.Entries.Where(e => e.DurationAsTicks.HasValue).Sum(e => e.DurationAsTicks.Value);
+                completeWorkingTime = TimeSpan.FromTicks(duration);
             }
+
             return completeWorkingTime;
         }
     }

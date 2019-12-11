@@ -112,7 +112,6 @@ namespace TakeMyTime.Biz.Logic
 
         public void Dispose()
         {
-
             unitOfWork.Dispose();
         }
     }

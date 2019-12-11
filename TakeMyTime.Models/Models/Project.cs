@@ -42,6 +42,17 @@ namespace TakeMyTime.DOM.Models
             this.SetEdited();
         }
 
+        public void SetStatus(ProjectStatus status)
+        {
+            this.ProjectStatus = status;
+        }
+
+        private bool CheckCanDelete()
+        {
+            bool allAssignmentsDoneOrAborted = this.Assignments.All(a => a.AssignmentStatus == (AssignmentStatus.Aborted | AssignmentStatus.Aborted));
+            return this.ProjectStatus == ProjectStatus.Archived && allAssignmentsDoneOrAborted;
+        }
+
         public interface IUpdateParam
         {
             string Description { get; set; }
@@ -63,5 +74,7 @@ namespace TakeMyTime.DOM.Models
         [ForeignKey("ProjectType")]
         public virtual int ProjectType_Id { get; set; }
         public virtual ProjectType ProjectType { get; set; }
+        [NotMapped]
+        public bool CanDelete { get => this.CheckCanDelete(); }
     }
 }

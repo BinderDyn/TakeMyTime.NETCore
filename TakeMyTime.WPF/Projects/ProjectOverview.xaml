@@ -16,8 +16,10 @@
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0"
-                BorderBrush="Transparent">
+        <Border x:Name="b_Toolbar"
+                Grid.Row="0"
+                BorderBrush="Transparent"
+                Visibility="Visible">
             <StackPanel Margin="3"
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
@@ -60,7 +62,8 @@
                       HorizontalAlignment="Stretch"
                       Grid.Row="1"
                       Foreground="{StaticResource LightWhite}"
-                      Margin="18">
+                      Margin="18"
+                      Visibility="Visible">
             <!--<ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
@@ -100,6 +103,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden"
+               Visibility="Hidden" x:Name="fr_formDisplay"></Frame>
         <!--</StackPanel>-->
     </Grid>
 </Page>

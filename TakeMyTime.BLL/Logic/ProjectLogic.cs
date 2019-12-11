@@ -1,135 +1,88 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TakeMyTime.DOM.Models;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.BLL.ViewModels;
+using static Common.Enums.EnumDefinition;
 
 namespace TakeMyTime.Biz.Logic
 {
     public class ProjectLogic
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork = new UnitOfWork();
 
         public ProjectLogic()
         {
-
         }
 
         public Project GetProjectById(int id)
         {
-            var result = unitOfWork?.Projects?.Get(id);
+            return unitOfWork.Projects.Get(id);
+        }
 
+        public IEnumerable<Project> GetAllProjects()
+        {
+            return unitOfWork.Projects.GetAll();
+        }
 
-            IList<Entry> entries = new List<Entry>();
+        public void InsertProject(ProjectCreateViewModel viewModel)
+        {
+            var insert = Project.Create(viewModel);
+            unitOfWork.Projects.Add(insert);
+            unitOfWork.Complete();
+        }
 
-            foreach (var element in result.Entries)
+        public void InsertProjects(IEnumerable<ProjectCreateViewModel> projects)
+        {
+            if (projects != null && projects.Any())
             {
-                Entry entry = new Entry();
-                entry.Id = element.Id;
-                entry.ProjectId = element.ProjectId;
-                entry.Started = element.Started;
-                entry.Ended = element.Ended;
-                entry.DurationAsTicks = element.DurationAsTicks;
-                entry.Comment = element.Comment;
-                entry.Name = element.Name;
-
-                entries.Add(entry);
+                var mapped = projects.Select(p => Project.Create(p));
+                unitOfWork.Projects.AddRange(mapped);
+                unitOfWork.Complete();
             }
-
-            Project project = new Project();
-            project.Id = result.Id;
-            project.Description = result.Description;
-            project.Name = result.Name;
-            project.WorkingTimeAsTicks = result.WorkingTimeAsTicks;
-            project.Entries = entries;
-            project.Created = result.Created;
-            project.ProjectStatus = result.ProjectStatus;
-
-            return project;
-
         }
 
-        public List<Project> GetAllProjects()
+        public void UpdateProject(ProjectUpdateViewModel param, int project_id)
         {
-            var projects = unitOfWork?.Projects?.GetAll().ToList();
-            return projects;
-        }
-
-        public void InsertProject(Project project)
-        {
-            unitOfWork.Projects.Add(project);
-            unitOfWork.Complete();
-        }
-
-        public void InsertProjects(IEnumerable<Project> projects)
-        {
-            unitOfWork.Projects.AddRange(projects);
-            unitOfWork.Complete();
-        }
-
-        public void UpdateProject(Project project)
-        {
-            var edit = unitOfWork.Projects.Find(p => p.Id == project.Id).FirstOrDefault();
-
-            if (edit != null)
+            var toBeUpdated = unitOfWork.Projects.Get(project_id);
+            if (toBeUpdated != null)
             {
-                edit.Name = project.Name;
-                edit.Edited = DateTime.Now;
-                edit.Description = project.Description;
-                edit.Name = project.Name;
+                toBeUpdated.Update(param);
+                unitOfWork.Complete();
             }
-
-            unitOfWork.Complete();
-
         }
 
-        public void UpdateProjects(IEnumerable<Project> projects)
+        public void SetStatus(int project_id, ProjectStatus status)
         {
-            var edits = unitOfWork.Projects.GetAll();
-
-            foreach (var edit in edits)
+            var toBeUpdated = unitOfWork.Projects.Get(project_id);
+            if (toBeUpdated != null)
             {
-                foreach (var project in projects)
-                {
-                    if (edit.Id == project.Id)
-                    {
-                        edit.Name = project.Name;
-                        edit.Description = project.Description;
-                        //edit.WorkingTime = project.WorkingTime;
-                        edit.WorkingTimeAsTicks = project.WorkingTimeAsTicks;
-                        edit.Edited = DateTime.Now;
-                    }
-                }
+                toBeUpdated.SetStatus(status);
+                unitOfWork.Complete();
             }
-
-            unitOfWork.Complete();
-            Dispose();
         }
 
-        public void DeleteProject(int projectId)
+        public void DeleteProject(int project_id)
         {
-            var toBeDeleted = unitOfWork.Projects.Get(projectId);
-
-            unitOfWork.Entries.RemoveRange(toBeDeleted.Entries);
-            unitOfWork.Assignments.RemoveRange(toBeDeleted.Assignments);
-            unitOfWork.Projects.Remove(toBeDeleted);
-            unitOfWork.Complete();
+            var toBeDeleted = unitOfWork.Projects.Get(project_id);
+            if (toBeDeleted != null && toBeDeleted.CanDelete)
+            {
+                unitOfWork.Projects.Remove(toBeDeleted);
+                unitOfWork.Complete();
+            }
         }
 
         public void DeleteProjects(IEnumerable<Project> projects)
         {
-            IList<Project> entities = new List<Project>();
-            foreach (var a in projects)
+            IList<Project> toBeDeleted = new List<Project>();
+            foreach (var p in projects)
             {
-                var entity = unitOfWork.Projects.Get(a.Id);
-                if (entity != null) entities.Add(entity);
+                var entity = unitOfWork.Projects.Get(p.Id);
+                if (entity != null) toBeDeleted.Add(entity);
             }
 
-            unitOfWork.Projects.RemoveRange(entities);
-
+            unitOfWork.Projects.RemoveRange(toBeDeleted);
             unitOfWork.Complete();
         }
 
@@ -137,24 +90,14 @@ namespace TakeMyTime.Biz.Logic
         /// Returns the complete Working time of the project and all of its entries
         /// </summary>
         /// <returns>The sum of the complete project working time</returns>
-        public TimeSpan RetrieveWorkingTime(int projectId)
+        public TimeSpan RetrieveWorkingTime(int project_id)
         {
-            return unitOfWork.Projects.RetrieveWorkingTime(projectId);
+            return unitOfWork.Projects.RetrieveWorkingTime(project_id);
         }
 
-        public int RetrievePages(int projectId)
+        public void ArchiveProject(int project_id)
         {
-            throw new NotImplementedException();
-        }
-
-        public int RetrieveWords(int projectId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ArchiveProject(int projectId)
-        {
-            unitOfWork.Projects.ArchiveProject(projectId);
+            unitOfWork.Projects.ArchiveProject(project_id);
             _ = unitOfWork.Complete();
             Dispose();
         }
