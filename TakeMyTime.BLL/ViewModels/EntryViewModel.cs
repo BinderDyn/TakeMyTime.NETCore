@@ -7,7 +7,7 @@ namespace BinderDynamics.TakeMyTime.Biz.ViewModels
     {
         public string Name { get; set; }
         public int? ProjectId { get; set; }
-        public ProjectViewModel Project {get; set;}
+        // public ProjectViewModel Project {get; set;}
         public AssignmentViewModel Assignment { get; set; }
         public int Id { get; set; }
         public DateTime? Date { get; set; }

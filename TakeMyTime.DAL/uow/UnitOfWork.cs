@@ -19,11 +19,13 @@ namespace TakeMyTime.DAL.uow
             Projects = new ProjectRepository(context);
             Entries = new EntryRepository(context);
             Assignments = new AssignmentRepository(context);
+            ProjectTypes = new ProjectTypeRepository(context);
         }
 
         public IProjectRepository Projects { get; private set; }
         public IEntryRepository Entries { get; private set; }
         public IAssignmentRepository Assignments { get; private set; }
+        public IProjectTypeRepository ProjectTypes { get; private set; }
 
         public int Complete()
         {

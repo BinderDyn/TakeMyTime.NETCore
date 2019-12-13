@@ -55,9 +55,10 @@ namespace TakeMyTime.WPF.Projects
 
         private void ToggleFrameVisibility()
         {
-            this.b_Toolbar.Visibility = Visibility.Collapsed;
-            this.lv_Projects.Visibility = Visibility.Collapsed;
-            this.fr_formDisplay.Navigate(new AddProject());
+            //this.b_Toolbar.Visibility = Visibility.Collapsed;
+            //this.lv_Projects.Visibility = Visibility.Collapsed;
+            var addProjectWindow = new AddProject();
+            addProjectWindow.Show();
         }
 
         #endregion

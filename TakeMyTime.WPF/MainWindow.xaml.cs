@@ -1,9 +1,12 @@
 ﻿using BinderDyn.LoggingUtility;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Diagnostics;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using TakeMyTime.DAL;
+using TakeMyTime.DAL.uow;
 
 namespace TakeMyTime.WPF
 {
@@ -15,6 +18,21 @@ namespace TakeMyTime.WPF
         public MainWindow()
         {
             InitLogger();
+
+            try
+            {
+                ApplyMigrations();
+#if DEBUG
+                Seeder.Seed();
+#endif
+            }
+            catch (Exception e)
+            {
+                Logger.LogException(e);
+                throw e;
+            }
+
+            InitDataDirectory();
             InitializeComponent();
             txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
@@ -28,6 +46,19 @@ namespace TakeMyTime.WPF
             }
             if (!Logger.FolderStructureCreated) throw new Exception("Logger initializiation failed.");
             Logger.Log(string.Format("{0}.InitLogger()", this.GetType().FullName));
+        }
+
+        private void InitDataDirectory()
+        {
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+        }
+
+        private void ApplyMigrations()
+        {
+            TakeMyTimeDbContext context = new TakeMyTimeDbContext();
+            context.Database.Migrate();
         }
 
         #region GUI Events

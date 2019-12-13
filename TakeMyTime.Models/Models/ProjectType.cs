@@ -9,11 +9,17 @@ namespace TakeMyTime.Models.Models
 {
     public class ProjectType : Entity<ProjectType>, IModifiableEntity
     {
-        public static ProjectType Create(string name, string description)
+        public static ProjectType Create(ICreateParam param)
         {
             var type = new ProjectType();
-            type.Init(name, description);
+            type.Init(param.Name, param.Description);
             return type;
+        }
+
+        public interface ICreateParam
+        {
+            string Name { get; set; }
+            string Description { get; set; }
         }
 
         public void Init(string name, string description)
