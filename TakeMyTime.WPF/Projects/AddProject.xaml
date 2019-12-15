@@ -97,14 +97,16 @@
                     </Label>
                     <ComboBox x:Name="cb_ProjectTypes"
                               Grid.Column="1"
+                              ItemsSource="{Binding ProjectTypeViewModels}"
+                              SelectedValuePath="Id"
                               SelectedItem="{Binding SelectedProjectType}"
-                              ItemsSource="{Binding ProjectTypes}"
                               >
-                        <!--<ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type local:ProjectTypeViewModel}">
-                                <TextBlock Foreground="{StaticResource LightWhite}" Text="{Binding Name}"></TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>-->
+                        <ComboBox.DataContext>
+                            <local:ProjectTypeViewModel></local:ProjectTypeViewModel>
+                        </ComboBox.DataContext>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SelectedProjectType.Name}"></TextBlock>
+                        </DataTemplate>
                     </ComboBox>
                 </Grid>
             </StackPanel>

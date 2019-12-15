@@ -28,6 +28,7 @@ namespace TakeMyTime.WPF.Projects
             LoadProjectTypes();
             InitializeComponent();
             InitLogger();
+            DataContext = this;
         }
 
         private void InitLogger()
@@ -41,8 +42,7 @@ namespace TakeMyTime.WPF.Projects
             {
                 Logger.Log(string.Format("{0}.LoadProjectTypes()", className));
                 var bll = new ProjectTypeLogic();
-                this.ProjectTypes = bll.GetProjectTypes().Select(pt => new ProjectTypeViewModel(pt)).ToList();
-                cb_ProjectTypes.ItemsSource = this.ProjectTypes;
+                this.ProjectTypes = new ProjectTypeViewModelList(bll.GetProjectTypes());
             }
             catch (Exception e)
             {
@@ -65,10 +65,13 @@ namespace TakeMyTime.WPF.Projects
 
         private void btn_AddProject_Click(object sender, RoutedEventArgs e)
         {
+            if (this.SelectedProjectType != null)
+            {
 
+            }
         }
 
-        public List<ProjectTypeViewModel> ProjectTypes { get; set; }
+        public ProjectTypeViewModelList ProjectTypes { get; set; }
         public ProjectTypeViewModel SelectedProjectType { get; set; }
     }
 }
