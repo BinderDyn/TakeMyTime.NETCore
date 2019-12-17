@@ -1,6 +1,7 @@
 ﻿using BinderDyn.LoggingUtility;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -25,10 +26,10 @@ namespace TakeMyTime.WPF.Projects
         public AddProject()
         {
             this.className = this.GetType().FullName;
-            LoadProjectTypes();
-            InitializeComponent();
             InitLogger();
-            DataContext = this;
+            InitializeComponent();
+            LoadProjectTypes();
+            // DataContext = this;
         }
 
         private void InitLogger()
@@ -42,7 +43,8 @@ namespace TakeMyTime.WPF.Projects
             {
                 Logger.Log(string.Format("{0}.LoadProjectTypes()", className));
                 var bll = new ProjectTypeLogic();
-                this.ProjectTypes = new ProjectTypeViewModelList(bll.GetProjectTypes());
+                this.ProjectTypes = new ObservableCollection<ProjectTypeViewModel>(bll.GetProjectTypes().Select(pt => new ProjectTypeViewModel(pt)));
+                cb_ProjectTypes.ItemsSource = this.ProjectTypes;
             }
             catch (Exception e)
             {
@@ -71,7 +73,7 @@ namespace TakeMyTime.WPF.Projects
             }
         }
 
-        public ProjectTypeViewModelList ProjectTypes { get; set; }
+        public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; set; }
         public ProjectTypeViewModel SelectedProjectType { get; set; }
     }
 }

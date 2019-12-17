@@ -98,15 +98,15 @@
                     <ComboBox x:Name="cb_ProjectTypes"
                               Grid.Column="1"
                               ItemsSource="{Binding ProjectTypeViewModels}"
+                              SelectedIndex="0"
                               SelectedValuePath="Id"
-                              SelectedItem="{Binding SelectedProjectType}"
+                              DisplayMemberPath="Name"
                               >
-                        <ComboBox.DataContext>
-                            <local:ProjectTypeViewModel></local:ProjectTypeViewModel>
-                        </ComboBox.DataContext>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SelectedProjectType.Name}"></TextBlock>
-                        </DataTemplate>
+                        <!--<ComboBoxItem>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=SelectedProjectType.Name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBoxItem>-->
                     </ComboBox>
                 </Grid>
             </StackPanel>
