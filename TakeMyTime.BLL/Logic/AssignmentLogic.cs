@@ -5,7 +5,7 @@ using System.Linq;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.DOM.Models;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class AssignmentLogic
     {

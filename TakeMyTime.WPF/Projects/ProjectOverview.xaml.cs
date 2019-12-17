@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TakeMyTime.Biz.Logic;
+using TakeMyTime.BLL.Logic;
 using TakeMyTime.DOM.Models;
 
 namespace TakeMyTime.WPF.Projects

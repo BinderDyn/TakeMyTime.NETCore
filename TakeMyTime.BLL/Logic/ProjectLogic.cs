@@ -6,7 +6,7 @@ using TakeMyTime.DAL.uow;
 using TakeMyTime.BLL.ViewModels;
 using static Common.Enums.EnumDefinition;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class ProjectLogic
     {
@@ -26,7 +26,7 @@ namespace TakeMyTime.Biz.Logic
             return unitOfWork.Projects.GetAll();
         }
 
-        public void InsertProject(ProjectCreateViewModel viewModel)
+        public void InsertProject(Project.ICreateParam viewModel)
         {
             var insert = Project.Create(viewModel);
             unitOfWork.Projects.Add(insert);

@@ -7,7 +7,7 @@ using TakeMyTime.DOM.Models;
 using TakeMyTime.DAL.uow;
 using Common.Enums;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class EntryLogic
     {

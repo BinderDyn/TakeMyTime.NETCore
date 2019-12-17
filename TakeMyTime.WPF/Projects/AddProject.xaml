@@ -57,7 +57,8 @@
                            Foreground="{StaticResource LightWhite}"
                            Margin="0 0 5 0"
                            ></Label>
-                    <TextBox Grid.Column="1"
+                    <TextBox x:Name="tb_projectDesignation"
+                             Grid.Column="1"
                              Foreground="{StaticResource LightWhite}"></TextBox>
                 </Grid>
             </StackPanel>
@@ -76,7 +77,8 @@
                            Margin="0 0 5 0"
                            >
                     </Label>
-                    <TextBox Grid.Column="1"
+                    <TextBox x:Name="tb_projectDescription"
+                             Grid.Column="1"
                              Foreground="{StaticResource LightWhite}"></TextBox>
                 </Grid>
             </StackPanel>
@@ -101,6 +103,7 @@
                               SelectedIndex="0"
                               SelectedValuePath="Id"
                               DisplayMemberPath="Name"
+                              SelectionChanged="cb_ProjectTypes_SelectionChanged"
                               >
                         <!--<ComboBoxItem>
                             <DataTemplate>

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.uow;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class StatisticsLogic
     {

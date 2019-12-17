@@ -29,7 +29,6 @@ namespace TakeMyTime.WPF.Projects
             InitLogger();
             InitializeComponent();
             LoadProjectTypes();
-            // DataContext = this;
         }
 
         private void InitLogger()
@@ -67,13 +66,38 @@ namespace TakeMyTime.WPF.Projects
 
         private void btn_AddProject_Click(object sender, RoutedEventArgs e)
         {
-            if (this.SelectedProjectType != null)
+            if (this.SelectedProjectType != null && this.CanCreateProject)
             {
+                var bllProjectTypes = new ProjectTypeLogic();
+                var bllProjects = new ProjectLogic();
+                var projectType = bllProjectTypes.GetProjectType(this.SelectedProjectType.Id);
+                var viewModel = new ProjectCreateViewModel
+                {
+                    Description = tb_projectDescription.Text,
+                    Name = tb_projectDesignation.Text,
+                    ProjectType = projectType
+                };
 
+                bllProjects.InsertProject(viewModel);
+                bllProjects.Dispose();
+                bllProjectTypes.Dispose();
+                this.Close();
+            }
+        }
+
+        private void cb_ProjectTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selection = e.AddedItems[0];
+            if (selection != null)
+            {
+                this.SelectedProjectType = (ProjectTypeViewModel)selection;
             }
         }
 
         public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; set; }
         public ProjectTypeViewModel SelectedProjectType { get; set; }
+        public bool CanCreateProject { get => !string.IsNullOrWhiteSpace(tb_projectDesignation.Text); }
+
+        
     }
 }

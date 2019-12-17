@@ -14,5 +14,20 @@ namespace TakeMyTime.BLL.Logic
         {
             return unitOfWork.ProjectTypes.GetAll();
         }
+
+        public ProjectType GetProjectType(int id)
+        {
+            return unitOfWork.ProjectTypes.Get(id);
+        }
+
+        public void AddProjectType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            this.unitOfWork.Dispose();
+        }
     }
 }

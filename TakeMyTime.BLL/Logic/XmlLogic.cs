@@ -11,7 +11,7 @@ using TakeMyTime.DAL.uow;
 using TakeMyTime.DOM.Models;
 using Common.Enums;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class XmlLogic
     {
