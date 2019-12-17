@@ -27,21 +27,17 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marvi\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\marvi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Models\\TakeMyTime.Models.csproj",
+      "projectUniqueName": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Models\\TakeMyTime.Models.csproj",
       "projectName": "TakeMyTime.Models",
-      "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Models\\TakeMyTime.Models.csproj",
+      "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Models\\TakeMyTime.Models.csproj",
       "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-      "outputPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Models\\obj\\",
+      "outputPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Models\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\marvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -56,8 +52,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Common\\TakeMyTime.Common.csproj": {
-              "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Common\\TakeMyTime.Common.csproj"
+            "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj": {
+              "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj"
             }
           }
         }
