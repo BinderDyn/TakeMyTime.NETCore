@@ -11,5 +11,6 @@ namespace TakeMyTime.DAL.Interfaces
     {
         TimeSpan RetrieveWorkingTime(int projectId);
         void ArchiveProject(int projectId);
+        IEnumerable<Project> LoadAll();
     }
 }

@@ -33,7 +33,7 @@ namespace TakeMyTime.DOM.Models
             this.DatePlanned = datePlanned;
             this.DateDue = dateDue;
             this.Project = project;
-            this.ProjectId = Project.Id;
+            this.Project_Id = Project.Id;
             this.DurationPlannedAsTicks = durationPlannedAsTicks;
             this.Entries = new HashSet<Entry>();
             this.SetCreated();
@@ -79,10 +79,8 @@ namespace TakeMyTime.DOM.Models
             Project Project { get; set; }
         }
 
-        [Key]
-        new public int Id { get; set; }
         [ForeignKey("Project")]
-        public int? ProjectId { get; set; }
+        public int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
         public virtual ICollection<Entry> Entries { get; set; }
         public DateTime? DatePlanned { get; set; }

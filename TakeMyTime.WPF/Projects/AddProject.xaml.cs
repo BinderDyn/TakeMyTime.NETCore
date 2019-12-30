@@ -26,14 +26,8 @@ namespace TakeMyTime.WPF.Projects
         public AddProject()
         {
             this.className = this.GetType().FullName;
-            InitLogger();
             InitializeComponent();
             LoadProjectTypes();
-        }
-
-        private void InitLogger()
-        {
-            Logger.Log(string.Format("{0}.InitLogger()", className));
         }
 
         private void LoadProjectTypes()
@@ -44,12 +38,15 @@ namespace TakeMyTime.WPF.Projects
                 var bll = new ProjectTypeLogic();
                 this.ProjectTypes = new ObservableCollection<ProjectTypeViewModel>(bll.GetProjectTypes().Select(pt => new ProjectTypeViewModel(pt)));
                 cb_ProjectTypes.ItemsSource = this.ProjectTypes;
+                bll.Dispose();
             }
             catch (Exception e)
             {
                 Logger.LogException(e);
             }
         }
+
+        #region GUI EVENTS
 
         private void sp_Toolbar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -93,6 +90,8 @@ namespace TakeMyTime.WPF.Projects
                 this.SelectedProjectType = (ProjectTypeViewModel)selection;
             }
         }
+
+        #endregion
 
         public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; set; }
         public ProjectTypeViewModel SelectedProjectType { get; set; }

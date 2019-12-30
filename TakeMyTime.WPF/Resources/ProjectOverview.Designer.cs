@@ -131,5 +131,23 @@ namespace TakeMyTime.WPF.Resources {
                 return ResourceManager.GetString("EditProjectTooltip", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        /// </summary>
+        public static string StatusTooltipActive {
+            get {
+                return ResourceManager.GetString("StatusTooltipActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Archived ähnelt.
+        /// </summary>
+        public static string StatusTooltipArchived {
+            get {
+                return ResourceManager.GetString("StatusTooltipArchived", resourceCulture);
+            }
+        }
     }
 }

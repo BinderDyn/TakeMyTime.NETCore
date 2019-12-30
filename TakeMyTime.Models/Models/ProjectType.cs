@@ -39,17 +39,19 @@ namespace TakeMyTime.Models.Models
 
         public void AddProject(Project project)
         {
+            if (this.Projects == null) this.Projects = new HashSet<Project>();
             this.Projects.Add(project);
+            project.ProjectType_Id = this.Id;
+            project.ProjectType = this;
         }
 
         public void RemoveProject(Project project)
         {
+            if (this.Projects == null) this.Projects = new HashSet<Project>();
             this.Projects.Remove(project);
         }
 
-        [Key]
-        new public virtual int Id { get; set; }
         public virtual string Description { get; set; }
-        public virtual ICollection<Project> Projects { get; private set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

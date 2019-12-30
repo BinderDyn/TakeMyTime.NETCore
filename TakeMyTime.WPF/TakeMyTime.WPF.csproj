@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\activeIconSmall.png" />
+    <None Remove="Images\archiveIconSmall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="1.2.0" />
     <PackageReference Include="MaterialDesignThemes" Version="2.6.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
@@ -29,11 +34,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AddProject.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Images.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -59,10 +59,6 @@
     <EmbeddedResource Update="Resources\AddProject.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddProject.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Images.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\MainWindow.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -100,6 +96,11 @@
     <ProjectReference Include="..\TakeMyTime.BLL\TakeMyTime.BLL.csproj" />
     <ProjectReference Include="..\TakeMyTime.Common\TakeMyTime.Common.csproj" />
     <ProjectReference Include="..\TakeMyTime.Models\TakeMyTime.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\activeIconSmall.png" />
+    <Resource Include="Images\archiveIconSmall.png" />
   </ItemGroup>
 
 </Project>

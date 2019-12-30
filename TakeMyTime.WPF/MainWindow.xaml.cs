@@ -29,7 +29,9 @@ namespace TakeMyTime.WPF
             catch (Exception e)
             {
                 Logger.LogException(e);
+#if DEBUG
                 throw e;
+#endif
             }
 
             InitDataDirectory();

@@ -64,8 +64,6 @@ namespace TakeMyTime.DOM.Models
             ProjectType ProjectType { get; set; }
         }
 
-        [Key]
-        new public virtual int Id { get; set; }
         public virtual ICollection<Entry> Entries { get; set; }
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual string Description { get; set; }

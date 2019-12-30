@@ -17,7 +17,7 @@ namespace TakeMyTime.BLL.Logic
 
         private IEnumerable<StatisticsProjectGraphViewModel> RetrieveGraphData(int projectId)
         {
-            var entries = this.uow.Entries.Find(e => e.ProjectId == projectId).ToList();
+            var entries = this.uow.Entries.Find(e => e.Project_Id == projectId).ToList();
             var graphData = new List<StatisticsProjectGraphViewModel>();
 
             foreach (var e in entries)
@@ -31,7 +31,7 @@ namespace TakeMyTime.BLL.Logic
         private TimeSpan CalculateAverageEntryLength(int projectId)
         {
             TimeSpan averageValue = TimeSpan.MinValue;
-            var entries = this.uow.Entries.Find(e => e.ProjectId == projectId).ToList();
+            var entries = this.uow.Entries.Find(e => e.Project_Id == projectId).ToList();
             if (entries != null && entries.Any())
             {
                 long ticksTotal = entries.Sum(e => e.DurationAsTicks.HasValue ? e.DurationAsTicks.Value : 0); //Complete Duration
@@ -87,12 +87,12 @@ namespace TakeMyTime.BLL.Logic
 
         private IEnumerable<DOM.Models.Assignment> GetDoneAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done).ToList();
+            return uow.Assignments.Find(a => a.Project_Id == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done).ToList();
         }
 
         private IEnumerable<DOM.Models.Assignment> GetAbortedAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Aborted).ToList();
+            return uow.Assignments.Find(a => a.Project_Id == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Aborted).ToList();
         }
 
         private decimal CalculateDeadlineEfficiency(int projectId)

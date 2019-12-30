@@ -12,10 +12,10 @@ namespace TakeMyTime.DOM.Interfaces
     /// </summary>
     public interface IEntity : IModifiableEntity
     {
-        object Id { get; }
+        int Id { get; }
         DateTime Created { get; set; }
         DateTime? Edited { get; set; }
-        byte[] Version { get; set; }
+        //byte[] Version { get; set; }
     }
 
     /// <summary>
@@ -24,6 +24,5 @@ namespace TakeMyTime.DOM.Interfaces
     /// <typeparam name="T">Can be specified later on (GUID, Id, long)</typeparam>
     public interface IEntity<T> : IEntity
     {
-        new T Id { get; }
     }
 }

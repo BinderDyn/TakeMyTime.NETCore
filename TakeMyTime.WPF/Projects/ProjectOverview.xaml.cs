@@ -34,6 +34,7 @@ namespace TakeMyTime.WPF.Projects
             var loadedProjects = projectLogic.GetAllProjects();
             var viewModels = loadedProjects.Select(lp => new ProjectViewModel(lp));
             this.Projects = new ObservableCollection<ProjectViewModel>(viewModels);
+            lv_Projects.ItemsSource = this.Projects;
         }
 
         #region GUI Events
@@ -58,7 +59,7 @@ namespace TakeMyTime.WPF.Projects
             //this.b_Toolbar.Visibility = Visibility.Collapsed;
             //this.lv_Projects.Visibility = Visibility.Collapsed;
             var addProjectWindow = new AddProject();
-            addProjectWindow.Show();
+            addProjectWindow.ShowDialog();
         }
 
         #endregion

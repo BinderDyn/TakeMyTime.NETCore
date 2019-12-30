@@ -46,20 +46,15 @@ namespace TakeMyTime.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int?>("Project_Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("TimesPushed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("Version")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("Project_Id");
 
                     b.ToTable("Assignments");
                 });
@@ -70,7 +65,7 @@ namespace TakeMyTime.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AssignmentId")
+                    b.Property<int?>("Assigment_Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Comment")
@@ -94,22 +89,17 @@ namespace TakeMyTime.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int?>("Project_Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("Started")
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("Version")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignmentId");
+                    b.HasIndex("Assigment_Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("Project_Id");
 
                     b.ToTable("Entries");
                 });
@@ -137,11 +127,6 @@ namespace TakeMyTime.DAL.Migrations
 
                     b.Property<int>("ProjectType_Id")
                         .HasColumnType("INTEGER");
-
-                    b.Property<byte[]>("Version")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
 
                     b.Property<long?>("WorkingTimeAsTicks")
                         .HasColumnType("INTEGER");
@@ -171,11 +156,6 @@ namespace TakeMyTime.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("Version")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
-
                     b.HasKey("Id");
 
                     b.ToTable("ProjectTypes");
@@ -185,18 +165,18 @@ namespace TakeMyTime.DAL.Migrations
                 {
                     b.HasOne("TakeMyTime.DOM.Models.Project", "Project")
                         .WithMany("Assignments")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("Project_Id");
                 });
 
             modelBuilder.Entity("TakeMyTime.DOM.Models.Entry", b =>
                 {
                     b.HasOne("TakeMyTime.DOM.Models.Assignment", "Assignment")
                         .WithMany("Entries")
-                        .HasForeignKey("AssignmentId");
+                        .HasForeignKey("Assigment_Id");
 
                     b.HasOne("TakeMyTime.DOM.Models.Project", "Project")
                         .WithMany("Entries")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("Project_Id");
                 });
 
             modelBuilder.Entity("TakeMyTime.DOM.Models.Project", b =>

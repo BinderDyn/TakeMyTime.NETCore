@@ -76,13 +76,11 @@ namespace TakeMyTime.DOM.Models
             }
         }
 
-        [Key]
-        new public int Id { get; set; }
         [ForeignKey("Project")]
-        public int? ProjectId { get; set; }
+        public int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
         [ForeignKey("Assignment")]
-        public int? AssignmentId { get; set; }
+        public int? Assigment_Id { get; set; }
         public virtual Assignment Assignment { get; set; }
         public DateTime Date { get; set; }
         public DateTime? Started { get; set; }

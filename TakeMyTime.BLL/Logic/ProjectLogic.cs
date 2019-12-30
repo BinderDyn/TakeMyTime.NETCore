@@ -23,13 +23,14 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Project> GetAllProjects()
         {
-            return unitOfWork.Projects.GetAll();
+            return unitOfWork.Projects.LoadAll();
         }
 
         public void InsertProject(Project.ICreateParam viewModel)
         {
             var insert = Project.Create(viewModel);
-            unitOfWork.Projects.Add(insert);
+            var projectType = unitOfWork.ProjectTypes.Get(viewModel.ProjectType.Id);
+            projectType.AddProject(insert);
             unitOfWork.Complete();
         }
 

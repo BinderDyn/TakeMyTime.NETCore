@@ -241,12 +241,12 @@ namespace TakeMyTime.BLL.Logic
                 mainNode.Add(processedProject);
 
                 // Verarbeiten aller Entries, die keine AssignmentId haben
-                if (entries.Count(e => e.ProjectId == p.Id) > 0)
+                if (entries.Count(e => e.Project_Id == p.Id) > 0)
                 {
                     processedProject.Add(new XElement("NotAssignedEntries"));
                     var entriesOfProject = processedProject.Descendants("NotAssignedEntries").Single();
 
-                    foreach (Entry notAssignedEntry in entries.Where(e => e.ProjectId == p.Id))
+                    foreach (Entry notAssignedEntry in entries.Where(e => e.Project_Id == p.Id))
                     {
                         entityCount++;
                         var processedNotAssigned = ProcessEntity(notAssignedEntry);

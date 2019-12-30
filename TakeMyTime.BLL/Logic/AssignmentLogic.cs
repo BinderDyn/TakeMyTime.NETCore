@@ -30,7 +30,7 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Assignment> GetAssignmentsByProjectId(int projectId)
         {
-            return unitOfWork.Assignments.Find(x => x.ProjectId == projectId).ToList();
+            return unitOfWork.Assignments.Find(x => x.Project_Id == projectId).ToList();
         }
 
         public void AddAssignment(Assignment assignment)

@@ -1,4 +1,5 @@
 ﻿using Common.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace TakeMyTime.DAL.Repositories
         {
             var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
             project.ProjectStatus = EnumDefinition.ProjectStatus.Archived;
+        }
+
+        public IEnumerable<Project> LoadAll()
+        {
+            return context.Projects.Include(p => p.ProjectType).ToList();
         }
 
         public TimeSpan RetrieveWorkingTime(int projectId)

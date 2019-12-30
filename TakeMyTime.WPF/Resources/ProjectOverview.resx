@@ -141,4 +141,10 @@
   <data name="EditProjectTooltip" xml:space="preserve">
     <value>Edit selected project</value>
   </data>
+  <data name="StatusTooltipActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="StatusTooltipArchived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
 </root>

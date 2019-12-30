@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TakeMyTime.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,6 @@ namespace TakeMyTime.DAL.Migrations
                     Name = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     Edited = table.Column<DateTime>(nullable: true),
-                    Version = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -33,7 +32,6 @@ namespace TakeMyTime.DAL.Migrations
                     Name = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     Edited = table.Column<DateTime>(nullable: true),
-                    Version = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Description = table.Column<string>(nullable: true),
                     WorkingTimeAsTicks = table.Column<long>(nullable: true),
                     ProjectStatus = table.Column<int>(nullable: false),
@@ -59,8 +57,7 @@ namespace TakeMyTime.DAL.Migrations
                     Name = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     Edited = table.Column<DateTime>(nullable: true),
-                    Version = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    ProjectId = table.Column<int>(nullable: true),
+                    Project_Id = table.Column<int>(nullable: true),
                     DatePlanned = table.Column<DateTime>(nullable: true),
                     DateDue = table.Column<DateTime>(nullable: true),
                     DurationPlannedAsTicks = table.Column<long>(nullable: true),
@@ -72,8 +69,8 @@ namespace TakeMyTime.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Assignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Assignments_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_Assignments_Projects_Project_Id",
+                        column: x => x.Project_Id,
                         principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -88,9 +85,8 @@ namespace TakeMyTime.DAL.Migrations
                     Name = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     Edited = table.Column<DateTime>(nullable: true),
-                    Version = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    ProjectId = table.Column<int>(nullable: true),
-                    AssignmentId = table.Column<int>(nullable: true),
+                    Project_Id = table.Column<int>(nullable: true),
+                    Assigment_Id = table.Column<int>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Started = table.Column<DateTime>(nullable: true),
                     Ended = table.Column<DateTime>(nullable: true),
@@ -101,33 +97,33 @@ namespace TakeMyTime.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Entries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entries_Assignments_AssignmentId",
-                        column: x => x.AssignmentId,
+                        name: "FK_Entries_Assignments_Assigment_Id",
+                        column: x => x.Assigment_Id,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Entries_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_Entries_Projects_Project_Id",
+                        column: x => x.Project_Id,
                         principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignments_ProjectId",
+                name: "IX_Assignments_Project_Id",
                 table: "Assignments",
-                column: "ProjectId");
+                column: "Project_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entries_AssignmentId",
+                name: "IX_Entries_Assigment_Id",
                 table: "Entries",
-                column: "AssignmentId");
+                column: "Assigment_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entries_ProjectId",
+                name: "IX_Entries_Project_Id",
                 table: "Entries",
-                column: "ProjectId");
+                column: "Project_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_ProjectType_Id",
