@@ -22,12 +22,27 @@ namespace TakeMyTime.WPF.Projects
     public partial class AddProject : Window
     {
         string className;
+        bool editMode = false;
+        int projectId;
 
         public AddProject()
         {
             this.className = this.GetType().FullName;
             InitializeComponent();
             LoadProjectTypes();
+        }
+
+        // Called on edit
+        public AddProject(int id, string name, string description)
+        {
+            this.className = this.GetType().FullName;
+            InitializeComponent();
+            LoadProjectTypes();
+            this.tb_projectDescription.Text = description;
+            this.tb_projectDesignation.Text = name;
+            this.projectId = id;
+            this.editMode = true;
+            this.cb_ProjectTypes.IsEnabled = false;
         }
 
         private void LoadProjectTypes()
@@ -63,7 +78,7 @@ namespace TakeMyTime.WPF.Projects
 
         private void btn_AddProject_Click(object sender, RoutedEventArgs e)
         {
-            if (this.SelectedProjectType != null && this.CanCreateProject)
+            if (this.SelectedProjectType != null && this.CanCreateProject && !editMode)
             {
                 var bllProjectTypes = new ProjectTypeLogic();
                 var bllProjects = new ProjectLogic();
@@ -76,6 +91,22 @@ namespace TakeMyTime.WPF.Projects
                 };
 
                 bllProjects.InsertProject(viewModel);
+                bllProjects.Dispose();
+                bllProjectTypes.Dispose();
+                this.Close();
+            }
+            else if (this.SelectedProjectType != null && this.CanCreateProject && editMode)
+            {
+                var bllProjectTypes = new ProjectTypeLogic();
+                var bllProjects = new ProjectLogic();
+                var projectType = bllProjectTypes.GetProjectType(this.SelectedProjectType.Id);
+                var viewModel = new ProjectUpdateViewModel
+                {
+                    Description = this.tb_projectDescription.Text,
+                    Name = this.tb_projectDesignation.Text
+                };
+
+                bllProjects.UpdateProject(viewModel, projectId);
                 bllProjects.Dispose();
                 bllProjectTypes.Dispose();
                 this.Close();

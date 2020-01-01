@@ -44,7 +44,7 @@ namespace TakeMyTime.BLL.Logic
             }
         }
 
-        public void UpdateProject(ProjectUpdateViewModel param, int project_id)
+        public void UpdateProject(Project.IUpdateParam param, int project_id)
         {
             var toBeUpdated = unitOfWork.Projects.Get(project_id);
             if (toBeUpdated != null)
@@ -72,6 +72,10 @@ namespace TakeMyTime.BLL.Logic
                 unitOfWork.Projects.Remove(toBeDeleted);
                 unitOfWork.Complete();
             }
+            else
+            {
+                throw new Exception("Cannot delete project if is not archived or contains not done assignments!");
+            }
         }
 
         public void DeleteProjects(IEnumerable<Project> projects)
@@ -96,9 +100,9 @@ namespace TakeMyTime.BLL.Logic
             return unitOfWork.Projects.RetrieveWorkingTime(project_id);
         }
 
-        public void ArchiveProject(int project_id)
+        public void ToggleProjectStatus(int project_id)
         {
-            unitOfWork.Projects.ArchiveProject(project_id);
+            unitOfWork.Projects.ToggleProjectStatus(project_id);
             _ = unitOfWork.Complete();
             Dispose();
         }

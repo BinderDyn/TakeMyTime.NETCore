@@ -6,10 +6,15 @@ namespace TakeMyTime.WPF.Utility
 {
     public class DateTimeCultureConverter
     {
-        public static string ConvertToLocalDateTimeFormat(DateTime date)
+        public static string ConvertToLocalDateTimeFormat(DateTime? date)
         {
-            var currentCulture = System.Globalization.CultureInfo.CurrentCulture;
-            return date.ToString("G", currentCulture);
+            string result = "-";
+            if (date.HasValue)
+            {
+                var currentCulture = System.Globalization.CultureInfo.CurrentCulture;
+                result = date.Value.ToString("G", currentCulture);
+            }
+            return result;
         }
     }
 }

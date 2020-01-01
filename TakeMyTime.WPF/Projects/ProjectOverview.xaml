@@ -45,6 +45,16 @@
                         Click="btn_EditProject_Click">
                     <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
                 </Button>
+                <Button x:Name="btn_ToggleStatus"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Background="Black"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:ProjectOverview.ToggleStatusTooltip}"
+                        Click="btn_ToggleStatus_Click">
+                    <materialDesign:PackIcon Kind="CircleArrows"></materialDesign:PackIcon>
+                </Button>
                 <Button x:Name="btn_DeleteProject"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
@@ -63,7 +73,9 @@
                       Grid.Row="1"
                       Foreground="{StaticResource LightWhite}"
                       Margin="18"
-                      Visibility="Visible">
+                      Visibility="Visible"
+                      SelectionChanged="lv_Projects_SelectionChanged"
+                      SelectionMode="Single">
             <!--<ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
@@ -123,6 +135,15 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=CreatedAsString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:ProjectOverview.ColumnEdited}"
+                            Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EditedAsString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

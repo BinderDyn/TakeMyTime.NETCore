@@ -24,15 +24,21 @@ namespace TakeMyTime.DAL.Repositories
             get { return DbContext as TakeMyTimeDbContext; }
         }
 
-        public void ArchiveProject(int projectId)
+        public void ToggleProjectStatus(int projectId)
         {
-            var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
-            project.ProjectStatus = EnumDefinition.ProjectStatus.Archived;
+            var project = context.Projects.Single(p => p.Id == projectId);
+            project.ProjectStatus = project.ProjectStatus == EnumDefinition.ProjectStatus.Active ? 
+                EnumDefinition.ProjectStatus.Archived :
+                EnumDefinition.ProjectStatus.Active;
         }
 
         public IEnumerable<Project> LoadAll()
         {
-            return context.Projects.Include(p => p.ProjectType).ToList();
+            return context.Projects
+                .Include(p => p.ProjectType)
+                .Include(p => p.Assignments)
+                .Include(p => p.Entries)
+                .ToList();
         }
 
         public TimeSpan RetrieveWorkingTime(int projectId)

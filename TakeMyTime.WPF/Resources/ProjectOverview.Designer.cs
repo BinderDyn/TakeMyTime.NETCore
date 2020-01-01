@@ -97,6 +97,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lastly edited ähnelt.
+        /// </summary>
+        public static string ColumnEdited {
+            get {
+                return ResourceManager.GetString("ColumnEdited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string ColumnName {
@@ -111,6 +120,24 @@ namespace TakeMyTime.WPF.Resources {
         public static string ColumnStatus {
             get {
                 return ResourceManager.GetString("ColumnStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to delete the following project:  ähnelt.
+        /// </summary>
+        public static string ConfirmDeleteMessageBoxMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteMessageBoxMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm delete ähnelt.
+        /// </summary>
+        public static string ConfirmDeleteMessageBoxTitle {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteMessageBoxTitle", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace TakeMyTime.WPF.Resources {
         public static string StatusTooltipArchived {
             get {
                 return ResourceManager.GetString("StatusTooltipArchived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle status ähnelt.
+        /// </summary>
+        public static string ToggleStatusTooltip {
+            get {
+                return ResourceManager.GetString("ToggleStatusTooltip", resourceCulture);
             }
         }
     }

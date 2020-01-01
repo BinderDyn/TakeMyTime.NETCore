@@ -129,11 +129,20 @@
   <data name="ColumnDescription" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="ColumnEdited" xml:space="preserve">
+    <value>Zuletzt bearbeitet</value>
+  </data>
   <data name="ColumnName" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="ColumnStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="ConfirmDeleteMessageBoxMessage" xml:space="preserve">
+    <value>Sind Sie sich sicher, dass Sie das folgende Projekt löschen möchten: </value>
+  </data>
+  <data name="ConfirmDeleteMessageBoxTitle" xml:space="preserve">
+    <value>Löschen bestätigen</value>
   </data>
   <data name="DeleteProjectTooltip" xml:space="preserve">
     <value>Ausgewähltes Projekt löschen (mit Bestätigung)</value>
@@ -146,5 +155,8 @@
   </data>
   <data name="StatusTooltipArchived" xml:space="preserve">
     <value>Archiviert</value>
+  </data>
+  <data name="ToggleStatusTooltip" xml:space="preserve">
+    <value>Status umschalten</value>
   </data>
 </root>
