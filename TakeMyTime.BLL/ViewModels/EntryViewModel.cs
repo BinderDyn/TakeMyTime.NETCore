@@ -1,5 +1,5 @@
-﻿using BinderDynamics.TakeMyTime.Biz.ViewModels;
-using System;
+﻿using System;
+using TakeMyTime.BLL.ViewModels;
 
 namespace BinderDynamics.TakeMyTime.Biz.ViewModels
 {
@@ -7,7 +7,7 @@ namespace BinderDynamics.TakeMyTime.Biz.ViewModels
     {
         public string Name { get; set; }
         public int? ProjectId { get; set; }
-        public ProjectViewModel Project {get; set;}
+        // public ProjectViewModel Project {get; set;}
         public AssignmentViewModel Assignment { get; set; }
         public int Id { get; set; }
         public DateTime? Date { get; set; }

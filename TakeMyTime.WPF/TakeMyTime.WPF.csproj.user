@@ -9,7 +9,26 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Projects\AddProject.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Projects\ProjectOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Projects\AddProject.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Projects\ProjectOverview.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -31,7 +31,7 @@
             <ColumnDefinition Width="0.9*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
         <Border x:Name="b_Toolbar"
                 MouseDown="sp_Toolbar_MouseDown"
                 Background="Transparent"
@@ -71,10 +71,10 @@
         </Border>
         <Grid Grid.Row="0"
               Background="#383838">
-        <StackPanel HorizontalAlignment="Left"
+            <StackPanel HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Grid.Column="1">
-            <TextBlock
+                <TextBlock
                     x:Name="txt_Title"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -83,8 +83,8 @@
                     FontFamily="Arial"
                     Foreground="{StaticResource LightWhite}"
                     Margin="10 0 10 0"/>
-        </StackPanel>
-         </Grid>
+            </StackPanel>
+        </Grid>
         <Grid Grid.Row="1"
               Background="#383838">
             <Grid.RowDefinitions>
@@ -102,51 +102,76 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
+
                     <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Folder"
+                        <Button x:Name="btn_Projects"
+                                Height="60" 
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_Projects_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Folder"
                                                      VerticalAlignment="Center"
                                                      Margin="20 10"
                                                      Height="40"
                                                      Width="25"
                                                      Foreground="{StaticResource LightWhite}"
                                                      ></materialDesign:PackIcon>
-                            <TextBlock
+                                <TextBlock
                                 Text="{x:Static resource:MainWindow.ProjectMenuItem}"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource LightWhite}"></TextBlock>
-                        </StackPanel>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
                     <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Assignment"
+                        <Button x:Name="btn_Assignments"
+                                Height="60" 
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_Assignments_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Assignment"
                                                      VerticalAlignment="Center"
                                                      Margin="20 10"
                                                      Height="40"
                                                      Width="25"
                                                      Foreground="{StaticResource LightWhite}"
                                                      ></materialDesign:PackIcon>
-                            <TextBlock
+                                <TextBlock
                                 Text="{x:Static resource:MainWindow.AssignmentMenuItem}"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource LightWhite}"></TextBlock>
-                        </StackPanel>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
                     <Separator></Separator>
                     <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings"
+                        <Button x:Name="btn_Settings"
+                                Height="60" 
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_Settings_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Settings"
                                                      VerticalAlignment="Center"
                                                      Margin="20 10"
                                                      Height="40"
                                                      Width="25"
                                                      Foreground="{StaticResource LightWhite}"
                                                      ></materialDesign:PackIcon>
-                            <TextBlock
+                                <TextBlock
                                 Text="{x:Static resource:MainWindow.SettingsMenuItem}"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource LightWhite}"></TextBlock>
-                        </StackPanel>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
@@ -157,5 +182,5 @@
         </Grid>
 
     </Grid>
-    
+
 </Window>

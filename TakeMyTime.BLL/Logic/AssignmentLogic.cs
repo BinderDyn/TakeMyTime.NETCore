@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.DOM.Models;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class AssignmentLogic
     {
@@ -29,7 +30,7 @@ namespace TakeMyTime.Biz.Logic
 
         public IEnumerable<Assignment> GetAssignmentsByProjectId(int projectId)
         {
-            return unitOfWork.Assignments.Find(x => x.ProjectId == projectId).ToList();
+            return unitOfWork.Assignments.Find(x => x.Project_Id == projectId).ToList();
         }
 
         public void AddAssignment(Assignment assignment)
@@ -44,7 +45,7 @@ namespace TakeMyTime.Biz.Logic
             var edit = unitOfWork.Assignments.Get(assignment.Id);
 
             edit.Name = assignment.Name;
-            edit.Comment = assignment.Comment;
+            edit.Description = assignment.Description;
             edit.DatePlanned = assignment.DatePlanned;
             edit.DurationPlannedAsTicks = assignment.DurationPlannedAsTicks;
             edit.AssignmentStatus = assignment.AssignmentStatus;
@@ -66,7 +67,7 @@ namespace TakeMyTime.Biz.Logic
                     if(edit.Id == assignment.Id)
                     {
                         edit.Name = assignment.Name;
-                        edit.Comment = assignment.Comment;
+                        edit.Description = assignment.Description;
                         edit.DatePlanned = assignment.DatePlanned;
                         //edit.DurationPlanned = assignment.DurationPlanned;
                         edit.DurationPlannedAsTicks = assignment.DurationPlannedAsTicks;
@@ -147,8 +148,8 @@ namespace TakeMyTime.Biz.Logic
 
             IEnumerable<Assignment> assignments = GetAllAssignments()
                 .Where(a => a.DateDue.Value.Date == DateTime.Now.Date && 
-                a.AssignmentStatus != Common.Enums.EnumDefinition.AssignmentStatus.Done &&
-                a.AssignmentStatus != Common.Enums.EnumDefinition.AssignmentStatus.Aborted)
+                a.AssignmentStatus != EnumDefinition.AssignmentStatus.Done &&
+                a.AssignmentStatus != EnumDefinition.AssignmentStatus.Aborted)
                 .OrderBy(a => a.Project.Name)
                 .ToList();
 

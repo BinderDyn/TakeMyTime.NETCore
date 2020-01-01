@@ -36,17 +36,17 @@ namespace Common.Enums
         /// <summary>
         /// Discriminator for project types
         /// </summary>
-        public enum ProjectType
-        {
-            [Description("Standard")]
-            Default = -1,
-            [Description("Writing")]
-            Book = 1,
-            [Description("Language")]
-            Language = 2,
-            [Description("Programming")]
-            Programming = 3
-        }
+        //public enum ProjectType
+        //{
+        //    [Description("Standard")]
+        //    Default = -1,
+        //    [Description("Writing")]
+        //    Book = 1,
+        //    [Description("Language")]
+        //    Language = 2,
+        //    [Description("Programming")]
+        //    Programming = 3
+        //}
 
         public enum TimekeeperStatus
         {

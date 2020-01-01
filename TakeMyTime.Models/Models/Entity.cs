@@ -11,31 +11,24 @@ namespace TakeMyTime.DOM.Models
     public abstract class Entity<T> : IEntity<T>
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public T Id { get; set; }
-        object IEntity.Id
+        public int Id { get; set; }
+
+        protected void SetCreated()
         {
-            get { return this.Id; }
+            this.Created = DateTime.Now;
+        }
+
+        protected void SetEdited()
+        {
+            this.Edited = DateTime.Now;
         }
 
         public string Name { get; set; }
-
-        private DateTime? created;
         [DataType(DataType.DateTime)]
-        public DateTime Created
-        {
-            get { return created ?? DateTime.Now; }
-            set { created = value; }
-        }
-
+        public DateTime Created { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime? Edited { get; set; }
-        public string CreatedBy { get; set; }
-        public string EditedBy { get; set; }
-        
-
-
-        [Timestamp]
-        public byte[] Version { get; set; }
+        //[Timestamp]
+        //public byte[] Version { get; set; }
     }
 }

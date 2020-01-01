@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     internal class TodoAttribute : Attribute
     {

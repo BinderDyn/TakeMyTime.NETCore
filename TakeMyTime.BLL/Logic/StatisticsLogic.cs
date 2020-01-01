@@ -1,4 +1,5 @@
 ﻿using BinderDynamics.TakeMyTime.Biz.ViewModels;
+using Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.uow;
 
-namespace TakeMyTime.Biz.Logic
+namespace TakeMyTime.BLL.Logic
 {
     public class StatisticsLogic
     {
@@ -16,7 +17,7 @@ namespace TakeMyTime.Biz.Logic
 
         private IEnumerable<StatisticsProjectGraphViewModel> RetrieveGraphData(int projectId)
         {
-            var entries = this.uow.Entries.Find(e => e.ProjectId == projectId).ToList();
+            var entries = this.uow.Entries.Find(e => e.Project_Id == projectId).ToList();
             var graphData = new List<StatisticsProjectGraphViewModel>();
 
             foreach (var e in entries)
@@ -30,7 +31,7 @@ namespace TakeMyTime.Biz.Logic
         private TimeSpan CalculateAverageEntryLength(int projectId)
         {
             TimeSpan averageValue = TimeSpan.MinValue;
-            var entries = this.uow.Entries.Find(e => e.ProjectId == projectId).ToList();
+            var entries = this.uow.Entries.Find(e => e.Project_Id == projectId).ToList();
             if (entries != null && entries.Any())
             {
                 long ticksTotal = entries.Sum(e => e.DurationAsTicks.HasValue ? e.DurationAsTicks.Value : 0); //Complete Duration
@@ -50,7 +51,7 @@ namespace TakeMyTime.Biz.Logic
                     AverageEntryLength = CalculateAverageEntryLength(projectId),
                     GraphPoints = RetrieveGraphData(projectId),
                     Created = project.Created,
-                    LastWorkedOn = project.Entries.OrderByDescending(e => e.Created).FirstOrDefault()?.Date.Value ?? DateTime.Now,
+                    //LastWorkedOn = project.Entries.OrderByDescending(e => e.Created).FirstOrDefault()?.Date.Value ?? DateTime.Now,
                     ProjectName = project.Name
                 };
             }
@@ -86,19 +87,19 @@ namespace TakeMyTime.Biz.Logic
 
         private IEnumerable<DOM.Models.Assignment> GetDoneAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Done).ToList();
+            return uow.Assignments.Find(a => a.Project_Id == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done).ToList();
         }
 
         private IEnumerable<DOM.Models.Assignment> GetAbortedAssignments(int projectId)
         {
-            return uow.Assignments.Find(a => a.ProjectId == projectId && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Aborted).ToList();
+            return uow.Assignments.Find(a => a.Project_Id == projectId && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Aborted).ToList();
         }
 
         private decimal CalculateDeadlineEfficiency(int projectId)
         {
             var assignments = GetDoneAssignments(projectId);
             var assignmentsFinishedInTime = assignments
-                .Where(a => a.Edited <= a.DateDue && a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Done)
+                .Where(a => a.Edited <= a.DateDue && a.AssignmentStatus == EnumDefinition.AssignmentStatus.Done)
                 .Count();
             return (decimal)assignments.Count() != 0 ? (decimal)assignmentsFinishedInTime / (decimal)assignments.Count() : 0;
         }

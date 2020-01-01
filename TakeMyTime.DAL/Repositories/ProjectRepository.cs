@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.Enums;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,51 +24,33 @@ namespace TakeMyTime.DAL.Repositories
             get { return DbContext as TakeMyTimeDbContext; }
         }
 
-        public void ArchiveProject(int projectId)
+        public void ToggleProjectStatus(int projectId)
         {
-            var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
-            project.ProjectStatus = Common.Enums.EnumDefinition.ProjectStatus.Archived;
+            var project = context.Projects.Single(p => p.Id == projectId);
+            project.ProjectStatus = project.ProjectStatus == EnumDefinition.ProjectStatus.Active ? 
+                EnumDefinition.ProjectStatus.Archived :
+                EnumDefinition.ProjectStatus.Active;
         }
 
-        public int GetPages(int projectId)
+        public IEnumerable<Project> LoadAll()
         {
-            var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-            int allPages = 0;
-            foreach (var entry in entries)
-            {
-                if (entry.Pages != null)
-                {
-                    allPages += (int)entry.Pages;
-                }
-            }
-            return allPages;
-        }
-
-        public int GetWords(int projectId)
-        {
-            var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-            int allWords = 0;
-            foreach (var entry in entries)
-            {
-                if (entry.Words != null)
-                {
-                    allWords += (int)entry.Words;
-                }
-            }
-            return allWords;
+            return context.Projects
+                .Include(p => p.ProjectType)
+                .Include(p => p.Assignments)
+                .Include(p => p.Entries)
+                .ToList();
         }
 
         public TimeSpan RetrieveWorkingTime(int projectId)
         {
-            var entries = context.Entries.Where(e => e.ProjectId == projectId).ToList();
-            var completeWorkingTime = new TimeSpan();
-            foreach (var entry in entries)
+            var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
+            TimeSpan completeWorkingTime = new TimeSpan();
+            if (project != null)
             {
-                if (entry.DurationAsTicks != null)
-                {
-                    completeWorkingTime += TimeSpan.FromTicks(entry.DurationAsTicks.Value);
-                }
+                long duration = project.Entries.Where(e => e.DurationAsTicks.HasValue).Sum(e => e.DurationAsTicks.Value);
+                completeWorkingTime = TimeSpan.FromTicks(duration);
             }
+
             return completeWorkingTime;
         }
     }
