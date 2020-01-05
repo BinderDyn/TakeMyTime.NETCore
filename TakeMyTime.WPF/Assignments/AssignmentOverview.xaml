@@ -1,0 +1,184 @@
+﻿<Page x:Class="TakeMyTime.WPF.Assignments.AssignmentOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TakeMyTime.WPF.Assignments"
+      xmlns:resources="clr-namespace:TakeMyTime.WPF.Resources"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AssignmentOverview"
+      Background="{StaticResource BackgroundGrey}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="b_Toolbar"
+                Grid.Row="0"
+                BorderBrush="Transparent"
+                Visibility="Visible">
+            <StackPanel Margin="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <ComboBox
+                    IsEditable="False"
+                    Width="340"
+                    Margin="0 0 30 0"
+                    HorizontalAlignment="Left">
+                </ComboBox>
+                <Button x:Name="btn_NewAssignment"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="ForestGreen"
+                        ToolTip="{x:Static resources:AssignmentOverview.AssignmentAddTooltip}"
+                        Click="btn_NewAssignment_Click"
+                        >
+                    <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_EditAssignment"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="Orange"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.AssignmentEditTooltip}"
+                        Click="btn_EditAssignment_Click"
+                        >
+                    <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_DeleteAssignment"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Background="{StaticResource Warning}"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.AssignmentDeleteTooltip}"
+                        >
+                    <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
+                </Button>
+            </StackPanel>
+        </Border>
+        <ListView x:Name="lv_Assignments" 
+                      ItemsSource="{Binding Projects}"
+                      HorizontalAlignment="Stretch"
+                      Grid.Row="1"
+                      Foreground="{StaticResource LightWhite}"
+                      Margin="18"
+                      Visibility="Visible"
+                      SelectionMode="Single"
+                      MouseDoubleClick="lv_Assignments_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                            Header="{x:Static resources:AssignmentOverview.ColumnName}"
+                            Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnDescription}"
+                            Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Test"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnHasDueDate}"
+                            Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsEnabled="False"
+                                    Content="True">
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn
+                        Header="{x:Static resources:AssignmentOverview.ColumnDueDate}"
+                        Width="90"
+                        >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnCreated}"
+                            Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=CreatedAsString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnEdited}"
+                            Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EditedAsString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnStatus}"
+                            Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=StatusImage}"
+                                       Height="15"
+                                       Width="15"
+                                       ToolTip="{Binding Path=StatusTooltip}"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button     x:Name="btn_SetDone"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="Green"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.AssignmentSetDoneTooltip}"
+                        Click="btn_SetDone_Click"
+                        >
+                <materialDesign:PackIcon Kind="Check"></materialDesign:PackIcon>
+            </Button>
+            <Button     x:Name="btn_SetAborted"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="{StaticResource Warning}"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.AssignmentSetAbortedTooltip}"
+                        Click="btn_SetAborted_Click"
+                        >
+                <materialDesign:PackIcon Kind="Cancel"></materialDesign:PackIcon>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -104,7 +104,7 @@ namespace TakeMyTime.WPF
 
         private void btn_Assignments_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(null);
+            fr_Content.Navigate(new Assignments.AssignmentOverview());
         }
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)

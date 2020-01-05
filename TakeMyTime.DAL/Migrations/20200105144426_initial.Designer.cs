@@ -9,7 +9,7 @@ using TakeMyTime.DAL;
 namespace TakeMyTime.DAL.Migrations
 {
     [DbContext(typeof(TakeMyTimeDbContext))]
-    [Migration("20191218113454_initial")]
+    [Migration("20200105144426_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

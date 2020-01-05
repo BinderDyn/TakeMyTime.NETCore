@@ -35,6 +35,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddProject.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\AssignmentOverview.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssignmentOverview.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,6 +65,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddProject.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AssignmentOverview.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AssignmentOverview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AssignmentOverview.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\MainWindow.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -84,7 +96,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assignments\" />
     <Folder Include="Entries\" />
     <Folder Include="Drafts\" />
     <Folder Include="Calendar\" />
