@@ -19,7 +19,7 @@ namespace BinderDynamics.TakeMyTime.Biz.ViewModels
                 AssignmentLogic assignmentLogic = new AssignmentLogic();
 
                 var assignments = assignmentLogic.GetAssignmentsByProjectId(project_Id)
-                    .Where(a => a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Active ||
+                    .Where(a => a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.InProgress ||
                                 a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Future ||
                                 a.AssignmentStatus == Common.Enums.EnumDefinition.AssignmentStatus.Postponed)
                                 .ToList();

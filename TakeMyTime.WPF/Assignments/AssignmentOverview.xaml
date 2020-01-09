@@ -27,10 +27,14 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
                 <ComboBox
+                    x:Name="cb_ProjectSelection"
                     IsEditable="False"
                     Width="340"
                     Margin="0 0 30 0"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding ProjectViewModels}"
+                    DisplayMemberPath="Name"
+                    SelectionChanged="cb_ProjectSelection_SelectionChanged">
                 </ComboBox>
                 <Button x:Name="btn_NewAssignment"
                         VerticalAlignment="Center"
@@ -68,7 +72,7 @@
             </StackPanel>
         </Border>
         <ListView x:Name="lv_Assignments" 
-                      ItemsSource="{Binding Projects}"
+                      ItemsSource="{Binding AssignmentViewModels}"
                       HorizontalAlignment="Stretch"
                       Grid.Row="1"
                       Foreground="{StaticResource LightWhite}"

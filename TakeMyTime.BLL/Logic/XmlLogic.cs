@@ -435,7 +435,7 @@ namespace TakeMyTime.BLL.Logic
                 case "All":
                     return EnumDefinition.AssignmentStatus.Default;
                 case "Active":
-                    return EnumDefinition.AssignmentStatus.Active;
+                    return EnumDefinition.AssignmentStatus.InProgress;
                 case "Future":
                     return EnumDefinition.AssignmentStatus.Future;
                 case "Done":

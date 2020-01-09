@@ -14,7 +14,7 @@ namespace TakeMyTime.DOM.Models
 {
     public class Assignment : Entity<Assignment>
     {
-        public Assignment Create(ICreateParam param)
+        public static Assignment Create(ICreateParam param)
         {
             Assignment assignment = new Assignment();
             assignment.Init(param.Name, param.Description, param.DatePlanned, param.DateDue, param.DurationPlannedAsTicks, param.Project);

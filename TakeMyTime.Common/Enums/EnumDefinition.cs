@@ -20,7 +20,7 @@ namespace Common.Enums
             [Description("All")]
             Default = -1,
             [Description("Active")]
-            Active = 0,
+            InProgress = 0,
             [Description("Future")]
             Future = 1,
             [Description("Done")]

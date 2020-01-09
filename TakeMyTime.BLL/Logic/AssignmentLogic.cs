@@ -33,27 +33,19 @@ namespace TakeMyTime.BLL.Logic
             return unitOfWork.Assignments.Find(x => x.Project_Id == projectId).ToList();
         }
 
-        public void AddAssignment(Assignment assignment)
+        public void AddAssignment(Assignment.ICreateParam param)
         {
+                var assignment = Assignment.Create(param);
                 unitOfWork.Assignments.Add(assignment);
                 unitOfWork.Complete();
-                Dispose();
         }
 
-        public void UpdateAssignment(Assignment assignment)
+        public void UpdateAssignment(int id, Assignment.IUpdateParam param)
         {
-            var edit = unitOfWork.Assignments.Get(assignment.Id);
-
-            edit.Name = assignment.Name;
-            edit.Description = assignment.Description;
-            edit.DatePlanned = assignment.DatePlanned;
-            edit.DurationPlannedAsTicks = assignment.DurationPlannedAsTicks;
-            edit.AssignmentStatus = assignment.AssignmentStatus;
-            edit.Edited = DateTime.Now;
+            var edit = unitOfWork.Assignments.Get(id);
+            edit.Update(param);
 
             unitOfWork.Complete();
-            Dispose();
-
         }
 
         public void UpdateAssignments(IEnumerable<Assignment> assignments)
@@ -128,19 +120,19 @@ namespace TakeMyTime.BLL.Logic
             return assignment.TimesPushed < 3 ? true : false;
         }
 
-        public bool PushOneWeekForward(int assignmentId)
-        {
-            const bool wasPushed = true;
-            if(CanBePushed(assignmentId))
-            {
-                var assignment = unitOfWork.Assignments.Get(assignmentId);
-                assignment.DateDue = assignment.DateDue + TimeSpan.FromDays(7);
-                assignment.TimesPushed++;
-                UpdateAssignment(assignment);
-                return wasPushed;
-            }
-            return !wasPushed;
-        }
+        //public bool PushOneWeekForward(int assignmentId)
+        //{
+        //    const bool wasPushed = true;
+        //    if(CanBePushed(assignmentId))
+        //    {
+        //        var assignment = unitOfWork.Assignments.Get(assignmentId);
+        //        assignment.DateDue = assignment.DateDue + TimeSpan.FromDays(7);
+        //        assignment.TimesPushed++;
+        //        UpdateAssignment(assignment);
+        //        return wasPushed;
+        //    }
+        //    return !wasPushed;
+        //}
 
         public string GetDueAssignmentsForToday()
         {
