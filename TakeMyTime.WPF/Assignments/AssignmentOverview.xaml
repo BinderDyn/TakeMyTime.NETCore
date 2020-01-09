@@ -26,10 +26,30 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
+                <Label
+                    Content="{x:Static resources:AssignmentOverview.LabelFilter}"></Label>
+                <ComboBox
+                    x:Name="cb_StatusFilter"
+                    IsEditable="False"
+                    Width="140"
+                    Margin="0 0 30 0"
+                    HorizontalAlignment="Left"
+                    DisplayMemberPath="Name"
+                    SelectionChanged="cb_StatusFilter_SelectionChanged"
+                    >
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentAll}" x:Name="cbi_All"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentActive}" x:Name="cbi_Active"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentFuture}" x:Name="cbi_Future"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentDone}" x:Name="cbi_Done"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentAborted}" x:Name="cbi_Aborted"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentPostponed}" x:Name="cbi_Postponed"></ComboBoxItem>
+                </ComboBox>
+                <Label
+                    Content="{x:Static resources:AssignmentOverview.LabelProject}"></Label>
                 <ComboBox
                     x:Name="cb_ProjectSelection"
                     IsEditable="False"
-                    Width="340"
+                    Width="140"
                     Margin="0 0 30 0"
                     HorizontalAlignment="Left"
                     ItemsSource="{Binding ProjectViewModels}"

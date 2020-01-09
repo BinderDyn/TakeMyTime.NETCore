@@ -13,7 +13,7 @@ namespace Common.Enums
     public class EnumDefinition
     {
         /// <summary>
-        /// Provides the Assignment-Class with a discriminator for the current status
+        /// Status of assignments
         /// </summary>
         public enum AssignmentStatus
         {
@@ -33,27 +33,12 @@ namespace Common.Enums
             Upcoming = 5
         }
 
-        /// <summary>
-        /// Discriminator for project types
-        /// </summary>
-        //public enum ProjectType
-        //{
-        //    [Description("Standard")]
-        //    Default = -1,
-        //    [Description("Writing")]
-        //    Book = 1,
-        //    [Description("Language")]
-        //    Language = 2,
-        //    [Description("Programming")]
-        //    Programming = 3
-        //}
-
         public enum TimekeeperStatus
         {
-            [Description("In time")]
-            InTime = 0,
-            [Description("Not in time")]
-            NotInTime = 1
+            [Description("On time")]
+            OnTime = 0,
+            [Description("Not on time")]
+            Delayed = 1
         }
 
         public enum ProjectStatus

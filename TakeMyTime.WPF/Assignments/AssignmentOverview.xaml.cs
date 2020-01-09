@@ -32,10 +32,11 @@ namespace TakeMyTime.WPF.Assignments
             var assignmentLogic = new AssignmentLogic();
             var projectLogic = new ProjectLogic();
             this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
+            this.FilteredAssignmentViewModels = this.AssignmentViewModels.ToList();
             this.ProjectViewModels = projectLogic.GetAllProjects()
                 .Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active)
                 .Select(p => new Projects.ProjectViewModel(p));
-            this.lv_Assignments.ItemsSource = this.AssignmentViewModels;
+            this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
             this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
         }
 
@@ -63,13 +64,33 @@ namespace TakeMyTime.WPF.Assignments
         {
 
         }
-
-        public IEnumerable<Projects.ProjectViewModel> ProjectViewModels { get; set; }
-        public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
-
         private void cb_ProjectSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+        private void cb_StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedFilters = e.AddedItems;
+            if (selectedFilters.Count == 0) this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+            else
+            {
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => selectedFilters.Contains(avm.StatusAsEnum));
+            }
+        }
+
+        private EnumDefinition.AssignmentStatus GetStatusByItemName(string itemName)
+        {
+            return itemName switch
+            {
+                "cbi_All" => EnumDefinition.AssignmentStatus.Upcoming
+            };
+        }
+
+        public IEnumerable<Projects.ProjectViewModel> ProjectViewModels { get; set; }
+        public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
+        public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
+
+        
     }
 }

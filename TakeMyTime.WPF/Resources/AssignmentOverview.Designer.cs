@@ -167,5 +167,23 @@ namespace TakeMyTime.WPF.Resources {
                 return ResourceManager.GetString("ColumnStatus", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter by status ähnelt.
+        /// </summary>
+        public static string LabelFilter {
+            get {
+                return ResourceManager.GetString("LabelFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter by project ähnelt.
+        /// </summary>
+        public static string LabelProject {
+            get {
+                return ResourceManager.GetString("LabelProject", resourceCulture);
+            }
+        }
     }
 }

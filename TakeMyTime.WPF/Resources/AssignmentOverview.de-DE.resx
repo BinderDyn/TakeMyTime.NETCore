@@ -153,4 +153,10 @@
   <data name="ColumnStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="LabelFilter" xml:space="preserve">
+    <value>Nach Status filtern</value>
+  </data>
+  <data name="LabelProject" xml:space="preserve">
+    <value>Nach Projekt filtern</value>
+  </data>
 </root>

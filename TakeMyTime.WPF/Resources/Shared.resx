@@ -117,46 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AssignmentAddTooltip" xml:space="preserve">
-    <value>Add Assignment</value>
+  <data name="AssignmentAborted" xml:space="preserve">
+    <value>Aborted</value>
   </data>
-  <data name="AssignmentDeleteTooltip" xml:space="preserve">
-    <value>DeleteAssignment</value>
+  <data name="AssignmentActive" xml:space="preserve">
+    <value>Active</value>
   </data>
-  <data name="AssignmentEditTooltip" xml:space="preserve">
-    <value>Edit Assignment</value>
+  <data name="AssignmentAll" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="AssignmentSetAbortedTooltip" xml:space="preserve">
-    <value>Set aborted</value>
+  <data name="AssignmentDone" xml:space="preserve">
+    <value>Done</value>
   </data>
-  <data name="AssignmentSetDoneTooltip" xml:space="preserve">
-    <value>Set done</value>
+  <data name="AssignmentFuture" xml:space="preserve">
+    <value>Pending</value>
   </data>
-  <data name="ColumnCreated" xml:space="preserve">
-    <value>Created</value>
-  </data>
-  <data name="ColumnDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="ColumnDueDate" xml:space="preserve">
-    <value>Due to</value>
-  </data>
-  <data name="ColumnEdited" xml:space="preserve">
-    <value>Edited</value>
-  </data>
-  <data name="ColumnHasDueDate" xml:space="preserve">
-    <value>Is due</value>
-  </data>
-  <data name="ColumnName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ColumnStatus" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="LabelFilter" xml:space="preserve">
-    <value>Filter by status</value>
-  </data>
-  <data name="LabelProject" xml:space="preserve">
-    <value>Filter by project</value>
+  <data name="AssignmentPostponed" xml:space="preserve">
+    <value>Delayed</value>
   </data>
 </root>
