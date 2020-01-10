@@ -16,6 +16,7 @@ namespace TakeMyTime.WPF.Assignments
             this.Edited = assignment.Edited;
             this.DueDate = assignment.DateDue;
             this.Description = assignment.Description;
+            this.ProjectId = assignment.Project_Id.Value;
         }
 
         public int Id { get; set; }
@@ -25,6 +26,7 @@ namespace TakeMyTime.WPF.Assignments
         public DateTime? DueDate { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Edited { get; set; }
+        public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
         public Uri Status { get => GetImageByStatus(this.StatusAsEnum); }
 

@@ -444,8 +444,6 @@ namespace TakeMyTime.BLL.Logic
                     return EnumDefinition.AssignmentStatus.Aborted;
                 case "Postponed":
                     return EnumDefinition.AssignmentStatus.Postponed;
-                case "Upcoming":
-                    return EnumDefinition.AssignmentStatus.Upcoming;
                 default:
                     return EnumDefinition.AssignmentStatus.Default;
             }

@@ -27,14 +27,14 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
                 <Label
-                    Content="{x:Static resources:AssignmentOverview.LabelFilter}"></Label>
+                    Content="{x:Static resources:AssignmentOverview.LabelFilter}"
+                    Margin="0 8 10 0"></Label>
                 <ComboBox
                     x:Name="cb_StatusFilter"
                     IsEditable="False"
                     Width="140"
                     Margin="0 0 30 0"
                     HorizontalAlignment="Left"
-                    DisplayMemberPath="Name"
                     SelectionChanged="cb_StatusFilter_SelectionChanged"
                     >
                     <ComboBoxItem Content="{x:Static resources:Shared.AssignmentAll}" x:Name="cbi_All"></ComboBoxItem>
@@ -45,7 +45,8 @@
                     <ComboBoxItem Content="{x:Static resources:Shared.AssignmentPostponed}" x:Name="cbi_Postponed"></ComboBoxItem>
                 </ComboBox>
                 <Label
-                    Content="{x:Static resources:AssignmentOverview.LabelProject}"></Label>
+                    Content="{x:Static resources:AssignmentOverview.LabelProject}"
+                    Margin="0 8 10 0"></Label>
                 <ComboBox
                     x:Name="cb_ProjectSelection"
                     IsEditable="False"

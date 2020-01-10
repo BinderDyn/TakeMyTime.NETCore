@@ -38,6 +38,8 @@ namespace TakeMyTime.WPF.Assignments
                 .Select(p => new Projects.ProjectViewModel(p));
             this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
             this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
+            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.FirstOrDefault();
+            this.cb_StatusFilter.SelectedItem = this.cbi_All;
         }
 
         private void btn_NewAssignment_Click(object sender, RoutedEventArgs e)
@@ -66,16 +68,26 @@ namespace TakeMyTime.WPF.Assignments
         }
         private void cb_ProjectSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(e.AddedItems.Count > 0)
+            {
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum.HasFlag(this.SelectedFilter) &&
+                avm.ProjectId == SelectedProject.Id);
+            }
         }
 
         private void cb_StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedFilters = e.AddedItems;
-            if (selectedFilters.Count == 0) this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+            if (e.AddedItems.Count == 0)
+            {
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+                return;
+            }
             else
             {
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => selectedFilters.Contains(avm.StatusAsEnum));
+                var selectedFilter = GetStatusByItemName(((e.AddedItems[0] as ComboBoxItem).Name));
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum.HasFlag(selectedFilter) &&
+                avm.ProjectId == SelectedProject.Id);
+                this.SelectedFilter = selectedFilter;
             }
         }
 
@@ -83,14 +95,20 @@ namespace TakeMyTime.WPF.Assignments
         {
             return itemName switch
             {
-                "cbi_All" => EnumDefinition.AssignmentStatus.Upcoming
+                "cbi_All" => EnumDefinition.AssignmentStatus.Default,
+                "cbi_Active" => EnumDefinition.AssignmentStatus.InProgress,
+                "cbi_Future" => EnumDefinition.AssignmentStatus.Future,
+                "cbi_Done" => EnumDefinition.AssignmentStatus.Done,
+                "cbi_Aborted" => EnumDefinition.AssignmentStatus.Aborted,
+                "cbi_Postponed" => EnumDefinition.AssignmentStatus.Postponed,
+                _ => EnumDefinition.AssignmentStatus.Default
             };
         }
 
         public IEnumerable<Projects.ProjectViewModel> ProjectViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
-
-        
+        public EnumDefinition.AssignmentStatus SelectedFilter { get; set; }
+        public Projects.ProjectViewModel SelectedProject { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Common.Enums
         public enum AssignmentStatus
         {
             [Description("All")]
-            Default = -1,
+            Default = ~0,
             [Description("Active")]
             InProgress = 0,
             [Description("Future")]
@@ -29,8 +29,6 @@ namespace Common.Enums
             Aborted = 3,
             [Description("Postponed")]
             Postponed = 4,
-            [Description("Upcoming")]
-            Upcoming = 5
         }
 
         public enum TimekeeperStatus
