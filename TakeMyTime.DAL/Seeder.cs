@@ -13,15 +13,19 @@ namespace TakeMyTime.DAL
         {
             TakeMyTimeDbContext context = new TakeMyTimeDbContext();
 
-            var hasProjects = context.ProjectTypes != null && context.ProjectTypes.Any();
-            if(!hasProjects)
+            var hasProjectTypes = context.ProjectTypes != null && context.ProjectTypes.Any();
+            if (!hasProjectTypes)
             {
-                context.ProjectTypes.AddRange(ProjectTypeFactory.SeedProjectTypes());
-            }
+                var projectTypes = ProjectTypeFactory.SeedProjectTypes();
+                context.ProjectTypes.AddRange(projectTypes);
+                context.SaveChanges();
 
-            context.SaveChanges();
+                var projects = ProjectFactory.SeedProjects(projectTypes.ToArray());
+                context.Projects.AddRange(projects);
+                context.SaveChanges();
+            }
         }
 
-        
+
     }
 }
