@@ -160,6 +160,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Planned for calendar week ähnelt.
+        /// </summary>
+        public static string ColumnPlanned {
+            get {
+                return ResourceManager.GetString("ColumnPlanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Status ähnelt.
         /// </summary>
         public static string ColumnStatus {

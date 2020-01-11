@@ -1,4 +1,5 @@
-﻿using Common.Enums;
+﻿using Common;
+using Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,7 +55,23 @@ namespace TakeMyTime.WPF.Assignments
 
         private void btn_NewAssignment_Click(object sender, RoutedEventArgs e)
         {
+            ShowAddAssignmentDialog(false);
+        }
 
+        private void ShowAddAssignmentDialog(bool editMode)
+        {
+            AddAssignment addAssignmentWindow = null;
+            if (editMode)
+            {
+                // addAssignmentWindow = new AddAssignment(this.SelectedProject.Id, this.SelectedProject.Name, this.SelectedProject.Description);
+            }
+            else
+            {
+                addAssignmentWindow = new AddAssignment();
+            }
+
+            addAssignmentWindow.ShowDialog();
+            this.Load();
         }
 
         private void btn_EditAssignment_Click(object sender, RoutedEventArgs e)
@@ -76,6 +93,8 @@ namespace TakeMyTime.WPF.Assignments
         {
 
         }
+
+        [Refactor]
         private void cb_ProjectSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -104,6 +123,7 @@ namespace TakeMyTime.WPF.Assignments
             RefreshBindings();
         }
 
+        [Refactor]
         private void cb_StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0 || this.SelectedProject == null)

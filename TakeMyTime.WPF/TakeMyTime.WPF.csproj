@@ -30,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\AddAssignment.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddAssignment.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AddProject.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -63,6 +68,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AddAssignment.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddAssignment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddAssignment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>

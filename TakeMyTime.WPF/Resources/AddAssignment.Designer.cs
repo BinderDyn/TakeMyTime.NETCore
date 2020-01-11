@@ -22,14 +22,14 @@ namespace TakeMyTime.WPF.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindow {
+    public class AddAssignment {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindow() {
+        internal AddAssignment() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.MainWindow", typeof(MainWindow).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.AddAssignment", typeof(AddAssignment).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,56 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Assignments ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Definition of done ähnelt.
         /// </summary>
-        public static string AssignmentMenuItem {
+        public static string AssignmentDefinitionOfDone {
             get {
-                return ResourceManager.GetString("AssignmentMenuItem", resourceCulture);
+                return ResourceManager.GetString("AssignmentDefinitionOfDone", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Current calendar week ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        public static string CurrentCalendarWeek {
+        public static string AssignmentDescription {
             get {
-                return ResourceManager.GetString("CurrentCalendarWeek", resourceCulture);
+                return ResourceManager.GetString("AssignmentDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Due to ähnelt.
         /// </summary>
-        public static string ProjectMenuItem {
+        public static string AssignmentDue {
             get {
-                return ResourceManager.GetString("ProjectMenuItem", resourceCulture);
+                return ResourceManager.GetString("AssignmentDue", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        public static string SettingsMenuItem {
+        public static string AssignmentName {
             get {
-                return ResourceManager.GetString("SettingsMenuItem", resourceCulture);
+                return ResourceManager.GetString("AssignmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Planned for ähnelt.
+        /// </summary>
+        public static string AssignmentPlanned {
+            get {
+                return ResourceManager.GetString("AssignmentPlanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new assignment ähnelt.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

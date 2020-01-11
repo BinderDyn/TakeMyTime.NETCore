@@ -150,6 +150,9 @@
   <data name="ColumnName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="ColumnPlanned" xml:space="preserve">
+    <value>Planned for calendar week</value>
+  </data>
   <data name="ColumnStatus" xml:space="preserve">
     <value>Status</value>
   </data>

@@ -122,6 +122,15 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnPlanned}"
+                            Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=PlannedAsString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
                             Header="{x:Static resources:AssignmentOverview.ColumnHasDueDate}"
                             Width="90">
                         <GridViewColumn.CellTemplate>

@@ -18,6 +18,7 @@ namespace TakeMyTime.WPF.Assignments
             this.DueDate = assignment.DateDue;
             this.Description = assignment.Description;
             this.ProjectId = assignment.Project_Id.Value;
+            this.Planned = assignment.DatePlanned;
         }
 
         public int Id { get; set; }
@@ -30,6 +31,8 @@ namespace TakeMyTime.WPF.Assignments
         public string CreatedAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.Created); }
         public DateTime? Edited { get; set; }
         public string EditedAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.Edited); }
+        public DateTime? Planned { get; set; }
+        public string PlannedAsString { get => DateTimeCultureConverter.GetCalendarWeek(this.Planned); }
         public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
         public Uri StatusImage { get => GetImageByStatus(this.StatusAsEnum); }

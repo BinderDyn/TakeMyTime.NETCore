@@ -7,7 +7,7 @@
         xmlns:resource="clr-namespace:TakeMyTime.WPF.Resources"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="" 
         Height="720" 
         Width="1280" 
         Background="#525252" 
@@ -46,6 +46,13 @@
             Orientation="Horizontal"
             Margin="10 0 10 0"
             >
+                <TextBlock
+                    x:Name="tb_CalendarWeek"
+                    Text="{Binding CurrentCalendarWeek}"
+                    FontFamily="Impact"
+                    FontSize="20"
+                    Foreground="{StaticResource LightWhite}"
+                    Margin="0 3 50 0"></TextBlock>
                 <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     x:Name="btn_AppMinimize"
                     Click="btn_AppMinimize_Click"

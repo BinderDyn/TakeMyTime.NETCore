@@ -120,6 +120,9 @@
   <data name="AssignmentMenuItem" xml:space="preserve">
     <value>Aufgaben</value>
   </data>
+  <data name="CurrentCalendarWeek" xml:space="preserve">
+    <value>KW</value>
+  </data>
   <data name="ProjectMenuItem" xml:space="preserve">
     <value>Projekte</value>
   </data>
