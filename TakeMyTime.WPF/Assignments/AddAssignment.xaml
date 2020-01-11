@@ -40,6 +40,13 @@
                 <materialDesign:PackIcon Kind="ArrowAll"></materialDesign:PackIcon>
             </StackPanel>
         </Border>
+        <StackPanel Orientation="Vertical"
+                    Margin="20"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Grid.Row="1">
+            
+        </StackPanel>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
