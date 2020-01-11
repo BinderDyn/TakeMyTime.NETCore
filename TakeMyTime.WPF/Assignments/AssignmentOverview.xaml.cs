@@ -1,6 +1,7 @@
 ﻿using Common.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Assignments
 {
@@ -35,11 +37,19 @@ namespace TakeMyTime.WPF.Assignments
             this.FilteredAssignmentViewModels = this.AssignmentViewModels.ToList();
             this.ProjectViewModels = projectLogic.GetAllProjects()
                 .Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active)
-                .Select(p => new Projects.ProjectViewModel(p));
+                .Select(p => new Projects.ProjectViewModel(p)).ToList();
+            string projectAllSelectItemName = ResourceStringManager.GetResourceByKey("ProjectsAll");
+            this.ProjectViewModels.Insert(0, new Projects.ProjectViewModel { Name = projectAllSelectItemName, Id = 0 });
+            this.LoadFromAllProjects = true;
             this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
             this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
-            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.FirstOrDefault();
+            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.FirstOrDefault(p => p.Id == 0);
             this.cb_StatusFilter.SelectedItem = this.cbi_All;
+        }
+
+        private void RefreshBindings()
+        {
+            this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
         }
 
         private void btn_NewAssignment_Click(object sender, RoutedEventArgs e)
@@ -68,16 +78,35 @@ namespace TakeMyTime.WPF.Assignments
         }
         private void cb_ProjectSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(e.AddedItems.Count > 0)
+            if (e.AddedItems.Count > 0)
             {
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum.HasFlag(this.SelectedFilter) &&
-                avm.ProjectId == SelectedProject.Id);
+                this.SelectedProject = e.AddedItems[0] as Projects.ProjectViewModel;
+                if (this.SelectedProject.Id != 0 && this.SelectedFilter != EnumDefinition.AssignmentStatus.Default)
+                {
+                    this.FilteredAssignmentViewModels = this.FilteredAssignmentViewModels
+                        .Where(avm => avm.ProjectId == SelectedProject.Id && avm.StatusAsEnum == this.SelectedFilter);
+                    this.LoadFromAllProjects = false;
+                }
+                else if (this.SelectedProject.Id == 0 && this.SelectedFilter != EnumDefinition.AssignmentStatus.Default)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum == this.SelectedFilter); ;
+                    this.LoadFromAllProjects = true;
+                }
+                else if (this.SelectedProject.Id != 0 && this.SelectedFilter == EnumDefinition.AssignmentStatus.Default)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.ProjectId == this.SelectedProject.Id);
+                }
+                else if (this.SelectedProject.Id == 0 && this.SelectedFilter == EnumDefinition.AssignmentStatus.Default)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+                }
             }
+            RefreshBindings();
         }
 
         private void cb_StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
+            if (e.AddedItems.Count == 0 || this.SelectedProject == null)
             {
                 this.FilteredAssignmentViewModels = this.AssignmentViewModels;
                 return;
@@ -85,10 +114,29 @@ namespace TakeMyTime.WPF.Assignments
             else
             {
                 var selectedFilter = GetStatusByItemName(((e.AddedItems[0] as ComboBoxItem).Name));
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum.HasFlag(selectedFilter) &&
-                avm.ProjectId == SelectedProject.Id);
+                if (selectedFilter != EnumDefinition.AssignmentStatus.Default && SelectedProject.Id != 0)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
+                                        .Where(avm => avm.StatusAsEnum == selectedFilter &&
+                                    avm.ProjectId == SelectedProject.Id);
+                }
+                else if (selectedFilter == EnumDefinition.AssignmentStatus.Default && !this.LoadFromAllProjects)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
+                                        .Where(avm => avm.ProjectId == SelectedProject.Id);
+                }
+                else if (selectedFilter == EnumDefinition.AssignmentStatus.Default && this.LoadFromAllProjects)
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+                }
+                else
+                {
+                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
+                        .Where(avm => avm.StatusAsEnum == selectedFilter);
+                }
                 this.SelectedFilter = selectedFilter;
             }
+            RefreshBindings();
         }
 
         private EnumDefinition.AssignmentStatus GetStatusByItemName(string itemName)
@@ -105,10 +153,11 @@ namespace TakeMyTime.WPF.Assignments
             };
         }
 
-        public IEnumerable<Projects.ProjectViewModel> ProjectViewModels { get; set; }
+        public List<Projects.ProjectViewModel> ProjectViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
         public EnumDefinition.AssignmentStatus SelectedFilter { get; set; }
         public Projects.ProjectViewModel SelectedProject { get; set; }
+        public bool LoadFromAllProjects { get; set; }
     }
 }

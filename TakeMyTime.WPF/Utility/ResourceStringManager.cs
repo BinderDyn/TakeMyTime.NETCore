@@ -12,6 +12,7 @@ namespace TakeMyTime.WPF.Utility
             {
                 "ConfirmDeleteMessageBoxTitle" => Resources.ProjectOverview.ConfirmDeleteMessageBoxTitle,
                 "ConfirmDeleteMessageBoxMessage" => Resources.ProjectOverview.ConfirmDeleteMessageBoxMessage,
+                "ProjectsAll" => Resources.AssignmentOverview.ProjectsAll,
                 _ => string.Empty
             };
         }

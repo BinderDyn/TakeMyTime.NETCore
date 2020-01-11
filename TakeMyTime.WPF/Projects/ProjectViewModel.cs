@@ -27,7 +27,7 @@ namespace TakeMyTime.WPF.Projects
             this.Type = project.ProjectType.Name;
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         
 

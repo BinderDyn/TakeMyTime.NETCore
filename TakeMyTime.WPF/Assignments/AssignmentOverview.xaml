@@ -93,7 +93,7 @@
             </StackPanel>
         </Border>
         <ListView x:Name="lv_Assignments" 
-                      ItemsSource="{Binding AssignmentViewModels}"
+                      ItemsSource="{Binding FilteredAssignmentViewModels}"
                       HorizontalAlignment="Stretch"
                       Grid.Row="1"
                       Foreground="{StaticResource LightWhite}"
@@ -117,7 +117,7 @@
                             Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Test"></TextBlock>
+                                <TextBlock Text="{Binding Path=Description}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -128,7 +128,8 @@
                             <DataTemplate>
                                 <CheckBox
                                     IsEnabled="False"
-                                    Content="True">
+                                    Content="{Binding Path=HasDueDate}"
+                                    >
                                 </CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -139,7 +140,7 @@
                         >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock></TextBlock>
+                                <TextBlock Text="{Binding Path=DueDateAsString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Assignments
 {
@@ -24,11 +25,14 @@ namespace TakeMyTime.WPF.Assignments
         public string Description { get; set; }
         public bool HasDueDate { get => this.DueDate.HasValue; }
         public DateTime? DueDate { get; set; }
+        public string DueDateAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.DueDate); }
         public DateTime Created { get; set; }
+        public string CreatedAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.Created); }
         public DateTime? Edited { get; set; }
+        public string EditedAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.Edited); }
         public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
-        public Uri Status { get => GetImageByStatus(this.StatusAsEnum); }
+        public Uri StatusImage { get => GetImageByStatus(this.StatusAsEnum); }
 
         private Uri GetImageByStatus(EnumDefinition.AssignmentStatus status)
         {

@@ -159,4 +159,7 @@
   <data name="LabelProject" xml:space="preserve">
     <value>Filter by project</value>
   </data>
+  <data name="ProjectsAll" xml:space="preserve">
+    <value>All projects</value>
+  </data>
 </root>
