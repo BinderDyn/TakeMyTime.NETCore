@@ -11,9 +11,9 @@
       WindowStartupLocation="CenterScreen"
       WindowStyle="None"
       Title="{x:Static resources:AddAssignment.Title}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="680" d:DesignWidth="900"
       mc:Ignorable="d" 
-      Height="500" Width="700"
+      Height="800" Width="900"
       >
 
     <Grid>
@@ -45,7 +45,123 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Grid.Row="1">
-            
+            <Grid>
+                <!--Structuring Grid-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--Grid for Headerdata-->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="10"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Content="{x:Static resources:AddAssignment.AssignmentName}"
+                           Foreground="{DynamicResource LightWhite}"></Label>
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Margin="10"
+                             Foreground="{DynamicResource LightWhite}"></TextBox>
+                    <Label Margin="10"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           Content="{x:Static resources:AddAssignment.AssignmentPlanned}"
+                           Foreground="{DynamicResource LightWhite}"></Label>
+                    <DatePicker Grid.Row="0"
+                             Grid.Column="4"
+                             Margin="10"
+                             Foreground="{DynamicResource LightWhite}"></DatePicker>
+                    <Label Margin="10"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Content="{x:Static resources:AddAssignment.AssignmentDescription}"
+                           Foreground="{DynamicResource LightWhite}"></Label>
+                    <TextBox Margin="10"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Foreground="{DynamicResource LightWhite}"></TextBox>
+                    <Label Margin="10"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           Content="{x:Static resources:AddAssignment.AssignmentDue}"
+                           Foreground="{DynamicResource LightWhite}"></Label>
+                    <DatePicker 
+                             Grid.Row="1"
+                             Grid.Column="4"
+                             Margin="10 0 10 60"></DatePicker>
+                </Grid>
+                <!--Grid for Subtasks-->
+                <Grid Grid.Row="1"
+                      Margin="0 40 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--Border for ListView for Subtasks-->
+                    <Border>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Margin="20 0 20 0">
+                            <TextBlock
+                                Margin="10 15 10 10"
+                                FontFamily="Calibri"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="{x:Static resources:AddAssignment.AssignmentDefinitionOfDone}"></TextBlock>
+                            <Button
+                                Width="60"
+                                Margin="10 0 10 0"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Background="ForestGreen">
+                                <materialDesign:PackIcon Kind="Add"
+                                         Height="25"
+                                         Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
+                            </Button>
+                            <Button 
+                                Width="60"
+                                Margin="10 0 10 0"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Background="Orange">
+                                <materialDesign:PackIcon Kind="Edit"
+                                         Height="25"
+                                         Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
+                            </Button> 
+                            <Button
+                                Width="60"
+                                Margin="10 0 10 0"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Background="{StaticResource Warning}">
+                                <materialDesign:PackIcon Kind="Trash"
+                                         Height="25"
+                                         Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
+                            </Button> 
+                        </StackPanel>
+                    </Border>
+                    <!--ListView for Subtasks-->
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn></GridViewColumn>
+                                    <GridViewColumn></GridViewColumn>
+                                    <GridViewColumn></GridViewColumn>
+                                    <GridViewColumn></GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
