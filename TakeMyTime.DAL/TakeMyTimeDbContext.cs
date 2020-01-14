@@ -69,6 +69,7 @@ namespace TakeMyTime.DAL
         public DbSet<Entry> Entries { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<ProjectType> ProjectTypes { get; set; }
+        public DbSet<Subtask> Subtasks { get; set; }
 
     }
 }

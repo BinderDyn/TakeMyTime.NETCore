@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TakeMyTime.DOM.Interfaces;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DOM.Models
 {
@@ -14,7 +9,7 @@ namespace TakeMyTime.DOM.Models
         public static Entry Create(ICreateParam param)
         {
             var entry = new Entry();
-            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Assignment, param.Project);
+            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Subtask, param.Project);
             return entry;
         }
 
@@ -22,7 +17,7 @@ namespace TakeMyTime.DOM.Models
             string comment,
             DateTime? started,
             DateTime? ended,
-            Assignment assignment = null,
+            Subtask subtask = null,
             Project project = null)
         {
             this.Name = name;
@@ -30,8 +25,8 @@ namespace TakeMyTime.DOM.Models
             this.Date = DateTime.Now;
             this.Started = started;
             this.Ended = ended;
-            this.Assignment = assignment;
             this.Project = project;
+            this.Subtask = subtask;
             CalculateDuration();
             this.SetCreated();
         }
@@ -58,7 +53,7 @@ namespace TakeMyTime.DOM.Models
 
         public interface ICreateParam : IUpdateParam
         {
-            Assignment Assignment { get; set; }
+            Subtask Subtask { get; set; }
             Project Project { get; set; }
             long? DurationAsTicks { get; set; }
             DateTime Date { get; set; }
@@ -79,9 +74,8 @@ namespace TakeMyTime.DOM.Models
         [ForeignKey("Project")]
         public int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
-        [ForeignKey("Assignment")]
-        public int? Assigment_Id { get; set; }
-        public virtual Assignment Assignment { get; set; }
+        public int? Subtask_Id { get; set; }
+        public virtual Subtask Subtask { get; set; }
         public DateTime Date { get; set; }
         public DateTime? Started { get; set; }
         public DateTime? Ended { get; set; }

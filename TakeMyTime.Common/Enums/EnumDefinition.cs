@@ -66,7 +66,16 @@ namespace Common.Enums
             [Description("Assignment")]
             Assignment = 2,
             [Description("Project")]
-            Project = 3
+            Project = 3,
+            [Description("Subtask")]
+            Subtask = 4
+        }
+
+        public enum SubtaskStatus
+        {
+            NotYetDone = 0,
+            Done = 1,
+            Aborted = 2
         }
     }
 }
