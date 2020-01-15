@@ -104,15 +104,15 @@ namespace TakeMyTime.BLL.Logic
 
         #endregion
 
-        public bool? CheckForTimePlan(int id)
-        {
-            return unitOfWork.Assignments.CheckForTimePlan(id);
-        }
+        //public bool? CheckForTimePlan(int id)
+        //{
+        //    return unitOfWork.Assignments.CheckForTimePlan(id);
+        //}
 
-        public TimeSpan? GetActualDuration(int id)
-        {
-            return unitOfWork.Assignments.GetActualDuration(id);
-        }
+        //public TimeSpan? GetActualDuration(int id)
+        //{
+        //    return unitOfWork.Assignments.GetActualDuration(id);
+        //}
 
         private bool CanBePushed(int assignmentId)
         {

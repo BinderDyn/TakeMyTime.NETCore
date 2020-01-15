@@ -64,7 +64,7 @@ namespace TakeMyTime.Models.Models
         public long? DurationTicks { get; set; }
         public string Description { get; set; }
         [ForeignKey("Assignment")]
-        public virtual int Assignment_Id { get; set; }
+        public virtual int? Assignment_Id { get; set; }
         public virtual Assignment Assignment { get; set; }
         public ICollection<Entry> Entries { get; set; }
     }

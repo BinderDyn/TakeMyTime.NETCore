@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TakeMyTime.DAL.Interfaces;
 using TakeMyTime.Models.Models;
@@ -19,9 +20,11 @@ namespace TakeMyTime.DAL.Repositories
 
         public void SetStatus(int id, EnumDefinition.SubtaskStatus status)
         {
-            var edit = context.Subtasks.FirstOrDefaultAsync(s => s.Id == id);
+            var edit = context.Subtasks.FirstOrDefault(s => s.Id == id);
 
             if (edit == null) throw new Exception("No entity found for given id");
+
+            edit.SetStatus(status);
         }
     }
 }

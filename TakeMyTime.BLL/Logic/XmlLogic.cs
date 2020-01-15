@@ -25,12 +25,12 @@ namespace TakeMyTime.BLL.Logic
             var pl = new ProjectLogic();
             var projects = pl.GetAllProjects().ToArray();
             var el = new EntryLogic();
-            var entries = el.GetAllEntries().Where(e => e.Assignment == null).ToList();
-            var doc = BackUpEntities(projects, entries, progress);
+            // var entries = el.GetAllEntries().Where(e => e.Assignment == null).ToList();
+            // var doc = BackUpEntities(projects, entries, progress);
 
             Logger.Log(this.GetType().FullName + ".BackUpDatabaseToXml: Writing to file");
 
-            WriteToFile(path, doc);
+            //  WriteToFile(path, doc);
             progress.Report(new BackUpProgess(100, "", "Done!"));
             Logger.Log(this.GetType().FullName + ".BackUpDatabaseToXml: Backup done");
         }
@@ -139,7 +139,7 @@ namespace TakeMyTime.BLL.Logic
                 DatePlanned = DateTime.Parse(assignmentXml.Descendants("DatePlanned").FirstOrDefault().Value),
                 Name = assignmentXml.Descendants("Name").FirstOrDefault().Value,
                 Edited = DateTime.Now,
-                Entries = new HashSet<Entry>()
+                //Entries = new HashSet<Entry>()
             };
             assignment.Project = project;
             // assignment.Pages =  ParseNullableInt(assignmentXml.Descendants("Pages").FirstOrDefault().Value);
@@ -162,7 +162,7 @@ namespace TakeMyTime.BLL.Logic
                 {
                     counter++;
                     var entry = RestoreEntry(progress, e, project, assignment, ref counter, total);
-                    assignment.Entries.Add(entry);
+                    // assignment.Entries.Add(entry);
                 }
             }
 
@@ -189,7 +189,7 @@ namespace TakeMyTime.BLL.Logic
 
             if (assignment != null)
             {
-                entry.Assignment = assignment;
+                // entry.Assignment = assignment;
             }
 
             progress.Report(new RestoreProgress(CalculateProgress(total, counter), entry.Name, string.Format("Restoring entry: {0}", entry.Name)));
@@ -207,8 +207,8 @@ namespace TakeMyTime.BLL.Logic
             doc.AddFirst(new XElement("Backup"));
             var mainNode = doc.Descendants("Backup").Single();
             mainNode.SetAttributeValue("Date", DateTime.Now);
-            int entitiesToProc = projects.Count() + projects.Sum(p => p.Assignments.Count) + projects.Sum(p => p.Assignments.Sum(a => a.Entries.Count));
-            entitiesToProc += entries.Count();
+            // int entitiesToProc = projects.Count() + projects.Sum(p => p.Assignments.Count) + projects.Sum(p => p.Assignments.Sum(a => a.Entries.Count));
+            // entitiesToProc += entries.Count();
             int entityCount = 0;
 
             foreach (Project p in projects)
@@ -216,26 +216,26 @@ namespace TakeMyTime.BLL.Logic
                 entityCount++;
                 var processedProject = ProcessEntity(p);
 
-                progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), p.Name, string.Format("Processing project {0}", p.Name)));
+                //progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), p.Name, string.Format("Processing project {0}", p.Name)));
 
                 foreach (Assignment a in p.Assignments)
                 {
                     entityCount++;
                     var processedAssignment = ProcessEntity(a);
 
-                    progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), a.Name, string.Format("Processing assignments for project {0}", p.Name)));
+                    //progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), a.Name, string.Format("Processing assignments for project {0}", p.Name)));
 
                     processedProject.Add(processedAssignment);
 
-                    foreach (Entry e in a.Entries)
-                    {
-                        entityCount++;
-                        var processedEntry = ProcessEntity(e);
+                    //foreach (Entry e in a.Entries)
+                    //{
+                    //    entityCount++;
+                    //    var processedEntry = ProcessEntity(e);
 
-                        progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), e.Name, string.Format("Processing entries for assignment {0}", a.Name)));
+                    //    progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), e.Name, string.Format("Processing entries for assignment {0}", a.Name)));
 
-                        processedAssignment.Add(processedEntry);
-                    }
+                    //    processedAssignment.Add(processedEntry);
+                    //}
                 }
 
                 mainNode.Add(processedProject);
@@ -251,7 +251,7 @@ namespace TakeMyTime.BLL.Logic
                         entityCount++;
                         var processedNotAssigned = ProcessEntity(notAssignedEntry);
 
-                        progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), notAssignedEntry.Name, "Proccesing entries without assignment"));
+                        // progress.Report(new BackUpProgess(CalculateProgress(entitiesToProc, entityCount), notAssignedEntry.Name, "Proccesing entries without assignment"));
 
                         entriesOfProject.Add(processedNotAssigned);
                     }
@@ -259,7 +259,7 @@ namespace TakeMyTime.BLL.Logic
             }
 
             progress.Report(new BackUpProgess(99, "", "Writing to file..."));
-            
+
             return doc;
         }
 
@@ -453,7 +453,7 @@ namespace TakeMyTime.BLL.Logic
         {
             int result;
 
-            if(Int32.TryParse(value, out result))
+            if (Int32.TryParse(value, out result))
             {
                 return result;
             }
@@ -474,8 +474,8 @@ namespace TakeMyTime.BLL.Logic
         private static DateTime? ParseNullableDate(string value)
         {
             DateTime date;
-            
-            if(DateTime.TryParse(value, out date))
+
+            if (DateTime.TryParse(value, out date))
             {
                 return date;
             }
@@ -497,7 +497,7 @@ namespace TakeMyTime.BLL.Logic
         {
             long ticks;
 
-            if(long.TryParse(value, out ticks))
+            if (long.TryParse(value, out ticks))
             {
                 return ticks;
             }

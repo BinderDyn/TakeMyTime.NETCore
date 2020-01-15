@@ -9,7 +9,7 @@ using TakeMyTime.DAL;
 namespace TakeMyTime.DAL.Migrations
 {
     [DbContext(typeof(TakeMyTimeDbContext))]
-    [Migration("20200105144426_initial")]
+    [Migration("20200115124335_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,9 +67,6 @@ namespace TakeMyTime.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Assigment_Id")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Comment")
                         .HasColumnType("TEXT");
 
@@ -97,11 +94,17 @@ namespace TakeMyTime.DAL.Migrations
                     b.Property<DateTime?>("Started")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("SubtaskId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Subtask_Id")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Assigment_Id");
-
                     b.HasIndex("Project_Id");
+
+                    b.HasIndex("SubtaskId");
 
                     b.ToTable("Entries");
                 });
@@ -163,6 +166,40 @@ namespace TakeMyTime.DAL.Migrations
                     b.ToTable("ProjectTypes");
                 });
 
+            modelBuilder.Entity("TakeMyTime.Models.Models.Subtask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Assignment_Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("DurationTicks")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("Edited")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Assignment_Id");
+
+                    b.ToTable("Subtasks");
+                });
+
             modelBuilder.Entity("TakeMyTime.DOM.Models.Assignment", b =>
                 {
                     b.HasOne("TakeMyTime.DOM.Models.Project", "Project")
@@ -172,13 +209,13 @@ namespace TakeMyTime.DAL.Migrations
 
             modelBuilder.Entity("TakeMyTime.DOM.Models.Entry", b =>
                 {
-                    b.HasOne("TakeMyTime.DOM.Models.Assignment", "Assignment")
-                        .WithMany("Entries")
-                        .HasForeignKey("Assigment_Id");
-
                     b.HasOne("TakeMyTime.DOM.Models.Project", "Project")
                         .WithMany("Entries")
                         .HasForeignKey("Project_Id");
+
+                    b.HasOne("TakeMyTime.Models.Models.Subtask", "Subtask")
+                        .WithMany("Entries")
+                        .HasForeignKey("SubtaskId");
                 });
 
             modelBuilder.Entity("TakeMyTime.DOM.Models.Project", b =>
@@ -188,6 +225,13 @@ namespace TakeMyTime.DAL.Migrations
                         .HasForeignKey("ProjectType_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TakeMyTime.Models.Models.Subtask", b =>
+                {
+                    b.HasOne("TakeMyTime.DOM.Models.Assignment", "Assignment")
+                        .WithMany()
+                        .HasForeignKey("Assignment_Id");
                 });
 #pragma warning restore 612, 618
         }
