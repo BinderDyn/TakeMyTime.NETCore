@@ -119,28 +119,34 @@
                                 FontWeight="Bold"
                                 Text="{x:Static resources:AddAssignment.AssignmentDefinitionOfDone}"></TextBlock>
                             <Button
+                                x:Name="btn_AddSubtask"
                                 Width="60"
                                 Margin="10 0 10 0"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
-                                Background="ForestGreen">
+                                Background="ForestGreen"
+                                Click="btn_AddSubtask_Click">
                                 <materialDesign:PackIcon Kind="Add"
                                          Height="25"
                                          Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
                             </Button>
                             <Button 
+                                x:Name="btn_EditSubtask"
                                 Width="60"
                                 Margin="10 0 10 0"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
-                                Background="Orange">
+                                Background="Orange"
+                                Click="btn_EditSubtask_Click">
                                 <materialDesign:PackIcon Kind="Edit"
                                          Height="25"
                                          Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
                             </Button> 
                             <Button
+                                x:Name="btn_DeleteSubtask"
                                 Width="60"
                                 Margin="10 0 10 0"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
-                                Background="{StaticResource Warning}">
+                                Background="{StaticResource Warning}"
+                                Click="btn_DeleteSubtask_Click">
                                 <materialDesign:PackIcon Kind="Trash"
                                          Height="25"
                                          Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
@@ -148,7 +154,7 @@
                         </StackPanel>
                     </Border>
                     <!--ListView for Subtasks-->
-                    <ListView>
+                    <ListView Grid.Row="1">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>

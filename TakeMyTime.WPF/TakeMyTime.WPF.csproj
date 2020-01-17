@@ -40,6 +40,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddProject.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\AddSubtask.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddSubtask.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AssignmentOverview.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -81,6 +86,13 @@
     <EmbeddedResource Update="Resources\AddProject.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddProject.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddSubtask.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddSubtask.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddSubtask.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AssignmentOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

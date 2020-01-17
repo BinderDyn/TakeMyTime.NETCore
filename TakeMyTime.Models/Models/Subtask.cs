@@ -47,6 +47,7 @@ namespace TakeMyTime.Models.Models
             this.Name = param.Name;
             this.Description = param.Description;
             this.Status = SubtaskStatus.NotYetDone;
+            this.Entries = new HashSet<Entry>();
             this.SetCreated();
         }
 
@@ -58,9 +59,11 @@ namespace TakeMyTime.Models.Models
         {
             string Name { get; set; }
             string Description { get; set; }
+            SubtaskPriority Priority { get; set; }
         }
 
         public SubtaskStatus Status { get; set; }
+        public SubtaskPriority Priority { get; set; }
         public long? DurationTicks { get; set; }
         public string Description { get; set; }
         [ForeignKey("Assignment")]

@@ -77,5 +77,14 @@ namespace Common.Enums
             Done = 1,
             Aborted = 2
         }
+
+        public enum SubtaskPriority
+        {
+            Lowest = 0,
+            Low = 1,
+            Medium = 2,
+            High = 3,
+            Highest = 4
+        }
     }
 }

@@ -40,5 +40,20 @@ namespace TakeMyTime.WPF.Assignments
         {
 
         }
+
+        private void btn_DeleteSubtask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_EditSubtask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AddSubtask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

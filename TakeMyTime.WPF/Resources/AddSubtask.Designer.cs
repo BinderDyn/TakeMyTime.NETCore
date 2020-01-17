@@ -22,14 +22,14 @@ namespace TakeMyTime.WPF.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Shared {
+    public class AddSubtask {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Shared() {
+        internal AddSubtask() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.Shared", typeof(Shared).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.AddSubtask", typeof(AddSubtask).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,101 +61,56 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Aborted ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        public static string AssignmentAborted {
+        public static string LabelDescription {
             get {
-                return ResourceManager.GetString("AssignmentAborted", resourceCulture);
+                return ResourceManager.GetString("LabelDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        public static string AssignmentActive {
+        public static string LabelName {
             get {
-                return ResourceManager.GetString("AssignmentActive", resourceCulture);
+                return ResourceManager.GetString("LabelName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Priority ähnelt.
         /// </summary>
-        public static string AssignmentAll {
+        public static string LabelPriority {
             get {
-                return ResourceManager.GetString("AssignmentAll", resourceCulture);
+                return ResourceManager.GetString("LabelPriority", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Done ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new subtask ähnelt.
         /// </summary>
-        public static string AssignmentDone {
+        public static string Title {
             get {
-                return ResourceManager.GetString("AssignmentDone", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Pending ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add subtask to assignment ähnelt.
         /// </summary>
-        public static string AssignmentFuture {
+        public static string TooltipAdd {
             get {
-                return ResourceManager.GetString("AssignmentFuture", resourceCulture);
+                return ResourceManager.GetString("TooltipAdd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Delayed ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
-        public static string AssignmentPostponed {
+        public static string TooltipCancel {
             get {
-                return ResourceManager.GetString("AssignmentPostponed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die High ähnelt.
-        /// </summary>
-        public static string PriorityHigh {
-            get {
-                return ResourceManager.GetString("PriorityHigh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Highest ähnelt.
-        /// </summary>
-        public static string PriorityHighest {
-            get {
-                return ResourceManager.GetString("PriorityHighest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Low ähnelt.
-        /// </summary>
-        public static string PriorityLow {
-            get {
-                return ResourceManager.GetString("PriorityLow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Lowest ähnelt.
-        /// </summary>
-        public static string PriorityLowest {
-            get {
-                return ResourceManager.GetString("PriorityLowest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Medium ähnelt.
-        /// </summary>
-        public static string PriorityMedium {
-            get {
-                return ResourceManager.GetString("PriorityMedium", resourceCulture);
+                return ResourceManager.GetString("TooltipCancel", resourceCulture);
             }
         }
     }

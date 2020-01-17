@@ -135,4 +135,19 @@
   <data name="AssignmentPostponed" xml:space="preserve">
     <value>Delayed</value>
   </data>
+  <data name="PriorityHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="PriorityHighest" xml:space="preserve">
+    <value>Highest</value>
+  </data>
+  <data name="PriorityLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="PriorityLowest" xml:space="preserve">
+    <value>Lowest</value>
+  </data>
+  <data name="PriorityMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
 </root>
