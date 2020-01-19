@@ -46,6 +46,7 @@ namespace TakeMyTime.Models.Models
         {
             this.Name = param.Name;
             this.Description = param.Description;
+            this.Priority = param.Priority;
             this.Status = SubtaskStatus.NotYetDone;
             this.Entries = new HashSet<Entry>();
             this.SetCreated();

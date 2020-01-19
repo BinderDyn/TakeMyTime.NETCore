@@ -59,7 +59,8 @@
                            ></Label>
                     <TextBox x:Name="tb_projectDesignation"
                              Grid.Column="1"
-                             Foreground="{StaticResource LightWhite}"></TextBox>
+                             Foreground="{StaticResource LightWhite}"
+                             TextChanged="tb_projectDesignation_TextChanged"></TextBox>
                 </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
@@ -124,6 +125,7 @@
                     Style="{DynamicResource MaterialDesignFlatButton}"
                     Background="ForestGreen"
                     Click="btn_AddProject_Click"
+                    IsEnabled="False"
                     >
                 <materialDesign:PackIcon Kind="CheckBold"
                                          Height="25"

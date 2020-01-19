@@ -48,59 +48,40 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        public void UpdateAssignments(IEnumerable<Assignment> assignments)
-        {
-            var edits = unitOfWork.Assignments.GetAll();
-
-            foreach(var edit in edits)
-            {
-                foreach(var assignment in assignments)
-                {
-                    if(edit.Id == assignment.Id)
-                    {
-                        edit.Name = assignment.Name;
-                        edit.Description = assignment.Description;
-                        edit.DatePlanned = assignment.DatePlanned;
-                        //edit.DurationPlanned = assignment.DurationPlanned;
-                        edit.DurationPlannedAsTicks = assignment.DurationPlannedAsTicks;
-                        edit.AssignmentStatus = assignment.AssignmentStatus;
-                        edit.Edited = DateTime.Now;
-                    }
-                }
-            }
-
-            unitOfWork.Complete();
-            Dispose();
-        }
-
         public void DeleteAssignment(int id)
         {
             var toBeDeleted = GetAssignmentById(id);
+            if (!toBeDeleted.CanDelete())
+            {
+                var subtasks = toBeDeleted.ClearSubtasks();
+                unitOfWork.Subtasks.RemoveRange(subtasks);
+            }
             unitOfWork.Assignments.Remove(toBeDeleted);
             unitOfWork.Complete();
-            Dispose();
         }
 
         public void DeleteAssignments(IEnumerable<Assignment> assignments)
         {
-            IList<Assignment> entities = new List<Assignment>();
+            IList<Assignment> toBeDeletedAssignments = new List<Assignment>();
             foreach (var a in assignments)
             {
                 var entity = unitOfWork.Assignments.Get(a.Id);
-                if (entity != null) entities.Add(entity);
+                if (entity != null && entity.CanDelete()) toBeDeletedAssignments.Add(entity);
+                else
+                {
+                    var subtasksToDelete = entity.ClearSubtasks();
+                    unitOfWork.Subtasks.RemoveRange(subtasksToDelete);
+                }
+                
             }
-
-            unitOfWork.Assignments.RemoveRange(entities);
-
+            unitOfWork.Assignments.RemoveRange(toBeDeletedAssignments);
             unitOfWork.Complete();
         }
 
         public void Dispose()
         {
-
             unitOfWork.Dispose();
         }
-
 
         #endregion
 

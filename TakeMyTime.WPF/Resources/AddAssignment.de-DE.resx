@@ -132,6 +132,15 @@
   <data name="AssignmentPlanned" xml:space="preserve">
     <value>Geplant für</value>
   </data>
+  <data name="ColumnDescription" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ColumnPriority" xml:space="preserve">
+    <value>Priorität</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Neue Aufgabe hinzufügen</value>
   </data>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.Common.Exceptions;
 using TakeMyTime.DOM.Interfaces;
+using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
 
 namespace TakeMyTime.DOM.Models
@@ -35,6 +36,7 @@ namespace TakeMyTime.DOM.Models
             this.Project = project;
             this.Project_Id = Project.Id;
             this.DurationPlannedAsTicks = durationPlannedAsTicks;
+            this.Subtasks = new HashSet<Subtask>();
             this.SetCreated();
         }
 
@@ -64,6 +66,22 @@ namespace TakeMyTime.DOM.Models
             return true;
         }
 
+        public bool CanDelete()
+        {
+            return !this.Subtasks.Any();
+        }
+
+        /// <summary>
+        /// Removes all subtasks from assignment. The subtasks should be consequently deleted from the database to avoid garbage
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Subtask> ClearSubtasks()
+        {
+            var subtasks = this.Subtasks.ToArray();
+            this.Subtasks.Clear();
+            return subtasks;
+        }
+
         public interface IUpdateParam
         {
             string Name { get; set; }
@@ -87,6 +105,7 @@ namespace TakeMyTime.DOM.Models
         public AssignmentStatus AssignmentStatus { get; set; }
         public string Description { get; set; }
         public int TimesPushed { get; set; }
+        public virtual ICollection<Subtask> Subtasks { get; set; }
     }
 
     

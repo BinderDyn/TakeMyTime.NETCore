@@ -13,6 +13,8 @@ namespace TakeMyTime.DAL.uow
         IProjectRepository Projects { get; }
         IEntryRepository Entries { get; }
         IAssignmentRepository Assignments { get; }
+        IProjectTypeRepository ProjectTypes { get; }
+        ISubtaskRepository Subtasks { get; }
 
         int Complete();
     }

@@ -6,7 +6,7 @@ using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.WPF.Subtasks
 {
-    public class SubtaskCreateViewModel : Subtask.ICreateParam
+    public class SubtaskCreateViewModel : Subtask.IUpdateParam
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -154,14 +154,43 @@
                         </StackPanel>
                     </Border>
                     <!--ListView for Subtasks-->
-                    <ListView Grid.Row="1">
+                    <ListView Grid.Row="1"
+                              x:Name="lv_Subtasks"
+                              ItemsSource="{Binding Subtasks}"
+                              Foreground="{StaticResource LightWhite}"
+                              SelectionChanged="lv_Subtasks_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn></GridViewColumn>
-                                    <GridViewColumn></GridViewColumn>
-                                    <GridViewColumn></GridViewColumn>
-                                    <GridViewColumn></GridViewColumn>
+                                    <GridViewColumn
+                                        Header="{x:Static resources:AddAssignment.ColumnName}"
+                                        Width="230"
+                                        
+                                        >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                        Header="{x:Static resources:AddAssignment.ColumnDescription}"
+                                        Width="380">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Description}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                        Header="{x:Static resources:AddAssignment.ColumnPriority}"
+                                        Width="80">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Priority}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>

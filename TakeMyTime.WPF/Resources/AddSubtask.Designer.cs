@@ -88,6 +88,24 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The name of the subtask cannot be empty! ähnelt.
+        /// </summary>
+        public static string NameNotEmptyBoxMessage {
+            get {
+                return ResourceManager.GetString("NameNotEmptyBoxMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string NameNotEmptyBoxTitle {
+            get {
+                return ResourceManager.GetString("NameNotEmptyBoxTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add new subtask ähnelt.
         /// </summary>
         public static string Title {
