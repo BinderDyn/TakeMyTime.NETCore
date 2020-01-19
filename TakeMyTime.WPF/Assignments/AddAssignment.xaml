@@ -55,7 +55,8 @@
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*"></ColumnDefinition>
@@ -89,6 +90,7 @@
                     <TextBox Margin="10"
                              Grid.Row="1"
                              Grid.Column="1"
+                             TextWrapping="Wrap"
                              Foreground="{DynamicResource LightWhite}"></TextBox>
                     <Label Margin="10"
                            Grid.Row="1"
@@ -98,7 +100,13 @@
                     <DatePicker 
                              Grid.Row="1"
                              Grid.Column="4"
-                             Margin="10 0 10 60"></DatePicker>
+                             Margin="10 0 10 0"></DatePicker>
+                    <Label Grid.Row="2"
+                           Grid.Column="3"
+                           Content="{x:Static resources:AddAssignment.AssignmentPlannedDuration}"></Label>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="4"
+                             ></TextBox>
                 </Grid>
                 <!--Grid for Subtasks-->
                 <Grid Grid.Row="1"

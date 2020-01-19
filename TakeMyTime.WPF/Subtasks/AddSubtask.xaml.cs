@@ -61,7 +61,6 @@ namespace TakeMyTime.WPF.Subtasks
 
             if (!EditMode)
             {
-
                 var subtask = Subtask.Create(param);
 
                 this.ParentWindow.Subtasks.Add(subtask);

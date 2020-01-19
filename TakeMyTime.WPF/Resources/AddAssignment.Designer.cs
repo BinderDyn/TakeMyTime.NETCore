@@ -106,6 +106,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Expected duration ähnelt.
+        /// </summary>
+        public static string AssignmentPlannedDuration {
+            get {
+                return ResourceManager.GetString("AssignmentPlannedDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
         public static string ColumnDescription {

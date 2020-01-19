@@ -28,6 +28,13 @@ namespace TakeMyTime.WPF.Assignments
             InitializeComponent();
         }
 
+        public AddAssignment(Assignment assignment)
+        {
+            InitializeComponent();
+            this.Assignment = assignment;
+            Load();
+        }
+
         private void Load()
         {
             if(!EditMode)
@@ -64,6 +71,14 @@ namespace TakeMyTime.WPF.Assignments
 
         private void btn_AddAssignment_Click(object sender, RoutedEventArgs e)
         {
+            if (this.EditMode)
+            {
+                this.Close();
+            }
+            else
+            {
+                
+            }
         }
 
         private void btn_DeleteSubtask_Click(object sender, RoutedEventArgs e)
@@ -77,6 +92,10 @@ namespace TakeMyTime.WPF.Assignments
                     subtaskLogic.Delete(SelectedSubtask);
                     subtaskLogic.Dispose();
                 }
+                if (this.EditMode)
+                {
+                    this.Assignment.Subtasks = this.Subtasks;
+                }
                 this.SelectedSubtask = null;
                 Load();
             }
@@ -88,6 +107,10 @@ namespace TakeMyTime.WPF.Assignments
             {
                 AddSubtask addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask);
                 addSubtaskWindow.ShowDialog();
+                if (this.EditMode)
+                {
+                    this.Assignment.Subtasks = this.Subtasks;
+                }
                 Load();
             }
         }
@@ -96,6 +119,10 @@ namespace TakeMyTime.WPF.Assignments
         {
             AddSubtask addSubtaskWindow = new AddSubtask(this);
             addSubtaskWindow.ShowDialog();
+            if (this.EditMode)
+            {
+                this.Assignment.Subtasks = this.Subtasks;
+            }
             Load();
         }
 

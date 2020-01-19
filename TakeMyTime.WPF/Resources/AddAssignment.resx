@@ -132,6 +132,9 @@
   <data name="AssignmentPlanned" xml:space="preserve">
     <value>Planned for</value>
   </data>
+  <data name="AssignmentPlannedDuration" xml:space="preserve">
+    <value>Expected duration</value>
+  </data>
   <data name="ColumnDescription" xml:space="preserve">
     <value>Description</value>
   </data>
