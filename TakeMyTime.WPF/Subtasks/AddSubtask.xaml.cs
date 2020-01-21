@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
+using TakeMyTime.DOM.Models;
 using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Assignments;
 using TakeMyTime.WPF.Utility;
@@ -30,6 +31,17 @@ namespace TakeMyTime.WPF.Subtasks
             this.ParentWindow = parent;
         }
 
+        public AddSubtask(AddAssignment parent, int assignmentId)
+        {
+            InitializeComponent();
+            this.EditMode = false;
+            var assignmentLogic = new AssignmentLogic();
+            this.Assignment = assignmentLogic.GetAssignmentById(assignmentId);
+            this.cb_PrioritySelect.SelectedItem = this.cbi_Medium;
+            this.SelectedPriority = EnumDefinition.SubtaskPriority.Medium;
+            this.ParentWindow = parent;
+        }
+        
         public AddSubtask(AddAssignment parent, Subtask subtask)
         {
             InitializeComponent();
@@ -39,6 +51,22 @@ namespace TakeMyTime.WPF.Subtasks
             this.tb_SubtaskDescription.Text = subtask.Description;
             this.tb_SubtaskName.Text = subtask.Name;
             this.ParentWindow = parent;
+            this.Assignment = parent.Assignment;
+        }
+
+
+        public AddSubtask(AddAssignment parent, int subtaskId)
+        {
+            InitializeComponent();
+            var subtaskLogic = new SubtaskLogic();
+            var subtask = subtaskLogic.Get(subtaskId);
+            this.EditMode = true;
+            this.EditableSubtask = subtask;
+            this.cb_PrioritySelect.SelectedItem = GetItemByPriority(subtask.Priority);
+            this.tb_SubtaskDescription.Text = subtask.Description;
+            this.tb_SubtaskName.Text = subtask.Name;
+            this.ParentWindow = parent;
+            this.Assignment = parent.Assignment;
         }
 
         #region GUI Events
@@ -59,28 +87,30 @@ namespace TakeMyTime.WPF.Subtasks
                 Priority = this.SelectedPriority
             };
 
-            if (!EditMode)
+            if (!EditMode && this.Assignment == null)
             {
                 var subtask = Subtask.Create(param);
-
                 this.ParentWindow.Subtasks.Add(subtask);
-                this.Close();
+            }
+            else if (!EditMode && this.Assignment != null)
+            {
+                var assignmentLogic = new AssignmentLogic();
+                assignmentLogic.AddSubtask(this.Assignment.Id, param);
+                assignmentLogic.Dispose();
+            }
+            else if (EditMode && this.Assignment != null)
+            {
+                var subtaskLogic = new SubtaskLogic();
+                subtaskLogic.Update(EditableSubtask.Id, param);
+                subtaskLogic.Dispose();
             }
             else
             {
-                if (this.EditableSubtask.Id > 0)
-                {
-                    var subtaskLogic = new SubtaskLogic();
-                    subtaskLogic.Update(EditableSubtask.Id, param);
-                    subtaskLogic.Dispose();
-                } else
-                {
-                    this.EditableSubtask.Name = param.Name;
-                    this.EditableSubtask.Description = param.Description;
-                    this.EditableSubtask.Priority = param.Priority;
-                }
-                this.Close();
+                this.EditableSubtask.Name = param.Name;
+                this.EditableSubtask.Description = param.Description;
+                this.EditableSubtask.Priority = param.Priority;
             }
+            this.Close();
         }
 
         private void btn_Close_Click(object sender, RoutedEventArgs e)
@@ -136,6 +166,7 @@ namespace TakeMyTime.WPF.Subtasks
         public AddAssignment ParentWindow { get; set; }
         public EnumDefinition.SubtaskPriority SelectedPriority { get; set; }
         public Subtask EditableSubtask { get; set; }
+        public Assignment Assignment { get; set; }
         public bool EditMode { get; set; } = false;
 
 

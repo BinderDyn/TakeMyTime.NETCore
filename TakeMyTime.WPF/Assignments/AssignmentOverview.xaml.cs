@@ -48,6 +48,8 @@ namespace TakeMyTime.WPF.Assignments
             this.cb_StatusFilter.SelectedItem = this.cbi_All;
         }
 
+        #region GUI Events
+
         private void RefreshBindings()
         {
             this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
@@ -61,13 +63,19 @@ namespace TakeMyTime.WPF.Assignments
         private void ShowAddAssignmentDialog(bool editMode)
         {
             AddAssignment addAssignmentWindow = null;
+            var projectLogic = new ProjectLogic();
+            var project = projectLogic.GetProjectById(this.SelectedProject.Id);
+            projectLogic.Dispose();
+
             if (editMode)
             {
-                // addAssignmentWindow = new AddAssignment(this.SelectedProject.Id, this.SelectedProject.Name, this.SelectedProject.Description);
+                var assignmentLogic = new AssignmentLogic();
+                var selectedAssignment = assignmentLogic.GetAssignmentById(this.SelectedAssignment.Id);
+                addAssignmentWindow = new AddAssignment(selectedAssignment, project);
             }
             else
             {
-                addAssignmentWindow = new AddAssignment();
+                addAssignmentWindow = new AddAssignment(project);
             }
 
             addAssignmentWindow.ShowDialog();
@@ -76,12 +84,12 @@ namespace TakeMyTime.WPF.Assignments
 
         private void btn_EditAssignment_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowAddAssignmentDialog(true);
         }
 
         private void lv_Assignments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            // TODO: Open new entry with subtask selection
         }
 
         private void btn_SetDone_Click(object sender, RoutedEventArgs e)
@@ -120,6 +128,8 @@ namespace TakeMyTime.WPF.Assignments
                     this.FilteredAssignmentViewModels = this.AssignmentViewModels;
                 }
             }
+
+            this.btn_NewAssignment.IsEnabled = this.SelectedProject != null && this.SelectedProject.Id != 0;
             RefreshBindings();
         }
 
@@ -159,6 +169,19 @@ namespace TakeMyTime.WPF.Assignments
             RefreshBindings();
         }
 
+        private void lv_Assignments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                this.SelectedAssignment = e.AddedItems[0] as AssignmentViewModel;
+            }
+            this.btn_EditAssignment.IsEnabled = this.SelectedAssignment != null;
+        }
+
+        #endregion
+
+        #region Utility
+
         private EnumDefinition.AssignmentStatus GetStatusByItemName(string itemName)
         {
             return itemName switch
@@ -173,11 +196,18 @@ namespace TakeMyTime.WPF.Assignments
             };
         }
 
+        #endregion
+
+        #region Properties
+
         public List<Projects.ProjectViewModel> ProjectViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
         public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
         public EnumDefinition.AssignmentStatus SelectedFilter { get; set; }
         public Projects.ProjectViewModel SelectedProject { get; set; }
+        public AssignmentViewModel SelectedAssignment { get; set; }
         public bool LoadFromAllProjects { get; set; }
+
+        #endregion
     }
 }

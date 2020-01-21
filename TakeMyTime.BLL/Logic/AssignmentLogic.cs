@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
@@ -20,7 +21,7 @@ namespace TakeMyTime.BLL.Logic
 
         public Assignment GetAssignmentById(int id)
         {
-            return unitOfWork?.Assignments?.Get(id);
+            return unitOfWork?.Assignments?.GetAssignmentById(id);
         }
 
         public IEnumerable<Assignment> GetAllAssignments()
@@ -33,17 +34,27 @@ namespace TakeMyTime.BLL.Logic
             return unitOfWork.Assignments.Find(x => x.Project_Id == projectId).ToList();
         }
 
-        public void AddAssignment(Assignment.ICreateParam param)
+        public Assignment AddAssignment(Assignment.ICreateParam param)
         {
-                var assignment = Assignment.Create(param);
-                unitOfWork.Assignments.Add(assignment);
-                unitOfWork.Complete();
+            var assignment = Assignment.Create(param);
+            unitOfWork.Assignments.Add(assignment);
+
+            unitOfWork.Complete();
+            return assignment;
         }
 
         public void UpdateAssignment(int id, Assignment.IUpdateParam param)
         {
             var edit = unitOfWork.Assignments.Get(id);
             edit.Update(param);
+
+            unitOfWork.Complete();
+        }
+
+        public void SetSubtasksForAssigment(int id, IEnumerable<Subtask> subtasks)
+        {
+            var edit = unitOfWork.Assignments.Get(id);
+            edit.Subtasks = subtasks.ToList();
 
             unitOfWork.Complete();
         }
@@ -72,9 +83,23 @@ namespace TakeMyTime.BLL.Logic
                     var subtasksToDelete = entity.ClearSubtasks();
                     unitOfWork.Subtasks.RemoveRange(subtasksToDelete);
                 }
-                
+
             }
             unitOfWork.Assignments.RemoveRange(toBeDeletedAssignments);
+            unitOfWork.Complete();
+        }
+
+        public void DeleteSubtask(Assignment assignment, Subtask subtask)
+        {
+            unitOfWork.Assignments.DeleteSubtask(assignment.Id, subtask.Id);
+            unitOfWork.Complete();
+        }
+
+        public void AddSubtask(int id, Subtask.ICreateParam param)
+        {
+            var subtask = Subtask.Create(param);
+            var assignment = unitOfWork.Assignments.GetAssignmentById(id);
+            assignment.Subtasks.Add(subtask);
             unitOfWork.Complete();
         }
 
@@ -120,7 +145,7 @@ namespace TakeMyTime.BLL.Logic
             string assignmentNotice = string.Empty;
 
             IEnumerable<Assignment> assignments = GetAllAssignments()
-                .Where(a => a.DateDue.Value.Date == DateTime.Now.Date && 
+                .Where(a => a.DateDue.Value.Date == DateTime.Now.Date &&
                 a.AssignmentStatus != EnumDefinition.AssignmentStatus.Done &&
                 a.AssignmentStatus != EnumDefinition.AssignmentStatus.Aborted)
                 .OrderBy(a => a.Project.Name)

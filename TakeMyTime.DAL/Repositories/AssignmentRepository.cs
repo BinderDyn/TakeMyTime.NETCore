@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.Interfaces;
 using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL.Repositories
 {
@@ -21,6 +23,26 @@ namespace TakeMyTime.DAL.Repositories
         {
             get { return DbContext as TakeMyTimeDbContext; }
         }
+
+        public Assignment GetAssignmentById(int id)
+        {
+            return this.context.Assignments
+                .Include(a => a.Subtasks)
+                .SingleOrDefault(a => a.Id == id);
+        }
+
+        public void DeleteSubtask(int id, int subtaskId)
+        {
+            var entity = this.context.Assignments
+                .Include(a => a.Subtasks)
+                .SingleOrDefault(a => a.Id == id);
+            if (entity != null)
+            {
+                entity.Subtasks.Remove(entity.Subtasks.SingleOrDefault(st => st.Id == subtaskId));
+            }
+        }
+
+        
 
         //public bool CheckForTimePlan(int id)
         //{

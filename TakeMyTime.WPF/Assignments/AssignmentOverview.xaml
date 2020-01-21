@@ -65,6 +65,7 @@
                         Background="ForestGreen"
                         ToolTip="{x:Static resources:AssignmentOverview.AssignmentAddTooltip}"
                         Click="btn_NewAssignment_Click"
+                        IsEnabled="False"
                         >
                     <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
                 </Button>
@@ -100,7 +101,8 @@
                       Margin="18"
                       Visibility="Visible"
                       SelectionMode="Single"
-                      MouseDoubleClick="lv_Assignments_MouseDoubleClick">
+                      MouseDoubleClick="lv_Assignments_MouseDoubleClick"
+                      SelectionChanged="lv_Assignments_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

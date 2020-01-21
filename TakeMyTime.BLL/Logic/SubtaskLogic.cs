@@ -14,6 +14,11 @@ namespace TakeMyTime.BLL.Logic
         {
         }
 
+        public Subtask Get(int id)
+        {
+            return unitOfWork.Subtasks.Get(id);
+        }
+
         public void Update(int id, Subtask.IUpdateParam param)
         {
             var edit = unitOfWork.Subtasks.Get(id);

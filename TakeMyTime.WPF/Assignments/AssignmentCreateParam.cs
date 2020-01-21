@@ -5,8 +5,9 @@ using TakeMyTime.DOM.Models;
 
 namespace TakeMyTime.WPF.Assignments
 {
-    public class AssignmentUpdateViewModel : Assignment.IUpdateParam
+    public class AssignmentCreateParam : Assignment.ICreateParam
     {
+        public Project Project { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? DatePlanned { get; set; }

@@ -48,7 +48,8 @@
             <Grid>
                 <!--Structuring Grid-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--Grid for Headerdata-->
@@ -69,16 +70,20 @@
                            Grid.Column="0"
                            Content="{x:Static resources:AddAssignment.AssignmentName}"
                            Foreground="{DynamicResource LightWhite}"></Label>
-                    <TextBox Grid.Row="0"
+                    <TextBox x:Name="tb_AssignmentName"
+                             Grid.Row="0"
                              Grid.Column="1"
                              Margin="10"
-                             Foreground="{DynamicResource LightWhite}"></TextBox>
+                             Foreground="{DynamicResource LightWhite}"
+                             TextChanged="tb_AssignmentName_TextChanged"></TextBox>
                     <Label Margin="10"
                            Grid.Row="0"
                            Grid.Column="2"
                            Content="{x:Static resources:AddAssignment.AssignmentPlanned}"
                            Foreground="{DynamicResource LightWhite}"></Label>
-                    <DatePicker Grid.Row="0"
+                    <DatePicker 
+                             x:Name="dp_Planned"
+                             Grid.Row="0"
                              Grid.Column="4"
                              Margin="10"
                              Foreground="{DynamicResource LightWhite}"></DatePicker>
@@ -87,7 +92,8 @@
                            Grid.Column="0"
                            Content="{x:Static resources:AddAssignment.AssignmentDescription}"
                            Foreground="{DynamicResource LightWhite}"></Label>
-                    <TextBox Margin="10"
+                    <TextBox x:Name="tb_AssignmentDescription"
+                             Margin="10"
                              Grid.Row="1"
                              Grid.Column="1"
                              TextWrapping="Wrap"
@@ -98,18 +104,50 @@
                            Content="{x:Static resources:AddAssignment.AssignmentDue}"
                            Foreground="{DynamicResource LightWhite}"></Label>
                     <DatePicker 
+                             x:Name="dp_AssignmentDue"
                              Grid.Row="1"
                              Grid.Column="4"
                              Margin="10 0 10 0"></DatePicker>
-                    <Label Grid.Row="2"
-                           Grid.Column="3"
-                           Content="{x:Static resources:AddAssignment.AssignmentPlannedDuration}"></Label>
-                    <TextBox Grid.Row="2"
-                             Grid.Column="4"
-                             ></TextBox>
+                   
                 </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Foreground="{StaticResource LightWhite}"
+                           Content="{x:Static resources:AddAssignment.AssignmentPlannedDuration}"></Label>
+                        <TextBox x:Name="tb_AssignmentPlannedDurationHours"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             DataObject.Pasting="tb_AssignmentPlannedDuration_Pasting"
+                             PreviewTextInput="tb_AssignmentPlannedDuration_PreviewTextInput"></TextBox>
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Foreground="{StaticResource LightWhite}"
+                           Content="h"></Label>
+                    <TextBox x:Name="tb_AssignmentPlannedDurationMinutes"
+                             Grid.Row="0"
+                             Grid.Column="3"
+                             DataObject.Pasting="tb_AssignmentPlannedDuration_Pasting"
+                             PreviewTextInput="tb_AssignmentPlannedDuration_PreviewTextInput"></TextBox>
+                    <Label Grid.Row="0"
+                           Grid.Column="4"
+                           Foreground="{StaticResource LightWhite}"
+                           Content="min"></Label>
+                </Grid>
+                
+                 
                 <!--Grid for Subtasks-->
-                <Grid Grid.Row="1"
+                <Grid Grid.Row="2"
                       Margin="0 40 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -166,7 +204,7 @@
                               x:Name="lv_Subtasks"
                               ItemsSource="{Binding Subtasks}"
                               Foreground="{StaticResource LightWhite}"
-                              SelectionChanged="lv_Subtasks_SelectionChanged">
+                              >
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -216,6 +254,7 @@
                     Style="{DynamicResource MaterialDesignFlatButton}"
                     Background="ForestGreen"
                     Click="btn_AddAssignment_Click"
+                    IsEnabled="False"
                     >
                 <materialDesign:PackIcon Kind="CheckBold"
                                          Height="25"

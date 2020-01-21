@@ -11,5 +11,7 @@ namespace TakeMyTime.DAL.Interfaces
     {
         // bool CheckForTimePlan(int id);
         // TimeSpan? GetActualDuration(int id);
+        Assignment GetAssignmentById(int id);
+        void DeleteSubtask(int id, int subtaskId);
     }
 }

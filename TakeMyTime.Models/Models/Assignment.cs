@@ -33,8 +33,7 @@ namespace TakeMyTime.DOM.Models
             this.Description = description;
             this.DatePlanned = datePlanned;
             this.DateDue = dateDue;
-            this.Project = project;
-            this.Project_Id = Project.Id;
+            this.Project_Id = project.Id;
             this.DurationPlannedAsTicks = durationPlannedAsTicks;
             this.Subtasks = new HashSet<Subtask>();
             this.SetCreated();
