@@ -61,15 +61,6 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Definition of done ähnelt.
-        /// </summary>
-        public static string AssignmentDefinitionOfDone {
-            get {
-                return ResourceManager.GetString("AssignmentDefinitionOfDone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
         public static string AssignmentDescription {
@@ -111,33 +102,6 @@ namespace TakeMyTime.WPF.Resources {
         public static string AssignmentPlannedDuration {
             get {
                 return ResourceManager.GetString("AssignmentPlannedDuration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
-        /// </summary>
-        public static string ColumnDescription {
-            get {
-                return ResourceManager.GetString("ColumnDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
-        /// </summary>
-        public static string ColumnName {
-            get {
-                return ResourceManager.GetString("ColumnName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority ähnelt.
-        /// </summary>
-        public static string ColumnPriority {
-            get {
-                return ResourceManager.GetString("ColumnPriority", resourceCulture);
             }
         }
         

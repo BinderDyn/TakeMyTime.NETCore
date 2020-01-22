@@ -17,6 +17,8 @@ namespace TakeMyTime.WPF.Utility
                 "CalendarWeek" => Resources.MainWindow.CurrentCalendarWeek,
                 "NameNotEmptyBoxMessage" => Resources.AddSubtask.NameNotEmptyBoxMessage,
                 "NameNotEmptyBoxTitle" => Resources.AddSubtask.NameNotEmptyBoxTitle,
+                "CannotSetDoneErrorMessage" => Resources.AssignmentOverview.CannotSetDoneOrAbortedMessage,
+                "CannotSetDoneOrAbortedErrorTitle" => Resources.AssignmentOverview.CannotSetDoneOrAbortedTitle,
                 _ => string.Empty
             };
         }

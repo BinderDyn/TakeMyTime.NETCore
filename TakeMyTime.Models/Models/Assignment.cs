@@ -60,8 +60,8 @@ namespace TakeMyTime.DOM.Models
 
         private bool CanSetStatus(AssignmentStatus status)
         {
-            if (status == AssignmentStatus.Aborted) throw new CannotChangeStatusException("Cannot change status if already set to aborted");
-            if (status == AssignmentStatus.Done) throw new CannotChangeStatusException("Cannot change status if already set to done");
+            if (this.AssignmentStatus == AssignmentStatus.Aborted) throw new CannotChangeStatusException("Cannot change status if already set to aborted");
+            if (this.AssignmentStatus == AssignmentStatus.Done) throw new CannotChangeStatusException("Cannot change status if already set to done");
             return true;
         }
 

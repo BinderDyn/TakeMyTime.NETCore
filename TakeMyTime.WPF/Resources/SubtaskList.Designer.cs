@@ -22,14 +22,14 @@ namespace TakeMyTime.WPF.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AddSubtask {
+    public class SubtaskList {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AddSubtask() {
+        internal SubtaskList() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.AddSubtask", typeof(AddSubtask).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.SubtaskList", typeof(SubtaskList).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,56 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Unteraufgaben bearbeiten ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Definition of done ähnelt.
         /// </summary>
-        public static string EditSubtasks {
+        public static string AssignmentDefinitionOfDone {
             get {
-                return ResourceManager.GetString("EditSubtasks", resourceCulture);
+                return ResourceManager.GetString("AssignmentDefinitionOfDone", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        public static string LabelDescription {
+        public static string ColumnDescription {
             get {
-                return ResourceManager.GetString("LabelDescription", resourceCulture);
+                return ResourceManager.GetString("ColumnDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        public static string LabelName {
+        public static string ColumnName {
             get {
-                return ResourceManager.GetString("LabelName", resourceCulture);
+                return ResourceManager.GetString("ColumnName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Priority ähnelt.
         /// </summary>
-        public static string LabelPriority {
+        public static string ColumnPriority {
             get {
-                return ResourceManager.GetString("LabelPriority", resourceCulture);
+                return ResourceManager.GetString("ColumnPriority", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The name of the subtask cannot be empty! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Back to assignment overview ähnelt.
         /// </summary>
-        public static string NameNotEmptyBoxMessage {
+        public static string Return {
             get {
-                return ResourceManager.GetString("NameNotEmptyBoxMessage", resourceCulture);
+                return ResourceManager.GetString("Return", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
-        /// </summary>
-        public static string NameNotEmptyBoxTitle {
-            get {
-                return ResourceManager.GetString("NameNotEmptyBoxTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Add new subtask ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Subtasks ähnelt.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Add subtask to assignment ähnelt.
-        /// </summary>
-        public static string TooltipAdd {
-            get {
-                return ResourceManager.GetString("TooltipAdd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
-        /// </summary>
-        public static string TooltipCancel {
-            get {
-                return ResourceManager.GetString("TooltipCancel", resourceCulture);
             }
         }
     }

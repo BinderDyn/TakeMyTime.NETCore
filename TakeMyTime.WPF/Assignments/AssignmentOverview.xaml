@@ -81,6 +81,18 @@
                         >
                     <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
                 </Button>
+                <Button x:Name="btn_EditSubtasks"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="DarkBlue"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.EditSubtasks}"
+                        Click="btn_EditSubtasks_Click"
+                        >
+                    <materialDesign:PackIcon Kind="FormatListBulleted"></materialDesign:PackIcon>
+                </Button>
                 <Button x:Name="btn_DeleteAssignment"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
@@ -88,6 +100,7 @@
                         Background="{StaticResource Warning}"
                         IsEnabled="False"
                         ToolTip="{x:Static resources:AssignmentOverview.AssignmentDeleteTooltip}"
+                        Click="btn_DeleteAssignment_Click"
                         >
                     <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
                 </Button>

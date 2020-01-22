@@ -50,15 +50,7 @@ namespace TakeMyTime.BLL.Logic
 
             unitOfWork.Complete();
         }
-
-        public void SetSubtasksForAssigment(int id, IEnumerable<Subtask> subtasks)
-        {
-            var edit = unitOfWork.Assignments.Get(id);
-            edit.Subtasks = subtasks.ToList();
-
-            unitOfWork.Complete();
-        }
-
+       
         public void DeleteAssignment(int id)
         {
             var toBeDeleted = GetAssignmentById(id);
@@ -89,9 +81,9 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        public void DeleteSubtask(Assignment assignment, Subtask subtask)
+        public void DeleteSubtask(int assignment_id, int subtask_id)
         {
-            unitOfWork.Assignments.DeleteSubtask(assignment.Id, subtask.Id);
+            unitOfWork.Assignments.DeleteSubtask(assignment_id, subtask_id);
             unitOfWork.Complete();
         }
 
@@ -103,64 +95,25 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
+        public void SetDone(int id)
+        {
+            var assignment = unitOfWork.Assignments.GetAssignmentById(id);
+            assignment.UpdateStatus(EnumDefinition.AssignmentStatus.Done);
+            unitOfWork.Complete();
+        }
+
+        public void SetAborted(int id)
+        {
+            var assignment = unitOfWork.Assignments.GetAssignmentById(id);
+            assignment.UpdateStatus(EnumDefinition.AssignmentStatus.Aborted);
+            unitOfWork.Complete();
+        }
+
         public void Dispose()
         {
             unitOfWork.Dispose();
         }
 
         #endregion
-
-        //public bool? CheckForTimePlan(int id)
-        //{
-        //    return unitOfWork.Assignments.CheckForTimePlan(id);
-        //}
-
-        //public TimeSpan? GetActualDuration(int id)
-        //{
-        //    return unitOfWork.Assignments.GetActualDuration(id);
-        //}
-
-        private bool CanBePushed(int assignmentId)
-        {
-            var assignment = unitOfWork.Assignments.Get(assignmentId);
-            return assignment.TimesPushed < 3 ? true : false;
-        }
-
-        //public bool PushOneWeekForward(int assignmentId)
-        //{
-        //    const bool wasPushed = true;
-        //    if(CanBePushed(assignmentId))
-        //    {
-        //        var assignment = unitOfWork.Assignments.Get(assignmentId);
-        //        assignment.DateDue = assignment.DateDue + TimeSpan.FromDays(7);
-        //        assignment.TimesPushed++;
-        //        UpdateAssignment(assignment);
-        //        return wasPushed;
-        //    }
-        //    return !wasPushed;
-        //}
-
-        public string GetDueAssignmentsForToday()
-        {
-            string assignmentNotice = string.Empty;
-
-            IEnumerable<Assignment> assignments = GetAllAssignments()
-                .Where(a => a.DateDue.Value.Date == DateTime.Now.Date &&
-                a.AssignmentStatus != EnumDefinition.AssignmentStatus.Done &&
-                a.AssignmentStatus != EnumDefinition.AssignmentStatus.Aborted)
-                .OrderBy(a => a.Project.Name)
-                .ToList();
-
-            assignmentNotice = "Assignments due for today:";
-            var assignmentsWithDateDue = assignments.Where(a => a.DateDue.Value.Date == DateTime.Now.Date);
-            foreach (var assignment in assignmentsWithDateDue)
-            {
-                assignmentNotice += System.Environment.NewLine + "Project: " + assignment.Project.Name + " - " + assignment.Name + System.Environment.NewLine;
-            }
-
-            if (assignmentNotice == "Assignments due for today:") assignmentNotice += " None.";
-
-            return assignmentNotice;
-        }
     }
 }

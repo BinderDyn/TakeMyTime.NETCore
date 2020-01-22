@@ -32,6 +32,7 @@ namespace TakeMyTime.Models.Models
         {
             this.Name = param.Name;
             this.Description = param.Description;
+            this.Priority = param.Priority;
             this.SetEdited();
         }
 

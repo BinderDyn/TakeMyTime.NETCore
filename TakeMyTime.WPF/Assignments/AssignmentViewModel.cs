@@ -42,8 +42,9 @@ namespace TakeMyTime.WPF.Assignments
             return status switch
             {
                 EnumDefinition.AssignmentStatus.InProgress => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
-                EnumDefinition.AssignmentStatus.Aborted => new Uri("pack://application:,,,/Images/assignmentAbortedIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Future => new Uri("pack://application:,,,/Images/assignmentFutureIconSmall.png"),
+                EnumDefinition.AssignmentStatus.Default => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
+                EnumDefinition.AssignmentStatus.Aborted => new Uri("pack://application:,,,/Images/assignmentAbortedIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Postponed => new Uri("pack://application:,,,/Images/assignmentPostponedIconSmall.png"),
                 _ => null
             };

@@ -87,7 +87,7 @@
                     Padding="1"
                     Margin="10"
                     x:Name="cb_PrioritySelect"
-                    Foreground="Black"
+                    Foreground="{StaticResource LightWhite}"
                     SelectionChanged="cb_PrioritySelect_SelectionChanged">
                 <ComboBoxItem Name="cbi_Lowest" Content="{x:Static resources:Shared.PriorityLowest}"></ComboBoxItem>
                 <ComboBoxItem Name="cbi_Low" Content="{x:Static resources:Shared.PriorityLow}"></ComboBoxItem>

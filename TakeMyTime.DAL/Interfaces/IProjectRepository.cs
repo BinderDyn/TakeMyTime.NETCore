@@ -12,5 +12,6 @@ namespace TakeMyTime.DAL.Interfaces
         TimeSpan RetrieveWorkingTime(int projectId);
         void ToggleProjectStatus(int projectId);
         IEnumerable<Project> LoadAll();
+        Project GetProjectById(int id);
     }
 }

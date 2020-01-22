@@ -24,6 +24,9 @@
     <Compile Update="Subtasks\AddSubtask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Subtasks\SubtaskList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
@@ -47,6 +50,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Subtasks\AddSubtask.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Subtasks\SubtaskList.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

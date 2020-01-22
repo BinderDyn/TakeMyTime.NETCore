@@ -11,6 +11,7 @@ using TakeMyTime.BLL.Logic;
 using TakeMyTime.DOM.Models;
 using System.Resources;
 using TakeMyTime.WPF.Utility;
+using BinderDyn.LoggingUtility;
 
 namespace TakeMyTime.WPF.Projects
 {
@@ -55,7 +56,15 @@ namespace TakeMyTime.WPF.Projects
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 var projectLogic = new ProjectLogic();
-                projectLogic.DeleteProject(this.SelectedProject.Id);
+                try
+                {
+                    projectLogic.DeleteProject(this.SelectedProject.Id);
+                } 
+                catch (Exception ex)
+                {
+                    Logger.LogException(ex);
+                    throw ex;
+                }
                 projectLogic.Dispose();
                 this.lv_Projects.SelectedItem = null;
                 this.Load();

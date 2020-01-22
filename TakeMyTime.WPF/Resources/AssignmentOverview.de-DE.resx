@@ -132,6 +132,12 @@
   <data name="AssignmentSetDoneTooltip" xml:space="preserve">
     <value>Als "Erledigt" kennzeichnen</value>
   </data>
+  <data name="CannotSetDoneOrAbortedMessage" xml:space="preserve">
+    <value>Eine bereits als "Erledigt" oder "Abgebrochen" gekennzeichnete Aufgabe kann nicht im Status verändert werden!</value>
+  </data>
+  <data name="CannotSetDoneOrAbortedTitle" xml:space="preserve">
+    <value>Fehler beim Behandeln der Statusänderung</value>
+  </data>
   <data name="ColumnCreated" xml:space="preserve">
     <value>Angelegt</value>
   </data>

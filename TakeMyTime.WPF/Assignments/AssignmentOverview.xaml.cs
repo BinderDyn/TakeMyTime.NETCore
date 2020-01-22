@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using BinderDyn.LoggingUtility;
+using Common;
 using Common.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
+using TakeMyTime.Common.Exceptions;
+using TakeMyTime.WPF.Subtasks;
 using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Assignments
@@ -95,12 +98,42 @@ namespace TakeMyTime.WPF.Assignments
 
         private void btn_SetDone_Click(object sender, RoutedEventArgs e)
         {
-
+            Logger.Log(string.Format("{0}.btn_SetDone_Click", GetType().FullName));
+            if (this.SelectedAssignment != null)
+            {
+                try
+                {
+                    var assignmentLogic = new AssignmentLogic();
+                    assignmentLogic.SetDone(this.SelectedAssignment.Id);
+                    assignmentLogic.Dispose();
+                    this.Load();
+                }
+                catch (CannotChangeStatusException ex)
+                {
+                    Logger.LogException(ex);
+                    ShowErrorOnStatusChangeDialog();
+                }
+            }
         }
 
         private void btn_SetAborted_Click(object sender, RoutedEventArgs e)
         {
-
+            Logger.Log(string.Format("{0}.btn_SetAborted_Click", GetType().FullName));
+            if (this.SelectedAssignment != null)
+            {
+                try
+                {
+                    var assignmentLogic = new AssignmentLogic();
+                    assignmentLogic.SetAborted(this.SelectedAssignment.Id);
+                    assignmentLogic.Dispose();
+                    this.Load();
+                }
+                catch (CannotChangeStatusException ex)
+                {
+                    Logger.LogException(ex);
+                    ShowErrorOnStatusChangeDialog();
+                }
+            }
         }
 
         [Refactor]
@@ -172,11 +205,36 @@ namespace TakeMyTime.WPF.Assignments
 
         private void lv_Assignments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
+            bool selectionNotNull = e.AddedItems.Count > 0 && e.AddedItems[0] != null;
+            if (selectionNotNull)
             {
                 this.SelectedAssignment = e.AddedItems[0] as AssignmentViewModel;
             }
-            this.btn_EditAssignment.IsEnabled = this.SelectedAssignment != null;
+            this.btn_EditAssignment.IsEnabled = selectionNotNull;
+            this.btn_EditSubtasks.IsEnabled = selectionNotNull;
+            this.btn_DeleteAssignment.IsEnabled = selectionNotNull;
+            this.btn_SetAborted.IsEnabled = selectionNotNull;
+            this.btn_SetDone.IsEnabled = selectionNotNull;
+        }
+
+        private void btn_EditSubtasks_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SelectedAssignment != null)
+            {
+                var editSubtaskDialog = new SubtaskList(this.SelectedAssignment.Id);
+                editSubtaskDialog.ShowDialog();
+            }
+        }
+
+        private void btn_DeleteAssignment_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SelectedAssignment != null)
+            {
+                var assignmentLogic = new AssignmentLogic();
+                assignmentLogic.DeleteAssignment(this.SelectedAssignment.Id);
+                assignmentLogic.Dispose();
+                this.Load();
+            }
         }
 
         #endregion
@@ -197,6 +255,13 @@ namespace TakeMyTime.WPF.Assignments
             };
         }
 
+        private void ShowErrorOnStatusChangeDialog()
+        {
+            string title = ResourceStringManager.GetResourceByKey("CannotSetDoneOrAbortedErrorTitle");
+            string message = ResourceStringManager.GetResourceByKey("CannotSetDoneErrorMessage");
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         #region Properties
@@ -209,6 +274,9 @@ namespace TakeMyTime.WPF.Assignments
         public AssignmentViewModel SelectedAssignment { get; set; }
         public bool LoadFromAllProjects { get; set; }
 
+
         #endregion
+
+
     }
 }

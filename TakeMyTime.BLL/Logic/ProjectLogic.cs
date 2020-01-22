@@ -66,7 +66,7 @@ namespace TakeMyTime.BLL.Logic
 
         public void DeleteProject(int project_id)
         {
-            var toBeDeleted = unitOfWork.Projects.Get(project_id);
+            var toBeDeleted = unitOfWork.Projects.GetProjectById(project_id);
             if (toBeDeleted != null && toBeDeleted.CanDelete)
             {
                 unitOfWork.Projects.Remove(toBeDeleted);

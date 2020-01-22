@@ -106,6 +106,24 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cannot set done an already done or aborted assignment! ähnelt.
+        /// </summary>
+        public static string CannotSetDoneOrAbortedMessage {
+            get {
+                return ResourceManager.GetString("CannotSetDoneOrAbortedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while handling status change ähnelt.
+        /// </summary>
+        public static string CannotSetDoneOrAbortedTitle {
+            get {
+                return ResourceManager.GetString("CannotSetDoneOrAbortedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Created ähnelt.
         /// </summary>
         public static string ColumnCreated {
@@ -174,6 +192,15 @@ namespace TakeMyTime.WPF.Resources {
         public static string ColumnStatus {
             get {
                 return ResourceManager.GetString("ColumnStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit subtasks ähnelt.
+        /// </summary>
+        public static string EditSubtasks {
+            get {
+                return ResourceManager.GetString("EditSubtasks", resourceCulture);
             }
         }
         

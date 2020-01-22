@@ -50,6 +50,7 @@ namespace TakeMyTime.DOM.Models
         private bool CheckCanDelete()
         {
             bool allAssignmentsDoneOrAborted = 
+                this.Assignments == null ||
                 this.Assignments.All(a => a.AssignmentStatus == (AssignmentStatus.Aborted | AssignmentStatus.Aborted))
                 ||
                 this.Assignments.Count == 0;
