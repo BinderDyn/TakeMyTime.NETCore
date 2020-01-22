@@ -24,38 +24,33 @@ namespace TakeMyTime.WPF.Assignments
     /// </summary>
     public partial class AddAssignment : Window
     {
-        public AddAssignment(Project project)
+        public AddAssignment(int project_id)
         {
             InitializeComponent();
-            this.Project = project;
+            var projectLogic = new ProjectLogic();
+            this.Project = projectLogic.GetProjectById(project_id);
         }
 
-        public AddAssignment(Assignment assignment, Project project)
+        public AddAssignment(int assignment_id, int project_id)
         {
             InitializeComponent();
-            this.Assignment = assignment;
-            this.Project = project;
+            var assignmentLogic = new AssignmentLogic();
+            var projectLogic = new ProjectLogic();
+            this.Assignment = assignmentLogic.GetAssignmentById(assignment_id);
+            this.Project = projectLogic.GetProjectById(project_id);
+            assignmentLogic.Dispose();
+            projectLogic.Dispose();
             this.EditMode = true;
             Load();
         }
 
         private void Load()
         {
-            if(!EditMode)
-            {
-                this.SubtasksViewModels = this.Subtasks.OrderByDescending(s => s.Priority)
-                                                       .Select(s => new SubtaskGridViewModel(s))
-                                                       .ToList();
-            }
-            else
+            if (EditMode)
             {
                 var assignmentLogic = new AssignmentLogic();
                 this.Assignment = assignmentLogic.GetAssignmentById(this.Assignment.Id);
                 assignmentLogic.Dispose();
-                this.Subtasks = this.Assignment.Subtasks.ToList();
-                this.SubtasksViewModels = this.Subtasks.OrderByDescending(s => s.Priority)
-                                                       .Select(s => new SubtaskGridViewModel(s))
-                                                       .ToList();
 
                 this.tb_AssignmentDescription.Text = this.Assignment.Description;
                 this.tb_AssignmentName.Text = this.Assignment.Name;
@@ -64,8 +59,6 @@ namespace TakeMyTime.WPF.Assignments
                 this.dp_AssignmentDue.SelectedDate = this.Assignment.DateDue;
                 this.dp_Planned.SelectedDate = this.Assignment.DatePlanned;
             }
-
-            this.lv_Subtasks.ItemsSource = this.SubtasksViewModels;
         }
 
         #region GUI Events
@@ -117,80 +110,8 @@ namespace TakeMyTime.WPF.Assignments
                 assignment = assignmentLogic.AddAssignment(param);
             }
 
-            assignmentLogic.SetSubtasksForAssigment(assignment.Id, this.Subtasks);
             assignmentLogic.Dispose();
             this.Close();
-        }
-
-        private void btn_DeleteSubtask_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.SelectedSubtask != null)
-            {
-                this.Subtasks.Remove(SelectedSubtask);
-                if (this.SelectedSubtask.Assignment != null)
-                {
-                    var assignmentLogic = new AssignmentLogic();
-                    assignmentLogic.DeleteSubtask(this.Assignment, this.SelectedSubtask);
-                    assignmentLogic.Dispose();
-                }
-                this.SelectedSubtask = null;
-                Load();
-            }
-        }
-
-        private void btn_EditSubtask_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedSubtask != null)
-            {
-                AddSubtask addSubtaskWindow = null;
-                if (this.EditMode)
-                {
-                    addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask.Id);
-                }
-                else
-                {
-                    addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask);
-                }
-                 
-                addSubtaskWindow.ShowDialog();
-                
-                Load();
-            }
-        }
-
-        private void btn_AddSubtask_Click(object sender, RoutedEventArgs e)
-        {
-            AddSubtask addSubtaskWindow = null;
-            if (this.EditMode)
-            {
-                addSubtaskWindow = new AddSubtask(this, this.Assignment);
-            }
-            else
-            {
-                addSubtaskWindow = new AddSubtask(this);
-            }
-
-            addSubtaskWindow.ShowDialog();
-
-            Load();
-        }
-
-        private void lv_Subtasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                var selectedViewModel = (e.AddedItems[0] as SubtaskGridViewModel);
-                if(selectedViewModel.Id != 0)
-                {
-                    this.SelectedSubtask = this.Subtasks.Single(s => s.Id == selectedViewModel.Id);
-                } 
-                else
-                {
-                    this.SelectedSubtask = (this.Subtasks
-                        .FirstOrDefault(s => s.Name == selectedViewModel.Name &&
-                                s.Description == selectedViewModel.Description));
-                }
-            }
         }
 
         private void tb_AssignmentPlannedDuration_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -251,16 +172,8 @@ namespace TakeMyTime.WPF.Assignments
 
         #endregion
 
-        public List<Subtask> Subtasks { get; set; } = new List<Subtask>();
-        public List<SubtaskGridViewModel> SubtasksViewModels { get; set; } = new List<SubtaskGridViewModel>();
-        public Subtask SelectedSubtask { get; set; }
         public Assignment Assignment { get; set; }
         public Project Project { get; set; }
         public bool EditMode { get; set; } = false;
-
-        private void lv_Subtasks_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

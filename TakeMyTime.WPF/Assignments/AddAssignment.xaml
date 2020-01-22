@@ -11,9 +11,9 @@
       WindowStartupLocation="CenterScreen"
       WindowStyle="None"
       Title="{x:Static resources:AddAssignment.Title}"
-      d:DesignHeight="680" d:DesignWidth="900"
+      d:DesignHeight="400" d:DesignWidth="900"
       mc:Ignorable="d" 
-      Height="800" Width="900"
+      Height="400" Width="900"
       >
 
     <Grid>
@@ -48,7 +48,6 @@
             <Grid>
                 <!--Structuring Grid-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -146,14 +145,14 @@
                 </Grid>
                 
                  
-                <!--Grid for Subtasks-->
+                <!--Grid for Subtasks--><!--
                 <Grid Grid.Row="2"
                       Margin="0 40 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <!--Border for ListView for Subtasks-->
+                    --><!--Border for ListView for Subtasks--><!--
                     <Border>
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right"
@@ -199,11 +198,12 @@
                             </Button> 
                         </StackPanel>
                     </Border>
-                    <!--ListView for Subtasks-->
+                    --><!--ListView for Subtasks--><!--
                     <ListView Grid.Row="1"
                               x:Name="lv_Subtasks"
                               ItemsSource="{Binding Subtasks}"
                               Foreground="{StaticResource LightWhite}"
+                              SelectionChanged="lv_Subtasks_SelectionChanged"
                               >
                         <ListView.View>
                             <GridView>
@@ -241,7 +241,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
+                </Grid>-->
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="2"

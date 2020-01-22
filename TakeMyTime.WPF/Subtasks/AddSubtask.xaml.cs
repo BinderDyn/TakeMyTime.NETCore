@@ -23,6 +23,11 @@ namespace TakeMyTime.WPF.Subtasks
     /// </summary>
     public partial class AddSubtask : Window
     {
+        /// <summary>
+        /// For new subtasks for new assignments
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="editMode"></param>
         public AddSubtask(AddAssignment parent)
         {
             InitializeComponent();
@@ -31,17 +36,11 @@ namespace TakeMyTime.WPF.Subtasks
             this.ParentWindow = parent;
         }
 
-        public AddSubtask(AddAssignment parent, Assignment assigment)
-        {
-            InitializeComponent();
-            this.EditMode = false;
-            var assignmentLogic = new AssignmentLogic();
-            this.Assignment = assignmentLogic.GetAssignmentById(assigment.Id);
-            this.cb_PrioritySelect.SelectedItem = this.cbi_Medium;
-            this.SelectedPriority = EnumDefinition.SubtaskPriority.Medium;
-            this.ParentWindow = parent;
-        }
-        
+        /// <summary>
+        /// For existing subtasks for new assignments
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="subtask"></param>
         public AddSubtask(AddAssignment parent, Subtask subtask)
         {
             InitializeComponent();
@@ -54,19 +53,44 @@ namespace TakeMyTime.WPF.Subtasks
             this.Assignment = parent.Assignment;
         }
 
+        /// <summary>
+        /// For new subtasks for existing assignments
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="assigment"></param>
+        public AddSubtask(AddAssignment parent, int assigment_id)
+        {
+            InitializeComponent();
+            this.EditMode = false;
+            var assignmentLogic = new AssignmentLogic();
+            this.Assignment = assignmentLogic.GetAssignmentById(assigment_id);
+            assignmentLogic.Dispose();
+            this.cb_PrioritySelect.SelectedItem = this.cbi_Medium;
+            this.SelectedPriority = EnumDefinition.SubtaskPriority.Medium;
+            this.ParentWindow = parent;
+        }
 
-        public AddSubtask(AddAssignment parent, int subtaskId)
+        /// <summary>
+        /// For existing subtasks for existing assignments
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="subtaskId"></param>
+        public AddSubtask(AddAssignment parent, int subtask_id, int assignment_id)
         {
             InitializeComponent();
             var subtaskLogic = new SubtaskLogic();
-            var subtask = subtaskLogic.Get(subtaskId);
+            var assignmentLogic = new AssignmentLogic();
+            var subtask = subtaskLogic.Get(subtask_id);
             this.EditMode = true;
             this.EditableSubtask = subtask;
             this.cb_PrioritySelect.SelectedItem = GetItemByPriority(subtask.Priority);
             this.tb_SubtaskDescription.Text = subtask.Description;
             this.tb_SubtaskName.Text = subtask.Name;
             this.ParentWindow = parent;
-            this.Assignment = parent.Assignment;
+            this.Assignment = assignmentLogic.GetAssignmentById(assignment_id);
+
+            assignmentLogic.Dispose();
+            subtaskLogic.Dispose();
         }
 
         #region GUI Events
@@ -87,29 +111,7 @@ namespace TakeMyTime.WPF.Subtasks
                 Priority = this.SelectedPriority
             };
 
-            if (!EditMode && this.Assignment == null)
-            {
-                var subtask = Subtask.Create(param);
-                this.ParentWindow.Subtasks.Add(subtask);
-            }
-            else if (!EditMode && this.Assignment != null)
-            {
-                var assignmentLogic = new AssignmentLogic();
-                assignmentLogic.AddSubtask(this.Assignment.Id, param);
-                assignmentLogic.Dispose();
-            }
-            else if (EditMode && this.Assignment != null)
-            {
-                var subtaskLogic = new SubtaskLogic();
-                subtaskLogic.Update(EditableSubtask.Id, param);
-                subtaskLogic.Dispose();
-            }
-            else
-            {
-                this.EditableSubtask.Name = param.Name;
-                this.EditableSubtask.Description = param.Description;
-                this.EditableSubtask.Priority = param.Priority;
-            }
+            CreateOrUpdateSubtask(param);
             this.Close();
         }
 
@@ -161,6 +163,41 @@ namespace TakeMyTime.WPF.Subtasks
             };
         }
 
+        private void CreateOrUpdateSubtask(SubtaskCreateViewModel param)
+        {
+            // Assignment does not exist
+            if (!EditMode && this.Assignment == null)
+            {
+                var subtask = Subtask.Create(param);
+                this.ParentWindow.Subtasks.Add(subtask);
+            }
+            // Assignment does not yet exists and the reference of the subtask is edited
+            else if (EditMode && this.Assignment == null)
+            {
+                this.EditableSubtask.Name = param.Name;
+                this.EditableSubtask.Description = param.Description;
+                this.EditableSubtask.Priority = param.Priority;
+            }
+            // Assignment already exists
+            else if (!EditMode && this.Assignment.Id > 0)
+            {
+                var assignmentLogic = new AssignmentLogic();
+                assignmentLogic.AddSubtask(this.Assignment.Id, param);
+                assignmentLogic.Dispose();
+            }
+            // Assignment already exists and there is a need to edit the specific subtask
+            else if (EditMode && this.Assignment.Id > 0)
+            {
+                var subtaskLogic = new SubtaskLogic();
+                subtaskLogic.Update(EditableSubtask.Id, param);
+                subtaskLogic.Dispose();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #endregion
 
         public AddAssignment ParentWindow { get; set; }
@@ -168,7 +205,5 @@ namespace TakeMyTime.WPF.Subtasks
         public Subtask EditableSubtask { get; set; }
         public Assignment Assignment { get; set; }
         public bool EditMode { get; set; } = false;
-
-
     }
 }

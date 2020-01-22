@@ -39,10 +39,10 @@ namespace TakeMyTime.DAL.uow
         private string GetTrackedEntitiesAsString(TakeMyTimeDbContext context)
         {
             var sb = new StringBuilder();
-            foreach (var entity in context.ChangeTracker.Entries())
-            {
-                sb.AppendLine(string.Format("Tracked entity: {0}", entity));
-            }
+            //foreach (var entity in context.ChangeTracker.Entries())
+            //{
+            //    sb.AppendLine(string.Format("Tracked entity: {0}", entity));
+            //}
             return sb.ToString();
         }
 

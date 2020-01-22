@@ -71,11 +71,12 @@ namespace TakeMyTime.WPF.Assignments
             {
                 var assignmentLogic = new AssignmentLogic();
                 var selectedAssignment = assignmentLogic.GetAssignmentById(this.SelectedAssignment.Id);
-                addAssignmentWindow = new AddAssignment(selectedAssignment, project);
+                assignmentLogic.Dispose();
+                addAssignmentWindow = new AddAssignment(selectedAssignment.Id, selectedAssignment.Project_Id.Value);
             }
             else
             {
-                addAssignmentWindow = new AddAssignment(project);
+                addAssignmentWindow = new AddAssignment(project.Id);
             }
 
             addAssignmentWindow.ShowDialog();
