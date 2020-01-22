@@ -77,6 +77,31 @@ namespace TakeMyTime.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Subtasks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Edited = table.Column<DateTime>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    DurationTicks = table.Column<long>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Assignment_Id = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subtasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Subtasks_Assignments_Assignment_Id",
+                        column: x => x.Assignment_Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Entries",
                 columns: table => new
                 {
@@ -86,7 +111,8 @@ namespace TakeMyTime.DAL.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     Edited = table.Column<DateTime>(nullable: true),
                     Project_Id = table.Column<int>(nullable: true),
-                    Assigment_Id = table.Column<int>(nullable: true),
+                    Subtask_Id = table.Column<int>(nullable: true),
+                    SubtaskId = table.Column<int>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Started = table.Column<DateTime>(nullable: true),
                     Ended = table.Column<DateTime>(nullable: true),
@@ -97,15 +123,15 @@ namespace TakeMyTime.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Entries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entries_Assignments_Assigment_Id",
-                        column: x => x.Assigment_Id,
-                        principalTable: "Assignments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Entries_Projects_Project_Id",
                         column: x => x.Project_Id,
                         principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Entries_Subtasks_SubtaskId",
+                        column: x => x.SubtaskId,
+                        principalTable: "Subtasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -116,25 +142,33 @@ namespace TakeMyTime.DAL.Migrations
                 column: "Project_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entries_Assigment_Id",
-                table: "Entries",
-                column: "Assigment_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Entries_Project_Id",
                 table: "Entries",
                 column: "Project_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Entries_SubtaskId",
+                table: "Entries",
+                column: "SubtaskId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_ProjectType_Id",
                 table: "Projects",
                 column: "ProjectType_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Subtasks_Assignment_Id",
+                table: "Subtasks",
+                column: "Assignment_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Entries");
+
+            migrationBuilder.DropTable(
+                name: "Subtasks");
 
             migrationBuilder.DropTable(
                 name: "Assignments");

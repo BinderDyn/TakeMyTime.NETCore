@@ -13,14 +13,14 @@ namespace Common.Enums
     public class EnumDefinition
     {
         /// <summary>
-        /// Provides the Assignment-Class with a discriminator for the current status
+        /// Status of assignments
         /// </summary>
         public enum AssignmentStatus
         {
             [Description("All")]
-            Default = -1,
+            Default = ~0,
             [Description("Active")]
-            Active = 0,
+            InProgress = 0,
             [Description("Future")]
             Future = 1,
             [Description("Done")]
@@ -29,31 +29,14 @@ namespace Common.Enums
             Aborted = 3,
             [Description("Postponed")]
             Postponed = 4,
-            [Description("Upcoming")]
-            Upcoming = 5
         }
-
-        /// <summary>
-        /// Discriminator for project types
-        /// </summary>
-        //public enum ProjectType
-        //{
-        //    [Description("Standard")]
-        //    Default = -1,
-        //    [Description("Writing")]
-        //    Book = 1,
-        //    [Description("Language")]
-        //    Language = 2,
-        //    [Description("Programming")]
-        //    Programming = 3
-        //}
 
         public enum TimekeeperStatus
         {
-            [Description("In time")]
-            InTime = 0,
-            [Description("Not in time")]
-            NotInTime = 1
+            [Description("On time")]
+            OnTime = 0,
+            [Description("Not on time")]
+            Delayed = 1
         }
 
         public enum ProjectStatus
@@ -83,7 +66,25 @@ namespace Common.Enums
             [Description("Assignment")]
             Assignment = 2,
             [Description("Project")]
-            Project = 3
+            Project = 3,
+            [Description("Subtask")]
+            Subtask = 4
+        }
+
+        public enum SubtaskStatus
+        {
+            NotYetDone = 0,
+            Done = 1,
+            Aborted = 2
+        }
+
+        public enum SubtaskPriority
+        {
+            Lowest = 0,
+            Low = 1,
+            Medium = 2,
+            High = 3,
+            Highest = 4
         }
     }
 }

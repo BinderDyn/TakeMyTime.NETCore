@@ -78,7 +78,7 @@ namespace TakeMyTime.WPF.Projects
 
         private void btn_AddProject_Click(object sender, RoutedEventArgs e)
         {
-            if (this.SelectedProjectType != null && this.CanCreateProject && !editMode)
+            if (this.SelectedProjectType != null && this.CanCreateProject && !editMode && !string.IsNullOrWhiteSpace(this.tb_projectDesignation.Text))
             {
                 var bllProjectTypes = new ProjectTypeLogic();
                 var bllProjects = new ProjectLogic();
@@ -122,12 +122,15 @@ namespace TakeMyTime.WPF.Projects
             }
         }
 
+        private void tb_projectDesignation_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btn_AddProject.IsEnabled = !string.IsNullOrWhiteSpace(tb_projectDesignation.Text);
+        }
+
         #endregion
 
         public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; set; }
         public ProjectTypeViewModel SelectedProjectType { get; set; }
         public bool CanCreateProject { get => !string.IsNullOrWhiteSpace(tb_projectDesignation.Text); }
-
-        
     }
 }

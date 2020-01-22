@@ -106,6 +106,24 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cannot set done an already done or aborted assignment! ähnelt.
+        /// </summary>
+        public static string CannotSetDoneOrAbortedMessage {
+            get {
+                return ResourceManager.GetString("CannotSetDoneOrAbortedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while handling status change ähnelt.
+        /// </summary>
+        public static string CannotSetDoneOrAbortedTitle {
+            get {
+                return ResourceManager.GetString("CannotSetDoneOrAbortedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Created ähnelt.
         /// </summary>
         public static string ColumnCreated {
@@ -160,11 +178,56 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Planned for calendar week ähnelt.
+        /// </summary>
+        public static string ColumnPlanned {
+            get {
+                return ResourceManager.GetString("ColumnPlanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Status ähnelt.
         /// </summary>
         public static string ColumnStatus {
             get {
                 return ResourceManager.GetString("ColumnStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit subtasks ähnelt.
+        /// </summary>
+        public static string EditSubtasks {
+            get {
+                return ResourceManager.GetString("EditSubtasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter by status ähnelt.
+        /// </summary>
+        public static string LabelFilter {
+            get {
+                return ResourceManager.GetString("LabelFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter by project ähnelt.
+        /// </summary>
+        public static string LabelProject {
+            get {
+                return ResourceManager.GetString("LabelProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All projects ähnelt.
+        /// </summary>
+        public static string ProjectsAll {
+            get {
+                return ResourceManager.GetString("ProjectsAll", resourceCulture);
             }
         }
     }

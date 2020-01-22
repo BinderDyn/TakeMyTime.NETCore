@@ -132,6 +132,12 @@
   <data name="AssignmentSetDoneTooltip" xml:space="preserve">
     <value>Set done</value>
   </data>
+  <data name="CannotSetDoneOrAbortedMessage" xml:space="preserve">
+    <value>Cannot set done an already done or aborted assignment!</value>
+  </data>
+  <data name="CannotSetDoneOrAbortedTitle" xml:space="preserve">
+    <value>Error while handling status change</value>
+  </data>
   <data name="ColumnCreated" xml:space="preserve">
     <value>Created</value>
   </data>
@@ -150,7 +156,22 @@
   <data name="ColumnName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="ColumnPlanned" xml:space="preserve">
+    <value>Planned for calendar week</value>
+  </data>
   <data name="ColumnStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="EditSubtasks" xml:space="preserve">
+    <value>Edit subtasks</value>
+  </data>
+  <data name="LabelFilter" xml:space="preserve">
+    <value>Filter by status</value>
+  </data>
+  <data name="LabelProject" xml:space="preserve">
+    <value>Filter by project</value>
+  </data>
+  <data name="ProjectsAll" xml:space="preserve">
+    <value>All projects</value>
   </data>
 </root>

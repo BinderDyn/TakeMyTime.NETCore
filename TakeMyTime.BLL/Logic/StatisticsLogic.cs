@@ -80,7 +80,7 @@ namespace TakeMyTime.BLL.Logic
             var points = new List<StatisticsAssignmentGraphViewModel>();
             foreach (var ass in assignments)
             {
-                points.Add(new StatisticsAssignmentGraphViewModel(ass.Name, ass.Entries.Sum(e => e.DurationAsTicks)));
+                // points.Add(new StatisticsAssignmentGraphViewModel(ass.Name, ass.Entries.Sum(e => e.DurationAsTicks)));
             }
             return points.OrderByDescending(p => p.WorkingTime).Take(10);
         }
@@ -107,12 +107,14 @@ namespace TakeMyTime.BLL.Logic
         private decimal CalculatePredictionAccuracy(int projectId)
         {
             var assignments = GetDoneAssignments(projectId);
-            return (decimal)assignments.Count() != 0 ? (decimal)assignments.Where(a => a.Entries.Sum(e => e.DurationAsTicks) <= a.DurationPlannedAsTicks).Count() / (decimal)assignments.Count() : 0;
+            // return (decimal)assignments.Count() != 0 ? (decimal)assignments.Where(a => a.Entries.Sum(e => e.DurationAsTicks) <= a.DurationPlannedAsTicks).Count() / (decimal)assignments.Count() : 0;
+            return 0;
         }
 
         private int GetCorrectPredictions(int projectId)
         {
-            return GetDoneAssignments(projectId).Where(a => a.DurationPlannedAsTicks >= a.Entries.Sum(e => e.DurationAsTicks)).Count();
+            // return GetDoneAssignments(projectId).Where(a => a.DurationPlannedAsTicks >= a.Entries.Sum(e => e.DurationAsTicks)).Count();
+            throw new NotImplementedException();
         }
         
         //ToDo: Book data

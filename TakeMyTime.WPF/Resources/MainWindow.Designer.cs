@@ -70,6 +70,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Current calendar week ähnelt.
+        /// </summary>
+        public static string CurrentCalendarWeek {
+            get {
+                return ResourceManager.GetString("CurrentCalendarWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
         /// </summary>
         public static string ProjectMenuItem {

@@ -132,6 +132,12 @@
   <data name="AssignmentSetDoneTooltip" xml:space="preserve">
     <value>Als "Erledigt" kennzeichnen</value>
   </data>
+  <data name="CannotSetDoneOrAbortedMessage" xml:space="preserve">
+    <value>Eine bereits als "Erledigt" oder "Abgebrochen" gekennzeichnete Aufgabe kann nicht im Status verändert werden!</value>
+  </data>
+  <data name="CannotSetDoneOrAbortedTitle" xml:space="preserve">
+    <value>Fehler beim Behandeln der Statusänderung</value>
+  </data>
   <data name="ColumnCreated" xml:space="preserve">
     <value>Angelegt</value>
   </data>
@@ -150,7 +156,19 @@
   <data name="ColumnName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="ColumnPlanned" xml:space="preserve">
+    <value>Geplant für KW</value>
+  </data>
   <data name="ColumnStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="LabelFilter" xml:space="preserve">
+    <value>Nach Status filtern</value>
+  </data>
+  <data name="LabelProject" xml:space="preserve">
+    <value>Nach Projekt filtern</value>
+  </data>
+  <data name="ProjectsAll" xml:space="preserve">
+    <value>Alle Projekte</value>
   </data>
 </root>

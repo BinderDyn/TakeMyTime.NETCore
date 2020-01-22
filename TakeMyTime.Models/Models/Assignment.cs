@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.Common.Exceptions;
 using TakeMyTime.DOM.Interfaces;
+using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
 
 namespace TakeMyTime.DOM.Models
 {
     public class Assignment : Entity<Assignment>
     {
-        public Assignment Create(ICreateParam param)
+        public static Assignment Create(ICreateParam param)
         {
             Assignment assignment = new Assignment();
             assignment.Init(param.Name, param.Description, param.DatePlanned, param.DateDue, param.DurationPlannedAsTicks, param.Project);
@@ -32,10 +33,9 @@ namespace TakeMyTime.DOM.Models
             this.Description = description;
             this.DatePlanned = datePlanned;
             this.DateDue = dateDue;
-            this.Project = project;
-            this.Project_Id = Project.Id;
+            this.Project_Id = project.Id;
             this.DurationPlannedAsTicks = durationPlannedAsTicks;
-            this.Entries = new HashSet<Entry>();
+            this.Subtasks = new HashSet<Subtask>();
             this.SetCreated();
         }
 
@@ -60,9 +60,25 @@ namespace TakeMyTime.DOM.Models
 
         private bool CanSetStatus(AssignmentStatus status)
         {
-            if (status == AssignmentStatus.Aborted) throw new CannotChangeStatusException("Cannot change status if already set to aborted");
-            if (status == AssignmentStatus.Done) throw new CannotChangeStatusException("Cannot change status if already set to done");
+            if (this.AssignmentStatus == AssignmentStatus.Aborted) throw new CannotChangeStatusException("Cannot change status if already set to aborted");
+            if (this.AssignmentStatus == AssignmentStatus.Done) throw new CannotChangeStatusException("Cannot change status if already set to done");
             return true;
+        }
+
+        public bool CanDelete()
+        {
+            return !this.Subtasks.Any();
+        }
+
+        /// <summary>
+        /// Removes all subtasks from assignment. The subtasks should be consequently deleted from the database to avoid garbage
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Subtask> ClearSubtasks()
+        {
+            var subtasks = this.Subtasks.ToArray();
+            this.Subtasks.Clear();
+            return subtasks;
         }
 
         public interface IUpdateParam
@@ -82,13 +98,13 @@ namespace TakeMyTime.DOM.Models
         [ForeignKey("Project")]
         public int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
-        public virtual ICollection<Entry> Entries { get; set; }
         public DateTime? DatePlanned { get; set; }
         public DateTime? DateDue { get; set; }
         public long? DurationPlannedAsTicks { get; set; }
         public AssignmentStatus AssignmentStatus { get; set; }
         public string Description { get; set; }
         public int TimesPushed { get; set; }
+        public virtual ICollection<Subtask> Subtasks { get; set; }
     }
 
     

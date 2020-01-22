@@ -7,6 +7,11 @@ namespace TakeMyTime.DAL.SeederFactories
 {
     public class ProjectTypeFactory
     {
+        private ProjectTypeFactory()
+        {
+
+        }
+
         public static IEnumerable<ProjectType> SeedProjectTypes()
         {
             return new ProjectType[4]

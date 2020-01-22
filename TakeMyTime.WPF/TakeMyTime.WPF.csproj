@@ -30,10 +30,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\AddAssignment.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddAssignment.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AddProject.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AddProject.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\AddSubtask.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddSubtask.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\AssignmentOverview.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -50,6 +60,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProjectOverview.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Shared.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\SubtaskList.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SubtaskList.resx</DependentUpon>
+    </Compile>
     <Compile Update="Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -58,12 +78,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AddAssignment.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddAssignment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddAssignment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AddProject.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddProject.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddSubtask.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddSubtask.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddSubtask.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AssignmentOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -85,6 +119,20 @@
     <EmbeddedResource Update="Resources\ProjectOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProjectOverview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Shared.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SubtaskList.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SubtaskList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubtaskList.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -21,12 +21,14 @@ namespace TakeMyTime.DAL.uow
             Entries = new EntryRepository(context);
             Assignments = new AssignmentRepository(context);
             ProjectTypes = new ProjectTypeRepository(context);
+            Subtasks = new SubtaskRepository(context);
         }
 
         public IProjectRepository Projects { get; private set; }
         public IEntryRepository Entries { get; private set; }
         public IAssignmentRepository Assignments { get; private set; }
         public IProjectTypeRepository ProjectTypes { get; private set; }
+        public ISubtaskRepository Subtasks { get; private set; }
 
         public int Complete()
         {
@@ -37,10 +39,10 @@ namespace TakeMyTime.DAL.uow
         private string GetTrackedEntitiesAsString(TakeMyTimeDbContext context)
         {
             var sb = new StringBuilder();
-            foreach (var entity in context.ChangeTracker.Entries())
-            {
-                sb.AppendLine(string.Format("Tracked entity: {0}", entity));
-            }
+            //foreach (var entity in context.ChangeTracker.Entries())
+            //{
+            //    sb.AppendLine(string.Format("Tracked entity: {0}", entity));
+            //}
             return sb.ToString();
         }
 

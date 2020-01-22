@@ -50,6 +50,7 @@ namespace TakeMyTime.DOM.Models
         private bool CheckCanDelete()
         {
             bool allAssignmentsDoneOrAborted = 
+                this.Assignments == null ||
                 this.Assignments.All(a => a.AssignmentStatus == (AssignmentStatus.Aborted | AssignmentStatus.Aborted))
                 ||
                 this.Assignments.Count == 0;
@@ -67,8 +68,8 @@ namespace TakeMyTime.DOM.Models
             ProjectType ProjectType { get; set; }
         }
 
-        public virtual ICollection<Entry> Entries { get; set; } = new List<Entry>();
-        public virtual ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
+        public virtual ICollection<Entry> Entries { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual string Description { get; set; }
         public virtual long? WorkingTimeAsTicks { get; set; }
         public virtual ProjectStatus ProjectStatus { get; set; }

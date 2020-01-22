@@ -53,5 +53,12 @@ namespace TakeMyTime.DAL.Repositories
 
             return completeWorkingTime;
         }
+
+        public Project GetProjectById(int id)
+        {
+            return context.Projects
+                .Include(p => p.Assignments)
+                .SingleOrDefault(p => p.Id == id);
+        }
     }
 }

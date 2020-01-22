@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using TakeMyTime.DAL;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF
 {
@@ -37,6 +38,7 @@ namespace TakeMyTime.WPF
             InitDataDirectory();
             InitializeComponent();
             txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            tb_CalendarWeek.Text = this.CurrentCalendarWeek;
         }
 
         public void InitLogger()
@@ -116,6 +118,6 @@ namespace TakeMyTime.WPF
 
         #endregion
 
-
+        public string CurrentCalendarWeek { get => string.Format("{0}: {1}", ResourceStringManager.GetResourceByKey("CalendarWeek"), DateTimeCultureConverter.GetCalendarWeek()); }
     }
 }

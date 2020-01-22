@@ -26,11 +26,36 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
+                <Label
+                    Content="{x:Static resources:AssignmentOverview.LabelFilter}"
+                    Margin="0 8 10 0"></Label>
                 <ComboBox
+                    x:Name="cb_StatusFilter"
                     IsEditable="False"
-                    Width="340"
+                    Width="140"
                     Margin="0 0 30 0"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Left"
+                    SelectionChanged="cb_StatusFilter_SelectionChanged"
+                    >
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentAll}" x:Name="cbi_All"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentActive}" x:Name="cbi_Active"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentFuture}" x:Name="cbi_Future"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentDone}" x:Name="cbi_Done"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentAborted}" x:Name="cbi_Aborted"></ComboBoxItem>
+                    <ComboBoxItem Content="{x:Static resources:Shared.AssignmentPostponed}" x:Name="cbi_Postponed"></ComboBoxItem>
+                </ComboBox>
+                <Label
+                    Content="{x:Static resources:AssignmentOverview.LabelProject}"
+                    Margin="0 8 10 0"></Label>
+                <ComboBox
+                    x:Name="cb_ProjectSelection"
+                    IsEditable="False"
+                    Width="140"
+                    Margin="0 0 30 0"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding ProjectViewModels}"
+                    DisplayMemberPath="Name"
+                    SelectionChanged="cb_ProjectSelection_SelectionChanged">
                 </ComboBox>
                 <Button x:Name="btn_NewAssignment"
                         VerticalAlignment="Center"
@@ -40,6 +65,7 @@
                         Background="ForestGreen"
                         ToolTip="{x:Static resources:AssignmentOverview.AssignmentAddTooltip}"
                         Click="btn_NewAssignment_Click"
+                        IsEnabled="False"
                         >
                     <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
                 </Button>
@@ -55,6 +81,18 @@
                         >
                     <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
                 </Button>
+                <Button x:Name="btn_EditSubtasks"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="80"
+                        Background="DarkBlue"
+                        IsEnabled="False"
+                        ToolTip="{x:Static resources:AssignmentOverview.EditSubtasks}"
+                        Click="btn_EditSubtasks_Click"
+                        >
+                    <materialDesign:PackIcon Kind="FormatListBulleted"></materialDesign:PackIcon>
+                </Button>
                 <Button x:Name="btn_DeleteAssignment"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
@@ -62,20 +100,22 @@
                         Background="{StaticResource Warning}"
                         IsEnabled="False"
                         ToolTip="{x:Static resources:AssignmentOverview.AssignmentDeleteTooltip}"
+                        Click="btn_DeleteAssignment_Click"
                         >
                     <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
                 </Button>
             </StackPanel>
         </Border>
         <ListView x:Name="lv_Assignments" 
-                      ItemsSource="{Binding Projects}"
+                      ItemsSource="{Binding FilteredAssignmentViewModels}"
                       HorizontalAlignment="Stretch"
                       Grid.Row="1"
                       Foreground="{StaticResource LightWhite}"
                       Margin="18"
                       Visibility="Visible"
                       SelectionMode="Single"
-                      MouseDoubleClick="lv_Assignments_MouseDoubleClick">
+                      MouseDoubleClick="lv_Assignments_MouseDoubleClick"
+                      SelectionChanged="lv_Assignments_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -92,7 +132,16 @@
                             Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Test"></TextBlock>
+                                <TextBlock Text="{Binding Path=Description}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn 
+                            Header="{x:Static resources:AssignmentOverview.ColumnPlanned}"
+                            Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=PlannedAsString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -103,7 +152,8 @@
                             <DataTemplate>
                                 <CheckBox
                                     IsEnabled="False"
-                                    Content="True">
+                                    Content="{Binding Path=HasDueDate}"
+                                    >
                                 </CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -114,7 +164,7 @@
                         >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock></TextBlock>
+                                <TextBlock Text="{Binding Path=DueDateAsString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
