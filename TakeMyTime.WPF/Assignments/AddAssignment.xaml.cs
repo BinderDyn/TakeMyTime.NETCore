@@ -145,7 +145,7 @@ namespace TakeMyTime.WPF.Assignments
                 AddSubtask addSubtaskWindow = null;
                 if (this.EditMode)
                 {
-                    addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask.Id, this.Assignment.Id);
+                    addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask.Id);
                 }
                 else
                 {
@@ -163,11 +163,11 @@ namespace TakeMyTime.WPF.Assignments
             AddSubtask addSubtaskWindow = null;
             if (this.EditMode)
             {
-                addSubtaskWindow = new AddSubtask(this, this.SelectedSubtask.Id, this.Assignment.Id);
+                addSubtaskWindow = new AddSubtask(this, this.Assignment);
             }
             else
             {
-                addSubtaskWindow = new AddSubtask(this, this.Assignment.Id);
+                addSubtaskWindow = new AddSubtask(this);
             }
 
             addSubtaskWindow.ShowDialog();

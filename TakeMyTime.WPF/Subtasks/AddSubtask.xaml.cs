@@ -31,12 +31,12 @@ namespace TakeMyTime.WPF.Subtasks
             this.ParentWindow = parent;
         }
 
-        public AddSubtask(AddAssignment parent, int assignmentId)
+        public AddSubtask(AddAssignment parent, Assignment assigment)
         {
             InitializeComponent();
             this.EditMode = false;
             var assignmentLogic = new AssignmentLogic();
-            this.Assignment = assignmentLogic.GetAssignmentById(assignmentId);
+            this.Assignment = assignmentLogic.GetAssignmentById(assigment.Id);
             this.cb_PrioritySelect.SelectedItem = this.cbi_Medium;
             this.SelectedPriority = EnumDefinition.SubtaskPriority.Medium;
             this.ParentWindow = parent;
