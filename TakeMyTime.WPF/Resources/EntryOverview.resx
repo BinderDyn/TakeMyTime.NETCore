@@ -117,22 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AssignmentMenuItem" xml:space="preserve">
-    <value>Aufgaben</value>
+  <data name="ColumnAssignment" xml:space="preserve">
+    <value>Assignment</value>
   </data>
-  <data name="CurrentCalendarWeek" xml:space="preserve">
-    <value>KW</value>
+  <data name="ColumnDescription" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="DashboardMenutItem" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="ColumnDuration" xml:space="preserve">
+    <value>Duration</value>
   </data>
-  <data name="EntriesMenuItem" xml:space="preserve">
-    <value>Logbuch</value>
+  <data name="ColumnEnd" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="ProjectMenuItem" xml:space="preserve">
-    <value>Projekte</value>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="SettingsMenuItem" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="ColumnProject" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ColumnStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="ColumnSubtask" xml:space="preserve">
+    <value>Subtask</value>
+  </data>
+  <data name="FilterAssignments" xml:space="preserve">
+    <value>Filter by assignment</value>
+  </data>
+  <data name="FilterProjects" xml:space="preserve">
+    <value>Filter by project</value>
+  </data>
+  <data name="FilterSubtasks" xml:space="preserve">
+    <value>Filter by subtask</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Log entries</value>
   </data>
 </root>

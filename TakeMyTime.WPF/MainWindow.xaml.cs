@@ -109,6 +109,16 @@ namespace TakeMyTime.WPF
             fr_Content.Navigate(new Assignments.AssignmentOverview());
         }
 
+        private void btn_LogEntries_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(new Entries.EntryOverview());
+        }
+
+        private void btn_Dashboard_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(null);
+        }
+
         private void btn_Settings_Click(object sender, RoutedEventArgs e)
         {
             fr_Content.Navigate(null);
@@ -119,5 +129,7 @@ namespace TakeMyTime.WPF
         #endregion
 
         public string CurrentCalendarWeek { get => string.Format("{0}: {1}", ResourceStringManager.GetResourceByKey("CalendarWeek"), DateTimeCultureConverter.GetCalendarWeek()); }
+
+        
     }
 }
