@@ -7,9 +7,125 @@
       xmlns:resources="clr-namespace:TakeMyTime.WPF.Resources"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Background="{StaticResource BackgroundGrey}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <StackPanel Margin="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <Label Foreground="{StaticResource LightWhite}"  Content="{x:Static resources:EntryOverview.FilterProjects}"></Label>
+                <ComboBox x:Name="cb_ProjectFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          ItemsSource="{Binding ProjectViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_ProjectFilter_SelectionChanged"></ComboBox>
+                <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterAssignments}"></Label>
+                <ComboBox x:Name="cb_AssignmentFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          IsEnabled="False"
+                          ItemsSource="{Binding AssignmentViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_AssignmentFilter_SelectionChanged"></ComboBox>
+                <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterSubtasks}"></Label>
+                <ComboBox x:Name="cb_SubtaskFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          IsEnabled="False"
+                          ItemsSource="{Binding SubtaskViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_SubtaskFilter_SelectionChanged"></ComboBox>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    >
+            <Button 
+                    Margin="5 0 5 0"
+                    x:Name="btn_EditEntry"
+                    Background="Orange"
+                    IsEnabled="False"
+                    Click="btn_EditEntry_Click">
+                <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
+            </Button>
+            <Button 
+                    Margin="5 0 5 0"
+                    x:Name="btn_DeleteEntry"
+                    Background="Red"
+                    IsEnabled="False"
+                    Click="btn_DeleteEntry_Click">
+                <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical">
+              <ListView x:Name="lv_Entries"
+                        SelectionChanged="lv_Entries_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnName}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDescription}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Description}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnStart}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=StartAsString}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnEnd}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=EndAsString}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDuration}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=DurationAsString}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnProject}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=ProjectName}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnSubtask}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=SubtaskName}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
