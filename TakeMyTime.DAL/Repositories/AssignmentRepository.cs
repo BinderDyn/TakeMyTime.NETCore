@@ -31,6 +31,13 @@ namespace TakeMyTime.DAL.Repositories
                 .SingleOrDefault(a => a.Id == id);
         }
 
+        public IEnumerable<Assignment> GetAllAssignmentsLoadFull()
+        {
+            return this.context.Assignments
+                .Include(a => a.Subtasks)
+                .ToList();
+        }
+
         public void DeleteSubtask(int id, int subtaskId)
         {
             var entity = this.context.Assignments

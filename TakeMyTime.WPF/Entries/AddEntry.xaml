@@ -73,9 +73,11 @@
             <ComboBox
                 Foreground="{StaticResource LightWhite}"
                 ItemsSource="{Binding SubtaskViewModels}"
+                DisplayMemberPath="Name"
                 x:Name="cb_Subtask"
                 Grid.Row="2"
-                Grid.Column="1"></ComboBox>
+                Grid.Column="1"
+                SelectionChanged="cb_Subtask_SelectionChanged"></ComboBox>
         </Grid>
         <Button
             x:Name="btn_StartStop"

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -28,16 +29,18 @@ namespace TakeMyTime.WPF.Entries
         private readonly int assignment_id;
         private DateTime? started = null;
         private bool alreadyStarted = false;
-        private Timer timer;
+        private System.Timers.Timer timer;
+        private delegate void UpdateTimeDisplay(string time);
 
         public AddEntry(int projectId, int assignmentId)
         {
             InitializeComponent();
             this.project_id = projectId;
             this.assignment_id = assignmentId;
-            timer = new Timer();
+            timer = new System.Timers.Timer();
             timer.Interval = 1000;
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
+            this.Load();
         }
 
         #region GUI EVENTS
@@ -64,6 +67,13 @@ namespace TakeMyTime.WPF.Entries
         private void btn_StartStop_Click(object sender, RoutedEventArgs e)
         {
             this.StartStopTimer();
+        }
+        private void cb_Subtask_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
+            {
+                this.SelectedSubtask = e.AddedItems[0] as SubtaskComboBoxViewModel;
+            }
         }
 
         #endregion
@@ -105,6 +115,8 @@ namespace TakeMyTime.WPF.Entries
 
         public void StartStopTimer()
         {
+            var thread = new Thread(new ThreadStart(UpdateUI));
+
             if (!timer.Enabled)
             {
                 if (!this.alreadyStarted)
@@ -113,13 +125,16 @@ namespace TakeMyTime.WPF.Entries
                     this.started = DateTime.Now;
                 }
 
+                thread.Start();
                 timer.Start();
+
                 timer.Elapsed += Timer_Elapsed;
                 this.btn_StartStop.Background = Brushes.DarkRed;
                 this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStop");
             }
             else
             {
+                thread.Interrupt();
                 timer.Stop();
                 this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
                 this.btn_StartStop.Background = Brushes.Green;
@@ -128,19 +143,27 @@ namespace TakeMyTime.WPF.Entries
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            this.DurationElapsed = e.SignalTime - this.started.Value;
-            this.UpdateUI();
+            if (timer.Enabled)
+            {
+                this.DurationElapsed = e.SignalTime - this.started.Value;
+            }
         }
 
         public void UpdateUI()
         {
-            this.ElapsedAsString = this.DurationElapsed.ToString(@"hh\:mm\:ss");
+            this.tb_Elapsed.Dispatcher.Invoke(() => UpdateElapsedTextBox(this.ElapsedAsString));
+        }
+
+        public void UpdateElapsedTextBox(string elapsed)
+        {
+            this.tb_Elapsed.Text = elapsed;
         }
 
         public List<SubtaskComboBoxViewModel> SubtaskViewModels { get; set; }
         public SubtaskComboBoxViewModel SelectedSubtask { get; set; }
         public TimeSpan DurationElapsed { get; set; } = new TimeSpan();
-        public string ElapsedAsString { get; set; }
+        public string ElapsedAsString { get => this.DurationElapsed.ToString(@"hh\:mm\:ss"); }
+
         
     }
 }
