@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.DOM.Models;
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
@@ -29,6 +30,14 @@ namespace TakeMyTime.BLL.Logic
         {
             var edit = unitOfWork.Subtasks.Get(id);
             edit.Update(param);
+            unitOfWork.Complete();
+        }
+
+        public void AddEntry(int subtask_id, Entry.ICreateParam param)
+        {
+            var entry = Entry.Create(param);
+            var subtask = unitOfWork.Subtasks.Get(subtask_id);
+            subtask.Entries.Add(entry);
             unitOfWork.Complete();
         }
 

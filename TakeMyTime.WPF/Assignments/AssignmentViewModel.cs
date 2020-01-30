@@ -1,6 +1,7 @@
 ﻿using Common.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TakeMyTime.WPF.Utility;
 
@@ -19,6 +20,7 @@ namespace TakeMyTime.WPF.Assignments
             this.Description = assignment.Description;
             this.ProjectId = assignment.Project_Id.Value;
             this.Planned = assignment.DatePlanned;
+            this.HasSubtasks = assignment.Subtasks.Count() > 0;
         }
 
         public int Id { get; set; }
@@ -36,6 +38,7 @@ namespace TakeMyTime.WPF.Assignments
         public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
         public Uri StatusImage { get => GetImageByStatus(this.StatusAsEnum); }
+        public bool HasSubtasks { get; private set; }
 
         private Uri GetImageByStatus(EnumDefinition.AssignmentStatus status)
         {
