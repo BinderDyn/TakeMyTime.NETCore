@@ -5992,21 +5992,17 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marvi\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\marvi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.BLL\\TakeMyTime.BLL.csproj",
+      "projectUniqueName": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.BLL\\TakeMyTime.BLL.csproj",
       "projectName": "TakeMyTime.BLL",
-      "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.BLL\\TakeMyTime.BLL.csproj",
+      "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.BLL\\TakeMyTime.BLL.csproj",
       "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-      "outputPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.BLL\\obj\\",
+      "outputPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.BLL\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\marvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -6021,11 +6017,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Common\\TakeMyTime.Common.csproj": {
-              "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Common\\TakeMyTime.Common.csproj"
+            "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj": {
+              "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Common\\TakeMyTime.Common.csproj"
             },
-            "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj": {
-              "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj"
+            "C:\\Development\\takemytimeNETCORE\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj": {
+              "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj"
             }
           }
         }

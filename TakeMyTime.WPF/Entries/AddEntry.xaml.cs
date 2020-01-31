@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Utility;
@@ -29,7 +30,7 @@ namespace TakeMyTime.WPF.Entries
         private readonly int assignment_id;
         private DateTime? started = null;
         private bool alreadyStarted = false;
-        private System.Timers.Timer timer;
+        private DispatcherTimer timer;
         private delegate void UpdateTimeDisplay(string time);
 
         public AddEntry(int projectId, int assignmentId)
@@ -37,8 +38,8 @@ namespace TakeMyTime.WPF.Entries
             InitializeComponent();
             this.project_id = projectId;
             this.assignment_id = assignmentId;
-            timer = new System.Timers.Timer();
-            timer.Interval = 1000;
+            timer = new DispatcherTimer(DispatcherPriority.Send);
+            timer.Interval = new TimeSpan(0,0,1);
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
             this.Load();
         }
@@ -115,45 +116,43 @@ namespace TakeMyTime.WPF.Entries
 
         public void StartStopTimer()
         {
-            var thread = new Thread(new ThreadStart(UpdateUI));
-
-            if (!timer.Enabled)
+            if (!timer.IsEnabled)
             {
                 if (!this.alreadyStarted)
                 {
                     this.alreadyStarted = true;
                     this.started = DateTime.Now;
                 }
-
-                thread.Start();
                 timer.Start();
 
-                timer.Elapsed += Timer_Elapsed;
+                timer.Tick += Timer_Elapsed;
                 this.btn_StartStop.Background = Brushes.DarkRed;
                 this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStop");
             }
             else
             {
-                thread.Interrupt();
                 timer.Stop();
                 this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
                 this.btn_StartStop.Background = Brushes.Green;
             }
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Timer_Elapsed(object sender, EventArgs e)
         {
-            if (timer.Enabled)
+            if (timer.IsEnabled)
             {
-                this.DurationElapsed = e.SignalTime - this.started.Value;
+                this.DurationElapsed = DateTime.Now - this.started.Value;
+                this.UpdateUI();
             }
         }
 
         public void UpdateUI()
         {
-            this.tb_Elapsed.Dispatcher.Invoke(() => UpdateElapsedTextBox(this.ElapsedAsString));
+            this.tb_Elapsed.Text = this.ElapsedAsString;
+            CommandManager.InvalidateRequerySuggested();
         }
 
+        public delegate void UpdateTextBox(string elapsed);
         public void UpdateElapsedTextBox(string elapsed)
         {
             this.tb_Elapsed.Text = elapsed;

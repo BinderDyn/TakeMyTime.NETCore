@@ -31,6 +31,13 @@ namespace TakeMyTime.DAL.Repositories
                 .SingleOrDefault(a => a.Id == id);
         }
 
+        public IEnumerable<Assignment> GetAssignmentsByProjectId(int project_id)
+        {
+            return this.context.Assignments
+                .Include(a => a.Subtasks)
+                .Where(a => a.Project_Id == project_id);
+        }
+
         public IEnumerable<Assignment> GetAllAssignmentsLoadFull()
         {
             return this.context.Assignments
