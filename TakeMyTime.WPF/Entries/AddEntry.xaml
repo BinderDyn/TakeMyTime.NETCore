@@ -54,7 +54,8 @@
                    HorizontalAlignment="Right"></Label>
             <TextBox x:Name="tb_Name"
                      Foreground="{StaticResource LightWhite}"
-                        Grid.Row="0" Grid.Column="1"></TextBox>
+                     Grid.Row="0" Grid.Column="1"
+                     TextChanged="tb_Name_TextChanged"></TextBox>
             <Label 
                 Foreground="{StaticResource LightWhite}"
                 Grid.Row="1"
@@ -109,7 +110,8 @@
             Height="40"
             Background="Green"
             Margin="0 0 20 0"
-            Click="btn_Save_Click">
+            Click="btn_Save_Click"
+            IsEnabled="False">
                 <materialDesign:PackIcon Kind="Check"></materialDesign:PackIcon>
             </Button>
             <Button

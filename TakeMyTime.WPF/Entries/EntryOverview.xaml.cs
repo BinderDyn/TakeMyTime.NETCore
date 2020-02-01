@@ -20,6 +20,7 @@ namespace TakeMyTime.WPF.Entries
         {
             InitializeComponent();
             Load();
+            this.cb_ProjectFilter.SelectedItem = this.ProjectViewModels.Single(p => p.Id == 0);
         }
 
         private void Load()
@@ -96,7 +97,9 @@ namespace TakeMyTime.WPF.Entries
 
         private void btn_EditEntry_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            // TODO: Open EntryCreate dialog...
+            var editEntry = new AddEntry(this.SelectedEntry.Id);
+            editEntry.ShowDialog();
+            this.Load();
         }
 
         private void btn_DeleteEntry_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -133,6 +136,7 @@ namespace TakeMyTime.WPF.Entries
                 .ToList();
             assignmentLogic.Dispose();
             this.AssignmentViewModels.Add(new AssignmentViewModel { Id = 0, Name = ResourceStringManager.GetResourceByKey("All") });
+            this.cb_AssignmentFilter.SelectedItem = this.AssignmentViewModels.Single(a => a.Id == 0);
         }
 
         private void LoadSubtasksForAssignment(int assignment_id)
@@ -143,7 +147,7 @@ namespace TakeMyTime.WPF.Entries
                 .ToList();
             subtaskLogic.Dispose();
             this.SubtaskViewModels.Add(new SubtaskComboBoxViewModel { Id = 0, Name = ResourceStringManager.GetResourceByKey("All") });
-
+            this.cb_SubtaskFilter.SelectedItem = this.SubtaskViewModels.Single(s => s.Id == 0);
         }
 
         private void LoadEntriesWhereFiltersHit()

@@ -41,14 +41,10 @@ namespace TakeMyTime.BLL.Logic
             Dispose();
         }
 
-        public void UpdateEntry(Entry entry)
+        public void UpdateEntry(int entry_id, Entry.IUpdateParam param)
         {
-            var edit = unitOfWork.Entries.Get(entry.Id);
-
-            edit.Comment = entry.Comment;
-            edit.Name = entry.Name;
-            edit.Edited = DateTime.Now;
-
+            var edit = unitOfWork.Entries.Get(entry_id);
+            edit.Update(param);
             unitOfWork.Complete();
         }
 
