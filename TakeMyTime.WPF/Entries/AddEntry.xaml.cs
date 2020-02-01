@@ -29,9 +29,9 @@ namespace TakeMyTime.WPF.Entries
         private readonly int project_id;
         private readonly int assignment_id;
         private DateTime? started = null;
+        private DateTime? stopped = null;
         private bool alreadyStarted = false;
         private DispatcherTimer timer;
-        private delegate void UpdateTimeDisplay(string time);
 
         public AddEntry(int projectId, int assignmentId)
         {
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Entries
             this.project_id = projectId;
             this.assignment_id = assignmentId;
             timer = new DispatcherTimer(DispatcherPriority.Send);
-            timer.Interval = new TimeSpan(0,0,1);
+            timer.Interval = new TimeSpan(0, 0, 1);
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
             this.Load();
         }
@@ -106,23 +106,21 @@ namespace TakeMyTime.WPF.Entries
                 Project = project,
                 Subtask = subtask,
                 DurationAsTicks = this.DurationElapsed.Ticks,
-                Ended = this.started + this.DurationElapsed,
+                Ended = this.stopped,
                 Started = this.started
             };
 
             subtaskLogic.AddEntry(this.SelectedSubtask.Id, entryCreateViewModel);
             subtaskLogic.Dispose();
+
+            this.Close();
         }
 
         public void StartStopTimer()
         {
             if (!timer.IsEnabled)
             {
-                if (!this.alreadyStarted)
-                {
-                    this.alreadyStarted = true;
-                    this.started = DateTime.Now;
-                }
+                this.started = DateTime.Now;
                 timer.Start();
 
                 timer.Tick += Timer_Elapsed;
@@ -131,7 +129,10 @@ namespace TakeMyTime.WPF.Entries
             }
             else
             {
+                this.stopped = DateTime.Now;
+                timer.Tick -= Timer_Elapsed;
                 timer.Stop();
+                timer.IsEnabled = false;
                 this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
                 this.btn_StartStop.Background = Brushes.Green;
             }
@@ -141,7 +142,7 @@ namespace TakeMyTime.WPF.Entries
         {
             if (timer.IsEnabled)
             {
-                this.DurationElapsed = DateTime.Now - this.started.Value;
+                this.DurationElapsed = this.DurationElapsed.Add(new TimeSpan(0, 0, 1));
                 this.UpdateUI();
             }
         }
@@ -152,17 +153,11 @@ namespace TakeMyTime.WPF.Entries
             CommandManager.InvalidateRequerySuggested();
         }
 
-        public delegate void UpdateTextBox(string elapsed);
-        public void UpdateElapsedTextBox(string elapsed)
-        {
-            this.tb_Elapsed.Text = elapsed;
-        }
-
         public List<SubtaskComboBoxViewModel> SubtaskViewModels { get; set; }
         public SubtaskComboBoxViewModel SelectedSubtask { get; set; }
         public TimeSpan DurationElapsed { get; set; } = new TimeSpan();
         public string ElapsedAsString { get => this.DurationElapsed.ToString(@"hh\:mm\:ss"); }
 
-        
+
     }
 }
