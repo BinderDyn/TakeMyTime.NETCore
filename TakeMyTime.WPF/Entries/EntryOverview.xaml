@@ -26,7 +26,8 @@
                           Width="150" Margin="5 0 10 0"
                           ItemsSource="{Binding ProjectViewModels}"
                           DisplayMemberPath="Name"
-                          SelectionChanged="cb_ProjectFilter_SelectionChanged"></ComboBox>
+                          SelectionChanged="cb_ProjectFilter_SelectionChanged">
+                </ComboBox>
                 <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterAssignments}"></Label>
                 <ComboBox x:Name="cb_AssignmentFilter"
                           Foreground="{StaticResource LightWhite}" 
@@ -34,7 +35,8 @@
                           IsEnabled="False"
                           ItemsSource="{Binding AssignmentViewModels}"
                           DisplayMemberPath="Name"
-                          SelectionChanged="cb_AssignmentFilter_SelectionChanged"></ComboBox>
+                          SelectionChanged="cb_AssignmentFilter_SelectionChanged">
+                </ComboBox>
                 <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterSubtasks}"></Label>
                 <ComboBox x:Name="cb_SubtaskFilter"
                           Foreground="{StaticResource LightWhite}" 
@@ -42,7 +44,8 @@
                           IsEnabled="False"
                           ItemsSource="{Binding SubtaskViewModels}"
                           DisplayMemberPath="Name"
-                          SelectionChanged="cb_SubtaskFilter_SelectionChanged"></ComboBox>
+                          SelectionChanged="cb_SubtaskFilter_SelectionChanged">
+                </ComboBox>
             </StackPanel>
         </Border>
         <StackPanel Grid.Row="1"

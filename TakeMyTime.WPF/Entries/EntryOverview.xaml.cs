@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.WPF.Assignments;
 using TakeMyTime.WPF.Projects;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Entries
 {
@@ -24,6 +25,7 @@ namespace TakeMyTime.WPF.Entries
         {
             this.LoadProjects();
             this.cb_ProjectFilter.ItemsSource = this.ProjectViewModels;
+            this.RefreshEntries();
         }
 
         private void RefreshEntries()
@@ -102,6 +104,7 @@ namespace TakeMyTime.WPF.Entries
                 .Select(p => new ProjectViewModel(p))
                 .ToList();
             projectLogic.Dispose();
+            this.ProjectViewModels.Add(new ProjectViewModel { Id = 0, Name = ResourceStringManager.GetResourceByKey("All") });
         }
 
         private void LoadAssignmentsForProject(int project_id)
@@ -111,6 +114,7 @@ namespace TakeMyTime.WPF.Entries
                 .Select(a => new AssignmentViewModel(a))
                 .ToList();
             assignmentLogic.Dispose();
+            this.AssignmentViewModels.Add(new AssignmentViewModel { Id = 0, Name = ResourceStringManager.GetResourceByKey("All") });
         }
 
         private void LoadSubtasksForAssignment(int assignment_id)
@@ -120,6 +124,8 @@ namespace TakeMyTime.WPF.Entries
                 .Select(s => new SubtaskComboBoxViewModel(s))
                 .ToList();
             subtaskLogic.Dispose();
+            this.SubtaskViewModels.Add(new SubtaskComboBoxViewModel { Id = 0, Name = ResourceStringManager.GetResourceByKey("All") });
+
         }
 
         private void LoadEntriesWhereFiltersHit()
@@ -136,19 +142,29 @@ namespace TakeMyTime.WPF.Entries
 
             if (this.SelectedProject != null)
             {
-                projectCondition = e => e.ProjectId == this.SelectedProject.Id;
+                if (this.SelectedProject.Id != 0)
+                {
+                    projectCondition = e => e.ProjectId == this.SelectedProject.Id;
+                }
             }
 
             if (this.SelectedAssignment != null)
             {
-                assignmentCondition = e => e.Subtask.Assignment_Id == this.SelectedAssignment.Id;
+                if (this.SelectedAssignment.Id != 0)
+                {
+                    assignmentCondition = e => e.Subtask.Assignment_Id == this.SelectedAssignment.Id;
+                }
             }
 
             if (this.SelectedSubtask != null)
             {
-                subtaskCondition = e => e.Subtask.Id == this.SelectedSubtask.Id;
+                if (this.SelectedSubtask.Id != 0)
+                {
+                    subtaskCondition = e => e.Subtask.Id == this.SelectedSubtask.Id;
+                }
             }
 
+            this.FilteredViewModels = this.EntryViewModels;
             this.FilteredViewModels = this.EntryViewModels.Where(projectCondition).ToList();
             this.FilteredViewModels = this.FilteredViewModels.Where(assignmentCondition).ToList();
             this.FilteredViewModels = this.FilteredViewModels.Where(subtaskCondition).ToList();

@@ -15,7 +15,7 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Entry> GetAllEntries()
         {
-            var entries = unitOfWork.Entries.GetAll();
+            var entries = unitOfWork.Entries.LoadAll();
             
             return entries;
         }

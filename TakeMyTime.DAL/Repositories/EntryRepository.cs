@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,13 @@ namespace TakeMyTime.DAL.Repositories
         public TakeMyTimeDbContext TakeMyTimeDbContext
         {
             get { return DbContext as TakeMyTimeDbContext; }
+        }
+
+        public IEnumerable<Entry> LoadAll()
+        {
+            return this.TakeMyTimeDbContext.Entries
+                .Include(e => e.Project)
+                .Include(e => e.Subtask);
         }
     }
 }

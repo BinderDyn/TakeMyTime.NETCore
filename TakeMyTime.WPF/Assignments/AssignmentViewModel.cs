@@ -9,6 +9,11 @@ namespace TakeMyTime.WPF.Assignments
 {
     public class AssignmentViewModel
     {
+        public AssignmentViewModel()
+        {
+
+        }
+
         public AssignmentViewModel(DOM.Models.Assignment assignment)
         {
             this.StatusAsEnum = assignment.AssignmentStatus;

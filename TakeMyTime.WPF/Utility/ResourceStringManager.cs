@@ -21,6 +21,7 @@ namespace TakeMyTime.WPF.Utility
                 "CannotSetDoneOrAbortedErrorTitle" => Resources.AssignmentOverview.CannotSetDoneOrAbortedTitle,
                 "ButtonTextStart" => Resources.AddEntry.ButtonTextStart,
                 "ButtonTextStop" => Resources.AddEntry.ButtonTextStop,
+                "All" => Resources.Shared.All,
                 _ => string.Empty
             };
         }

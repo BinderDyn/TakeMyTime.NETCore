@@ -7,6 +7,12 @@ namespace TakeMyTime.WPF.Entries
 {
     public class SubtaskComboBoxViewModel
     {
+
+        public SubtaskComboBoxViewModel()
+        {
+
+        }
+
         public SubtaskComboBoxViewModel(Subtask subtask)
         {
             this.Id = subtask.Id;
