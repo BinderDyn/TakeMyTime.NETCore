@@ -22,6 +22,8 @@ namespace TakeMyTime.WPF.Utility
                 "ButtonTextStart" => Resources.AddEntry.ButtonTextStart,
                 "ButtonTextStop" => Resources.AddEntry.ButtonTextStop,
                 "All" => Resources.Shared.All,
+                "ConfirmDeleteTitle" => Resources.EntryOverview.ConfirmDeleteTitle,
+                "ConfirmDeleteMessage" => Resources.EntryOverview.ConfirmDeleteMessage,
                 _ => string.Empty
             };
         }

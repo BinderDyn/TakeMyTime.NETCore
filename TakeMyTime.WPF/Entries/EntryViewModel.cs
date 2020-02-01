@@ -18,8 +18,11 @@ namespace TakeMyTime.WPF.Entries
             this.Duration = entry.DurationAsTicks;
             this.Project = entry.Project;
             this.Subtask = entry.Subtask;
+            this.Id = entry.Id;
         }
 
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? Start { get; set; }

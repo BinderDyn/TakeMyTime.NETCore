@@ -28,6 +28,7 @@ namespace TakeMyTime.WPF.Entries
     {
         private readonly int project_id;
         private readonly int assignment_id;
+        private readonly int? entry_id;
         private DateTime? started = null;
         private DateTime? stopped = null;
         private bool alreadyStarted = false;
@@ -42,6 +43,19 @@ namespace TakeMyTime.WPF.Entries
             timer.Interval = new TimeSpan(0, 0, 1);
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
             this.Load();
+            this.cb_Subtask.SelectedItem = this.SubtaskViewModels.FirstOrDefault(s => s.Id > 0);
+        }
+
+        public AddEntry(int entry_id)
+        {
+            InitializeComponent();
+            var entryLogic = new EntryLogic();
+            var entry = entryLogic.GetEntryById(entry_id);
+            this.tb_Description.Text = entry.Comment;
+            this.tb_Name.Text = entry.Name;
+            this.cb_Subtask.IsEnabled = false;
+            this.btn_StartStop.IsEnabled = false;
+            this.entry_id = entry_id;
         }
 
         #region GUI EVENTS
@@ -58,17 +72,27 @@ namespace TakeMyTime.WPF.Entries
         {
             this.Close();
         }
+
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(this.tb_Name.Text))
             {
-                CreateEntry();
+                if (!this.entry_id.HasValue)
+                {
+                    this.CreateEntry();
+                }
+                else
+                {
+                    this.EditAndSaveEntry();
+                }
             }
         }
+
         private void btn_StartStop_Click(object sender, RoutedEventArgs e)
         {
             this.StartStopTimer();
         }
+
         private void cb_Subtask_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
@@ -77,7 +101,15 @@ namespace TakeMyTime.WPF.Entries
             }
         }
 
+        private void tb_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.btn_Save.IsEnabled = !string.IsNullOrWhiteSpace(this.tb_Name.Text);
+        }
+
+
         #endregion
+
+        #region Utility
 
         public void Load()
         {
@@ -88,6 +120,17 @@ namespace TakeMyTime.WPF.Entries
                 .ToList();
             this.cb_Subtask.ItemsSource = this.SubtaskViewModels;
             this.cb_Subtask.IsEnabled = this.SubtaskViewModels.Count > 0;
+        }
+
+        public void EditAndSaveEntry()
+        {
+            if (!string.IsNullOrWhiteSpace(this.tb_Name.Text))
+            {
+                var entryLogic = new EntryLogic();
+                entryLogic.UpdateEntry(this.entry_id.Value, new EntryUpdateParam { Name = this.tb_Name.Text, Comment = this.tb_Description.Text });
+                entryLogic.Dispose();
+                this.Close();
+            }
         }
 
         public void CreateEntry()
@@ -153,11 +196,15 @@ namespace TakeMyTime.WPF.Entries
             CommandManager.InvalidateRequerySuggested();
         }
 
+        #endregion
+
+        #region Properties
+
         public List<SubtaskComboBoxViewModel> SubtaskViewModels { get; set; }
         public SubtaskComboBoxViewModel SelectedSubtask { get; set; }
         public TimeSpan DurationElapsed { get; set; } = new TimeSpan();
         public string ElapsedAsString { get => this.DurationElapsed.ToString(@"hh\:mm\:ss"); }
 
-
+        #endregion
     }
 }
