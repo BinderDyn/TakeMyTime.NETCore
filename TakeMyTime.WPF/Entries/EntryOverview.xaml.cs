@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.WPF.Assignments;
@@ -93,6 +94,23 @@ namespace TakeMyTime.WPF.Entries
             }
         }
 
+        private void btn_EditEntry_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            // TODO: Open EntryCreate dialog...
+        }
+
+        private void btn_DeleteEntry_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(ResourceStringManager.GetResourceByKey("ConfirmDeleteMessage"), ResourceStringManager.GetResourceByKey("ConfirmDeleteTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(result == MessageBoxResult.Yes)
+            {
+                var entryLogic = new EntryLogic();
+                entryLogic.DeleteEntry(SelectedEntry.Id);
+                entryLogic.Dispose();
+            }
+            Load();
+        }
+
         #endregion
 
         #region Utility
@@ -170,15 +188,7 @@ namespace TakeMyTime.WPF.Entries
             this.FilteredViewModels = this.FilteredViewModels.Where(subtaskCondition).ToList();
         }
 
-        private void btn_EditEntry_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            // TODO: Open EntryCreate dialog...
-        }
-
-        private void btn_DeleteEntry_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            // TODO: Open confirmation dialog and delete...
-        }
+        
 
         private void lv_Entries_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

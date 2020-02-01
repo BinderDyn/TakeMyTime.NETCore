@@ -141,6 +141,12 @@
   <data name="ColumnSubtask" xml:space="preserve">
     <value>Unteraufgabe</value>
   </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Möchten Sie den ausgewählten Eintrag wirklich löschen?</value>
+  </data>
+  <data name="ConfirmDeleteTitle" xml:space="preserve">
+    <value>Löschen bestätigen</value>
+  </data>
   <data name="FilterAssignments" xml:space="preserve">
     <value>Nach Aufgabe filtern</value>
   </data>

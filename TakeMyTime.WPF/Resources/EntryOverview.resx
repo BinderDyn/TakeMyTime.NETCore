@@ -141,6 +141,12 @@
   <data name="ColumnSubtask" xml:space="preserve">
     <value>Subtask</value>
   </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Dou you really want to delete the selected entry?</value>
+  </data>
+  <data name="ConfirmDeleteTitle" xml:space="preserve">
+    <value>Confirm delete</value>
+  </data>
   <data name="FilterAssignments" xml:space="preserve">
     <value>Filter by assignment</value>
   </data>
