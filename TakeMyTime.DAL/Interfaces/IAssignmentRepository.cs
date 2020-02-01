@@ -13,5 +13,7 @@ namespace TakeMyTime.DAL.Interfaces
         // TimeSpan? GetActualDuration(int id);
         Assignment GetAssignmentById(int id);
         void DeleteSubtask(int id, int subtaskId);
+        IEnumerable<Assignment> GetAllAssignmentsLoadFull();
+        IEnumerable<Assignment> GetAssignmentsByProjectId(int project_id);
     }
 }

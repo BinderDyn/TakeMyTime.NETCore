@@ -26,12 +26,13 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Assignment> GetAllAssignments()
         {
-            return unitOfWork.Assignments.GetAll();
+            return unitOfWork.Assignments.GetAllAssignmentsLoadFull();
         }
 
-        public IEnumerable<Assignment> GetAssignmentsByProjectId(int projectId)
+        public IEnumerable<Assignment> GetAssignmentsByProjectId(int project_id)
         {
-            return unitOfWork.Assignments.Find(x => x.Project_Id == projectId).ToList();
+            return unitOfWork.Assignments
+                .GetAssignmentsByProjectId(project_id).ToList();
         }
 
         public Assignment AddAssignment(Assignment.ICreateParam param)

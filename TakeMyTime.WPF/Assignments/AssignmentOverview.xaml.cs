@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.Common.Exceptions;
+using TakeMyTime.WPF.Entries;
 using TakeMyTime.WPF.Subtasks;
 using TakeMyTime.WPF.Utility;
 
@@ -93,7 +94,11 @@ namespace TakeMyTime.WPF.Assignments
 
         private void lv_Assignments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // TODO: Open new entry with subtask selection
+            if (this.SelectedAssignment != null && this.SelectedAssignment.HasSubtasks)
+            {
+                var addEntryDialog = new AddEntry(this.SelectedAssignment.ProjectId, this.SelectedAssignment.Id);
+                addEntryDialog.ShowDialog();
+            }
         }
 
         private void btn_SetDone_Click(object sender, RoutedEventArgs e)

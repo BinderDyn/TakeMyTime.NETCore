@@ -50,6 +50,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AssignmentOverview.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\EntryOverview.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntryOverview.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -59,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ProjectOverview.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\AddEntry.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddEntry.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Shared.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -85,6 +95,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddAssignment.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddEntry.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -106,6 +119,10 @@
     <EmbeddedResource Update="Resources\AssignmentOverview.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\EntryOverview.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntryOverview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\MainWindow.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -119,6 +136,10 @@
     <EmbeddedResource Update="Resources\ProjectOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProjectOverview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddEntry.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddEntry.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Shared.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -144,7 +165,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entries\" />
     <Folder Include="Drafts\" />
     <Folder Include="Calendar\" />
     <Folder Include="Commands\" />

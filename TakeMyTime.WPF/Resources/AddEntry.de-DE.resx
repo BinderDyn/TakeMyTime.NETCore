@@ -117,40 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>Alle</value>
+  <data name="ButtonTextStart" xml:space="preserve">
+    <value>START</value>
   </data>
-  <data name="AssignmentAborted" xml:space="preserve">
-    <value>Abgebrochen</value>
+  <data name="ButtonTextStop" xml:space="preserve">
+    <value>STOP</value>
   </data>
-  <data name="AssignmentActive" xml:space="preserve">
-    <value>In Arbeit</value>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
   </data>
-  <data name="AssignmentAll" xml:space="preserve">
-    <value>Alle</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="AssignmentDone" xml:space="preserve">
-    <value>Erledigt</value>
+  <data name="SubtaskSelection" xml:space="preserve">
+    <value>Gehört zu Unteraufgabe...</value>
   </data>
-  <data name="AssignmentFuture" xml:space="preserve">
-    <value>Ausstehend</value>
-  </data>
-  <data name="AssignmentPostponed" xml:space="preserve">
-    <value>Verschoben</value>
-  </data>
-  <data name="PriorityHigh" xml:space="preserve">
-    <value>Hoch</value>
-  </data>
-  <data name="PriorityHighest" xml:space="preserve">
-    <value>Höchste</value>
-  </data>
-  <data name="PriorityLow" xml:space="preserve">
-    <value>Niedrig</value>
-  </data>
-  <data name="PriorityLowest" xml:space="preserve">
-    <value>Niedrigste</value>
-  </data>
-  <data name="PriorityMedium" xml:space="preserve">
-    <value>Mittel</value>
+  <data name="Title" xml:space="preserve">
+    <value>Logeintrag hinzufügen...</value>
   </data>
 </root>

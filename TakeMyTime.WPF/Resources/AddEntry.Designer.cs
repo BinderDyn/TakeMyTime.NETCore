@@ -22,14 +22,14 @@ namespace TakeMyTime.WPF.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindow {
+    public class AddEntry {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindow() {
+        internal AddEntry() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.MainWindow", typeof(MainWindow).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.AddEntry", typeof(AddEntry).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,56 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Assignments ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die START ähnelt.
         /// </summary>
-        public static string AssignmentMenuItem {
+        public static string ButtonTextStart {
             get {
-                return ResourceManager.GetString("AssignmentMenuItem", resourceCulture);
+                return ResourceManager.GetString("ButtonTextStart", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Current calendar week ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die STOP ähnelt.
         /// </summary>
-        public static string CurrentCalendarWeek {
+        public static string ButtonTextStop {
             get {
-                return ResourceManager.GetString("CurrentCalendarWeek", resourceCulture);
+                return ResourceManager.GetString("ButtonTextStop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dashboard ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        public static string DashboardMenutItem {
+        public static string Description {
             get {
-                return ResourceManager.GetString("DashboardMenutItem", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Log entries ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        public static string EntriesMenuItem {
+        public static string Name {
             get {
-                return ResourceManager.GetString("EntriesMenuItem", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Subtask ähnelt.
         /// </summary>
-        public static string ProjectMenuItem {
+        public static string SubtaskSelection {
             get {
-                return ResourceManager.GetString("ProjectMenuItem", resourceCulture);
+                return ResourceManager.GetString("SubtaskSelection", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add entry ähnelt.
         /// </summary>
-        public static string SettingsMenuItem {
+        public static string Title {
             get {
-                return ResourceManager.GetString("SettingsMenuItem", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

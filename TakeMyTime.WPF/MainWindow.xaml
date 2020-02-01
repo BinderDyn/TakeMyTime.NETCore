@@ -109,11 +109,35 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
-
+                    <ListViewItem Height="60">
+                        <Button x:Name="btn_Dashboard"
+                                Height="60" 
+                                Background="Transparent"
+                                HorizontalAlignment="Left"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_Dashboard_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ViewDashboard"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                                <TextBlock
+                                Text="{x:Static resource:MainWindow.DashboardMenutItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
                     <ListViewItem Height="60">
                         <Button x:Name="btn_Projects"
                                 Height="60" 
                                 Background="Transparent"
+                                HorizontalAlignment="Left"
                                 Foreground="Transparent"
                                 BorderThickness="0"
                                 Click="btn_Projects_Click"
@@ -139,6 +163,7 @@
                                 Background="Transparent"
                                 Foreground="Transparent"
                                 BorderThickness="0"
+                                HorizontalAlignment="Left"
                                 Click="btn_Assignments_Click"
                                 >
                             <StackPanel Orientation="Horizontal">
@@ -156,10 +181,35 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
+                    <ListViewItem Height="60">
+                        <Button x:Name="btn_LogEntries"
+                                Height="60" 
+                                HorizontalAlignment="Left"
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_LogEntries_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ViewList"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                                <TextBlock
+                                Text="{x:Static resource:MainWindow.EntriesMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
                     <Separator></Separator>
                     <ListViewItem Height="60">
                         <Button x:Name="btn_Settings"
                                 Height="60" 
+                                HorizontalAlignment="Left"
                                 Background="Transparent"
                                 Foreground="Transparent"
                                 BorderThickness="0"

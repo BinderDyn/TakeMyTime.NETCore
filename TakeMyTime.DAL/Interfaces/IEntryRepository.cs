@@ -9,5 +9,6 @@ namespace TakeMyTime.DAL.Interfaces
 {
     public interface IEntryRepository : IRepository<Entry>
     {
+        IEnumerable<Entry> LoadAll();
     }
 }

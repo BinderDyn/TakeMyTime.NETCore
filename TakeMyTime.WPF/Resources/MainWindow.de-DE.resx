@@ -123,6 +123,12 @@
   <data name="CurrentCalendarWeek" xml:space="preserve">
     <value>KW</value>
   </data>
+  <data name="DashboardMenutItem" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="EntriesMenuItem" xml:space="preserve">
+    <value>Logbuch</value>
+  </data>
   <data name="ProjectMenuItem" xml:space="preserve">
     <value>Projekte</value>
   </data>

@@ -26,5 +26,12 @@ namespace TakeMyTime.DAL.Repositories
 
             edit.SetStatus(status);
         }
+
+        public Subtask GetSubtaskFullyLoaded(int id)
+        {
+            return this.context.Subtasks
+                .Include(s => s.Entries)
+                .FirstOrDefault(s => s.Id == id);
+        }
     }
 }

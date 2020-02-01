@@ -9,5 +9,6 @@ namespace TakeMyTime.DAL.Interfaces
     public interface ISubtaskRepository : IRepository<Subtask>
     {
         void SetStatus(int id, EnumDefinition.SubtaskStatus status);
+        Subtask GetSubtaskFullyLoaded(int id);
     }
 }

@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>Alle</value>
+  <data name="ColumnAssignment" xml:space="preserve">
+    <value>Assignment</value>
   </data>
-  <data name="AssignmentAborted" xml:space="preserve">
-    <value>Abgebrochen</value>
+  <data name="ColumnDescription" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="AssignmentActive" xml:space="preserve">
-    <value>In Arbeit</value>
+  <data name="ColumnDuration" xml:space="preserve">
+    <value>Duration</value>
   </data>
-  <data name="AssignmentAll" xml:space="preserve">
-    <value>Alle</value>
+  <data name="ColumnEnd" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="AssignmentDone" xml:space="preserve">
-    <value>Erledigt</value>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="AssignmentFuture" xml:space="preserve">
-    <value>Ausstehend</value>
+  <data name="ColumnProject" xml:space="preserve">
+    <value>Project</value>
   </data>
-  <data name="AssignmentPostponed" xml:space="preserve">
-    <value>Verschoben</value>
+  <data name="ColumnStart" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="PriorityHigh" xml:space="preserve">
-    <value>Hoch</value>
+  <data name="ColumnSubtask" xml:space="preserve">
+    <value>Subtask</value>
   </data>
-  <data name="PriorityHighest" xml:space="preserve">
-    <value>Höchste</value>
+  <data name="FilterAssignments" xml:space="preserve">
+    <value>Filter by assignment</value>
   </data>
-  <data name="PriorityLow" xml:space="preserve">
-    <value>Niedrig</value>
+  <data name="FilterProjects" xml:space="preserve">
+    <value>Filter by project</value>
   </data>
-  <data name="PriorityLowest" xml:space="preserve">
-    <value>Niedrigste</value>
+  <data name="FilterSubtasks" xml:space="preserve">
+    <value>Filter by subtask</value>
   </data>
-  <data name="PriorityMedium" xml:space="preserve">
-    <value>Mittel</value>
+  <data name="Title" xml:space="preserve">
+    <value>Log entries</value>
   </data>
 </root>
