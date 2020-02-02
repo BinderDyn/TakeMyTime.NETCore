@@ -168,7 +168,6 @@
     <Folder Include="Drafts\" />
     <Folder Include="Calendar\" />
     <Folder Include="Commands\" />
-    <Folder Include="Statistics\" />
   </ItemGroup>
 
   <ItemGroup>
