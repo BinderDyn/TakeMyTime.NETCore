@@ -29,16 +29,17 @@
             </Grid.ColumnDefinitions>
             <lvc:PieChart Grid.Row="0" Grid.Column="0"
                           Margin="10"
-                          LegendLocation="Right" Series="{x:Null}"
+                          LegendLocation="Right" Series="{Binding ShareOfProjects}"
                           x:Name="pc_ProjectShare"
-                          InnerRadius="50"/>
-            <lvc:CartesianChart Grid.Row="0" 
+                          InnerRadius="50"
+                          DataClick="pc_ProjectShare_DataClick"/>
+            <lvc:PieChart Grid.Row="0" 
                                 Grid.Column="1" 
-                                Series="{x:Null}"
+                                Series="{Binding ShareOfAssignments}"
                                 LegendLocation="Bottom"
-                                x:Name="cc_AssignmentDate"
+                                x:Name="cc_AssignmentShare"
                                 Visibility="Hidden"
-                                ></lvc:CartesianChart>
+                                ></lvc:PieChart>
         </Grid>
     </Grid>
 </Page>
