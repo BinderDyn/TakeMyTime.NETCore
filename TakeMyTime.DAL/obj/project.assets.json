@@ -6121,17 +6121,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marvi\\.nuget\\packages\\": {}
+    "C:\\Users\\marvi\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj",
+      "projectUniqueName": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj",
       "projectName": "TakeMyTime.DAL",
-      "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj",
+      "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.DAL\\TakeMyTime.DAL.csproj",
       "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.DAL\\obj\\",
+      "outputPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.DAL\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\marvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -6146,8 +6150,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Models\\TakeMyTime.Models.csproj": {
-              "projectPath": "C:\\Development\\takemytimeNETCORE\\TakeMyTime.Models\\TakeMyTime.Models.csproj"
+            "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Models\\TakeMyTime.Models.csproj": {
+              "projectPath": "G:\\Development\\TakeMyTime.NETCore\\TakeMyTime.Models\\TakeMyTime.Models.csproj"
             }
           }
         }
@@ -6221,7 +6225,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

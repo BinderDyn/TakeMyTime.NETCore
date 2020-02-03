@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -22,5 +23,26 @@ namespace TakeMyTime.WPF.Statistics
         {
             InitializeComponent();
         }
+
+        private void Load()
+        {
+
+        }
+
+        #region GUI Events
+
+        #endregion
+
+        #region Charts
+
+
+
+        #endregion
+
+        #region Properties
+
+        public SeriesCollection ShareOfAssignments { get; set; }
+
+        #endregion
     }
 }
