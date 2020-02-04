@@ -20,6 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -27,18 +28,35 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <lvc:PieChart Grid.Row="0" Grid.Column="0"
+            <lvc:PieChart Grid.Row="1" Grid.Column="0"
                           Margin="10"
                           LegendLocation="Right" Series="{Binding ShareOfProjects}"
                           x:Name="pc_ProjectShare"
-                          InnerRadius="50"
-                          DataClick="pc_ProjectShare_DataClick"/>
-            <lvc:PieChart Grid.Row="0" 
+                          InnerRadius="50"/>
+            <Label 
+                Margin="0 5 5 5"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                Content="{x:Static resources:Dashboard.ProjectFilterLabel}"></Label>
+            <ComboBox 
+                Margin="0 5 50 0"
+                Grid.Row="0" Grid.Column="1"
+                x:Name="cb_ProjectFilter"
+                Width="200"
+                HorizontalAlignment="Right"
+                ItemsSource="{Binding ProjectViewModels}"
+                SelectionChanged="cb_ProjectFilter_SelectionChanged"
+                DisplayMemberPath="Name"
+                ></ComboBox>
+            <lvc:PieChart       Grid.Row="1" 
+                                Margin="10"
                                 Grid.Column="1" 
                                 Series="{Binding ShareOfAssignments}"
-                                LegendLocation="Bottom"
-                                x:Name="cc_AssignmentShare"
+                                LegendLocation="Right"
+                                x:Name="pc_AssignmentShare"
                                 Visibility="Hidden"
+                                InnerRadius="50"
                                 ></lvc:PieChart>
         </Grid>
     </Grid>

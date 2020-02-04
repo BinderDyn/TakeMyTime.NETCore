@@ -18,9 +18,9 @@ namespace TakeMyTime.DAL.Repositories
             this.context = context;
         }
 
-        public IEnumerable<Tuple<int, string, double>> GetAssignmentSharesOfProject(int project_id)
+        public Dictionary<string, double> GetAssignmentSharesOfProject(int project_id)
         {
-            var results = new List<Tuple<int, string, double>>();
+            var results = new Dictionary<string, double>();
             var assignmentsOfProject = this.context.Assignments
                 .Include(a => a.Subtasks)
                 .Where(a => a.Project_Id == project_id);
@@ -33,8 +33,8 @@ namespace TakeMyTime.DAL.Repositories
                     var workingTimeForAssignment = GetWorkingTimeForAssignment(ass);
                     if (workingTimeForAssignment > 0)
                     {
-                        double shareOfAssignment = Math.Round((double)(workingTimeForAssignment / totalWorkingTime * 100), 2);
-                        results.Add(new Tuple<int, string, double>(ass.Id, ass.Name, shareOfAssignment));
+                        double shareOfAssignment = Math.Round(((double)workingTimeForAssignment / (double)totalWorkingTime * 100), 2);
+                        results.Add(ass.Name, shareOfAssignment);
                     }
                 }
             }
@@ -66,9 +66,9 @@ namespace TakeMyTime.DAL.Repositories
                 .Sum(e => e.DurationAsTicks);
         }
 
-        public IEnumerable<Tuple<int, string, double>> GetProjectTotalShares()
+        public Dictionary<string, double> GetProjectTotalShares()
         {
-            var results = new List<Tuple<int, string, double>>();
+            var results = new Dictionary<string, double>();
             var projects = this.context.Projects.Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active);
             var worktimeOfAllProjects = GetTotalWorktimeOfAllActiveProjects();
             if (worktimeOfAllProjects > 0)
@@ -78,8 +78,8 @@ namespace TakeMyTime.DAL.Repositories
                     var worktimeOfProject = GetTotalWorktimeOfSpecificProject(project.Id);
                     if (worktimeOfProject > 0)
                     {
-                        double shareOfProject = Math.Round((double)(worktimeOfProject / worktimeOfAllProjects * 100), 2);
-                        results.Add(new Tuple<int, string, double>(project.Id, project.Name, shareOfProject));
+                        double shareOfProject = Math.Round(((double)worktimeOfProject / (double)worktimeOfAllProjects * 100), 2);
+                        results.Add(project.Name, shareOfProject);
                     }
                 }
             }

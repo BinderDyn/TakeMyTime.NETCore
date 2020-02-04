@@ -40,6 +40,7 @@ namespace TakeMyTime.WPF
             InitializeComponent();
             txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             tb_CalendarWeek.Text = this.CurrentCalendarWeek;
+            fr_Content.Navigate(new Dashboard());
         }
 
         public void InitLogger()

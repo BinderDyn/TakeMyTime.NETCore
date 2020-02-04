@@ -14,12 +14,12 @@ namespace TakeMyTime.BLL.Logic
     {
         private UnitOfWork uow = new UnitOfWork();
 
-        public IEnumerable<Tuple<int, string, double>> GetAssignmentSharesOfProject(int project_id)
+        public Dictionary<string, double> GetAssignmentSharesOfProject(int project_id)
         {
             return this.uow.Statistics.GetAssignmentSharesOfProject(project_id);
         }
 
-        public IEnumerable<Tuple<int, string, double>> GetProjectShares()
+        public Dictionary<string, double> GetProjectShares()
         {
             return this.uow.Statistics.GetProjectTotalShares();
         }

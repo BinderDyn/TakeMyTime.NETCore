@@ -8,7 +8,7 @@ namespace TakeMyTime.DAL.Interfaces
     {
         long? GetTotalWorktimeOfAllActiveProjects();
         long? GetTotalWorktimeOfSpecificProject(int project_id);
-        IEnumerable<Tuple<int, string, double>> GetAssignmentSharesOfProject(int project_id);
-        IEnumerable<Tuple<int, string, double>> GetProjectTotalShares();
+        Dictionary<string, double> GetAssignmentSharesOfProject(int project_id);
+        Dictionary<string, double> GetProjectTotalShares();
     }
 }

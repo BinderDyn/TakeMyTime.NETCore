@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
+using TakeMyTime.WPF.Projects;
 
 namespace TakeMyTime.WPF.Statistics
 {
@@ -23,20 +24,35 @@ namespace TakeMyTime.WPF.Statistics
     public partial class Dashboard : Page
     {
         StatisticsLogic statisticsLogic;
+        ProjectLogic projectLogic;
 
         public Dashboard()
         {
             InitializeComponent();
             this.statisticsLogic = new StatisticsLogic();
+            this.projectLogic = new ProjectLogic();
             Load();
         }
 
         private void Load()
         {
             LoadSharesOfProjects();
+            this.ProjectViewModels = this.projectLogic.GetAllActiveProjects()
+                .ToList()
+                .Select(p => new ProjectViewModel(p));
+            this.cb_ProjectFilter.ItemsSource = this.ProjectViewModels;
+            this.cb_ProjectFilter.SelectedItem = this.ProjectViewModels.FirstOrDefault();
         }
 
         #region GUI Events
+
+        private void cb_ProjectFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
+            {
+                LoadSharesOfAssignments((e.AddedItems[0] as ProjectViewModel).Id);
+            }
+        }
 
         #endregion
 
@@ -44,15 +60,14 @@ namespace TakeMyTime.WPF.Statistics
 
         public void LoadSharesOfProjects()
         {
-            this.ProjectShareTuples = this.statisticsLogic.GetProjectShares();
+            this.ProjectShares = this.statisticsLogic.GetProjectShares();
             this.ShareOfProjects = new SeriesCollection();
-            foreach (var tuple in this.ProjectShareTuples)
+            foreach (var entry in this.ProjectShares)
             {
                 this.ShareOfProjects.Add(new PieSeries
                 {
-                    Values = new ChartValues<double> { tuple.Item3 },
-                    Title = tuple.Item2,
-                    ToolTip = tuple.Item1.ToString()
+                    Values = new ChartValues<double> { entry.Value },
+                    Title = entry.Key
                 });
             }
 
@@ -61,7 +76,19 @@ namespace TakeMyTime.WPF.Statistics
 
         public void LoadSharesOfAssignments(int project_id)
         {
+            this.AssignmentShares = this.statisticsLogic.GetAssignmentSharesOfProject(project_id);
+            this.ShareOfAssignments = new SeriesCollection();
+            foreach (var entry in this.AssignmentShares)
+            {
+                this.ShareOfAssignments.Add(new PieSeries
+                {
+                    Values = new ChartValues<double> { entry.Value },
+                    Title = entry.Key
+                });
+            }
 
+            this.pc_AssignmentShare.Series = this.ShareOfAssignments;
+            this.pc_AssignmentShare.Visibility = Visibility.Visible;
         }
 
         #endregion
@@ -70,13 +97,12 @@ namespace TakeMyTime.WPF.Statistics
 
         public SeriesCollection ShareOfProjects { get; set; }
         public SeriesCollection ShareOfAssignments { get; set; }
-        public IEnumerable<Tuple<int, string, double>> AssignmentShareTuples { get; set; }
-        public IEnumerable<Tuple<int, string, double>> ProjectShareTuples { get; set; }
+        public IEnumerable<ProjectViewModel> ProjectViewModels { get; set; }
+        public Dictionary<string, double> AssignmentShares { get; set; }
+        public Dictionary<string, double> ProjectShares { get; set; }
 
         #endregion
 
-        private void pc_ProjectShare_DataClick(object sender, ChartPoint chartPoint)
-        {
-        }
+        
     }
 }
