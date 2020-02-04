@@ -25,7 +25,7 @@ namespace TakeMyTime.WPF
             {
                 ApplyMigrations();
 #if DEBUG
-                Seeder.Seed();
+                // Seeder.Seed();
 #endif
             }
             catch (Exception e)

@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TakeMyTime.DAL.SeederFactories;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL
 {
@@ -31,6 +34,37 @@ namespace TakeMyTime.DAL
                 var projects = context.Projects.ToList();
                 var assignments = AssignmentFactory.CreateAssignments(projects.ToArray());
                 context.Assignments.AddRange(assignments);
+                context.SaveChanges();
+            }
+
+            bool hasSubtasks = context.Subtasks != null && context.Subtasks.Any();
+            if (!hasSubtasks)
+            {
+                var assignments = context.Assignments.ToList();
+                var subtasks = new List<Subtask>();
+                foreach (var assignment in assignments)
+                {
+                    subtasks.AddRange(SubtaskFactory.Create(assignment));
+                }
+
+                context.Subtasks.AddRange(subtasks);
+                context.SaveChanges();
+            }
+
+            bool hasEntries = context.Entries != null && context.Entries.Any();
+            if (!hasEntries)
+            {
+                var subtasks = context.Subtasks
+                    .Include(s => s.Assignment)
+                    .Include(s => s.Assignment.Project)
+                    .ToList();
+                var entries = new List<Entry>();
+                foreach (var subtask in subtasks)
+                {
+                    entries.AddRange(EntryFactory.Create(subtask));
+                }
+
+                context.Entries.AddRange(entries);
                 context.SaveChanges();
             }
         }
