@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using TakeMyTime.DAL.Interfaces;
 using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL.Repositories
 {
@@ -83,6 +84,21 @@ namespace TakeMyTime.DAL.Repositories
                     }
                 }
             }
+            return results;
+        }
+
+        public IEnumerable<ProductivityViewModel> GetProjectProductiveDays(int project_id)
+        {
+            var results = new List<ProductivityViewModel>();
+            var project = this.context.Projects
+                .Include(p => p.Entries)
+                .Single(p => p.Id == project_id);
+
+            foreach (var entry in project.Entries)
+            {
+                results.Add(new ProductivityViewModel { X = entry.Date, Y = new TimeSpan(entry.DurationAsTicks.Value) });
+            }
+
             return results;
         }
     }

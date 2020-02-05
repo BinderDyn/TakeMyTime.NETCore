@@ -24,6 +24,8 @@ namespace TakeMyTime.WPF.Utility
                 "All" => Resources.Shared.All,
                 "ConfirmDeleteTitle" => Resources.EntryOverview.ConfirmDeleteTitle,
                 "ConfirmDeleteMessage" => Resources.EntryOverview.ConfirmDeleteMessage,
+                "DeleteProjectFailedTitle" => Resources.ProjectOverview.DeleteProjectFailedTitle,
+                "DeleteProjectFailedMessage" => Resources.ProjectOverview.DeleteProjectFailedMessage,
                 _ => string.Empty
             };
         }

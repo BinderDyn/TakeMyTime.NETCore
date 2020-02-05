@@ -16,7 +16,7 @@ namespace TakeMyTime.DAL.SeederFactories
             {
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -25,7 +25,16 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
+                    Date = started[rnd.Next(0, 6)],
+                    Name = subtask.Name,
+                    Project = subtask.Assignment.Project,
+                    Subtask = subtask,
+                    Started = started[rnd.Next(0, 5)]
+                }),
+                Entry.Create(new EntryCreateParam
+                {
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -34,7 +43,7 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -43,7 +52,7 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -52,7 +61,7 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -61,16 +70,7 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
                 Entry.Create(new EntryCreateParam
                 {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    DurationAsTicks = durations[rnd.Next(0, 6)].Ticks,
+                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
                     Date = started[rnd.Next(0, 6)],
                     Name = subtask.Name,
                     Project = subtask.Assignment.Project,
@@ -79,7 +79,7 @@ namespace TakeMyTime.DAL.SeederFactories
                 }),
             };
 
-            return entries.Take(rnd.Next(0, 8));
+            return entries.Take(rnd.Next(0, 7));
         }
 
         public class EntryCreateParam : Entry.ICreateParam

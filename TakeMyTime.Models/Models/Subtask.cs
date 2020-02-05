@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 using TakeMyTime.DOM.Models;
 using static Common.Enums.EnumDefinition;
@@ -22,7 +23,7 @@ namespace TakeMyTime.Models.Models
 
         public void SetStatus(SubtaskStatus status)
         {
-            if(CanSetStatus(status))
+            if (CanSetStatus(status))
             {
                 this.Status = status;
             }
@@ -51,6 +52,17 @@ namespace TakeMyTime.Models.Models
             this.Status = SubtaskStatus.NotYetDone;
             this.Entries = new HashSet<Entry>();
             this.SetCreated();
+        }
+
+        public IEnumerable<Entry> ClearEntries()
+        {
+            IEnumerable<Entry> entries = new List<Entry>();
+            if (this.Entries != null && this.Entries.Any())
+            {
+                entries = this.Entries.ToArray();
+                this.Entries.Clear();
+            }
+            return entries;
         }
 
         public interface IUpdateParam : ICreateParam

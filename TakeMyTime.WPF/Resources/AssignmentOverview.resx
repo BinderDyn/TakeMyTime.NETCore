@@ -120,6 +120,9 @@
   <data name="AssignmentAddTooltip" xml:space="preserve">
     <value>Add Assignment</value>
   </data>
+  <data name="AssignmentDeleteFailedTitle" xml:space="preserve">
+    <value>Assignment delete failed</value>
+  </data>
   <data name="AssignmentDeleteTooltip" xml:space="preserve">
     <value>DeleteAssignment</value>
   </data>

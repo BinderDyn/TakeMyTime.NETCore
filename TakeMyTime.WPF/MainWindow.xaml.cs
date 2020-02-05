@@ -25,7 +25,7 @@ namespace TakeMyTime.WPF
             {
                 ApplyMigrations();
 #if DEBUG
-                // Seeder.Seed();
+                Seeder.Seed();
 #endif
             }
             catch (Exception e)
@@ -64,6 +64,7 @@ namespace TakeMyTime.WPF
         private void ApplyMigrations()
         {
             TakeMyTimeDbContext context = new TakeMyTimeDbContext();
+            // context.Database.EnsureDeleted();
             context.Database.Migrate();
         }
 

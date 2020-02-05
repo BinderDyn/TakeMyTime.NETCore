@@ -144,6 +144,12 @@
   <data name="ConfirmDeleteMessageBoxTitle" xml:space="preserve">
     <value>Confirm delete</value>
   </data>
+  <data name="DeleteProjectFailedMessage" xml:space="preserve">
+    <value>Cannot delete project if it contains assignments!</value>
+  </data>
+  <data name="DeleteProjectFailedTitle" xml:space="preserve">
+    <value>Cannot delete project</value>
+  </data>
   <data name="DeleteProjectTooltip" xml:space="preserve">
     <value>Delete selected project (with confirmation)</value>
   </data>

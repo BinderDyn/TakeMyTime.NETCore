@@ -58,6 +58,21 @@
                                 Visibility="Hidden"
                                 InnerRadius="50"
                                 ></lvc:PieChart>
+            <lvc:CartesianChart
+                Grid.Row="2"
+                Grid.Column="1"
+                Visibility="Hidden"
+                x:Name="cc_Productivity"
+                Margin="3"
+                Series="{Binding ProductiveDays}"
+                >
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis x:Name="x_valueAxis"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:DateAxis x:Name="y_dateAxis" Labels="{Binding DatesForProductivity}"></lvc:DateAxis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
         </Grid>
     </Grid>
 </Page>

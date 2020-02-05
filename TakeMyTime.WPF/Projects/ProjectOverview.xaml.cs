@@ -63,7 +63,9 @@ namespace TakeMyTime.WPF.Projects
                 catch (Exception ex)
                 {
                     Logger.LogException(ex);
-                    throw ex;
+                    MessageBox.Show(ResourceStringManager.GetResourceByKey("DeleteProjectFailedTitle"),
+                                    ResourceStringManager.GetResourceByKey("DeleteProjectFailedMessage"), MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                 }
                 projectLogic.Dispose();
                 this.lv_Projects.SelectedItem = null;

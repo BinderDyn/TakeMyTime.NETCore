@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
@@ -22,6 +23,11 @@ namespace TakeMyTime.BLL.Logic
         public Dictionary<string, double> GetProjectShares()
         {
             return this.uow.Statistics.GetProjectTotalShares();
+        }
+
+        public IEnumerable<ProductivityViewModel> GetProjectProductiveEntries(int project_id)
+        {
+            return this.uow.Statistics.GetProjectProductiveDays(project_id);
         }
     }
 }

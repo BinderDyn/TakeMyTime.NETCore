@@ -235,10 +235,17 @@ namespace TakeMyTime.WPF.Assignments
         {
             if (this.SelectedAssignment != null)
             {
-                var assignmentLogic = new AssignmentLogic();
-                assignmentLogic.DeleteAssignment(this.SelectedAssignment.Id);
-                assignmentLogic.Dispose();
-                this.Load();
+                try
+                {
+                    var assignmentLogic = new AssignmentLogic();
+                    assignmentLogic.DeleteAssignment(this.SelectedAssignment.Id);
+                    assignmentLogic.Dispose();
+                    this.Load();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogException(ex);
+                } 
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using LiveCharts;
+using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
+using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Projects;
 
 namespace TakeMyTime.WPF.Statistics
@@ -51,6 +53,7 @@ namespace TakeMyTime.WPF.Statistics
             if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
             {
                 LoadSharesOfAssignments((e.AddedItems[0] as ProjectViewModel).Id);
+                LoadProductiveDays((e.AddedItems[0] as ProjectViewModel).Id);
             }
         }
 
@@ -91,18 +94,35 @@ namespace TakeMyTime.WPF.Statistics
             this.pc_AssignmentShare.Visibility = Visibility.Visible;
         }
 
+        public void LoadProductiveDays(int project_id)
+        {
+            this.ProductiveEntryDays = this.statisticsLogic.GetProjectProductiveEntries(project_id);
+            this.ProductiveDays = new SeriesCollection();
+            // var mapper = new mapp<ProductivityViewModel>().X(v => v.X).Y(v => v.Y);
+            this.ProductiveDays.Add(new LineSeries
+            {
+                Values = new ChartValues<TimeSpan>(this.ProductiveEntryDays.Select(p => p.Y)),
+            });
+            this.DatesForProductivity = this.ProductiveEntryDays.Select(p => p.X);
+            this.y_dateAxis.Labels = this.DatesForProductivity.Select(d => d.ToString("dd.MM.yyyy")).ToList();
+            this.cc_Productivity.Visibility = Visibility.Visible;
+        }
+
         #endregion
 
         #region Properties
 
         public SeriesCollection ShareOfProjects { get; set; }
         public SeriesCollection ShareOfAssignments { get; set; }
+        public SeriesCollection ProductiveDays { get; set; }
         public IEnumerable<ProjectViewModel> ProjectViewModels { get; set; }
         public Dictionary<string, double> AssignmentShares { get; set; }
         public Dictionary<string, double> ProjectShares { get; set; }
+        public IEnumerable<ProductivityViewModel> ProductiveEntryDays { get; set; }
+        public IEnumerable<DateTime> DatesForProductivity { get; set; }
 
         #endregion
 
-        
+
     }
 }

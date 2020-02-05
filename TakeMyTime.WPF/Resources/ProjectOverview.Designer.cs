@@ -142,6 +142,24 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cannot delete project if it contains assignments! ähnelt.
+        /// </summary>
+        public static string DeleteProjectFailedMessage {
+            get {
+                return ResourceManager.GetString("DeleteProjectFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cannot delete project ähnelt.
+        /// </summary>
+        public static string DeleteProjectFailedTitle {
+            get {
+                return ResourceManager.GetString("DeleteProjectFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete selected project (with confirmation) ähnelt.
         /// </summary>
         public static string DeleteProjectTooltip {
