@@ -117,3 +117,5 @@ TakeMyTime.Models/obj/project.assets.json
 TakeMyTime.Models/obj/TakeMyTime.Models.csproj.nuget.cache
 TakeMyTime.Models/obj/TakeMyTime.Models.csproj.nuget.dgspec.json
 TakeMyTime.Models/obj/TakeMyTime.Models.csproj.nuget.g.props
+.vs/TakeMyTime.NETCore/DesignTimeBuild/.dtbcache
+.vs/TakeMyTime.NETCore/v16/.suo
