@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="" 
-        Height="720" 
+        Height="900" 
         Width="1280" 
         Background="#525252" 
         Foreground="#e3e3e3"

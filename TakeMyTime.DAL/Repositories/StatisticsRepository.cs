@@ -90,16 +90,32 @@ namespace TakeMyTime.DAL.Repositories
         public IEnumerable<ProductivityViewModel> GetProjectProductiveDays(int project_id)
         {
             var results = new List<ProductivityViewModel>();
-            var project = this.context.Projects
-                .Include(p => p.Entries)
-                .Single(p => p.Id == project_id);
+            var entries = this.context.Entries
+                .Where(e => e.Project_Id == project_id);
 
-            foreach (var entry in project.Entries)
+            foreach (var entry in entries)
             {
                 results.Add(new ProductivityViewModel { X = entry.Date, Y = new TimeSpan(entry.DurationAsTicks.Value) });
             }
 
-            return results;
+            return results.OrderBy(r => r.X);
         }
+
+        public IEnumerable<MostProductiveWeekDaysViewModel> GetMostProductiveDays()
+        {
+            var entries = this.context.Entries
+                .Include(e => e.Project)
+                .Where(e => e.Project.ProjectStatus == EnumDefinition.ProjectStatus.Active)
+                .ToList();
+            var weekdayManager = new WeekdayProductivityManager(entries.Count());
+
+            foreach (var entry in entries)
+            {
+                weekdayManager.ProcessEntry(entry);
+            }
+
+            return weekdayManager.GetResults();
+        }
+
     }
 }

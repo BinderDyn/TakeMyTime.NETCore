@@ -29,5 +29,10 @@ namespace TakeMyTime.BLL.Logic
         {
             return this.uow.Statistics.GetProjectProductiveDays(project_id);
         }
+
+        public IEnumerable<MostProductiveWeekDaysViewModel> GetMostProductiveWeekDays()
+        {
+            return this.uow.Statistics.GetMostProductiveDays();
+        }
     }
 }

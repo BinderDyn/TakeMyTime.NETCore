@@ -16,10 +16,17 @@ namespace TakeMyTime.DAL.SeederFactories
             return new List<Assignment>()
             {
                 Assignment.Create(CreateAssignmentCreateParam(projects[0], "Task 1", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[0], "Task 1.1", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[0], "Task 1.2", "Got stuff to do for this!")),
                 Assignment.Create(CreateAssignmentCreateParam(projects[1], "Task 2", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[1], "Task 2.1", "Got stuff to do for this!")),
                 Assignment.Create(CreateAssignmentCreateParam(projects[2], "Task 3", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[2], "Task 3.1", "Got stuff to do for this!")),
                 Assignment.Create(CreateAssignmentCreateParam(projects[3], "Task 4", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[3], "Task 4.1", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[3], "Task 4.2", "Got stuff to do for this!")),
                 Assignment.Create(CreateAssignmentCreateParam(projects[4], "Task 5", "Got stuff to do for this!")),
+                Assignment.Create(CreateAssignmentCreateParam(projects[4], "Task 5.1", "Got stuff to do for this!")),
                 Assignment.Create(CreateAssignmentCreateParam(projects[5], "Task 6", "Got stuff to do for this!")),
             };
         }

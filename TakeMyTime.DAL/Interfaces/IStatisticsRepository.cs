@@ -12,5 +12,6 @@ namespace TakeMyTime.DAL.Interfaces
         Dictionary<string, double> GetAssignmentSharesOfProject(int project_id);
         Dictionary<string, double> GetProjectTotalShares();
         IEnumerable<ProductivityViewModel> GetProjectProductiveDays(int project_id);
+        IEnumerable<MostProductiveWeekDaysViewModel> GetMostProductiveDays();
     }
 }

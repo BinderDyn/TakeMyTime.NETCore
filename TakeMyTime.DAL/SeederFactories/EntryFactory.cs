@@ -14,72 +14,37 @@ namespace TakeMyTime.DAL.SeederFactories
             var rnd = new Random();
             var entries = new List<Entry>
             {
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 5)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
-                Entry.Create(new EntryCreateParam
-                {
-                    Ended = started[rnd.Next(0, 6)] + durations[rnd.Next(0, 6)],
-                    Date = started[rnd.Next(0, 6)],
-                    Name = subtask.Name,
-                    Project = subtask.Assignment.Project,
-                    Subtask = subtask,
-                    Started = started[rnd.Next(0, 6)]
-                }),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
+                CreateEntry(subtask),
             };
 
-            return entries.Take(rnd.Next(0, 7));
+            return entries.OrderBy(e => e.Started).Take(rnd.Next(0, 7));
+        }
+
+        private static Entry CreateEntry(Subtask subtask)
+        {
+            var rnd = new Random();
+            var startDate = started[rnd.Next(0, 6)];
+            var duration = durations[rnd.Next(0, 6)];
+
+            var entry = Entry.Create(new EntryCreateParam 
+            { 
+                Started = startDate,
+                Comment = subtask.Description,
+                Name = subtask.Name,
+                Date = startDate,
+                Project = subtask.Assignment.Project,
+                Subtask = subtask,
+                Ended = startDate + duration
+            });
+
+            return entry;
         }
 
         public class EntryCreateParam : Entry.ICreateParam

@@ -60,19 +60,33 @@
                                 ></lvc:PieChart>
             <lvc:CartesianChart
                 Grid.Row="2"
-                Grid.Column="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Visibility="Hidden"
                 x:Name="cc_Productivity"
                 Margin="3"
+                Padding="10"
                 Series="{Binding ProductiveDays}"
                 >
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis x:Name="x_valueAxis"></lvc:Axis>
-                </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:DateAxis x:Name="y_dateAxis" Labels="{Binding DatesForProductivity}"></lvc:DateAxis>
+                    <lvc:Axis x:Name="dateAxis" Title="{x:Static resources:Dashboard.ProductivityDateAxisLabel}"  LabelFormatter="{Binding Formatter}"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="{x:Static resources:Dashboard.ProductivityValueAxisLabel}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
+            
         </Grid>
+        <lvc:CartesianChart
+                Grid.Row="3"
+            Margin="10"
+            x:Name="cc_MostProductiveWeekdays">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis x:Name="weekdays_x_Axis" Labels="{Binding WeekdayLabels}"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis x:Name="weekdays_y_Axis"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
     </Grid>
 </Page>

@@ -26,6 +26,13 @@ namespace TakeMyTime.WPF.Utility
                 "ConfirmDeleteMessage" => Resources.EntryOverview.ConfirmDeleteMessage,
                 "DeleteProjectFailedTitle" => Resources.ProjectOverview.DeleteProjectFailedTitle,
                 "DeleteProjectFailedMessage" => Resources.ProjectOverview.DeleteProjectFailedMessage,
+                "Monday" => Resources.Dashboard.Monday,
+                "Tuesday" => Resources.Dashboard.Tuesday,
+                "Wednesday" => Resources.Dashboard.Wednesday,
+                "Thursday" => Resources.Dashboard.Thursday,
+                "Friday" => Resources.Dashboard.Friday,
+                "Saturday" => Resources.Dashboard.Saturday,
+                "Sunday" => Resources.Dashboard.Sunday,
                 _ => string.Empty
             };
         }

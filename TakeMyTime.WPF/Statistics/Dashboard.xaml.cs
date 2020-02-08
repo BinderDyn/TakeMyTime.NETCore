@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Configurations;
+using LiveCharts.Helpers;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Projects;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Statistics
 {
@@ -39,6 +41,7 @@ namespace TakeMyTime.WPF.Statistics
         private void Load()
         {
             LoadSharesOfProjects();
+            LoadMostProductiveDays();
             this.ProjectViewModels = this.projectLogic.GetAllActiveProjects()
                 .ToList()
                 .Select(p => new ProjectViewModel(p));
@@ -96,30 +99,65 @@ namespace TakeMyTime.WPF.Statistics
 
         public void LoadProductiveDays(int project_id)
         {
+            this.ProductiveDays.Clear();
             this.ProductiveEntryDays = this.statisticsLogic.GetProjectProductiveEntries(project_id);
-            this.ProductiveDays = new SeriesCollection();
-            // var mapper = new mapp<ProductivityViewModel>().X(v => v.X).Y(v => v.Y);
-            this.ProductiveDays.Add(new LineSeries
-            {
-                Values = new ChartValues<TimeSpan>(this.ProductiveEntryDays.Select(p => p.Y)),
-            });
-            this.DatesForProductivity = this.ProductiveEntryDays.Select(p => p.X);
-            this.y_dateAxis.Labels = this.DatesForProductivity.Select(d => d.ToString("dd.MM.yyyy")).ToList();
+            var mapper = Mappers.Xy<ProductivityViewModel>()
+                .X(v => v.XAsDouble)
+                .Y(v => v.YAsDouble);
+            var series = new LineSeries(mapper);
+            series.Values = this.ProductiveEntryDays.AsChartValues();
+            series.Fill = Brushes.Transparent;
+            this.ProductiveDays.Add(series);
+            Formatter = value => value >= 0 ? new System.DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("d") : "";
+            this.cc_Productivity.Series = this.ProductiveDays;
+            this.dateAxis.LabelFormatter = Formatter;
             this.cc_Productivity.Visibility = Visibility.Visible;
+            DataContext = this;
+        }
+
+        public void LoadMostProductiveDays()
+        {
+            this.MostProductiveWeekdays.Clear();
+            this.MostProductiveWeekDaysViewModels = this.statisticsLogic.GetMostProductiveWeekDays();
+            var series = new ColumnSeries
+            {
+                Values = this.MostProductiveWeekDaysViewModels.Select(vm => Math.Round(vm.Value, 2)).AsChartValues()
+            };
+            series.Fill = Brushes.Orange;
+            this.MostProductiveWeekdays.Add(series);
+            this.cc_MostProductiveWeekdays.Series = this.MostProductiveWeekdays;
+
+            this.WeekdayLabels = ResolveWeekdayNames(this.MostProductiveWeekDaysViewModels);
+            this.weekdays_x_Axis.Labels = this.WeekdayLabels;
+            DataContext = this;
+        }
+
+        private string[] ResolveWeekdayNames(IEnumerable<MostProductiveWeekDaysViewModel> viewModels)
+        {
+            var labels = new List<string>();
+            foreach (var vm in viewModels)
+            {
+                labels.Add(ResourceStringManager.GetResourceByKey(vm.Day.ToString()));
+            }
+
+            return labels.ToArray();
         }
 
         #endregion
 
         #region Properties
 
-        public SeriesCollection ShareOfProjects { get; set; }
-        public SeriesCollection ShareOfAssignments { get; set; }
-        public SeriesCollection ProductiveDays { get; set; }
+        public SeriesCollection ShareOfProjects { get; set; } = new SeriesCollection();
+        public SeriesCollection ShareOfAssignments { get; set; } = new SeriesCollection();
+        public SeriesCollection ProductiveDays { get; set; } = new SeriesCollection();
+        public SeriesCollection MostProductiveWeekdays { get; set; } = new SeriesCollection();
         public IEnumerable<ProjectViewModel> ProjectViewModels { get; set; }
         public Dictionary<string, double> AssignmentShares { get; set; }
         public Dictionary<string, double> ProjectShares { get; set; }
         public IEnumerable<ProductivityViewModel> ProductiveEntryDays { get; set; }
-        public IEnumerable<DateTime> DatesForProductivity { get; set; }
+        public Func<double, string> Formatter { get; set; }
+        public IEnumerable<MostProductiveWeekDaysViewModel> MostProductiveWeekDaysViewModels  { get; set; }
+        public string[] WeekdayLabels { get; set; }
 
         #endregion
 

@@ -64,7 +64,7 @@ namespace TakeMyTime.WPF
         private void ApplyMigrations()
         {
             TakeMyTimeDbContext context = new TakeMyTimeDbContext();
-            // context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.Migrate();
         }
 
