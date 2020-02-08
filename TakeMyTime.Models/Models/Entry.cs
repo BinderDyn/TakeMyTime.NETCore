@@ -22,10 +22,11 @@ namespace TakeMyTime.DOM.Models
         {
             this.Name = name;
             this.Comment = comment;
-            this.Date = DateTime.Now;
+            this.Date = started.HasValue ? started.Value : DateTime.Now;
             this.Started = started;
             this.Ended = ended;
             this.Project = project;
+            this.Project_Id = project?.Id ?? null;
             this.Subtask = subtask;
             CalculateDuration();
             this.SetCreated();

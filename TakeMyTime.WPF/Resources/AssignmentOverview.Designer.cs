@@ -70,6 +70,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Assignment delete failed ähnelt.
+        /// </summary>
+        public static string AssignmentDeleteFailedTitle {
+            get {
+                return ResourceManager.GetString("AssignmentDeleteFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die DeleteAssignment ähnelt.
         /// </summary>
         public static string AssignmentDeleteTooltip {

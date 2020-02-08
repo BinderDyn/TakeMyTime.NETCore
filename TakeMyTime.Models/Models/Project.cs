@@ -57,6 +57,12 @@ namespace TakeMyTime.DOM.Models
             return this.ProjectStatus == ProjectStatus.Archived && allAssignmentsDoneOrAborted;
         }
 
+        public void ClearAssignmentsAndEntries()
+        {
+            this.Assignments.Clear();
+            this.Entries.Clear();
+        }
+
         public interface IUpdateParam
         {
             string Description { get; set; }

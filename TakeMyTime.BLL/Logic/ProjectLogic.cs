@@ -107,6 +107,11 @@ namespace TakeMyTime.BLL.Logic
             Dispose();
         }
 
+        public IEnumerable<Project> GetAllActiveProjects()
+        {
+            return unitOfWork.Projects.LoadAll().Where(p => p.ProjectStatus == ProjectStatus.Active);
+        }
+
         public void Dispose()
         {
             unitOfWork.Dispose();

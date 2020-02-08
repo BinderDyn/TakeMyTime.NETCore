@@ -22,6 +22,7 @@ namespace TakeMyTime.DAL.uow
             Assignments = new AssignmentRepository(context);
             ProjectTypes = new ProjectTypeRepository(context);
             Subtasks = new SubtaskRepository(context);
+            Statistics = new StatisticsRepository(context);
         }
 
         public IProjectRepository Projects { get; private set; }
@@ -29,6 +30,7 @@ namespace TakeMyTime.DAL.uow
         public IAssignmentRepository Assignments { get; private set; }
         public IProjectTypeRepository ProjectTypes { get; private set; }
         public ISubtaskRepository Subtasks { get; private set; }
+        public IStatisticsRepository Statistics { get; private set; }
 
         public int Complete()
         {

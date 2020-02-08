@@ -117,52 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddProjectTooltip" xml:space="preserve">
-    <value>Add new project</value>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
   </data>
-  <data name="ColumnCategory" xml:space="preserve">
-    <value>Category/Type</value>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
   </data>
-  <data name="ColumnCreated" xml:space="preserve">
-    <value>Created</value>
+  <data name="ProductivityDateAxisLabel" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="ColumnDescription" xml:space="preserve">
-    <value>Description</value>
+  <data name="ProductivityValueAxisLabel" xml:space="preserve">
+    <value>hours</value>
   </data>
-  <data name="ColumnEdited" xml:space="preserve">
-    <value>Lastly edited</value>
+  <data name="ProjectFilterLabel" xml:space="preserve">
+    <value>Filter by project</value>
   </data>
-  <data name="ColumnName" xml:space="preserve">
-    <value>Name</value>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
   </data>
-  <data name="ColumnStatus" xml:space="preserve">
-    <value>Status</value>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
   </data>
-  <data name="ConfirmDeleteMessageBoxMessage" xml:space="preserve">
-    <value>Are you sure you want to delete the following project: </value>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
   </data>
-  <data name="ConfirmDeleteMessageBoxTitle" xml:space="preserve">
-    <value>Confirm delete</value>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
   </data>
-  <data name="DeleteProjectFailedMessage" xml:space="preserve">
-    <value>Cannot delete project if it contains assignments!</value>
-  </data>
-  <data name="DeleteProjectFailedTitle" xml:space="preserve">
-    <value>Cannot delete project</value>
-  </data>
-  <data name="DeleteProjectTooltip" xml:space="preserve">
-    <value>Delete selected project (with confirmation)</value>
-  </data>
-  <data name="EditProjectTooltip" xml:space="preserve">
-    <value>Edit selected project</value>
-  </data>
-  <data name="StatusTooltipActive" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="StatusTooltipArchived" xml:space="preserve">
-    <value>Archived</value>
-  </data>
-  <data name="ToggleStatusTooltip" xml:space="preserve">
-    <value>Toggle status</value>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
   </data>
 </root>

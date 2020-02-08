@@ -144,6 +144,12 @@
   <data name="ConfirmDeleteMessageBoxTitle" xml:space="preserve">
     <value>Löschen bestätigen</value>
   </data>
+  <data name="DeleteProjectFailedMessage" xml:space="preserve">
+    <value>Projekt kann nicht gelöscht werden, wenn noch nicht erledigte Aufgaben existieren!</value>
+  </data>
+  <data name="DeleteProjectFailedTitle" xml:space="preserve">
+    <value>Projekt löschen nicht möglich</value>
+  </data>
   <data name="DeleteProjectTooltip" xml:space="preserve">
     <value>Ausgewähltes Projekt löschen (mit Bestätigung)</value>
   </data>

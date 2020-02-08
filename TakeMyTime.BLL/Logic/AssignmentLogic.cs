@@ -58,7 +58,15 @@ namespace TakeMyTime.BLL.Logic
             if (!toBeDeleted.CanDelete())
             {
                 var subtasks = toBeDeleted.ClearSubtasks();
+                foreach (var subtask in subtasks)
+                {
+                    var entries = subtask.ClearEntries();
+                    unitOfWork.Entries.RemoveRange(entries);
+                    unitOfWork.Complete();
+                }
+
                 unitOfWork.Subtasks.RemoveRange(subtasks);
+                unitOfWork.Complete();
             }
             unitOfWork.Assignments.Remove(toBeDeleted);
             unitOfWork.Complete();

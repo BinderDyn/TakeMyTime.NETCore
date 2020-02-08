@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using TakeMyTime.DAL;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.WPF.Statistics;
 using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF
@@ -39,6 +40,7 @@ namespace TakeMyTime.WPF
             InitializeComponent();
             txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             tb_CalendarWeek.Text = this.CurrentCalendarWeek;
+            fr_Content.Navigate(new Dashboard());
         }
 
         public void InitLogger()
@@ -62,6 +64,7 @@ namespace TakeMyTime.WPF
         private void ApplyMigrations()
         {
             TakeMyTimeDbContext context = new TakeMyTimeDbContext();
+            context.Database.EnsureDeleted();
             context.Database.Migrate();
         }
 
@@ -116,7 +119,7 @@ namespace TakeMyTime.WPF
 
         private void btn_Dashboard_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(null);
+            fr_Content.Navigate(new Dashboard());
         }
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)

@@ -58,6 +58,7 @@ namespace TakeMyTime.DAL.Repositories
         {
             return context.Projects
                 .Include(p => p.Assignments)
+                .Include(p => p.Entries)
                 .SingleOrDefault(p => p.Id == id);
         }
     }

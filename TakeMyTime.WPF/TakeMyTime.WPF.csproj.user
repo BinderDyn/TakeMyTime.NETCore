@@ -27,6 +27,9 @@
     <Compile Update="Projects\ProjectOverview.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Statistics\Dashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Subtasks\AddSubtask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -59,6 +62,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Projects\ProjectOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Statistics\Dashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Subtasks\AddSubtask.xaml">
