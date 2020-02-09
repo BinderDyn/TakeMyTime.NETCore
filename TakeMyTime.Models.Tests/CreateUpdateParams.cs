@@ -50,5 +50,13 @@ namespace TakeMyTime.Models.Tests
             public string Description { get; set; }
             public string Name { get; set; }
         }
+
+        public class ProjectTypeCreateParam : ProjectType.ICreateParam
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+        }
+
+        public class SubtaskUpdateParam : SubtaskCreateParam, Subtask.IUpdateParam { }
     }
 }
