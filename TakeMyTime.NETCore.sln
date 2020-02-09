@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.DAL", "TakeMyTim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.WPF", "TakeMyTime.WPF\TakeMyTime.WPF.csproj", "{66C3A851-8C03-46D4-AF6F-26388BEA1A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMyTime.Common", "TakeMyTime.Common\TakeMyTime.Common.csproj", "{4FDC1056-9EA2-4230-AA3E-686304FE91BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.Common", "TakeMyTime.Common\TakeMyTime.Common.csproj", "{4FDC1056-9EA2-4230-AA3E-686304FE91BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMyTime.Models.Tests", "TakeMyTime.Models.Tests\TakeMyTime.Models.Tests.csproj", "{70E645DE-C44D-4E63-B0E9-E10C95F077AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4FDC1056-9EA2-4230-AA3E-686304FE91BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FDC1056-9EA2-4230-AA3E-686304FE91BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FDC1056-9EA2-4230-AA3E-686304FE91BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E645DE-C44D-4E63-B0E9-E10C95F077AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E645DE-C44D-4E63-B0E9-E10C95F077AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E645DE-C44D-4E63-B0E9-E10C95F077AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E645DE-C44D-4E63-B0E9-E10C95F077AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
