@@ -15,6 +15,10 @@ namespace TakeMyTime.DAL
         {
         }
 
+        public TakeMyTimeDbContext(DbContextOptions<TakeMyTimeDbContext> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
