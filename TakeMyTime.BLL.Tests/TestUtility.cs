@@ -2,7 +2,9 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Threading.Tasks;
 using TakeMyTime.DAL;
+using TakeMyTime.DAL.uow;
 
 namespace TakeMyTime.BLL.Tests
 {
@@ -10,29 +12,18 @@ namespace TakeMyTime.BLL.Tests
     {
         TakeMyTimeDbContext testContext;
 
-        public static void CreateTestContext()
+        public async static Task<UnitOfWork> CreateTestUnitOfWork()
         {
-            var connection = new SqliteConnection("Data Source=:memory:");
-            connection.Open();
+            var options = new DbContextOptionsBuilder<TakeMyTimeDbContext>()
+            .UseSqlite("DataSource=:memory:")
+            .Options;
 
-            try
+            using (TakeMyTimeDbContext context = new TakeMyTimeDbContext(options))
             {
-                var options = new DbContextOptionsBuilder<TakeMyTimeDbContext>()
-                .UseSqlite(connection)
-                .Options;
+                await context.Database.EnsureCreatedAsync();
             }
-            catch (Exception e)
-            {
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
 
-        private static void CreateDatabase()
-        {
-
+            return new UnitOfWork(options);
         }
     }
 }

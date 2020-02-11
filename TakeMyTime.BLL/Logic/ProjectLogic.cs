@@ -10,10 +10,18 @@ namespace TakeMyTime.BLL.Logic
 {
     public class ProjectLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
 
-        public ProjectLogic()
+        public ProjectLogic(UnitOfWork uow = null)
         {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
         }
 
         public Project GetProjectById(int id)

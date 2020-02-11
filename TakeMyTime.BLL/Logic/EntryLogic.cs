@@ -11,7 +11,19 @@ namespace TakeMyTime.BLL.Logic
 {
     public class EntryLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
+
+        public EntryLogic(UnitOfWork uow = null)
+        {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
+        }
 
         public IEnumerable<Entry> GetAllEntries()
         {

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TakeMyTime.Models\TakeMyTime.Models.csproj" />
+    <ProjectReference Include="..\TakeMyTime.Tests.Common\TakeMyTime.Tests.Common.csproj" />
   </ItemGroup>
 
 </Project>

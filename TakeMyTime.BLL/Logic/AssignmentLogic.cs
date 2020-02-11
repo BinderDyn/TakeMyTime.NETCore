@@ -10,11 +10,18 @@ namespace TakeMyTime.BLL.Logic
 {
     public class AssignmentLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
 
-        public AssignmentLogic()
+        public AssignmentLogic(UnitOfWork uow = null)
         {
-
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
         }
 
         #region CRUD
@@ -51,7 +58,7 @@ namespace TakeMyTime.BLL.Logic
 
             unitOfWork.Complete();
         }
-       
+
         public void DeleteAssignment(int id)
         {
             var toBeDeleted = GetAssignmentById(id);

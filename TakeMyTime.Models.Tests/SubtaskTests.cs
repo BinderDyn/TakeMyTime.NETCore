@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TakeMyTime.Models.Models;
-using static TakeMyTime.Models.Tests.CreateUpdateParams;
+using static TakeMyTime.Tests.Common.CreateUpdateParams;
 
 namespace TakeMyTime.Models.Tests
 {

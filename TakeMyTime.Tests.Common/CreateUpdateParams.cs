@@ -1,11 +1,9 @@
 ﻿using Common.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TakeMyTime.DOM.Models;
 using TakeMyTime.Models.Models;
 
-namespace TakeMyTime.Models.Tests
+namespace TakeMyTime.Tests.Common
 {
     public class CreateUpdateParams
     {

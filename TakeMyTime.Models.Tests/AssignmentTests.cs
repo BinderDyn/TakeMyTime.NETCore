@@ -4,7 +4,7 @@ using TakeMyTime.Common.Exceptions;
 using TakeMyTime.DOM.Models;
 using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
-using static TakeMyTime.Models.Tests.CreateUpdateParams;
+using static TakeMyTime.Tests.Common.CreateUpdateParams;
 
 namespace TakeMyTime.Models.Tests
 {

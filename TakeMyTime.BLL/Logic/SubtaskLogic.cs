@@ -10,10 +10,18 @@ namespace TakeMyTime.BLL.Logic
 {
     public class SubtaskLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
 
-        public SubtaskLogic()
+        public SubtaskLogic(UnitOfWork uow = null)
         {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
         }
 
         public Subtask Get(int id)

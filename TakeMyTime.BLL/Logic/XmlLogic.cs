@@ -35,7 +35,6 @@ namespace TakeMyTime.BLL.Logic
             Logger.Log(this.GetType().FullName + ".BackUpDatabaseToXml: Backup done");
         }
 
-        [Todo]
         public void RestoreDatabaseFromXml(IProgress<RestoreProgress> progress, string filePath)
         {
             Logger.Log(this.GetType().FullName + ".RestoreDatabaseFromXml");
