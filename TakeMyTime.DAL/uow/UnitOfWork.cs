@@ -26,18 +26,6 @@ namespace TakeMyTime.DAL.uow
             Statistics = new StatisticsRepository(context);
         }
 
-        [Obsolete("For testing purposes only")]
-        public UnitOfWork(DbContextOptions<TakeMyTimeDbContext> options)
-        {
-            this.context = new TakeMyTimeDbContext(options);
-
-            Projects = new ProjectRepository(context);
-            Entries = new EntryRepository(context);
-            Assignments = new AssignmentRepository(context);
-            ProjectTypes = new ProjectTypeRepository(context);
-            Subtasks = new SubtaskRepository(context);
-            Statistics = new StatisticsRepository(context);
-        }
 
         public IProjectRepository Projects { get; private set; }
         public IEntryRepository Entries { get; private set; }

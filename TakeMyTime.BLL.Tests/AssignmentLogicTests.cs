@@ -18,7 +18,7 @@ namespace TakeMyTime.BLL.Tests
 
         public void GetTestUnitOfWork()
         {
-            this.uow = TestUtility.CreateTestUnitOfWork().Result;
+            this.uow = new UnitOfWork();
         }
 
         private void CreateTestEnvironment()
@@ -59,7 +59,7 @@ namespace TakeMyTime.BLL.Tests
                 Project = project
             };
 
-            var assignmentLogic = new AssignmentLogic(this.uow);
+            var assignmentLogic = new AssignmentLogic();
 
             // ACT
             assignmentLogic.AddAssignment(createParam);
@@ -68,7 +68,7 @@ namespace TakeMyTime.BLL.Tests
             // ASSERT
             var assignments = uow.Assignments.GetAll().ToList();
             Assert.IsTrue(assignments.Count > 0);
-            Assert.AreEqual(1, assignments.First().Id);
+            Assert.AreEqual("TestAssignment", assignments.First(a => a.Name == "TestAssignment").Name);
         }
 
         [TestCleanup]

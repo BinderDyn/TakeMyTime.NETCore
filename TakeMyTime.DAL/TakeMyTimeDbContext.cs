@@ -9,32 +9,16 @@ namespace TakeMyTime.DAL
 {
     public class TakeMyTimeDbContext : DbContext
     {
-        bool isTestContext = false;
 #if DEBUG
         public TakeMyTimeDbContext() : base()
         {
         }
 
-        public TakeMyTimeDbContext(DbContextOptions<TakeMyTimeDbContext> options) : base(options)
-        {
-            this.isTestContext = true;
-            this.Database.EnsureCreated();
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!isTestContext)
-            {
-                // var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
-                optionsBuilder.UseSqlite("Data Source=TakeMyTimeDebug.db;");
-                optionsBuilder.EnableSensitiveDataLogging(true);
-            }
-            else
-            {
-                optionsBuilder.UseSqlite("DataSource=:memory:");
-                optionsBuilder.EnableSensitiveDataLogging(true);
-            }
-            
+            // var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
+            optionsBuilder.UseSqlite("Data Source=TakeMyTimeDebug.db;");
+            optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -85,6 +69,5 @@ namespace TakeMyTime.DAL
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<ProjectType> ProjectTypes { get; set; }
         public DbSet<Subtask> Subtasks { get; set; }
-
     }
 }
