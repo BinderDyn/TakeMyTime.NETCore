@@ -43,5 +43,15 @@ namespace TakeMyTime.DAL.uow
         {
             context.Dispose();
         }
+
+        public void CreateDatabase()
+        {
+            context.Database.EnsureCreated();
+        }
+
+        public void DeleteDatabase()
+        {
+            context.Database.EnsureDeleted();
+        }
     }
 }

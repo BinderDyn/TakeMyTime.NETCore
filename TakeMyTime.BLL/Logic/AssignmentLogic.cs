@@ -79,6 +79,7 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
+        [Obsolete("Has no practical use in application except for the legacy xml export")]
         public void DeleteAssignments(IEnumerable<Assignment> assignments)
         {
             IList<Assignment> toBeDeletedAssignments = new List<Assignment>();

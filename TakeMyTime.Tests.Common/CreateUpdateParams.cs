@@ -17,6 +17,15 @@ namespace TakeMyTime.Tests.Common
             public long? DurationPlannedAsTicks { get; set; }
         }
 
+        public class AssignmentUpdateParam : Assignment.IUpdateParam
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public DateTime? DatePlanned { get; set; }
+            public DateTime? DateDue { get; set; }
+            public long? DurationPlannedAsTicks { get; set; }
+        }
+
         public class SubtaskCreateParam : Subtask.ICreateParam
         {
             public string Name { get; set; }
