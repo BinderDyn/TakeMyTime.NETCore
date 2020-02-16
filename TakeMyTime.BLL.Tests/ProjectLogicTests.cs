@@ -109,7 +109,6 @@ namespace TakeMyTime.BLL.Tests
             this.uow.Complete();
         }
 
-
         #endregion
 
         [TestMethod]
