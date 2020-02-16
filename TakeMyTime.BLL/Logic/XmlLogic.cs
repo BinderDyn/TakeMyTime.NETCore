@@ -8,8 +8,9 @@ using System.Reflection;
 using System.Xml.Linq;
 using TakeMyTime.Biz.ViewModels;
 using TakeMyTime.DAL.uow;
-using TakeMyTime.DOM.Models;
+
 using Common.Enums;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {

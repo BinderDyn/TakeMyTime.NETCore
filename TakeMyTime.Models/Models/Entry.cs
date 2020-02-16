@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using TakeMyTime.Models.Models;
 
-namespace TakeMyTime.DOM.Models
+namespace TakeMyTime.Models.Models
 {
     public class Entry : Entity<Entry>
     {

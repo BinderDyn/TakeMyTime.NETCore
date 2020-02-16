@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TakeMyTime.DOM.Models;
+
 using static Common.Enums.EnumDefinition;
 
 namespace BinderDynamics.TakeMyTime.Biz.ViewModels

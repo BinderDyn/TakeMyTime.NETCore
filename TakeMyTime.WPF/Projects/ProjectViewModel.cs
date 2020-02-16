@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Projects

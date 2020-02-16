@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TakeMyTime.Common.Exceptions;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
 using static TakeMyTime.Tests.Common.CreateUpdateParams;

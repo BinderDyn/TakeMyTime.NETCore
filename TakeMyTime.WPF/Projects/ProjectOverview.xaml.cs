@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TakeMyTime.WPF.Resources;
 using TakeMyTime.BLL.Logic;
-using TakeMyTime.DOM.Models;
+
 using System.Resources;
 using TakeMyTime.WPF.Utility;
 using BinderDyn.LoggingUtility;

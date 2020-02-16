@@ -11,7 +11,7 @@ using TakeMyTime.DOM.Interfaces;
 using TakeMyTime.Models.Models;
 using static Common.Enums.EnumDefinition;
 
-namespace TakeMyTime.DOM.Models
+namespace TakeMyTime.Models.Models
 {
     public class Assignment : Entity<Assignment>
     {
@@ -22,11 +22,11 @@ namespace TakeMyTime.DOM.Models
             return assignment;
         }
 
-        public void Init(string name, 
-            string description, 
-            DateTime? datePlanned, 
-            DateTime? dateDue, 
-            long? durationPlannedAsTicks, 
+        public void Init(string name,
+            string description,
+            DateTime? datePlanned,
+            DateTime? dateDue,
+            long? durationPlannedAsTicks,
             Project project)
         {
             this.Name = name;
@@ -107,5 +107,5 @@ namespace TakeMyTime.DOM.Models
         public virtual ICollection<Subtask> Subtasks { get; set; }
     }
 
-    
+
 }

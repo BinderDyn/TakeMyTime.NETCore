@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TakeMyTime.DOM.Models;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.BLL.ViewModels;
 using static Common.Enums.EnumDefinition;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
@@ -31,7 +31,7 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Project> GetAllProjects()
         {
-            return unitOfWork.Projects.LoadAll();
+            return this.unitOfWork.Projects.LoadAll();
         }
 
         public void InsertProject(Project.ICreateParam viewModel)
@@ -40,16 +40,6 @@ namespace TakeMyTime.BLL.Logic
             var projectType = unitOfWork.ProjectTypes.Get(viewModel.ProjectType.Id);
             projectType.AddProject(insert);
             unitOfWork.Complete();
-        }
-
-        public void InsertProjects(IEnumerable<ProjectCreateViewModel> projects)
-        {
-            if (projects != null && projects.Any())
-            {
-                var mapped = projects.Select(p => Project.Create(p));
-                unitOfWork.Projects.AddRange(mapped);
-                unitOfWork.Complete();
-            }
         }
 
         public void UpdateProject(Project.IUpdateParam param, int project_id)

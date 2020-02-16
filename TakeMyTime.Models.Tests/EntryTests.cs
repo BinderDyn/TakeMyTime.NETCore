@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 using static TakeMyTime.Tests.Common.CreateUpdateParams;
 
 namespace TakeMyTime.Models.Tests
@@ -17,7 +17,7 @@ namespace TakeMyTime.Models.Tests
             Ended = DateTime.Now.AddMinutes(-9),
             Started = DateTime.Now.AddMinutes(-20),
             Name = "Test entry",
-            Project = new DOM.Models.Project()
+            Project = new Project()
         };
 
         [TestMethod]

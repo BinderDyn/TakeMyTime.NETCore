@@ -1,6 +1,6 @@
 ﻿using Common.Enums;
 using System;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.Tests.Common

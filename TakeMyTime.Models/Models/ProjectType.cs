@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TakeMyTime.DOM.Interfaces;
-using TakeMyTime.DOM.Models;
 
 namespace TakeMyTime.Models.Models
 {
