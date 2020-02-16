@@ -9,7 +9,7 @@ using static Common.Enums.EnumDefinition;
 using TakeMyTime.DOM.Interfaces;
 using TakeMyTime.Models.Models;
 
-namespace TakeMyTime.DOM.Models
+namespace TakeMyTime.Models.Models
 {
     /// <summary>
     /// The DB model of Project

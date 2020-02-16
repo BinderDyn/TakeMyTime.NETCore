@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL.Interfaces
 {

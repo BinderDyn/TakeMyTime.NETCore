@@ -14,8 +14,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TakeMyTime.Models\TakeMyTime.Models.csproj" />
+    <ProjectReference Include="..\TakeMyTime.BLL\TakeMyTime.BLL.csproj" />
+    <ProjectReference Include="..\TakeMyTime.DAL\TakeMyTime.DAL.csproj" />
     <ProjectReference Include="..\TakeMyTime.Tests.Common\TakeMyTime.Tests.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BinderDyn.LoggingUtility">
+      <HintPath>..\Libs\BinderDyn.LoggingUtility.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

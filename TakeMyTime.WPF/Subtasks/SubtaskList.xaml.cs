@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.WPF.Subtasks

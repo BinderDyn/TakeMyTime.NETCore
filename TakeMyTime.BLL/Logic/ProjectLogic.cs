@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TakeMyTime.DOM.Models;
 using TakeMyTime.DAL.uow;
 using TakeMyTime.BLL.ViewModels;
 using static Common.Enums.EnumDefinition;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
     public class ProjectLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
 
-        public ProjectLogic()
+        public ProjectLogic(UnitOfWork uow = null)
         {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
         }
 
         public Project GetProjectById(int id)
@@ -23,7 +31,7 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<Project> GetAllProjects()
         {
-            return unitOfWork.Projects.LoadAll();
+            return this.unitOfWork.Projects.LoadAll();
         }
 
         public void InsertProject(Project.ICreateParam viewModel)
@@ -32,16 +40,6 @@ namespace TakeMyTime.BLL.Logic
             var projectType = unitOfWork.ProjectTypes.Get(viewModel.ProjectType.Id);
             projectType.AddProject(insert);
             unitOfWork.Complete();
-        }
-
-        public void InsertProjects(IEnumerable<ProjectCreateViewModel> projects)
-        {
-            if (projects != null && projects.Any())
-            {
-                var mapped = projects.Select(p => Project.Create(p));
-                unitOfWork.Projects.AddRange(mapped);
-                unitOfWork.Complete();
-            }
         }
 
         public void UpdateProject(Project.IUpdateParam param, int project_id)
@@ -76,19 +74,6 @@ namespace TakeMyTime.BLL.Logic
             {
                 throw new Exception("Cannot delete project if is not archived or contains not done assignments!");
             }
-        }
-
-        public void DeleteProjects(IEnumerable<Project> projects)
-        {
-            IList<Project> toBeDeleted = new List<Project>();
-            foreach (var p in projects)
-            {
-                var entity = unitOfWork.Projects.Get(p.Id);
-                if (entity != null) toBeDeleted.Add(entity);
-            }
-
-            unitOfWork.Projects.RemoveRange(toBeDeleted);
-            unitOfWork.Complete();
         }
 
         /// <summary>

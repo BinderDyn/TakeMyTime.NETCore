@@ -8,7 +8,19 @@ namespace TakeMyTime.BLL.Logic
 {
     public class ProjectTypeLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
+
+        public ProjectTypeLogic(UnitOfWork uow = null)
+        {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
+        }
 
         public IEnumerable<ProjectType> GetProjectTypes()
         {
@@ -20,9 +32,11 @@ namespace TakeMyTime.BLL.Logic
             return unitOfWork.ProjectTypes.Get(id);
         }
 
-        public void AddProjectType()
+        public void AddProjectType(ProjectType.ICreateParam param)
         {
-            throw new NotImplementedException();
+            var projectType = ProjectType.Create(param);
+            unitOfWork.ProjectTypes.Add(projectType);
+            unitOfWork.Complete();
         }
 
         public void Dispose()

@@ -1,17 +1,24 @@
 ﻿using Common.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
-namespace TakeMyTime.Models.Tests
+namespace TakeMyTime.Tests.Common
 {
     public class CreateUpdateParams
     {
         public class AssignmentCreateParam : Assignment.ICreateParam
         {
             public Project Project { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public DateTime? DatePlanned { get; set; }
+            public DateTime? DateDue { get; set; }
+            public long? DurationPlannedAsTicks { get; set; }
+        }
+
+        public class AssignmentUpdateParam : Assignment.IUpdateParam
+        {
             public string Name { get; set; }
             public string Description { get; set; }
             public DateTime? DatePlanned { get; set; }
@@ -47,6 +54,12 @@ namespace TakeMyTime.Models.Tests
         public class ProjectCreateParam : Project.ICreateParam
         {
             public ProjectType ProjectType { get; set; }
+            public string Description { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class ProjectUpdateParam : Project.IUpdateParam
+        {
             public string Description { get; set; }
             public string Name { get; set; }
         }
