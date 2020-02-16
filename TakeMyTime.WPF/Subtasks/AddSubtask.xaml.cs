@@ -47,7 +47,7 @@ namespace TakeMyTime.WPF.Subtasks
             InitializeComponent();
             var subtaskLogic = new SubtaskLogic();
             var assignmentLogic = new AssignmentLogic();
-            var subtask = subtaskLogic.Get(subtask_id);
+            var subtask = subtaskLogic.GetById(subtask_id);
             this.EditMode = true;
             this.EditableSubtask = subtask;
             this.cb_PrioritySelect.SelectedItem = GetItemByPriority(subtask.Priority);

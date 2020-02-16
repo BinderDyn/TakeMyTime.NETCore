@@ -79,25 +79,6 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        [Obsolete("Has no practical use in application except for the legacy xml export")]
-        public void DeleteAssignments(IEnumerable<Assignment> assignments)
-        {
-            IList<Assignment> toBeDeletedAssignments = new List<Assignment>();
-            foreach (var a in assignments)
-            {
-                var entity = unitOfWork.Assignments.Get(a.Id);
-                if (entity != null && entity.CanDelete()) toBeDeletedAssignments.Add(entity);
-                else
-                {
-                    var subtasksToDelete = entity.ClearSubtasks();
-                    unitOfWork.Subtasks.RemoveRange(subtasksToDelete);
-                }
-
-            }
-            unitOfWork.Assignments.RemoveRange(toBeDeletedAssignments);
-            unitOfWork.Complete();
-        }
-
         public void DeleteSubtask(int assignment_id, int subtask_id)
         {
             unitOfWork.Assignments.DeleteSubtask(assignment_id, subtask_id);

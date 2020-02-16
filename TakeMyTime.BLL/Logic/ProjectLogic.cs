@@ -76,20 +76,6 @@ namespace TakeMyTime.BLL.Logic
             }
         }
 
-        [Obsolete("Only used in legacy xml backup code")]
-        public void DeleteProjects(IEnumerable<Project> projects)
-        {
-            IList<Project> toBeDeleted = new List<Project>();
-            foreach (var p in projects)
-            {
-                var entity = unitOfWork.Projects.Get(p.Id);
-                if (entity != null) toBeDeleted.Add(entity);
-            }
-
-            unitOfWork.Projects.RemoveRange(toBeDeleted);
-            unitOfWork.Complete();
-        }
-
         /// <summary>
         /// Returns the complete Working time of the project and all of its entries
         /// </summary>

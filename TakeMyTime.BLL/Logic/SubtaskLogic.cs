@@ -24,7 +24,7 @@ namespace TakeMyTime.BLL.Logic
             }
         }
 
-        public Subtask Get(int id)
+        public Subtask GetById(int id)
         {
             return unitOfWork.Subtasks.Get(id);
         }
@@ -49,8 +49,9 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        public void Delete(Subtask subtask)
+        public void Delete(int subtask_id)
         {
+            var subtask = unitOfWork.Subtasks.Get(subtask_id);
             unitOfWork.Subtasks.Remove(subtask);
             unitOfWork.Complete();
         }

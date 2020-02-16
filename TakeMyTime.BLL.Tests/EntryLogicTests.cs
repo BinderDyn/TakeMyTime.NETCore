@@ -33,10 +33,6 @@ namespace TakeMyTime.BLL.Tests
                 Description = "Test project type"
             };
 
-            
-
-            
-
             uow.ProjectTypes.Add(ProjectType.Create(projectTypeCreateParam));
             this.uow.Complete();
 

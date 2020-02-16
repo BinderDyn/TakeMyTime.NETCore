@@ -52,21 +52,6 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        [Obsolete("Only used for xml export")]
-        public void DeleteEntries(IEnumerable<Entry> entries)
-        {
-            IList<Entry> entities = new List<Entry>();
-            foreach(var e in entries)
-            {
-                var entity = unitOfWork.Entries.Get(e.Id);
-                if (entity != null) entities.Add(entity);
-            }
-
-            unitOfWork.Entries.RemoveRange(entities);
-
-            unitOfWork.Complete();
-        }
-
         public void Dispose()
         {
             unitOfWork.Dispose();
