@@ -76,6 +76,7 @@ namespace TakeMyTime.BLL.Logic
             }
         }
 
+        [Obsolete("Only used in legacy xml backup code")]
         public void DeleteProjects(IEnumerable<Project> projects)
         {
             IList<Project> toBeDeleted = new List<Project>();

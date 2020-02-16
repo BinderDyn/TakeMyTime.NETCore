@@ -38,51 +38,12 @@ namespace TakeMyTime.BLL.Logic
             return unitOfWork.Entries.Get(id);
         }
 
-        public void AddEntry(Entry entry)
-        {
-
-            unitOfWork.Entries.Add(entry);
-            unitOfWork.Complete();
-            Dispose();
-            
-        }
-
-        public void AddEntries(IEnumerable<Entry> entries)
-        {
-            unitOfWork.Entries.AddRange(entries);
-            unitOfWork.Complete();
-            Dispose();
-        }
-
         public void UpdateEntry(int entry_id, Entry.IUpdateParam param)
         {
             var edit = unitOfWork.Entries.Get(entry_id);
             edit.Update(param);
             unitOfWork.Complete();
         }
-
-        public void UpdateEntries(IEnumerable<Entry> entries)
-        {
-            var edits = unitOfWork.Entries.GetAll();
-
-            foreach (var edit in edits)
-            {
-                foreach (var entry in entries)
-                {
-                    if (edit.Id == entry.Id)
-                    {
-                        edit.Name = entry.Name;
-                        edit.Comment = entry.Comment;
-                        edit.DurationAsTicks = entry.DurationAsTicks;
-                        edit.Edited = DateTime.Now;
-                    }
-                }
-            }
-
-            unitOfWork.Complete();
-            Dispose();
-        }
-
 
         public void DeleteEntry(int entryId)
         {
@@ -104,20 +65,6 @@ namespace TakeMyTime.BLL.Logic
 
             unitOfWork.Complete();
         }
-
-        //public bool CheckForBookProject(Entry entry)
-        //{
-        //    if (entry.ProjectId.HasValue)
-        //    {
-        //        var toBeChecked = unitOfWork.Projects.Get((int)entry.ProjectId);
-        //        return toBeChecked.ProjectType == EnumDefinition.ProjectType.Book ? true : false; 
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-
-        //}
 
         public void Dispose()
         {
