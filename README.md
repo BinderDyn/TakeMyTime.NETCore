@@ -1,2 +1,3 @@
 # TakeMyTime.NETCore
- Switch to .NET Core
+
+Managing your productive time was never that easy! Display statistics, measure your progress and get things done!
