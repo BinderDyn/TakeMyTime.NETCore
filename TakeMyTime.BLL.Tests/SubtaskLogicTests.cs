@@ -81,7 +81,7 @@ namespace TakeMyTime.BLL.Tests
 
         #endregion
 
-        [TestMethod]
+         [TestMethod]
         public void GetById_Test()
         {
             // ARRANGE
@@ -151,9 +151,7 @@ namespace TakeMyTime.BLL.Tests
                 Comment = "Test comment",
                 Date = DateTime.Now.Date,
                 Started = DateTime.Now.AddHours(-2),
-                Ended = DateTime.Now.AddHours(-1),
-                Subtask = subtask,
-                Project = project
+                Ended = DateTime.Now.AddHours(-1)
             };
             var subtaskLogic = new SubtaskLogic();
 

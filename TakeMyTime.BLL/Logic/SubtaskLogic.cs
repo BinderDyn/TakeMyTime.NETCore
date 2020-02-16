@@ -44,6 +44,7 @@ namespace TakeMyTime.BLL.Logic
         public void AddEntry(int subtask_id, Entry.ICreateParam param)
         {
             var entry = Entry.Create(param);
+            entry.Subtask_Id = subtask_id;
             var subtask = unitOfWork.Subtasks.GetSubtaskFullyLoaded(subtask_id);
             subtask.Entries.Add(entry);
             unitOfWork.Complete();
