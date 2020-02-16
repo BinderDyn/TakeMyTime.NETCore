@@ -17,6 +17,7 @@ namespace TakeMyTime.BLL.Tests
     {
         UnitOfWork uow;
 
+        [TestInitialize]
         public void GetTestUnitOfWork()
         {
             this.uow = new UnitOfWork();
@@ -48,7 +49,6 @@ namespace TakeMyTime.BLL.Tests
 
         private Assignment CreateTestAssignment()
         {
-            GetTestUnitOfWork();
             var projectTypeCreateParam = new ProjectTypeCreateParam
             {
                 Name = "Test",
