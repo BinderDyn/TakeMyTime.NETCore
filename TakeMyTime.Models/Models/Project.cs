@@ -9,7 +9,7 @@ using static Common.Enums.EnumDefinition;
 using TakeMyTime.DOM.Interfaces;
 using TakeMyTime.Models.Models;
 
-namespace TakeMyTime.DOM.Models
+namespace TakeMyTime.Models.Models
 {
     /// <summary>
     /// The DB model of Project
@@ -51,7 +51,7 @@ namespace TakeMyTime.DOM.Models
         {
             bool allAssignmentsDoneOrAborted = 
                 this.Assignments == null ||
-                this.Assignments.All(a => a.AssignmentStatus == (AssignmentStatus.Aborted | AssignmentStatus.Aborted))
+                this.Assignments.Any(a => a.AssignmentStatus != AssignmentStatus.Done || a.AssignmentStatus != AssignmentStatus.Aborted)
                 ||
                 this.Assignments.Count == 0;
             return this.ProjectStatus == ProjectStatus.Archived && allAssignmentsDoneOrAborted;

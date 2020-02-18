@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Configuration;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL
 {
     public class TakeMyTimeDbContext : DbContext
     {
-
 #if DEBUG
         public TakeMyTimeDbContext() : base()
         {
@@ -17,7 +16,7 @@ namespace TakeMyTime.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
+            // var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
             optionsBuilder.UseSqlite("Data Source=TakeMyTimeDebug.db;");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
@@ -70,6 +69,5 @@ namespace TakeMyTime.DAL
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<ProjectType> ProjectTypes { get; set; }
         public DbSet<Subtask> Subtasks { get; set; }
-
     }
 }

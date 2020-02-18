@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.Interfaces;
-using TakeMyTime.DOM.Models;
+using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL.Repositories
 {
@@ -43,7 +43,7 @@ namespace TakeMyTime.DAL.Repositories
 
         public TimeSpan RetrieveWorkingTime(int projectId)
         {
-            var project = context.Projects.SingleOrDefault(p => p.Id == projectId);
+            var project = context.Projects.Include(p => p.Entries).SingleOrDefault(p => p.Id == projectId);
             TimeSpan completeWorkingTime = new TimeSpan();
             if (project != null)
             {

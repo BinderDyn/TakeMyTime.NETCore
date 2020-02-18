@@ -3,18 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TakeMyTime.DAL.uow;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
     public class AssignmentLogic
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork unitOfWork;
 
-        public AssignmentLogic()
+        public AssignmentLogic(UnitOfWork uow = null)
         {
-
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
         }
 
         #region CRUD
@@ -51,7 +58,7 @@ namespace TakeMyTime.BLL.Logic
 
             unitOfWork.Complete();
         }
-       
+
         public void DeleteAssignment(int id)
         {
             var toBeDeleted = GetAssignmentById(id);
@@ -69,24 +76,6 @@ namespace TakeMyTime.BLL.Logic
                 unitOfWork.Complete();
             }
             unitOfWork.Assignments.Remove(toBeDeleted);
-            unitOfWork.Complete();
-        }
-
-        public void DeleteAssignments(IEnumerable<Assignment> assignments)
-        {
-            IList<Assignment> toBeDeletedAssignments = new List<Assignment>();
-            foreach (var a in assignments)
-            {
-                var entity = unitOfWork.Assignments.Get(a.Id);
-                if (entity != null && entity.CanDelete()) toBeDeletedAssignments.Add(entity);
-                else
-                {
-                    var subtasksToDelete = entity.ClearSubtasks();
-                    unitOfWork.Subtasks.RemoveRange(subtasksToDelete);
-                }
-
-            }
-            unitOfWork.Assignments.RemoveRange(toBeDeletedAssignments);
             unitOfWork.Complete();
         }
 

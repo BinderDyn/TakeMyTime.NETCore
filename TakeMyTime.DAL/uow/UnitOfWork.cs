@@ -1,4 +1,5 @@
 ﻿using BinderDyn.LoggingUtility;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace TakeMyTime.DAL.uow
             Statistics = new StatisticsRepository(context);
         }
 
+
         public IProjectRepository Projects { get; private set; }
         public IEntryRepository Entries { get; private set; }
         public IAssignmentRepository Assignments { get; private set; }
@@ -34,23 +36,22 @@ namespace TakeMyTime.DAL.uow
 
         public int Complete()
         {
-            Logger.Debug(string.Format("{0}.Complete() : {1}", GetType().FullName, GetTrackedEntitiesAsString(context)));
             return context.SaveChanges();
-        }
-
-        private string GetTrackedEntitiesAsString(TakeMyTimeDbContext context)
-        {
-            var sb = new StringBuilder();
-            //foreach (var entity in context.ChangeTracker.Entries())
-            //{
-            //    sb.AppendLine(string.Format("Tracked entity: {0}", entity));
-            //}
-            return sb.ToString();
         }
 
         public void Dispose()
         {
             context.Dispose();
+        }
+
+        public void CreateDatabase()
+        {
+            context.Database.EnsureCreated();
+        }
+
+        public void DeleteDatabase()
+        {
+            context.Database.EnsureDeleted();
         }
     }
 }

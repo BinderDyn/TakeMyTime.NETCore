@@ -6,33 +6,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.uow;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.BLL.Logic
 {
     public class StatisticsLogic
     {
-        private UnitOfWork uow = new UnitOfWork();
+        private UnitOfWork unitOfWork;
+
+        public StatisticsLogic(UnitOfWork uow = null)
+        {
+            if (uow != null)
+            {
+                this.unitOfWork = uow;
+            }
+            else
+            {
+                this.unitOfWork = new UnitOfWork();
+            }
+        }
 
         public Dictionary<string, double> GetAssignmentSharesOfProject(int project_id)
         {
-            return this.uow.Statistics.GetAssignmentSharesOfProject(project_id);
+            return this.unitOfWork.Statistics.GetAssignmentSharesOfProject(project_id);
         }
 
         public Dictionary<string, double> GetProjectShares()
         {
-            return this.uow.Statistics.GetProjectTotalShares();
+            return this.unitOfWork.Statistics.GetProjectTotalShares();
         }
 
         public IEnumerable<ProductivityViewModel> GetProjectProductiveEntries(int project_id)
         {
-            return this.uow.Statistics.GetProjectProductiveDays(project_id);
+            return this.unitOfWork.Statistics.GetProjectProductiveDays(project_id);
         }
 
         public IEnumerable<MostProductiveWeekDaysViewModel> GetMostProductiveWeekDays()
         {
-            return this.uow.Statistics.GetMostProductiveDays();
+            return this.unitOfWork.Statistics.GetMostProductiveDays();
         }
     }
 }

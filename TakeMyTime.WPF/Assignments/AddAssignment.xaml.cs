@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Subtasks;
 

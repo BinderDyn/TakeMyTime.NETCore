@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
-using TakeMyTime.DOM.Models;
+
 using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Assignments;
 using TakeMyTime.WPF.Utility;
@@ -47,7 +47,7 @@ namespace TakeMyTime.WPF.Subtasks
             InitializeComponent();
             var subtaskLogic = new SubtaskLogic();
             var assignmentLogic = new AssignmentLogic();
-            var subtask = subtaskLogic.Get(subtask_id);
+            var subtask = subtaskLogic.GetById(subtask_id);
             this.EditMode = true;
             this.EditableSubtask = subtask;
             this.cb_PrioritySelect.SelectedItem = GetItemByPriority(subtask.Priority);

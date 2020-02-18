@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TakeMyTime.DAL.Interfaces;
-using TakeMyTime.DOM.Models;
 using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.DAL.Repositories

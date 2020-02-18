@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TakeMyTime.Models.Models;
 using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Assignments
@@ -14,7 +15,7 @@ namespace TakeMyTime.WPF.Assignments
 
         }
 
-        public AssignmentViewModel(DOM.Models.Assignment assignment)
+        public AssignmentViewModel(Assignment assignment)
         {
             this.StatusAsEnum = assignment.AssignmentStatus;
             this.Id = assignment.Id;

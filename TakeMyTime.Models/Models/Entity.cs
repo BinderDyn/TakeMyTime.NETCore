@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using TakeMyTime.DOM.Interfaces;
 
-namespace TakeMyTime.DOM.Models
+namespace TakeMyTime.Models.Models
 {
     public abstract class Entity<T> : IEntity<T>
     {

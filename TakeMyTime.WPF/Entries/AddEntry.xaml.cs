@@ -139,7 +139,7 @@ namespace TakeMyTime.WPF.Entries
             var project = projectLogic.GetProjectById(project_id);
             projectLogic.Dispose();
             var subtaskLogic = new SubtaskLogic();
-            var subtask = subtaskLogic.Get(this.SelectedSubtask.Id);
+            var subtask = subtaskLogic.GetById(this.SelectedSubtask.Id);
 
             var entryCreateViewModel = new EntryCreateViewModel
             {
