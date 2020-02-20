@@ -22,14 +22,14 @@ namespace TakeMyTime.WPF.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindow {
+    public class ProjectTypeOverview {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindow() {
+        internal ProjectTypeOverview() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TakeMyTime.WPF.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.MainWindow", typeof(MainWindow).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TakeMyTime.WPF.Resources.ProjectTypeOverview", typeof(ProjectTypeOverview).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,47 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Assignments ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        public static string AssignmentMenuItem {
+        public static string ColumnDescription {
             get {
-                return ResourceManager.GetString("AssignmentMenuItem", resourceCulture);
+                return ResourceManager.GetString("ColumnDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Current calendar week ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        public static string CurrentCalendarWeek {
+        public static string ColumnName {
             get {
-                return ResourceManager.GetString("CurrentCalendarWeek", resourceCulture);
+                return ResourceManager.GetString("ColumnName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dashboard ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add project category ähnelt.
         /// </summary>
-        public static string DashboardMenutItem {
+        public static string TooltipAddButton {
             get {
-                return ResourceManager.GetString("DashboardMenutItem", resourceCulture);
+                return ResourceManager.GetString("TooltipAddButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Log entries ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete project category ähnelt.
         /// </summary>
-        public static string EntriesMenuItem {
+        public static string TooltipDeleteButton {
             get {
-                return ResourceManager.GetString("EntriesMenuItem", resourceCulture);
+                return ResourceManager.GetString("TooltipDeleteButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit project category ähnelt.
         /// </summary>
-        public static string ProjectMenuItem {
+        public static string TooltipEditButton {
             get {
-                return ResourceManager.GetString("ProjectMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Project categories ähnelt.
-        /// </summary>
-        public static string SettingsMenuItem {
-            get {
-                return ResourceManager.GetString("SettingsMenuItem", resourceCulture);
+                return ResourceManager.GetString("TooltipEditButton", resourceCulture);
             }
         }
     }

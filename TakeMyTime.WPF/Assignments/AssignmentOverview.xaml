@@ -115,7 +115,9 @@
                       Visibility="Visible"
                       SelectionMode="Single"
                       MouseDoubleClick="lv_Assignments_MouseDoubleClick"
-                      SelectionChanged="lv_Assignments_SelectionChanged">
+                      SelectionChanged="lv_Assignments_SelectionChanged"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

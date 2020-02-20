@@ -38,7 +38,7 @@ namespace TakeMyTime.WPF
 
             InitDataDirectory();
             InitializeComponent();
-            txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 5);
             tb_CalendarWeek.Text = this.CurrentCalendarWeek;
             fr_Content.Navigate(new Dashboard());
         }
