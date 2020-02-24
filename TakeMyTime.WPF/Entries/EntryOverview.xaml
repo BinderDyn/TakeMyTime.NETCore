@@ -71,32 +71,30 @@
         </StackPanel>
         <!--<StackPanel Grid.Row="2"
                     Orientation="Vertical">-->
-        <ScrollViewer Grid.Row="2"
-                      IsEnabled="True">
-        <DataGrid x:Name="lv_Entries"
+        <ListView x:Name="lv_Entries"
                         SelectionChanged="lv_Entries_SelectionChanged"
-                        Grid.Row="2"
-                        CanUserSortColumns="True" 
-                        CanUserAddRows="False" 
-                        AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnName}" Binding="{Binding Path=Name}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnDescription}" Binding="{Binding Path=Description}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnStart}" Binding="{Binding Path=StartAsString}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnEnd}" Binding="{Binding Path=EndAsString}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnDuration}" Binding="{Binding Path=DurationAsString}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnProject}" Binding="{Binding Path=ProjectName}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resources:EntryOverview.ColumnSubtask}" Binding="{Binding Path=SubtaskName}">
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        </ScrollViewer>
+                        Grid.Row="2" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnName}" DisplayMemberBinding="{Binding Path=Name}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDescription}" DisplayMemberBinding="{Binding Path=Description}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnStart}" DisplayMemberBinding="{Binding Path=StartAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnEnd}" DisplayMemberBinding="{Binding Path=EndAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDuration}" DisplayMemberBinding="{Binding Path=DurationAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnProject}" DisplayMemberBinding="{Binding Path=ProjectName}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnSubtask}" DisplayMemberBinding="{Binding Path=SubtaskName}">
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <!--</StackPanel>-->
     </Grid>
 </Page>

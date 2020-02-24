@@ -48,12 +48,18 @@ namespace TakeMyTime.WPF.ProjectTypes
 
         private void btn_AddProjectType_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            var addEditProjectTypeDialog = new AddEditProjectType();
+            addEditProjectTypeDialog.ShowDialog();
+            this.Load();
+            this.RefreshBindings();
         }
 
         private void btn_EditProjectType_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            var addEditProjectTypeDialog = new AddEditProjectType(this.SelectedProjectType.Id);
+            addEditProjectTypeDialog.ShowDialog();
+            this.Load();
+            this.RefreshBindings();
         }
 
         private void btn_DeleteProjectType_Click(object sender, System.Windows.RoutedEventArgs e)

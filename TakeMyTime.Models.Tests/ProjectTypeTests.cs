@@ -36,9 +36,10 @@ namespace TakeMyTime.Models.Tests
             var projectType = ProjectType.Create(createParam);
             string changedName = "Test name changed";
             string changedDescription = "Test description changed";
+            var updateParam = new ProjectTypeUpdateParam { Description = changedDescription, Name = changedName };
 
             // ACT
-            projectType.Update(changedName, changedDescription);
+            projectType.Update(updateParam);
 
             // ASSERT
             Assert.AreEqual(changedName, projectType.Name);

@@ -5,8 +5,13 @@ using TakeMyTime.Models.Models;
 
 namespace TakeMyTime.WPF.ProjectTypes
 {
-    public class ProjectTypeViewModel
+    public class ProjectTypeViewModel : ProjectType.IUpdateParam
     {
+        public ProjectTypeViewModel()
+        {
+
+        }
+
         public ProjectTypeViewModel(ProjectType projectType)
         {
             this.Id = projectType.Id;

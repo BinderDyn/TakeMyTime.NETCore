@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using TakeMyTime.DAL;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.WPF.ProjectTypes;
 using TakeMyTime.WPF.Statistics;
 using TakeMyTime.WPF.Utility;
 
@@ -124,7 +125,7 @@ namespace TakeMyTime.WPF
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(null);
+            fr_Content.Navigate(new ProjectTypeOverview());
         }
 
         #endregion

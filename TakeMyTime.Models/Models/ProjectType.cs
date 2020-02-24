@@ -60,6 +60,6 @@ namespace TakeMyTime.Models.Models
         }
 
         public virtual string Description { get; set; }
-        public ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

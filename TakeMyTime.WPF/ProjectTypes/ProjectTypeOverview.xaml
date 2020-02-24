@@ -44,13 +44,18 @@
                 </Button>
             </StackPanel>
         </Border>
-        <DataGrid x:Name="dg_ProjectTypes" SelectionChanged="dg_ProjectTypes_SelectionChanged"
-                  Grid.Row="1" Foreground="{StaticResource LightWhite}" Background="{StaticResource BackgroundGrey}"
-                  CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300"></DataGridTextColumn>
-                    <DataGridTextColumn Header="{x:Static resource:ProjectTypeOverview.ColumnDescription}" Width="500"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+        <ListView x:Name="dg_ProjectTypes" SelectionChanged="dg_ProjectTypes_SelectionChanged"
+                  Grid.Row="1"
+                  Background="{StaticResource BackgroundGrey}"
+                  Foreground="{StaticResource LightWhite}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                        <GridViewColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300" DisplayMemberBinding="{Binding Path=Description}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

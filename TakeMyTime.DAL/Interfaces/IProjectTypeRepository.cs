@@ -7,5 +7,7 @@ namespace TakeMyTime.DAL.Interfaces
 {
     public interface IProjectTypeRepository : IRepository<ProjectType>
     {
+        IEnumerable<ProjectType> GetProjectTypesLoaded();
+        ProjectType GetProjectTypeByIdLoaded(int id);
     }
 }
