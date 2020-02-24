@@ -28,7 +28,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.9*"></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -109,7 +109,8 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60"
+                                  >
                         <Button x:Name="btn_Dashboard"
                                 Height="60" 
                                 Background="Transparent"
@@ -152,6 +153,30 @@
                                                      ></materialDesign:PackIcon>
                                 <TextBlock
                                 Text="{x:Static resource:MainWindow.ProjectMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <Button x:Name="btn_Settings"
+                                Height="60" 
+                                HorizontalAlignment="Left"
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_Settings_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Folders"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                                <TextBlock
+                                Text="{x:Static resource:MainWindow.SettingsMenuItem}"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource LightWhite}"></TextBlock>
                             </StackPanel>
@@ -205,31 +230,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <Separator></Separator>
-                    <ListViewItem Height="60">
-                        <Button x:Name="btn_Settings"
-                                Height="60" 
-                                HorizontalAlignment="Left"
-                                Background="Transparent"
-                                Foreground="Transparent"
-                                BorderThickness="0"
-                                Click="btn_Settings_Click"
-                                >
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Settings"
-                                                     VerticalAlignment="Center"
-                                                     Margin="20 10"
-                                                     Height="40"
-                                                     Width="25"
-                                                     Foreground="{StaticResource LightWhite}"
-                                                     ></materialDesign:PackIcon>
-                                <TextBlock
-                                Text="{x:Static resource:MainWindow.SettingsMenuItem}"
-                                VerticalAlignment="Center"
-                                Foreground="{StaticResource LightWhite}"></TextBlock>
-                            </StackPanel>
-                        </Button>
-                    </ListViewItem>
+                    
                 </ListView>
             </StackPanel>
 

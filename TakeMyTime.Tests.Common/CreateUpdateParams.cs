@@ -70,6 +70,8 @@ namespace TakeMyTime.Tests.Common
             public string Description { get; set; }
         }
 
+        public class ProjectTypeUpdateParam: ProjectTypeCreateParam { }
+
         public class SubtaskUpdateParam : SubtaskCreateParam, Subtask.IUpdateParam { }
     }
 }

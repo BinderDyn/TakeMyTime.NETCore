@@ -8,6 +8,8 @@ TakeMyTime.Models/bin
 TakeMyTime.Models/obj
 TakeMyTime.WPF/bin
 TakeMyTime.WPF/obj
+TakeMyTime.BLL.Tests/bin
+TakeMyTime.BLL.Tests/obj
 **/.svn
 **/.vs
 **/v16

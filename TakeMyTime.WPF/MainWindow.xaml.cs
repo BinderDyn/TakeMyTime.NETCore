@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using TakeMyTime.DAL;
 using TakeMyTime.DAL.uow;
+using TakeMyTime.WPF.ProjectTypes;
 using TakeMyTime.WPF.Statistics;
 using TakeMyTime.WPF.Utility;
 
@@ -38,7 +39,7 @@ namespace TakeMyTime.WPF
 
             InitDataDirectory();
             InitializeComponent();
-            txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 5);
             tb_CalendarWeek.Text = this.CurrentCalendarWeek;
             fr_Content.Navigate(new Dashboard());
         }
@@ -124,7 +125,7 @@ namespace TakeMyTime.WPF
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(null);
+            fr_Content.Navigate(new ProjectTypeOverview());
         }
 
         #endregion

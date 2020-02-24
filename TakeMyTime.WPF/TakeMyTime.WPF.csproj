@@ -36,6 +36,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddAssignment.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\AddEditProjectType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddEditProjectType.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AddProject.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -76,6 +81,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddEntry.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\ProjectTypeOverview.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProjectTypeOverview.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Shared.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -100,6 +110,13 @@
     <EmbeddedResource Update="Resources\AddAssignment.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddAssignment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddEditProjectType.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AddEditProjectType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddEditProjectType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AddEntry.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -153,6 +170,13 @@
     <EmbeddedResource Update="Resources\AddEntry.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddEntry.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ProjectTypeOverview.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ProjectTypeOverview.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectTypeOverview.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Shared.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

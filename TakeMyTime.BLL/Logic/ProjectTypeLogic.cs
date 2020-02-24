@@ -24,12 +24,12 @@ namespace TakeMyTime.BLL.Logic
 
         public IEnumerable<ProjectType> GetProjectTypes()
         {
-            return unitOfWork.ProjectTypes.GetAll();
+            return unitOfWork.ProjectTypes.GetProjectTypesLoaded();
         }
 
         public ProjectType GetProjectType(int id)
         {
-            return unitOfWork.ProjectTypes.Get(id);
+            return unitOfWork.ProjectTypes.GetProjectTypeByIdLoaded(id);
         }
 
         public void AddProjectType(ProjectType.ICreateParam param)
@@ -37,6 +37,27 @@ namespace TakeMyTime.BLL.Logic
             var projectType = ProjectType.Create(param);
             unitOfWork.ProjectTypes.Add(projectType);
             unitOfWork.Complete();
+        }
+
+        public void UpdateProjectType(int id, ProjectType.IUpdateParam param)
+        {
+            var projectType = this.unitOfWork.ProjectTypes.Get(id);
+            projectType.Update(param);
+            unitOfWork.Complete();
+        }
+
+        public void DeleteProjectType(int id)
+        {
+            var projectType = this.unitOfWork.ProjectTypes.GetProjectTypeByIdLoaded(id);
+            if (projectType.CanDelete())
+            {
+                this.unitOfWork.ProjectTypes.Remove(projectType);
+                this.unitOfWork.Complete();
+            }
+            else
+            {
+                throw new Exception("Cannot delete project type used in existing projects");
+            }
         }
 
         public void Dispose()

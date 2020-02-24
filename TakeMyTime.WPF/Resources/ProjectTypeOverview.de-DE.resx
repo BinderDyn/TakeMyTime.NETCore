@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AssignmentMenuItem" xml:space="preserve">
-    <value>Assignments</value>
+  <data name="ColumnDescription" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="CurrentCalendarWeek" xml:space="preserve">
-    <value>Current calendar week</value>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="DashboardMenutItem" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="TooltipAddButton" xml:space="preserve">
+    <value>Add project category</value>
   </data>
-  <data name="EntriesMenuItem" xml:space="preserve">
-    <value>Log entries</value>
+  <data name="TooltipDeleteButton" xml:space="preserve">
+    <value>Delete project category</value>
   </data>
-  <data name="ProjectMenuItem" xml:space="preserve">
-    <value>Projects</value>
-  </data>
-  <data name="SettingsMenuItem" xml:space="preserve">
-    <value>Project categories</value>
+  <data name="TooltipEditButton" xml:space="preserve">
+    <value>Edit project category</value>
   </data>
 </root>

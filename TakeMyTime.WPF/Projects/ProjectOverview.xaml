@@ -75,7 +75,8 @@
                       Margin="18"
                       Visibility="Visible"
                       SelectionChanged="lv_Projects_SelectionChanged"
-                      SelectionMode="Single">
+                      SelectionMode="Single"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible">
             <!--<ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>

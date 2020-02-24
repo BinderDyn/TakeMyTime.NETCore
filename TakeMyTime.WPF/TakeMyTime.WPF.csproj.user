@@ -27,6 +27,12 @@
     <Compile Update="Projects\ProjectOverview.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProjectTypes\AddEditProjectType.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProjectTypes\ProjectTypeOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Statistics\Dashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -62,6 +68,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Projects\ProjectOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectTypes\AddEditProjectType.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectTypes\ProjectTypeOverview.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Statistics\Dashboard.xaml">
