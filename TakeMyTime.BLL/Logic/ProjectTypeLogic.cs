@@ -39,6 +39,27 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
+        public void UpdateProjectType(int id, ProjectType.IUpdateParam param)
+        {
+            var projectType = this.unitOfWork.ProjectTypes.Get(id);
+            projectType.Update(param);
+            unitOfWork.Complete();
+        }
+
+        public void DeleteProjectType(int id)
+        {
+            var projectType = this.unitOfWork.ProjectTypes.Get(id);
+            if (projectType.CanDelete())
+            {
+                this.unitOfWork.ProjectTypes.Remove(projectType);
+                this.unitOfWork.Complete();
+            }
+            else
+            {
+                throw new Exception("Cannot delete project type used in existing projects");
+            }
+        }
+
         public void Dispose()
         {
             this.unitOfWork.Dispose();

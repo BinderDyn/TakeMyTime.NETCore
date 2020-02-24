@@ -21,6 +21,10 @@ namespace TakeMyTime.Models.Models
             string Description { get; set; }
         }
 
+        public interface IUpdateParam : ICreateParam
+        {
+        }
+
         public void Init(string name, string description)
         {
             this.Name = name;
@@ -29,11 +33,16 @@ namespace TakeMyTime.Models.Models
             this.SetCreated();
         }
 
-        public void Update(string name, string description)
+        public void Update(ICreateParam param)
         {
-            this.Name = name;
-            this.Description = description;
+            this.Name = param.Name;
+            this.Description = param.Description;
             this.SetEdited();
+        }
+
+        public bool CanDelete()
+        {
+            return this.Projects != null && this.Projects.Count == 0;
         }
 
         public void AddProject(Project project)
@@ -51,6 +60,6 @@ namespace TakeMyTime.Models.Models
         }
 
         public virtual string Description { get; set; }
-        public virtual ICollection<Project> Projects { get; set; }
+        public ICollection<Project> Projects { get; set; }
     }
 }

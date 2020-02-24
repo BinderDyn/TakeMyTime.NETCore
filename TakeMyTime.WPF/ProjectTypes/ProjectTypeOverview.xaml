@@ -19,31 +19,38 @@
         <Border Grid.Row="0">
             <StackPanel HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <Button Margin="5"
+                <Button x:Name="btn_AddProjectType"
+                        Click="btn_AddProjectType_Click"
+                        Margin="5"
                         Background="Green"
                         ToolTip="{x:Static resource:ProjectTypeOverview.TooltipAddButton}">
                     <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
                 </Button>
-                <Button Margin="5"
+                <Button x:Name="btn_EditProjectType"
+                        Click="btn_EditProjectType_Click"
+                        IsEnabled="False"
+                        Margin="5"
                         Background="Orange"
                         ToolTip="{x:Static resource:ProjectTypeOverview.TooltipEditButton}">
                     <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
                 </Button>
-                <Button Margin="5"
+                <Button x:Name="btn_DeleteProjectType"
+                        Click="btn_DeleteProjectType_Click"
+                        IsEnabled="False"
+                        Margin="5"
                         Background="Red"
                         ToolTip="{x:Static resource:ProjectTypeOverview.TooltipDeleteButton}">
                     <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
                 </Button>
             </StackPanel>
         </Border>
-        <ScrollViewer Grid.Row="1">
-        <DataGrid Grid.Row="1" Foreground="{StaticResource LightWhite}" Background="{StaticResource BackgroundGrey}"
+        <DataGrid x:Name="dg_ProjectTypes" SelectionChanged="dg_ProjectTypes_SelectionChanged"
+                  Grid.Row="1" Foreground="{StaticResource LightWhite}" Background="{StaticResource BackgroundGrey}"
                   CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False">
-            <DataGrid.Columns>
+                <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300"></DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static resource:ProjectTypeOverview.ColumnDescription}" Width="500"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static resource:ProjectTypeOverview.ColumnDescription}" Width="500"></DataGridTextColumn>
                 </DataGrid.Columns>
-        </DataGrid>
-        </ScrollViewer>
+            </DataGrid>
     </Grid>
 </Page>
