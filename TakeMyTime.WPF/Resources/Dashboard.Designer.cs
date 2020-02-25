@@ -70,6 +70,42 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Working time shared among assignments for selected project ähnelt.
+        /// </summary>
+        public static string LabelAssignmentDistribution {
+            get {
+                return ResourceManager.GetString("LabelAssignmentDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Most productive weekday distribution ähnelt.
+        /// </summary>
+        public static string LabelMostProductiveWeekdays {
+            get {
+                return ResourceManager.GetString("LabelMostProductiveWeekdays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Working time shared among all projects ähnelt.
+        /// </summary>
+        public static string LabelTotalShareOfProjects {
+            get {
+                return ResourceManager.GetString("LabelTotalShareOfProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Average working time on selected project for all log entries ähnelt.
+        /// </summary>
+        public static string LabelWorkingTimeHistory {
+            get {
+                return ResourceManager.GetString("LabelWorkingTimeHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Monday ähnelt.
         /// </summary>
         public static string Monday {

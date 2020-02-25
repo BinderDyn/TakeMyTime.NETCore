@@ -120,6 +120,18 @@
   <data name="Friday" xml:space="preserve">
     <value>Friday</value>
   </data>
+  <data name="LabelAssignmentDistribution" xml:space="preserve">
+    <value>Working time shared among assignments for selected project</value>
+  </data>
+  <data name="LabelMostProductiveWeekdays" xml:space="preserve">
+    <value>Most productive weekday distribution</value>
+  </data>
+  <data name="LabelTotalShareOfProjects" xml:space="preserve">
+    <value>Working time shared among all projects</value>
+  </data>
+  <data name="LabelWorkingTimeHistory" xml:space="preserve">
+    <value>Average working time on selected project for all log entries</value>
+  </data>
   <data name="Monday" xml:space="preserve">
     <value>Monday</value>
   </data>

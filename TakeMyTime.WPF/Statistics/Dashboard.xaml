@@ -16,19 +16,28 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <lvc:PieChart Grid.Row="1" Grid.Column="0"
+            <Label Grid.Row="1" Content="{x:Static resources:Dashboard.LabelTotalShareOfProjects}"
+                   FontFamily="Segoe UI"
+                   Foreground="{StaticResource LightWhite}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"></Label>
+            <lvc:PieChart Grid.Row="2" Grid.Column="0"
                           Margin="10"
                           LegendLocation="Right" Series="{Binding ShareOfProjects}"
                           x:Name="pc_ProjectShare"
@@ -38,18 +47,30 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
-                Content="{x:Static resources:Dashboard.ProjectFilterLabel}"></Label>
+                Content="{x:Static resources:Dashboard.ProjectFilterLabel}"
+                Foreground="{StaticResource LightWhite}"></Label>
             <ComboBox 
                 Margin="0 5 50 0"
                 Grid.Row="0" Grid.Column="1"
                 x:Name="cb_ProjectFilter"
                 Width="200"
                 HorizontalAlignment="Right"
+                Foreground="{StaticResource LightWhite}"
                 ItemsSource="{Binding ProjectViewModels}"
                 SelectionChanged="cb_ProjectFilter_SelectionChanged"
                 DisplayMemberPath="Name"
                 ></ComboBox>
-            <lvc:PieChart       Grid.Row="1" 
+            <Label x:Name="lbl_AssignmentShare"
+                   Grid.Row="1" 
+                   Grid.Column="1"
+                   Content="{x:Static resources:Dashboard.LabelAssignmentDistribution}"
+                   FontFamily="Segoe UI"
+                   FontSize="20"
+                   Foreground="{StaticResource LightWhite}"
+                   FontWeight="Bold"
+                   VerticalAlignment="Bottom"
+                   Visibility="Hidden"></Label>
+            <lvc:PieChart       Grid.Row="2" 
                                 Margin="10"
                                 Grid.Column="1" 
                                 Series="{Binding ShareOfAssignments}"
@@ -58,8 +79,18 @@
                                 Visibility="Hidden"
                                 InnerRadius="50"
                                 ></lvc:PieChart>
+            <Label x:Name="lbl_WorkingTimeHistory"
+                   Grid.Row="3" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"
+                   Visibility="Hidden"
+                   Foreground="{StaticResource LightWhite}"
+                   Content="{x:Static resources:Dashboard.LabelWorkingTimeHistory}"></Label>
             <lvc:CartesianChart
-                Grid.Row="2"
+                Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Visibility="Hidden"
@@ -77,15 +108,21 @@
             </lvc:CartesianChart>
             
         </Grid>
+        <Label Grid.Row="1"
+               Foreground="{StaticResource LightWhite}"
+               FontWeight="Bold"
+               FontSize="20"
+               VerticalAlignment="Bottom"
+               Content="{x:Static resources:Dashboard.LabelMostProductiveWeekdays}"></Label>
         <lvc:CartesianChart
-                Grid.Row="3"
+            Grid.Row="2"
             Margin="10"
             x:Name="cc_MostProductiveWeekdays">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis x:Name="weekdays_x_Axis" Labels="{Binding WeekdayLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis x:Name="weekdays_y_Axis"></lvc:Axis>
+                <lvc:Axis x:Name="weekdays_y_Axis" LabelFormatter="{Binding YAxisFormatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
