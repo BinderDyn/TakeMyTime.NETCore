@@ -15,6 +15,7 @@
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
@@ -115,9 +116,7 @@
                       Visibility="Visible"
                       SelectionMode="Single"
                       MouseDoubleClick="lv_Assignments_MouseDoubleClick"
-                      SelectionChanged="lv_Assignments_SelectionChanged"
-                      ScrollViewer.VerticalScrollBarVisibility="Visible"
-                      ScrollViewer.CanContentScroll="True">
+                      SelectionChanged="lv_Assignments_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -203,8 +202,22 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Border Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+                </Button>
+                <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                    <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+                </Button>
+            </StackPanel>
+        </Border>
         <StackPanel
-            Grid.Row="2"
+            Grid.Row="3"
             Orientation="Horizontal"
             HorizontalAlignment="Center">
             <Button     x:Name="btn_SetDone"
