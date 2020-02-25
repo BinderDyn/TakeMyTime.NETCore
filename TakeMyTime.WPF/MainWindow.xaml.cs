@@ -128,6 +128,11 @@ namespace TakeMyTime.WPF
             fr_Content.Navigate(new ProjectTypeOverview());
         }
 
+        private void btn_About_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Content.Navigate(new About.About());
+        }
+
         #endregion
 
         #endregion

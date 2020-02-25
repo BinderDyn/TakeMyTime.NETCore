@@ -230,7 +230,31 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    
+                    <Separator Foreground="{StaticResource LightWhite}"></Separator>
+                    <ListViewItem Height="60">
+                        <Button x:Name="btn_About"
+                                Height="60" 
+                                HorizontalAlignment="Left"
+                                Background="Transparent"
+                                Foreground="Transparent"
+                                BorderThickness="0"
+                                Click="btn_About_Click"
+                                >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="InfoCircle"
+                                                     VerticalAlignment="Center"
+                                                     Margin="20 10"
+                                                     Height="40"
+                                                     Width="25"
+                                                     Foreground="{StaticResource LightWhite}"
+                                                     ></materialDesign:PackIcon>
+                                <TextBlock
+                                Text="{x:Static resource:MainWindow.AboutMenuItem}"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource LightWhite}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
 

@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="About\About.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Assignments\AddAssignment.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="About\About.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Assignments\AddAssignment.xaml">
       <SubType>Designer</SubType>
     </Page>
