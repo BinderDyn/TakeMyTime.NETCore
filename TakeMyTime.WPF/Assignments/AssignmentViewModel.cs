@@ -27,6 +27,9 @@ namespace TakeMyTime.WPF.Assignments
             this.ProjectId = assignment.Project_Id.Value;
             this.Planned = assignment.DatePlanned;
             this.HasSubtasks = assignment.Subtasks.Count() > 0;
+
+            this.StatusImage = GetImageByStatus(assignment.AssignmentStatus);
+            this.StatusTooltip = GetStatusString(assignment.AssignmentStatus);
         }
 
         public int Id { get; set; }
@@ -43,7 +46,11 @@ namespace TakeMyTime.WPF.Assignments
         public string PlannedAsString { get => DateTimeCultureConverter.GetCalendarWeek(this.Planned); }
         public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
-        public Uri StatusImage { get => GetImageByStatus(this.StatusAsEnum); }
+        public Uri StatusImage { get; private set; }
+        public string StatusTooltip { get; private set; }
+
+        
+
         public bool HasSubtasks { get; private set; }
 
         private Uri GetImageByStatus(EnumDefinition.AssignmentStatus status)
@@ -55,6 +62,20 @@ namespace TakeMyTime.WPF.Assignments
                 EnumDefinition.AssignmentStatus.Default => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Aborted => new Uri("pack://application:,,,/Images/assignmentAbortedIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Postponed => new Uri("pack://application:,,,/Images/assignmentPostponedIconSmall.png"),
+                EnumDefinition.AssignmentStatus.Done => new Uri("pack://application:,,,/Images/assignmentDoneIconSmall.png"),
+                _ => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png")
+            };
+        }
+
+        private string GetStatusString(EnumDefinition.AssignmentStatus statusAsEnum)
+        {
+            return statusAsEnum switch
+            {
+                EnumDefinition.AssignmentStatus.InProgress => Resources.Shared.AssignmentActive,
+                EnumDefinition.AssignmentStatus.Future => Resources.Shared.AssignmentFuture,
+                EnumDefinition.AssignmentStatus.Default => Resources.Shared.AssignmentFuture,
+                EnumDefinition.AssignmentStatus.Aborted => Resources.Shared.AssignmentAborted,
+                EnumDefinition.AssignmentStatus.Postponed => Resources.Shared.AssignmentPostponed,
                 _ => null
             };
         }

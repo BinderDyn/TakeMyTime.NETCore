@@ -11,6 +11,11 @@
   <ItemGroup>
     <None Remove="Images\activeIconSmall.png" />
     <None Remove="Images\archiveIconSmall.png" />
+    <None Remove="Images\assignmentAbortedIconSmall.png" />
+    <None Remove="Images\assignmentActiveIconSmall.png" />
+    <None Remove="Images\assignmentDoneIconSmall.png" />
+    <None Remove="Images\assignmentFutureIconSmall.png" />
+    <None Remove="Images\assignmentPostponedIconSmall.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -216,6 +221,11 @@
   <ItemGroup>
     <Resource Include="Images\activeIconSmall.png" />
     <Resource Include="Images\archiveIconSmall.png" />
+    <Resource Include="Images\assignmentAbortedIconSmall.png" />
+    <Resource Include="Images\assignmentActiveIconSmall.png" />
+    <Resource Include="Images\assignmentDoneIconSmall.png" />
+    <Resource Include="Images\assignmentFutureIconSmall.png" />
+    <Resource Include="Images\assignmentPostponedIconSmall.png" />
   </ItemGroup>
 
 </Project>
