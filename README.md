@@ -5,11 +5,8 @@ Managing your productive time was never that easy! Display statistics, measure y
 
 ## THIRD PARTY LICENSES
 
-MATERIAL ICONS
 
-Copyright (2020) Marvin Binder
-
-Licensed under the Apache License, Version 2.0 (the "License");
+This app uses MATERIAL ICONS - Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
