@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.Models.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.BLL.Tests", "TakeMyTime.BLL.Tests\TakeMyTime.BLL.Tests.csproj", "{DC09CBDE-660F-4D4B-B844-4FD0186F51ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMyTime.Tests.Common", "TakeMyTime.Tests.Common\TakeMyTime.Tests.Common.csproj", "{D7D6ABCF-39A8-4C17-BF63-F29F11F496BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeMyTime.Tests.Common", "TakeMyTime.Tests.Common\TakeMyTime.Tests.Common.csproj", "{D7D6ABCF-39A8-4C17-BF63-F29F11F496BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
