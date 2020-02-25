@@ -32,27 +32,43 @@ namespace TakeMyTime.WPF.Assignments
         {
             InitializeComponent();
             this.PagingManager = new PagingManager<AssignmentViewModel>(15);
+            this.LoadProjectViewModels();
             this.Load();
             this.RefreshBindings(1);
         }
 
-        private void Load()
+        private void LoadProjectViewModels()
         {
-            var assignmentLogic = new AssignmentLogic();
             var projectLogic = new ProjectLogic();
-            this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
-            this.FilteredAssignmentViewModels = this.AssignmentViewModels.ToList();
-            this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
             this.ProjectViewModels = projectLogic.GetAllProjects()
                 .Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active)
                 .Select(p => new Projects.ProjectViewModel(p)).ToList();
             string projectAllSelectItemName = ResourceStringManager.GetResourceByKey("ProjectsAll");
             this.ProjectViewModels.Insert(0, new Projects.ProjectViewModel { Name = projectAllSelectItemName, Id = 0 });
+            this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
+            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.Where(p => p.Id == 0);
+        }
+
+        private void Load()
+        {
+            var assignmentLogic = new AssignmentLogic();
+            this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
+            assignmentLogic.Dispose();
+            if (this.SelectedProject != null)
+            {
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels
+                .Where(av => av.ProjectId == this.SelectedProject?.Id && av.StatusAsEnum == this.SelectedFilter)
+                .ToList();
+            }
+            else
+            {
+                this.FilteredAssignmentViewModels = this.AssignmentViewModels;
+            }
+            this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
             this.LoadFromAllProjects = true;
             this.lv_Assignments.ItemsSource = this.PagingManager.Page(this.PagingManager.CurrentPage);
-            this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
-            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.FirstOrDefault(p => p.Id == 0);
-            this.cb_StatusFilter.SelectedItem = this.cbi_All;
+            if (this.cb_ProjectSelection.SelectedItem != null) this.cb_ProjectSelection.SelectedItem = this.SelectedProject;
+            if (this.cb_StatusFilter.SelectedItem != null) this.cb_StatusFilter.SelectedItem = this.SelectedFilter;
         }
 
         #region GUI Events

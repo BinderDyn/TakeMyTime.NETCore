@@ -146,19 +146,18 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn 
+                    <!--<GridViewColumn 
                             Header="{x:Static resources:AssignmentOverview.ColumnHasDueDate}"
                             Width="90">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
                                     IsEnabled="False"
-                                    Content="{Binding Path=HasDueDate}"
-                                    >
+                                    Content="{Binding Path=HasDueDate}">
                                 </CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    </GridViewColumn>-->
                     <GridViewColumn
                         Header="{x:Static resources:AssignmentOverview.ColumnDueDate}"
                         Width="90"
