@@ -31,7 +31,9 @@ namespace TakeMyTime.WPF.Assignments
         public AssignmentOverview()
         {
             InitializeComponent();
+            this.PagingManager = new PagingManager<AssignmentViewModel>(15);
             this.Load();
+            this.RefreshBindings(1);
         }
 
         private void Load()
@@ -40,13 +42,14 @@ namespace TakeMyTime.WPF.Assignments
             var projectLogic = new ProjectLogic();
             this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
             this.FilteredAssignmentViewModels = this.AssignmentViewModels.ToList();
+            this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
             this.ProjectViewModels = projectLogic.GetAllProjects()
                 .Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active)
                 .Select(p => new Projects.ProjectViewModel(p)).ToList();
             string projectAllSelectItemName = ResourceStringManager.GetResourceByKey("ProjectsAll");
             this.ProjectViewModels.Insert(0, new Projects.ProjectViewModel { Name = projectAllSelectItemName, Id = 0 });
             this.LoadFromAllProjects = true;
-            this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
+            this.lv_Assignments.ItemsSource = this.PagingManager.Page(this.PagingManager.CurrentPage);
             this.cb_ProjectSelection.ItemsSource = this.ProjectViewModels;
             this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.FirstOrDefault(p => p.Id == 0);
             this.cb_StatusFilter.SelectedItem = this.cbi_All;
@@ -54,9 +57,14 @@ namespace TakeMyTime.WPF.Assignments
 
         #region GUI Events
 
-        private void RefreshBindings()
+        private void RefreshBindings(int page)
         {
-            this.lv_Assignments.ItemsSource = this.FilteredAssignmentViewModels;
+            this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
+            this.lv_Assignments.ItemsSource = this.PagingManager.Page(page);
+            this.btn_CurrentPage.Content = this.PagingManager.CurrentPage;
+            this.btn_allPages.Content = this.PagingManager.MaxPage;
+            this.btn_PagingForward.IsEnabled = this.PagingManager.CanPageForward;
+            this.btn_PagingBack.IsEnabled = this.PagingManager.CanPageBack;
         }
 
         private void btn_NewAssignment_Click(object sender, RoutedEventArgs e)
@@ -85,6 +93,7 @@ namespace TakeMyTime.WPF.Assignments
 
             addAssignmentWindow.ShowDialog();
             this.Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
         }
 
         private void btn_EditAssignment_Click(object sender, RoutedEventArgs e)
@@ -112,6 +121,7 @@ namespace TakeMyTime.WPF.Assignments
                     assignmentLogic.SetDone(this.SelectedAssignment.Id);
                     assignmentLogic.Dispose();
                     this.Load();
+                    this.RefreshBindings(this.PagingManager.CurrentPage);
                 }
                 catch (CannotChangeStatusException ex)
                 {
@@ -132,6 +142,7 @@ namespace TakeMyTime.WPF.Assignments
                     assignmentLogic.SetAborted(this.SelectedAssignment.Id);
                     assignmentLogic.Dispose();
                     this.Load();
+                    this.RefreshBindings(this.PagingManager.CurrentPage);
                 }
                 catch (CannotChangeStatusException ex)
                 {
@@ -169,7 +180,7 @@ namespace TakeMyTime.WPF.Assignments
             }
 
             this.btn_NewAssignment.IsEnabled = this.SelectedProject != null && this.SelectedProject.Id != 0;
-            RefreshBindings();
+            RefreshBindings(this.PagingManager.CurrentPage);
         }
 
         [Refactor]
@@ -205,7 +216,7 @@ namespace TakeMyTime.WPF.Assignments
                 }
                 this.SelectedFilter = selectedFilter;
             }
-            RefreshBindings();
+            RefreshBindings(this.PagingManager.CurrentPage);
         }
 
         private void lv_Assignments_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -241,12 +252,23 @@ namespace TakeMyTime.WPF.Assignments
                     assignmentLogic.DeleteAssignment(this.SelectedAssignment.Id);
                     assignmentLogic.Dispose();
                     this.Load();
+                    this.RefreshBindings(this.PagingManager.CurrentPage);
                 }
                 catch (Exception ex)
                 {
                     Logger.LogException(ex);
                 } 
             }
+        }
+
+        private void btn_PagingBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage - 1);
+        }
+
+        private void btn_PagingForward_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage + 1);
         }
 
         #endregion
@@ -285,10 +307,12 @@ namespace TakeMyTime.WPF.Assignments
         public Projects.ProjectViewModel SelectedProject { get; set; }
         public AssignmentViewModel SelectedAssignment { get; set; }
         public bool LoadFromAllProjects { get; set; }
+        public PagingManager<AssignmentViewModel> PagingManager { get; set; }
+
 
 
         #endregion
 
-
+        
     }
 }

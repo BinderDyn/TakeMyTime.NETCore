@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TakeMyTime.BLL.Logic;
 
 using TakeMyTime.Models.Models;
+using TakeMyTime.WPF.Utility;
 
 namespace TakeMyTime.WPF.Subtasks
 {
@@ -24,7 +25,18 @@ namespace TakeMyTime.WPF.Subtasks
         public SubtaskList(int assignment_id)
         {
             InitializeComponent();
+            this.PagingManager = new PagingManager<SubtaskGridViewModel>(6);
             Load(assignment_id);
+            this.RefreshBindings(1);
+        }
+
+        private void RefreshBindings(int page)
+        {
+            this.lv_Subtasks.ItemsSource = this.PagingManager.Page(page);
+            this.btn_CurrentPage.Content = this.PagingManager.CurrentPage;
+            this.btn_allPages.Content = this.PagingManager.MaxPage;
+            this.btn_PagingForward.IsEnabled = this.PagingManager.CanPageForward;
+            this.btn_PagingBack.IsEnabled = this.PagingManager.CanPageBack;
         }
 
         private void Load(int assignment_id)
@@ -32,7 +44,7 @@ namespace TakeMyTime.WPF.Subtasks
             var assignmentLogic = new AssignmentLogic();
             this.Assignment = assignmentLogic.GetAssignmentById(assignment_id);
             this.GridViewModels = Assignment.Subtasks.Select(s => new SubtaskGridViewModel(s)).ToList();
-            this.lv_Subtasks.ItemsSource = this.GridViewModels;
+            this.PagingManager.Data = this.GridViewModels;
             assignmentLogic.Dispose();
         }
 
@@ -65,6 +77,7 @@ namespace TakeMyTime.WPF.Subtasks
                 assignmentLogic.DeleteSubtask(this.Assignment.Id, this.SelectedSubtask.Id);
                 assignmentLogic.Dispose();
                 Load(this.Assignment.Id);
+                RefreshBindings(this.PagingManager.CurrentPage);
             }
         }
 
@@ -75,6 +88,7 @@ namespace TakeMyTime.WPF.Subtasks
                 var subtaskEditDialog = new AddSubtask(this.SelectedSubtask.Id, this.Assignment.Id);
                 subtaskEditDialog.ShowDialog();
                 Load(this.Assignment.Id);
+                RefreshBindings(this.PagingManager.CurrentPage);
             }
         }
 
@@ -83,6 +97,17 @@ namespace TakeMyTime.WPF.Subtasks
             var subtaskAddDialog = new AddSubtask(this.Assignment.Id);
             subtaskAddDialog.ShowDialog();
             Load(this.Assignment.Id);
+            RefreshBindings(this.PagingManager.CurrentPage);
+        }
+
+        private void btn_PagingBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage - 1);
+        }
+
+        private void btn_PagingForward_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage + 1);
         }
 
         private void btn_SaveSubtasks_Click(object sender, RoutedEventArgs e)
@@ -95,5 +120,8 @@ namespace TakeMyTime.WPF.Subtasks
         public Assignment Assignment { get; set; }
         public List<SubtaskGridViewModel> GridViewModels { get; set; }
         public SubtaskGridViewModel SelectedSubtask { get; set; }
+        public PagingManager<SubtaskGridViewModel> PagingManager { get; set; }
+
+        
     }
 }
