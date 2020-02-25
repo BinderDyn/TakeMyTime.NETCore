@@ -23,7 +23,18 @@ namespace TakeMyTime.WPF.Projects
         public ProjectOverview()
         {
             InitializeComponent();
+            PagingManager = new PagingManager<ProjectViewModel>();
             Load();
+            RefreshBindings(1);
+        }
+
+        private void RefreshBindings(int page)
+        {
+            this.lv_Projects.ItemsSource = PagingManager.Page(page);
+            this.btn_CurrentPage.Content = this.PagingManager.CurrentPage;
+            this.btn_allPages.Content = this.PagingManager.MaxPage;
+            this.btn_PagingForward.IsEnabled = this.PagingManager.CanPageForward;
+            this.btn_PagingBack.IsEnabled = this.PagingManager.CanPageBack;
         }
 
         private void Load()
@@ -31,8 +42,9 @@ namespace TakeMyTime.WPF.Projects
             var projectLogic = new ProjectLogic();
             var loadedProjects = projectLogic.GetAllProjects();
             var viewModels = loadedProjects.Select(lp => new ProjectViewModel(lp));
-            this.Projects = new ObservableCollection<ProjectViewModel>(viewModels);
-            lv_Projects.ItemsSource = this.Projects;
+            this.Projects = new List<ProjectViewModel>(viewModels);
+            PagingManager.Data = this.Projects.ToList();
+            lv_Projects.ItemsSource = PagingManager.Page(this.PagingManager.CurrentPage);
         }
 
         #region GUI Events
@@ -59,7 +71,7 @@ namespace TakeMyTime.WPF.Projects
                 try
                 {
                     projectLogic.DeleteProject(this.SelectedProject.Id);
-                } 
+                }
                 catch (Exception ex)
                 {
                     Logger.LogException(ex);
@@ -70,6 +82,7 @@ namespace TakeMyTime.WPF.Projects
                 projectLogic.Dispose();
                 this.lv_Projects.SelectedItem = null;
                 this.Load();
+                this.RefreshBindings(this.PagingManager.CurrentPage);
             }
         }
 
@@ -88,6 +101,7 @@ namespace TakeMyTime.WPF.Projects
 
             addProjectWindow.ShowDialog();
             this.Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
         }
 
         private void lv_Projects_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -122,14 +136,26 @@ namespace TakeMyTime.WPF.Projects
             this.Load();
         }
 
+        private void btn_PagingForward_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshBindings(this.PagingManager.CurrentPage + 1);
+        }
+
+        private void btn_PagingBack_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshBindings(this.PagingManager.CurrentPage - 1);
+        }
+
         #endregion
 
         #region Properties
 
-        public ObservableCollection<ProjectViewModel> Projects { get; set; }
+        public IList<ProjectViewModel> Projects { get; set; }
         public ProjectViewModel SelectedProject { get; set; }
+        public PagingManager<ProjectViewModel> PagingManager { get; set; }
 
         #endregion
 
+        
     }
 }

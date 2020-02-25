@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
         <Border x:Name="b_Toolbar"
                 Grid.Row="0"
@@ -151,8 +152,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Frame Grid.Row="1" NavigationUIVisibility="Hidden"
-               Visibility="Hidden" x:Name="fr_formDisplay"></Frame>
-        <!--</StackPanel>-->
+        <Border Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+                </Button>
+                <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                    <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

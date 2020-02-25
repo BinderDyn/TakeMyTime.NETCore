@@ -14,7 +14,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <StackPanel HorizontalAlignment="Right"
@@ -57,5 +58,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Border Grid.Row="2">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+            </Button>
+            <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+            </Button>
+        </StackPanel>
+        </Border>
     </Grid>
 </Page>
