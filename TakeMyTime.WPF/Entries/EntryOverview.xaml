@@ -1,0 +1,114 @@
+﻿<Page x:Class="TakeMyTime.WPF.Entries.EntryOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TakeMyTime.WPF.Entries"
+      xmlns:resources="clr-namespace:TakeMyTime.WPF.Resources"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Background="{StaticResource BackgroundGrey}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <StackPanel Margin="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <Label Foreground="{StaticResource LightWhite}"  Content="{x:Static resources:EntryOverview.FilterProjects}"></Label>
+                <ComboBox x:Name="cb_ProjectFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          ItemsSource="{Binding ProjectViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_ProjectFilter_SelectionChanged">
+                </ComboBox>
+                <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterAssignments}"></Label>
+                <ComboBox x:Name="cb_AssignmentFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          IsEnabled="False"
+                          ItemsSource="{Binding AssignmentViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_AssignmentFilter_SelectionChanged">
+                </ComboBox>
+                <Label Foreground="{StaticResource LightWhite}" Content="{x:Static resources:EntryOverview.FilterSubtasks}"></Label>
+                <ComboBox x:Name="cb_SubtaskFilter"
+                          Foreground="{StaticResource LightWhite}" 
+                          Width="150" Margin="5 0 10 0"
+                          IsEnabled="False"
+                          ItemsSource="{Binding SubtaskViewModels}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cb_SubtaskFilter_SelectionChanged">
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    >
+            <Button 
+                    Margin="5 0 5 0"
+                    x:Name="btn_EditEntry"
+                    Background="Orange"
+                    IsEnabled="False"
+                    Click="btn_EditEntry_Click">
+                <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
+            </Button>
+            <Button 
+                    Margin="5 0 5 0"
+                    x:Name="btn_DeleteEntry"
+                    Background="Red"
+                    IsEnabled="False"
+                    Click="btn_DeleteEntry_Click">
+                <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
+            </Button>
+        </StackPanel>
+        <!--<StackPanel Grid.Row="2"
+                    Orientation="Vertical">-->
+        <ListView x:Name="lv_Entries"
+                        SelectionChanged="lv_Entries_SelectionChanged"
+                        Grid.Row="2" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}" ScrollViewer.CanContentScroll="False">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnName}" DisplayMemberBinding="{Binding Path=Name}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDescription}" DisplayMemberBinding="{Binding Path=Description}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnStart}" DisplayMemberBinding="{Binding Path=StartAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnEnd}" DisplayMemberBinding="{Binding Path=EndAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnDuration}" DisplayMemberBinding="{Binding Path=DurationAsString}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnProject}" DisplayMemberBinding="{Binding Path=ProjectName}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static resources:EntryOverview.ColumnSubtask}" DisplayMemberBinding="{Binding Path=SubtaskName}">
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Border Grid.Row="3">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+                </Button>
+                <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                    <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

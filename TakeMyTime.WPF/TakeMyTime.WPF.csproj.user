@@ -1,13 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
+    <_LastSelectedProfileId>G:\Development\TakeMyTime.NETCore\TakeMyTime.WPF\Properties\PublishProfiles\Release.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="About\About.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Assignments\AddAssignment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Assignments\AssignmentOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Entries\AddEntry.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Entries\EntryOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Projects\AddProject.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Projects\ProjectOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProjectTypes\AddEditProjectType.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProjectTypes\ProjectTypeOverview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Statistics\Dashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Subtasks\AddSubtask.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Subtasks\SubtaskList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AddProject.de-DE.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="About\About.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assignments\AddAssignment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assignments\AssignmentOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Entries\AddEntry.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Entries\EntryOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Projects\AddProject.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Projects\ProjectOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectTypes\AddEditProjectType.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectTypes\ProjectTypeOverview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Statistics\Dashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Subtasks\AddSubtask.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Subtasks\SubtaskList.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

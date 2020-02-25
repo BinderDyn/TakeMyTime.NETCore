@@ -1,0 +1,76 @@
+﻿<Page x:Class="TakeMyTime.WPF.ProjectTypes.ProjectTypeOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TakeMyTime.WPF.ProjectTypes"
+      xmlns:resource="clr-namespace:TakeMyTime.WPF.Resources"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="{StaticResource BackgroundGrey}"
+      Foreground="{StaticResource LightWhite}"
+      Title="ProjectTypeOverview">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button x:Name="btn_AddProjectType"
+                        Click="btn_AddProjectType_Click"
+                        Margin="5"
+                        Background="Green"
+                        ToolTip="{x:Static resource:ProjectTypeOverview.TooltipAddButton}">
+                    <materialDesign:PackIcon Kind="Plus"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_EditProjectType"
+                        Click="btn_EditProjectType_Click"
+                        IsEnabled="False"
+                        Margin="5"
+                        Background="Orange"
+                        ToolTip="{x:Static resource:ProjectTypeOverview.TooltipEditButton}">
+                    <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_DeleteProjectType"
+                        Click="btn_DeleteProjectType_Click"
+                        IsEnabled="False"
+                        Margin="5"
+                        Background="Red"
+                        ToolTip="{x:Static resource:ProjectTypeOverview.TooltipDeleteButton}">
+                    <materialDesign:PackIcon Kind="Trash"></materialDesign:PackIcon>
+                </Button>
+            </StackPanel>
+        </Border>
+        <ListView x:Name="dg_ProjectTypes" SelectionChanged="dg_ProjectTypes_SelectionChanged"
+                  Grid.Row="1"
+                  Background="{StaticResource BackgroundGrey}"
+                  Foreground="{StaticResource LightWhite}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                        <GridViewColumn Header="{x:Static resource:ProjectTypeOverview.ColumnName}" Width="300" DisplayMemberBinding="{Binding Path=Description}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Border Grid.Row="2">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+            </Button>
+            <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+            </Button>
+        </StackPanel>
+        </Border>
+    </Grid>
+</Page>
