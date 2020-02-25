@@ -12,12 +12,13 @@
         WindowStyle="None"
         Title="{x:Static resources:SubtaskList.Title}"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="600" Width="800">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <Border x:Name="b_Toolbar"
@@ -151,7 +152,21 @@
                     </ListView>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2"
+        <Border Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+                </Button>
+                <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                    <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+                </Button>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Width="300"

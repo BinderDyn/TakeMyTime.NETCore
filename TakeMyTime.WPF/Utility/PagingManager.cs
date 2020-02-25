@@ -35,7 +35,16 @@ namespace TakeMyTime.WPF.Utility
         public IList<T> Data { get; set; }
         public int PageSize { get; private set; }
         public int CurrentPage { get; private set; }
-        public int MaxPage { get => this.GetAllPages(); }
+        public int MaxPage 
+        { 
+            get
+            {
+                int result = 1;
+                var maxPage = this.GetAllPages();
+                if (maxPage <= 0) return result;
+                else return maxPage;
+            } 
+        }
         public bool CanPageBack { get => this.CurrentPage > 1; }
         public bool CanPageForward { get => this.CurrentPage < MaxPage; }
     }
