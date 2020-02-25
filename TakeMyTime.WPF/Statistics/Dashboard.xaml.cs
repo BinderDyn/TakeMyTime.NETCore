@@ -95,6 +95,7 @@ namespace TakeMyTime.WPF.Statistics
 
             this.pc_AssignmentShare.Series = this.ShareOfAssignments;
             this.pc_AssignmentShare.Visibility = Visibility.Visible;
+            this.lbl_AssignmentShare.Visibility = Visibility.Visible;
         }
 
         public void LoadProductiveDays(int project_id)
@@ -112,6 +113,7 @@ namespace TakeMyTime.WPF.Statistics
             this.cc_Productivity.Series = this.ProductiveDays;
             this.dateAxis.LabelFormatter = Formatter;
             this.cc_Productivity.Visibility = Visibility.Visible;
+            this.lbl_WorkingTimeHistory.Visibility = Visibility.Visible;
             DataContext = this;
         }
 
@@ -121,14 +123,15 @@ namespace TakeMyTime.WPF.Statistics
             this.MostProductiveWeekDaysViewModels = this.statisticsLogic.GetMostProductiveWeekDays();
             var series = new ColumnSeries
             {
-                Values = this.MostProductiveWeekDaysViewModels.Select(vm => Math.Round(vm.Value, 2)).AsChartValues()
+                Values = this.MostProductiveWeekDaysViewModels.Select(vm => Math.Round(vm.Value, 2)).AsChartValues(),
             };
             series.Fill = Brushes.Orange;
             this.MostProductiveWeekdays.Add(series);
             this.cc_MostProductiveWeekdays.Series = this.MostProductiveWeekdays;
-
             this.WeekdayLabels = ResolveWeekdayNames(this.MostProductiveWeekDaysViewModels);
             this.weekdays_x_Axis.Labels = this.WeekdayLabels;
+            this.YAxisFormatter = val => string.Format("{0:0.#}%", val * 100);
+            this.weekdays_y_Axis.LabelFormatter = this.YAxisFormatter;
             DataContext = this;
         }
 
@@ -156,6 +159,7 @@ namespace TakeMyTime.WPF.Statistics
         public Dictionary<string, double> ProjectShares { get; set; }
         public IEnumerable<ProductivityViewModel> ProductiveEntryDays { get; set; }
         public Func<double, string> Formatter { get; set; }
+        public Func<double, string> YAxisFormatter { get; set; }
         public IEnumerable<MostProductiveWeekDaysViewModel> MostProductiveWeekDaysViewModels  { get; set; }
         public string[] WeekdayLabels { get; set; }
 

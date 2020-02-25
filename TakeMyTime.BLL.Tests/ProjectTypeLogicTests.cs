@@ -50,10 +50,10 @@ namespace TakeMyTime.BLL.Tests
 
             // ACT
             var projectTypes = projectTypeLogic.GetProjectTypes();
-            projectTypeLogic.Dispose();
 
             // ASSERT
             Assert.IsTrue(projectTypes.Count() == 3);
+            projectTypeLogic.Dispose();
         }
 
         [TestMethod]
