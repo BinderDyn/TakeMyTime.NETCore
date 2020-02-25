@@ -61,6 +61,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About this app ähnelt.
+        /// </summary>
+        public static string AboutMenuItem {
+            get {
+                return ResourceManager.GetString("AboutMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Assignments ähnelt.
         /// </summary>
         public static string AssignmentMenuItem {
