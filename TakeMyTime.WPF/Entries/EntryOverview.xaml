@@ -13,7 +13,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <StackPanel Margin="3"
@@ -73,7 +74,7 @@
                     Orientation="Vertical">-->
         <ListView x:Name="lv_Entries"
                         SelectionChanged="lv_Entries_SelectionChanged"
-                        Grid.Row="2" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}">
+                        Grid.Row="2" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}" ScrollViewer.CanContentScroll="False">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -95,6 +96,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <!--</StackPanel>-->
+        <Border Grid.Row="3">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_CurrentPage" IsEnabled="False" Background="Black" Foreground="White">
+                </Button>
+                <Button x:Name="btn_PagingForward" Background="Black" Click="btn_PagingForward_Click">
+                    <materialDesign:PackIcon Kind="ArrowRight"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_allPages" Background="Black" IsEnabled="False">
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

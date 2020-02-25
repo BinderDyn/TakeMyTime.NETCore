@@ -19,7 +19,9 @@ namespace TakeMyTime.WPF.Entries
         public EntryOverview()
         {
             InitializeComponent();
+            this.PagingManager = new PagingManager<EntryViewModel>(19);
             Load();
+            this.RefreshBindings(1);
             this.cb_ProjectFilter.SelectedItem = this.ProjectViewModels.Single(p => p.Id == 0);
         }
 
@@ -33,7 +35,16 @@ namespace TakeMyTime.WPF.Entries
         private void RefreshEntries()
         {
             this.LoadEntriesWhereFiltersHit();
-            this.lv_Entries.ItemsSource = this.FilteredViewModels;
+            this.PagingManager.Data = this.FilteredViewModels;
+        }
+
+        private void RefreshBindings(int page)
+        {
+            this.lv_Entries.ItemsSource = this.PagingManager.Page(page);
+            this.btn_CurrentPage.Content = this.PagingManager.CurrentPage;
+            this.btn_allPages.Content = this.PagingManager.MaxPage;
+            this.btn_PagingForward.IsEnabled = this.PagingManager.CanPageForward;
+            this.btn_PagingBack.IsEnabled = this.PagingManager.CanPageBack;
         }
 
         #region GUI Events
@@ -54,6 +65,7 @@ namespace TakeMyTime.WPF.Entries
                 this.LoadAssignmentsForProject(this.SelectedProject.Id);
                 this.cb_AssignmentFilter.ItemsSource = this.AssignmentViewModels;
                 this.RefreshEntries();
+                this.RefreshBindings(this.PagingManager.CurrentPage);
             }
             else
             {
@@ -75,6 +87,7 @@ namespace TakeMyTime.WPF.Entries
                 this.LoadSubtasksForAssignment(this.SelectedAssignment.Id);
                 this.cb_SubtaskFilter.ItemsSource = this.SubtaskViewModels;
                 this.RefreshEntries();
+                this.RefreshBindings(this.PagingManager.CurrentPage);
             }
             else
             {
@@ -88,6 +101,7 @@ namespace TakeMyTime.WPF.Entries
             {
                 this.SelectedSubtask = e.AddedItems[0] as SubtaskComboBoxViewModel;
                 this.RefreshEntries();
+                this.RefreshBindings(this.PagingManager.CurrentPage);
             }
             else
             {
@@ -100,6 +114,7 @@ namespace TakeMyTime.WPF.Entries
             var editEntry = new AddEntry(this.SelectedEntry.Id);
             editEntry.ShowDialog();
             this.Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
         }
 
         private void btn_DeleteEntry_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -112,6 +127,17 @@ namespace TakeMyTime.WPF.Entries
                 entryLogic.Dispose();
             }
             Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
+        }
+
+        private void btn_PagingBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage - 1);
+        }
+
+        private void btn_PagingForward_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshBindings(this.PagingManager.CurrentPage + 1);
         }
 
         #endregion
@@ -217,6 +243,7 @@ namespace TakeMyTime.WPF.Entries
         public AssignmentViewModel SelectedAssignment { get; set; }
         public SubtaskComboBoxViewModel SelectedSubtask { get; set; }
         public EntryViewModel SelectedEntry { get; set; }
+        public PagingManager<EntryViewModel> PagingManager { get; set; }
 
         #endregion
     }
