@@ -30,11 +30,19 @@ namespace TakeMyTime.WPF.Assignments
     {
         public AssignmentOverview()
         {
+            const int DEFAULT_PAGE_SIZE = 15;
             InitializeComponent();
-            this.PagingManager = new PagingManager<AssignmentViewModel>(15);
+            this.PagingManager = new PagingManager<AssignmentViewModel>(DEFAULT_PAGE_SIZE);
             this.LoadProjectViewModels();
             this.Load();
             this.RefreshBindings(1);
+            this.SetDefaultFilters();
+        }
+
+        private void SetDefaultFilters()
+        {
+            this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.Single(pvm => pvm.Id == 0);
+            this.cb_StatusFilter.SelectedItem = cbi_Future;
         }
 
         private void LoadProjectViewModels()
@@ -53,17 +61,8 @@ namespace TakeMyTime.WPF.Assignments
         {
             var assignmentLogic = new AssignmentLogic();
             this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
+            this.FilteredAssignmentViewModels = PipeThroughFilter(this.AssignmentViewModels);
             assignmentLogic.Dispose();
-            if (this.SelectedProject != null)
-            {
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels
-                .Where(av => av.ProjectId == this.SelectedProject?.Id && av.StatusAsEnum == this.SelectedFilter)
-                .ToList();
-            }
-            else
-            {
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels;
-            }
             this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
             this.LoadFromAllProjects = true;
             this.lv_Assignments.ItemsSource = this.PagingManager.Page(this.PagingManager.CurrentPage);
@@ -75,12 +74,29 @@ namespace TakeMyTime.WPF.Assignments
 
         private void RefreshBindings(int page)
         {
-            this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
+            this.PagingManager.Data = PipeThroughFilter(this.AssignmentViewModels).ToList();
             this.lv_Assignments.ItemsSource = this.PagingManager.Page(page);
             this.btn_CurrentPage.Content = this.PagingManager.CurrentPage;
             this.btn_allPages.Content = this.PagingManager.MaxPage;
             this.btn_PagingForward.IsEnabled = this.PagingManager.CanPageForward;
             this.btn_PagingBack.IsEnabled = this.PagingManager.CanPageBack;
+        }
+
+        private IEnumerable<AssignmentViewModel> PipeThroughFilter(IEnumerable<AssignmentViewModel> viewModels)
+        {
+            return viewModels.Where(GetFilterCondition()).ToList();
+        }
+
+        private Func<AssignmentViewModel, bool> GetFilterCondition()
+        {
+            Func<AssignmentViewModel, bool> filterByProject = fav => fav.ProjectId == this.SelectedProject.Id;
+            Func<AssignmentViewModel, bool> filterByStatus = fav => this.SelectedFilter.HasFlag(fav.StatusAsEnum);
+            Func<AssignmentViewModel, bool> finalCondition = fav => filterByStatus(fav); ;
+            if (this.SelectedProject != null && this.SelectedProject.Id > 0)
+            {
+                finalCondition = fav => filterByProject(fav) && filterByStatus(fav);
+            }
+            return finalCondition;
         }
 
         private void btn_NewAssignment_Click(object sender, RoutedEventArgs e)
@@ -92,7 +108,10 @@ namespace TakeMyTime.WPF.Assignments
         {
             AddAssignment addAssignmentWindow = null;
             var projectLogic = new ProjectLogic();
-            var project = projectLogic.GetProjectById(this.SelectedProject.Id);
+            int? projectId = null;
+            if (this.SelectedProject != null) projectId = this.SelectedProject.Id;
+            if (this.SelectedAssignment != null) projectId = this.SelectedAssignment.ProjectId;
+            var project = projectLogic.GetProjectById(projectId.Value);
             projectLogic.Dispose();
 
             if (editMode)
@@ -168,68 +187,26 @@ namespace TakeMyTime.WPF.Assignments
             }
         }
 
-        [Refactor]
         private void cb_ProjectSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
             {
                 this.SelectedProject = e.AddedItems[0] as Projects.ProjectViewModel;
-                if (this.SelectedProject.Id != 0 && this.SelectedFilter != EnumDefinition.AssignmentStatus.Default)
-                {
-                    this.FilteredAssignmentViewModels = this.FilteredAssignmentViewModels
-                        .Where(avm => avm.ProjectId == SelectedProject.Id && avm.StatusAsEnum == this.SelectedFilter);
-                    this.LoadFromAllProjects = false;
-                }
-                else if (this.SelectedProject.Id == 0 && this.SelectedFilter != EnumDefinition.AssignmentStatus.Default)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.StatusAsEnum == this.SelectedFilter); ;
-                    this.LoadFromAllProjects = true;
-                }
-                else if (this.SelectedProject.Id != 0 && this.SelectedFilter == EnumDefinition.AssignmentStatus.Default)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels.Where(avm => avm.ProjectId == this.SelectedProject.Id);
-                }
-                else if (this.SelectedProject.Id == 0 && this.SelectedFilter == EnumDefinition.AssignmentStatus.Default)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels;
-                }
             }
 
             this.btn_NewAssignment.IsEnabled = this.SelectedProject != null && this.SelectedProject.Id != 0;
             RefreshBindings(this.PagingManager.CurrentPage);
         }
 
-        [Refactor]
         private void cb_StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0 || this.SelectedProject == null)
             {
-                this.FilteredAssignmentViewModels = this.AssignmentViewModels;
-                return;
+                this.SelectedFilter = EnumDefinition.AssignmentStatus.All;
             }
             else
             {
-                var selectedFilter = GetStatusByItemName(((e.AddedItems[0] as ComboBoxItem).Name));
-                if (selectedFilter != EnumDefinition.AssignmentStatus.Default && SelectedProject.Id != 0)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
-                                        .Where(avm => avm.StatusAsEnum == selectedFilter &&
-                                    avm.ProjectId == SelectedProject.Id);
-                }
-                else if (selectedFilter == EnumDefinition.AssignmentStatus.Default && !this.LoadFromAllProjects)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
-                                        .Where(avm => avm.ProjectId == SelectedProject.Id);
-                }
-                else if (selectedFilter == EnumDefinition.AssignmentStatus.Default && this.LoadFromAllProjects)
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels;
-                }
-                else
-                {
-                    this.FilteredAssignmentViewModels = this.AssignmentViewModels
-                        .Where(avm => avm.StatusAsEnum == selectedFilter);
-                }
+                var selectedFilter = GetStatusByItemName((e.AddedItems[0] as ComboBoxItem).Name);
                 this.SelectedFilter = selectedFilter;
             }
             RefreshBindings(this.PagingManager.CurrentPage);
@@ -273,7 +250,7 @@ namespace TakeMyTime.WPF.Assignments
                 catch (Exception ex)
                 {
                     Logger.LogException(ex);
-                } 
+                }
             }
         }
 
@@ -291,44 +268,44 @@ namespace TakeMyTime.WPF.Assignments
 
         #region Utility
 
-        private EnumDefinition.AssignmentStatus GetStatusByItemName(string itemName)
+        private EnumDefinition.AssignmentStatus GetStatusByItemName(string item)
         {
-            return itemName switch
+            return item switch
             {
-                "cbi_All" => EnumDefinition.AssignmentStatus.Default,
+                "cbi_All" => EnumDefinition.AssignmentStatus.All,
                 "cbi_Active" => EnumDefinition.AssignmentStatus.InProgress,
                 "cbi_Future" => EnumDefinition.AssignmentStatus.Future,
                 "cbi_Done" => EnumDefinition.AssignmentStatus.Done,
                 "cbi_Aborted" => EnumDefinition.AssignmentStatus.Aborted,
                 "cbi_Postponed" => EnumDefinition.AssignmentStatus.Postponed,
-                _ => EnumDefinition.AssignmentStatus.Default
+                _ => EnumDefinition.AssignmentStatus.None
             };
         }
 
-        private void ShowErrorOnStatusChangeDialog()
-        {
-            string title = ResourceStringManager.GetResourceByKey("CannotSetDoneOrAbortedErrorTitle");
-            string message = ResourceStringManager.GetResourceByKey("CannotSetDoneErrorMessage");
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
-        #endregion
-
-        #region Properties
-
-        public List<Projects.ProjectViewModel> ProjectViewModels { get; set; }
-        public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
-        public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
-        public EnumDefinition.AssignmentStatus SelectedFilter { get; set; }
-        public Projects.ProjectViewModel SelectedProject { get; set; }
-        public AssignmentViewModel SelectedAssignment { get; set; }
-        public bool LoadFromAllProjects { get; set; }
-        public PagingManager<AssignmentViewModel> PagingManager { get; set; }
-
-
-
-        #endregion
-
-        
+    private void ShowErrorOnStatusChangeDialog()
+    {
+        string title = ResourceStringManager.GetResourceByKey("CannotSetDoneOrAbortedErrorTitle");
+        string message = ResourceStringManager.GetResourceByKey("CannotSetDoneErrorMessage");
+        MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
     }
+
+    #endregion
+
+    #region Properties
+
+    public List<Projects.ProjectViewModel> ProjectViewModels { get; set; }
+    public IEnumerable<AssignmentViewModel> AssignmentViewModels { get; set; }
+    public IEnumerable<AssignmentViewModel> FilteredAssignmentViewModels { get; set; }
+    public EnumDefinition.AssignmentStatus SelectedFilter { get; set; }
+    public Projects.ProjectViewModel SelectedProject { get; set; }
+    public AssignmentViewModel SelectedAssignment { get; set; }
+    public bool LoadFromAllProjects { get; set; }
+    public PagingManager<AssignmentViewModel> PagingManager { get; set; }
+
+
+
+    #endregion
+
+
+}
 }
