@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,19 +42,45 @@ namespace TakeMyTime.BLL.Logic
             unitOfWork.Complete();
         }
 
-        public void AddEntry(int subtask_id, Entry.ICreateParam param)
+        public Entry AddEntry(int subtask_id, Entry.ICreateParam param, bool finishesSubtask = false)
         {
             var entry = Entry.Create(param);
             entry.Subtask_Id = subtask_id;
             var subtask = unitOfWork.Subtasks.GetSubtaskFullyLoaded(subtask_id);
-            subtask.Entries.Add(entry);
+            if (subtask != null)
+            {
+                subtask.Entries.Add(entry);
+                if (finishesSubtask)
+                {
+                    subtask.SetStatus(EnumDefinition.SubtaskStatus.Done);
+                }
+            }
+            else
+            {
+                unitOfWork.Entries.Add(entry);
+            }
             unitOfWork.Complete();
+            return entry;
         }
 
         public void Delete(int subtask_id)
         {
             var subtask = unitOfWork.Subtasks.Get(subtask_id);
             unitOfWork.Subtasks.Remove(subtask);
+            unitOfWork.Complete();
+        }
+
+        public void SetSubtaskTickedOff(int subtask_id)
+        {
+            var subtask = unitOfWork.Subtasks.Get(subtask_id);
+            subtask.SetStatus(EnumDefinition.SubtaskStatus.Done);
+            unitOfWork.Complete();
+        }
+
+        public void SetSubtaskAborted(int subtask_id)
+        {
+            var subtask = unitOfWork.Subtasks.Get(subtask_id);
+            subtask.SetStatus(EnumDefinition.SubtaskStatus.Aborted);
             unitOfWork.Complete();
         }
 

@@ -126,6 +126,9 @@
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="EntryFinishesSubtask" xml:space="preserve">
+    <value>Logeintrag schließt Unteraufgabe ab</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>

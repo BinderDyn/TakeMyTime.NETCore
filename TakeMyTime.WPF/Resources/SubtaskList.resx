@@ -129,10 +129,19 @@
   <data name="ColumnPriority" xml:space="preserve">
     <value>Priority</value>
   </data>
+  <data name="ColumnStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="Return" xml:space="preserve">
     <value>Back to assignment overview</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Subtasks</value>
+  </data>
+  <data name="TooltipButtonAbort" xml:space="preserve">
+    <value>Abort subtask</value>
+  </data>
+  <data name="TooltipButtonTick" xml:space="preserve">
+    <value>Tick off subtask</value>
   </data>
 </root>

@@ -18,6 +18,8 @@ namespace TakeMyTime.DAL
         {
             // var connectionString = ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"];
             optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"].ConnectionString);
+            // optionsBuilder.UseSqlite("Data Source=TakeMyTimeDebug.db;");
+
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
@@ -60,7 +62,7 @@ namespace TakeMyTime.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["TakeMyTimeDebug"].ConnectionString);
+            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["TakeMyTime"].ConnectionString);
         }
 #endif
 

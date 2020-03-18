@@ -17,7 +17,8 @@ namespace TakeMyTime.Models.Models
             DateTime? started,
             DateTime? ended,
             Subtask subtask = null,
-            Project project = null)
+            Project project = null,
+            int? assignment_Id = null)
         {
             this.Name = name;
             this.Comment = comment;
@@ -27,7 +28,7 @@ namespace TakeMyTime.Models.Models
             this.Project = project;
             this.Project_Id = project?.Id ?? null;
             this.Subtask = subtask;
-            CalculateDuration();
+            this.Assignment_Id = assignment_Id;
             this.SetCreated();
         }
 
@@ -42,7 +43,6 @@ namespace TakeMyTime.Models.Models
             this.Date = date;
             this.Started = started;
             this.Ended = ended;
-            CalculateDuration();
         }
 
         public interface IUpdateParam
@@ -61,21 +61,22 @@ namespace TakeMyTime.Models.Models
             DateTime? Ended { get; set; }
         }
 
-        private void CalculateDuration()
-        {
-            bool canCalculateDuration = this.Started.HasValue && this.Ended.HasValue;
-            if (canCalculateDuration)
-            {
-                TimeSpan duration = this.Ended.Value - this.Started.Value;
-                this.DurationAsTicks = duration.Ticks;
-            }
-        }
+        //private void CalculateDuration()
+        //{
+        //    bool canCalculateDuration = this.Started.HasValue && this.Ended.HasValue;
+        //    if (canCalculateDuration)
+        //    {
+        //        TimeSpan duration = this.Ended.Value - this.Started.Value;
+        //        this.DurationAsTicks = duration.Ticks;
+        //    }
+        //}
 
         [ForeignKey("Project")]
         public int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
         public int? Subtask_Id { get; set; }
         public virtual Subtask Subtask { get; set; }
+        public int? Assignment_Id { get; set; }
         public DateTime Date { get; set; }
         public DateTime? Started { get; set; }
         public DateTime? Ended { get; set; }

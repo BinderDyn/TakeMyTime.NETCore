@@ -93,8 +93,35 @@
                                 <materialDesign:PackIcon Kind="Trash"
                                          Height="25"
                                          Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
-                            </Button> 
-                        </StackPanel>
+                            </Button>
+                            <Button
+                                x:Name="btn_TickSubtask"
+                                Width="60"
+                                Margin="40 0 10 0"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Background="Green"
+                                IsEnabled="False"
+                                ToolTip="{x:Static resources:SubtaskList.TooltipButtonTick}"
+                                Click="btn_TickSubtask_Click"
+                                >
+                        <materialDesign:PackIcon Kind="Tick"
+                                         Height="25"
+                                         Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
+                    </Button>
+                    <Button     x:Name="btn_AbortSubtask"
+                                Width="60"
+                                Margin="10 0 10 0"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Background="{StaticResource Warning}"
+                                IsEnabled="False"
+                                ToolTip="{x:Static resources:SubtaskList.TooltipButtonAbort}"
+                                Click="btn_AbortSubtask_Click"
+                                >
+                        <materialDesign:PackIcon Kind="Clear"
+                                         Height="25"
+                                         Foreground="{StaticResource LightWhite}"></materialDesign:PackIcon>
+                    </Button>
+                </StackPanel>
                     </Border>
                     
             <!--ListView for Subtasks-->
@@ -146,6 +173,18 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
+                                <GridViewColumn
+                                    Header="{x:Static resources:SubtaskList.ColumnStatus}"
+                                    Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image 
+                                                    Source="{Binding Path=StatusAsImage}"
+                                                    Height="15"
+                                                    Width="15"></Image>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
