@@ -59,7 +59,7 @@ namespace TakeMyTime.WPF.Assignments
             {
                 EnumDefinition.AssignmentStatus.InProgress => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Future => new Uri("pack://application:,,,/Images/assignmentFutureIconSmall.png"),
-                EnumDefinition.AssignmentStatus.Default => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
+                EnumDefinition.AssignmentStatus.None => new Uri("pack://application:,,,/Images/assignmentActiveIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Aborted => new Uri("pack://application:,,,/Images/assignmentAbortedIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Postponed => new Uri("pack://application:,,,/Images/assignmentPostponedIconSmall.png"),
                 EnumDefinition.AssignmentStatus.Done => new Uri("pack://application:,,,/Images/assignmentDoneIconSmall.png"),
@@ -73,7 +73,7 @@ namespace TakeMyTime.WPF.Assignments
             {
                 EnumDefinition.AssignmentStatus.InProgress => Resources.Shared.AssignmentActive,
                 EnumDefinition.AssignmentStatus.Future => Resources.Shared.AssignmentFuture,
-                EnumDefinition.AssignmentStatus.Default => Resources.Shared.AssignmentFuture,
+                EnumDefinition.AssignmentStatus.None => Resources.Shared.AssignmentFuture,
                 EnumDefinition.AssignmentStatus.Aborted => Resources.Shared.AssignmentAborted,
                 EnumDefinition.AssignmentStatus.Postponed => Resources.Shared.AssignmentPostponed,
                 _ => null

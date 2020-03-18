@@ -15,20 +15,23 @@ namespace Common.Enums
         /// <summary>
         /// Status of assignments
         /// </summary>
+        [Flags]
         public enum AssignmentStatus
         {
-            [Description("All")]
-            Default = ~0,
-            [Description("Active")]
-            InProgress = 0,
+            [Description("None")]
+            None = 0,
             [Description("Future")]
             Future = 1,
+            [Description("Active")]
+            InProgress = 2,
             [Description("Done")]
-            Done = 2,
+            Done = 4,
             [Description("Aborted")]
-            Aborted = 3,
+            Aborted = 8,
             [Description("Postponed")]
-            Postponed = 4,
+            Postponed = 16,
+            [Description("All")]
+            All = ~0
         }
 
         public enum TimekeeperStatus

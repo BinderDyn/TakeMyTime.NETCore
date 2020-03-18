@@ -27,12 +27,12 @@ namespace TakeMyTime.BLL.Logic
             }
         }
 
-        public Dictionary<string, double> GetAssignmentSharesOfProject(int project_id)
+        public IEnumerable<Tuple<int, string, double>> GetAssignmentSharesOfProject(int project_id)
         {
             return this.unitOfWork.Statistics.GetAssignmentSharesOfProject(project_id);
         }
 
-        public Dictionary<string, double> GetProjectShares()
+        public IEnumerable<Tuple<int, string, double>> GetProjectShares()
         {
             return this.unitOfWork.Statistics.GetProjectTotalShares();
         }

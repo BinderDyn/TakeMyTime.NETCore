@@ -36,6 +36,7 @@ namespace TakeMyTime.Models.Models
             this.Project_Id = project.Id;
             this.DurationPlannedAsTicks = durationPlannedAsTicks;
             this.Subtasks = new HashSet<Subtask>();
+            this.AssignmentStatus = AssignmentStatus.Future;
             this.SetCreated();
         }
 
