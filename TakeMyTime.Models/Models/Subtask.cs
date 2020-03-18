@@ -38,9 +38,10 @@ namespace TakeMyTime.Models.Models
 
         private bool CanSetStatus(SubtaskStatus status)
         {
-            if (this.Status == status) return false;
-            if (this.Status == SubtaskStatus.Aborted) return false;
-            else return true;
+            bool canSet = true;
+            if (this.Status == status) canSet = false;
+            if (this.Status == SubtaskStatus.Aborted) canSet = false;
+            return canSet;
         }
 
         private void Init(ICreateParam param)

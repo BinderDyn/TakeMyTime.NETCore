@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace TakeMyTime.WPF.Entries
         private readonly int? entry_id;
         private DateTime? started = null;
         private DateTime? stopped = null;
-        private bool alreadyStarted = false;
         private DispatcherTimer timer;
 
         public AddEntry(int projectId, int assignmentId)
@@ -44,11 +44,13 @@ namespace TakeMyTime.WPF.Entries
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
             this.Load();
             this.cb_Subtask.SelectedItem = this.SubtaskViewModels.FirstOrDefault(s => s.Id > 0);
+            if (this.SubtaskViewModels.Count() == 0) this.chebo_FinishesSubtask.IsEnabled = false;
         }
 
         public AddEntry(int entry_id)
         {
             InitializeComponent();
+            this.chebo_FinishesSubtask.IsEnabled = false;
             var entryLogic = new EntryLogic();
             var entry = entryLogic.GetEntryById(entry_id);
             this.tb_Description.Text = entry.Comment;
@@ -79,6 +81,7 @@ namespace TakeMyTime.WPF.Entries
             {
                 if (!this.entry_id.HasValue)
                 {
+                    this.stopped = DateTime.Now;
                     this.CreateEntry();
                 }
                 else
@@ -98,6 +101,7 @@ namespace TakeMyTime.WPF.Entries
             if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
             {
                 this.SelectedSubtask = e.AddedItems[0] as SubtaskComboBoxViewModel;
+                this.tb_Name.Text = this.SelectedSubtask.Name;
             }
         }
 
@@ -114,7 +118,7 @@ namespace TakeMyTime.WPF.Entries
         public void Load()
         {
             var subtaskLogic = new SubtaskLogic();
-            var subtasks = subtaskLogic.GetByAssignmentId(assignment_id);
+            var subtasks = subtaskLogic.GetByAssignmentId(assignment_id).Where(s => s.Status == EnumDefinition.SubtaskStatus.NotYetDone);
             this.SubtaskViewModels = subtasks
                 .Select(s => new SubtaskComboBoxViewModel(s))
                 .ToList();
@@ -153,7 +157,7 @@ namespace TakeMyTime.WPF.Entries
                 Started = this.started
             };
 
-            subtaskLogic.AddEntry(this.SelectedSubtask.Id, entryCreateViewModel);
+            subtaskLogic.AddEntry(this.SelectedSubtask.Id, entryCreateViewModel, this.chebo_FinishesSubtask.IsChecked.Value);
             subtaskLogic.Dispose();
 
             this.Close();
@@ -172,7 +176,6 @@ namespace TakeMyTime.WPF.Entries
             }
             else
             {
-                this.stopped = DateTime.Now;
                 timer.Tick -= Timer_Elapsed;
                 timer.Stop();
                 timer.IsEnabled = false;

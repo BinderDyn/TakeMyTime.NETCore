@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20200105144426_initial.Designer.cs" />
     <Compile Remove="Migrations\20200115124254_subtasks.cs" />
     <Compile Remove="Migrations\20200115124254_subtasks.Designer.cs" />
+    <Compile Remove="Migrations\20200318201416_assignment_id.cs" />
+    <Compile Remove="Migrations\20200318201416_assignment_id.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
