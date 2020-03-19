@@ -105,6 +105,11 @@ namespace TakeMyTime.BLL.Tests
                 }),
             };
 
+            foreach (var entry in entries)
+            {
+                entry.CalculateDuration();
+            }
+
             this.uow.Entries.AddRange(entries);
             this.uow.Complete();
         }

@@ -61,15 +61,15 @@ namespace TakeMyTime.Models.Models
             DateTime? Ended { get; set; }
         }
 
-        //private void CalculateDuration()
-        //{
-        //    bool canCalculateDuration = this.Started.HasValue && this.Ended.HasValue;
-        //    if (canCalculateDuration)
-        //    {
-        //        TimeSpan duration = this.Ended.Value - this.Started.Value;
-        //        this.DurationAsTicks = duration.Ticks;
-        //    }
-        //}
+        public void CalculateDuration()
+        {
+            bool canCalculateDuration = this.Started.HasValue && this.Ended.HasValue;
+            if (canCalculateDuration)
+            {
+                TimeSpan duration = this.Ended.Value - this.Started.Value;
+                this.DurationAsTicks = duration.Ticks;
+            }
+        }
 
         [ForeignKey("Project")]
         public int? Project_Id { get; set; }

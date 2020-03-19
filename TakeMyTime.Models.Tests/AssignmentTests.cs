@@ -32,7 +32,7 @@ namespace TakeMyTime.Models.Tests
             var assignment = Assignment.Create(createParam);
 
             // ASSERT
-            Assert.AreEqual(AssignmentStatus.InProgress, assignment.AssignmentStatus);
+            Assert.AreEqual(AssignmentStatus.Future, assignment.AssignmentStatus);
         }
 
         [TestMethod]

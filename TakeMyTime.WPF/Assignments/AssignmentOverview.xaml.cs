@@ -138,10 +138,39 @@ namespace TakeMyTime.WPF.Assignments
 
         private void lv_Assignments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (this.SelectedAssignment != null && this.SelectedAssignment.HasSubtasks)
+            if (this.SelectedAssignment != null)
             {
+                CheckForSubtasksForAssignmentAndCreateIfNecessary(this.SelectedAssignment.Id);
                 var addEntryDialog = new AddEntry(this.SelectedAssignment.ProjectId, this.SelectedAssignment.Id);
                 addEntryDialog.ShowDialog();
+            }
+        }
+
+        private void CheckForSubtasksForAssignmentAndCreateIfNecessary(int assignment_id) 
+        {
+            try
+            {
+                var subtaskLogic = new SubtaskLogic();
+                var existingSubtasks = subtaskLogic.GetByAssignmentId(assignment_id);
+                if (existingSubtasks == null || existingSubtasks.Count() == 0)
+                {
+                    var assignmentLogic = new AssignmentLogic();
+                    var assignment = assignmentLogic.GetAssignmentById(assignment_id);
+                    var defaultSubtask = new SubtaskCreateViewModel
+                    {
+                        Name = assignment.Name,
+                        Description = assignment.Description,
+                        Priority = EnumDefinition.SubtaskPriority.Medium
+                    };
+                    assignmentLogic.AddSubtask(assignment_id, defaultSubtask);
+                    assignmentLogic.Dispose();
+                }
+                subtaskLogic.Dispose();
+            }
+            catch (Exception e)
+            {
+                Logger.LogException(e);
+                MessageBox.Show(e.Message);
             }
         }
 
