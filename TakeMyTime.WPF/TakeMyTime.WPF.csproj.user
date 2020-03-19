@@ -40,6 +40,9 @@
     <Compile Update="Statistics\Dashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Statistics\ProductiveWorkingWeekdaysTooltip.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Subtasks\AddSubtask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +87,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Statistics\Dashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Statistics\ProductiveWorkingWeekdaysTooltip.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Subtasks\AddSubtask.xaml">
