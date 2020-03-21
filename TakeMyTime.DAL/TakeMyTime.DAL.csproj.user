@@ -2,5 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
+    <_LastSelectedProfileId>G:\Development\TakeMyTime.NETCore\TakeMyTime.DAL\Properties\PublishProfiles\RELEASE.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
 </Project>

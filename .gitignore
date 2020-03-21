@@ -277,3 +277,14 @@ TakeMyTime.Tests.Common/bin/Release/netcoreapp3.1/TakeMyTime.Tests.Common.dll
 TakeMyTime.WPF/Properties/PublishProfiles/Release.pubxml
 TakeMyTime.WPF/TakeMyTime.WPF.csproj.user
 
+*.dll
+*.so
+*.cache
+*.lock
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/db.lock
+*.lock
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/db.lock
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/storage.ide-wal
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/storage.ide-shm
+.vs/TakeMyTime.NETCore/v16/Server/sqlite3/db.lock
+.vs/TakeMyTime.NETCore/v16/.suo

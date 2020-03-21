@@ -33,6 +33,7 @@ namespace TakeMyTime.WPF
             catch (Exception e)
             {
                 Logger.LogException(e);
+                MessageBox.Show(e.Message);
 #if DEBUG
                 throw e;
 #endif
