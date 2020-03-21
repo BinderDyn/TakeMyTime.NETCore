@@ -8,7 +8,7 @@ namespace TakeMyTime.Models.Models
         public static Entry Create(ICreateParam param)
         {
             var entry = new Entry();
-            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Subtask, param.Project);
+            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Subtask, param.Project, param.DurationAsTicks);
             return entry;
         }
 
@@ -18,7 +18,7 @@ namespace TakeMyTime.Models.Models
             DateTime? ended,
             Subtask subtask = null,
             Project project = null,
-            int? assignment_Id = null)
+            long? duration = null)
         {
             this.Name = name;
             this.Comment = comment;
@@ -28,7 +28,7 @@ namespace TakeMyTime.Models.Models
             this.Project = project;
             this.Project_Id = project?.Id ?? null;
             this.Subtask = subtask;
-            this.Assignment_Id = assignment_Id;
+            this.DurationAsTicks = duration; 
             this.SetCreated();
         }
 
