@@ -239,5 +239,14 @@ namespace TakeMyTime.WPF.Resources {
                 return ResourceManager.GetString("ProjectsAll", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Assignments ähnelt.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
     }
 }

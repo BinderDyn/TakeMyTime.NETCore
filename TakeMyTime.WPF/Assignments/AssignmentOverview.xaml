@@ -7,11 +7,12 @@
       xmlns:resources="clr-namespace:TakeMyTime.WPF.Resources"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="AssignmentOverview"
       Background="{StaticResource BackgroundGrey}">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
@@ -19,8 +20,14 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
+        <Label
+            Foreground="{StaticResource LightWhite}"
+            FontSize="22"
+            FontWeight="Bold"
+            Content="{x:Static resources:AssignmentOverview.Title}"
+            ></Label>
         <Border x:Name="b_Toolbar"
-                Grid.Row="0"
+                Grid.Row="1"
                 BorderBrush="Transparent"
                 Visibility="Visible">
             <StackPanel Margin="3"
@@ -110,7 +117,7 @@
         <ListView x:Name="lv_Assignments" 
                       ItemsSource="{Binding FilteredAssignmentViewModels}"
                       HorizontalAlignment="Stretch"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       Foreground="{StaticResource LightWhite}"
                       Margin="18"
                       Visibility="Visible"
@@ -201,7 +208,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border Grid.Row="2">
+        <Border Grid.Row="3">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
                     <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>
@@ -216,7 +223,7 @@
             </StackPanel>
         </Border>
         <StackPanel
-            Grid.Row="3"
+            Grid.Row="4"
             Orientation="Horizontal"
             HorizontalAlignment="Center">
             <Button     x:Name="btn_SetDone"

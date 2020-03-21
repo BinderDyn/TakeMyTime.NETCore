@@ -12,11 +12,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0">
+        <Label
+            FontWeight="Bold"
+            FontSize="22"
+            Content="{x:Static resources:EntryOverview.Title}"
+            Foreground="{StaticResource LightWhite}"
+            ></Label>
+        <Border Grid.Row="1">
             <StackPanel Margin="3"
                         Orientation="Horizontal"
                         HorizontalAlignment="Left"
@@ -49,7 +56,7 @@
                 </ComboBox>
             </StackPanel>
         </Border>
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     >
@@ -74,7 +81,7 @@
                     Orientation="Vertical">-->
         <ListView x:Name="lv_Entries"
                         SelectionChanged="lv_Entries_SelectionChanged"
-                        Grid.Row="2" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}" ScrollViewer.CanContentScroll="False">
+                        Grid.Row="3" Background="{StaticResource BackgroundGrey}" Foreground="{StaticResource LightWhite}" ScrollViewer.CanContentScroll="False">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -96,7 +103,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border Grid.Row="3">
+        <Border Grid.Row="4">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
                     <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>

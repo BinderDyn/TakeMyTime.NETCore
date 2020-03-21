@@ -196,6 +196,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Toggle status ähnelt.
         /// </summary>
         public static string ToggleStatusTooltip {

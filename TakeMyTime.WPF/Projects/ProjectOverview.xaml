@@ -13,12 +13,19 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
+        <Label
+               Grid.Row="0" HorizontalAlignment="Left"
+               FontSize="22"
+               FontWeight="Bold"
+               Foreground="{StaticResource LightWhite}"
+               Content="{x:Static resources:ProjectOverview.Title}"></Label>
         <Border x:Name="b_Toolbar"
-                Grid.Row="0"
+                Grid.Row="1"
                 BorderBrush="Transparent"
                 Visibility="Visible">
             <StackPanel Margin="3"
@@ -71,7 +78,7 @@
         <ListView x:Name="lv_Projects" 
                       ItemsSource="{Binding Projects}"
                       HorizontalAlignment="Stretch"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       Foreground="{StaticResource LightWhite}"
                       Margin="18"
                       Visibility="Visible"
@@ -151,7 +158,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border Grid.Row="2">
+        <Border Grid.Row="3">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
                     <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>

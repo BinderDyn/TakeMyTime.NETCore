@@ -31,10 +31,17 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Label
+                  Grid.Row="0"
+                  FontSize="22"
+                  Content="{x:Static resources:Dashboard.Title}"
+                  Foreground="{StaticResource LightWhite}"
+                  FontWeight="Bold"
+                ></Label>
             <Label Grid.Row="1" Content="{x:Static resources:Dashboard.LabelTotalShareOfProjects}"
                    FontFamily="Segoe UI"
                    Foreground="{StaticResource LightWhite}"
-                   FontWeight="Bold"
+                   FontWeight="DemiBold"
                    FontSize="20"
                    VerticalAlignment="Bottom"></Label>
             <lvc:PieChart Grid.Row="2" Grid.Column="0"
