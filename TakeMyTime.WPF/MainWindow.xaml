@@ -20,11 +20,12 @@
         >
     <Window.InputBindings>
         <KeyBinding Command="{Binding DashboardCommand}" Modifiers="Ctrl" Key="D"></KeyBinding>
-        <KeyBinding Command="{Binding AssignmentOverviewCommand}" Modifiers="Ctrl" Key="A"></KeyBinding>
+        <KeyBinding Command="{Binding AssignmentOverviewCommand}" Modifiers="Ctrl" Key="O"></KeyBinding>
         <KeyBinding Command="{Binding EntryCommand}" Modifiers="Ctrl" Key="E"></KeyBinding>
         <KeyBinding Command="{Binding AboutCommand}" Modifiers="Ctrl" Key="X"></KeyBinding>
         <KeyBinding Command="{Binding ProjectTypeCommand}" Modifiers="Ctrl" Key="T"></KeyBinding>
         <KeyBinding Command="{Binding ProjectOverviewCommand}" Modifiers="Ctrl" Key="P"></KeyBinding>
+        <KeyBinding Command="{Binding ExitCommand}" Modifiers="Ctrl" Key="Q"></KeyBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.Resources>

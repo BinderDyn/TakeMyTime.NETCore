@@ -180,6 +180,7 @@ namespace TakeMyTime.WPF
         public NavigationCommand AssignmentOverviewCommand { get => new NavigationCommand(() => this.NavigateToAssignmentOverview()); }
         public NavigationCommand EntryCommand { get => new NavigationCommand(() => this.NavigateToEntryOverview()); }
         public NavigationCommand AboutCommand { get => new NavigationCommand(() => this.NavigateToAbout()); }
+        public NavigationCommand ExitCommand { get => new NavigationCommand(() => Application.Current.Shutdown()); }
 
         #endregion
     }
