@@ -14,10 +14,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0">
+        <Label Grid.Row="0" HorizontalAlignment="Left"
+               FontSize="22"
+               FontWeight="Bold"
+               Foreground="{StaticResource LightWhite}"
+               Content="{x:Static resource:ProjectTypeOverview.Title}"></Label>
+        <Border Grid.Row="1">
             <StackPanel HorizontalAlignment="Right"
                         Orientation="Horizontal">
                 <Button x:Name="btn_AddProjectType"
@@ -46,7 +52,7 @@
             </StackPanel>
         </Border>
         <ListView x:Name="dg_ProjectTypes" SelectionChanged="dg_ProjectTypes_SelectionChanged"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Background="{StaticResource BackgroundGrey}"
                   Foreground="{StaticResource LightWhite}">
             <ListView.View>
@@ -58,7 +64,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border Grid.Row="2">
+        <Border Grid.Row="3">
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="btn_PagingBack" Background="Black" Click="btn_PagingBack_Click">
                 <materialDesign:PackIcon Kind="ArrowLeft"></materialDesign:PackIcon>

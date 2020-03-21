@@ -23,7 +23,7 @@ namespace TakeMyTime.WPF.Projects
         public ProjectOverview()
         {
             InitializeComponent();
-            PagingManager = new PagingManager<ProjectViewModel>();
+            PagingManager = new PagingManager<ProjectViewModel>(18);
             Load();
             RefreshBindings(1);
         }
