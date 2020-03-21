@@ -18,9 +18,9 @@ namespace TakeMyTime.DAL.Repositories
             this.context = context;
         }
 
-        public Dictionary<string, double> GetAssignmentSharesOfProject(int project_id)
+        public IEnumerable<Tuple<int, string, double>> GetAssignmentSharesOfProject(int project_id)
         {
-            var results = new Dictionary<string, double>();
+            var results = new List<Tuple<int, string, double>>();
             var assignmentsOfProject = this.context.Assignments
                 .Include(a => a.Subtasks)
                 .Where(a => a.Project_Id == project_id);
@@ -34,7 +34,7 @@ namespace TakeMyTime.DAL.Repositories
                     if (workingTimeForAssignment > 0)
                     {
                         double shareOfAssignment = Math.Round(((double)workingTimeForAssignment / (double)totalWorkingTime * 100), 2);
-                        results.Add(ass.Name, shareOfAssignment);
+                        results.Add(Tuple.Create(ass.Id, ass.Name, shareOfAssignment));
                     }
                 }
             }
@@ -66,9 +66,9 @@ namespace TakeMyTime.DAL.Repositories
                 .Sum(e => e.DurationAsTicks);
         }
 
-        public Dictionary<string, double> GetProjectTotalShares()
+        public IEnumerable<Tuple<int, string, double>> GetProjectTotalShares()
         {
-            var results = new Dictionary<string, double>();
+            var results = new List<Tuple<int, string, double>>();
             var projects = this.context.Projects.Where(p => p.ProjectStatus == EnumDefinition.ProjectStatus.Active);
             var worktimeOfAllProjects = GetTotalWorktimeOfAllActiveProjects();
             if (worktimeOfAllProjects > 0)
@@ -79,7 +79,7 @@ namespace TakeMyTime.DAL.Repositories
                     if (worktimeOfProject > 0)
                     {
                         double shareOfProject = Math.Round(((double)worktimeOfProject / (double)worktimeOfAllProjects * 100), 2);
-                        results.Add(project.Name, shareOfProject);
+                        results.Add(Tuple.Create(project.Id, project.Name, shareOfProject));
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace TakeMyTime.DAL.Repositories
             var entries = this.context.Entries
                 .Where(e => e.Project_Id == project_id);
 
-            foreach (var entry in entries)
+            foreach (var entry in entries.Where(e => e.DurationAsTicks.HasValue))
             {
                 results.Add(new ProductivityViewModel { X = entry.Date, Y = new TimeSpan(entry.DurationAsTicks.Value) });
             }
@@ -106,7 +106,7 @@ namespace TakeMyTime.DAL.Repositories
                 .Include(e => e.Project)
                 .Where(e => e.Project.ProjectStatus == EnumDefinition.ProjectStatus.Active)
                 .ToList();
-            var weekdayManager = new WeekdayProductivityManager(entries.Count());
+            var weekdayManager = new WeekdayProductivityManager();
 
             foreach (var entry in entries)
             {

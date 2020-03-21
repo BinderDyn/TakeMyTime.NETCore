@@ -88,6 +88,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entry finishes subtask ähnelt.
+        /// </summary>
+        public static string EntryFinishesSubtask {
+            get {
+                return ResourceManager.GetString("EntryFinishesSubtask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string Name {

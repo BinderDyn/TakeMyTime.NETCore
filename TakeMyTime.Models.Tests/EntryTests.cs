@@ -38,6 +38,7 @@ namespace TakeMyTime.Models.Tests
         {
             // ARRANGE & ACT
             var entry = Entry.Create(createParam);
+            entry.CalculateDuration();
 
             // ASSERT
             Assert.AreEqual(new TimeSpan(0, 10, 0).Minutes, new TimeSpan(entry.DurationAsTicks.Value).Minutes);

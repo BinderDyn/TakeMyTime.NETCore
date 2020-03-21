@@ -72,8 +72,8 @@ namespace TakeMyTime.WPF.Statistics
             {
                 this.ShareOfProjects.Add(new PieSeries
                 {
-                    Values = new ChartValues<double> { entry.Value },
-                    Title = entry.Key
+                    Values = new ChartValues<double> { entry.Item3 },
+                    Title = entry.Item2
                 });
             }
 
@@ -88,8 +88,8 @@ namespace TakeMyTime.WPF.Statistics
             {
                 this.ShareOfAssignments.Add(new PieSeries
                 {
-                    Values = new ChartValues<double> { entry.Value },
-                    Title = entry.Key
+                    Values = new ChartValues<double> { entry.Item3 },
+                    Title = entry.Item2
                 });
             }
 
@@ -140,7 +140,9 @@ namespace TakeMyTime.WPF.Statistics
             var labels = new List<string>();
             foreach (var vm in viewModels)
             {
-                labels.Add(ResourceStringManager.GetResourceByKey(vm.Day.ToString()));
+                string formattedAvgHours = string.Format("{0}(Ø {1:0.00}h){2}(Total: {3:0.00}h)", System.Environment.NewLine,
+                    vm.AverageHours, System.Environment.NewLine, vm.TotalHours);
+                labels.Add(ResourceStringManager.GetResourceByKey(vm.Day.ToString()) + formattedAvgHours);
             }
 
             return labels.ToArray();
@@ -155,8 +157,8 @@ namespace TakeMyTime.WPF.Statistics
         public SeriesCollection ProductiveDays { get; set; } = new SeriesCollection();
         public SeriesCollection MostProductiveWeekdays { get; set; } = new SeriesCollection();
         public IEnumerable<ProjectViewModel> ProjectViewModels { get; set; }
-        public Dictionary<string, double> AssignmentShares { get; set; }
-        public Dictionary<string, double> ProjectShares { get; set; }
+        public IEnumerable<Tuple<int, string, double>> AssignmentShares { get; set; }
+        public IEnumerable<Tuple<int, string, double>> ProjectShares { get; set; }
         public IEnumerable<ProductivityViewModel> ProductiveEntryDays { get; set; }
         public Func<double, string> Formatter { get; set; }
         public Func<double, string> YAxisFormatter { get; set; }

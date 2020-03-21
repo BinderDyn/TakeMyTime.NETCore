@@ -10,6 +10,7 @@ using TakeMyTime.DAL.uow;
 using TakeMyTime.WPF.ProjectTypes;
 using TakeMyTime.WPF.Statistics;
 using TakeMyTime.WPF.Utility;
+using TakeMyTime.WPF.Utility.Commands;
 
 namespace TakeMyTime.WPF
 {
@@ -39,6 +40,7 @@ namespace TakeMyTime.WPF
 
             InitDataDirectory();
             InitializeComponent();
+            DataContext = this;
             txt_Title.Text = "TakeMyTime " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 5);
             tb_CalendarWeek.Text = this.CurrentCalendarWeek;
             fr_Content.Navigate(new Dashboard());
@@ -65,7 +67,6 @@ namespace TakeMyTime.WPF
         private void ApplyMigrations()
         {
             TakeMyTimeDbContext context = new TakeMyTimeDbContext();
-            // context.Database.EnsureDeleted();
             context.Database.Migrate();
         }
 
@@ -105,33 +106,65 @@ namespace TakeMyTime.WPF
 
         private void btn_Projects_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(new Projects.ProjectOverview());
+            NavigateToProjectOverview();
         }
 
         private void btn_Assignments_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(new Assignments.AssignmentOverview());
+            NavigateToAssignmentOverview();
         }
 
         private void btn_LogEntries_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(new Entries.EntryOverview());
+            NavigateToEntryOverview();
         }
 
         private void btn_Dashboard_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(new Dashboard());
+            NavigateToDashboardOverview();
         }
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)
         {
-            fr_Content.Navigate(new ProjectTypeOverview());
+            NavigateToProjectTypes();
         }
 
         private void btn_About_Click(object sender, RoutedEventArgs e)
         {
+            NavigateToAbout();
+        }
+
+        public void NavigateToProjectOverview()
+        {
+            fr_Content.Navigate(new Projects.ProjectOverview());
+        }
+
+        public void NavigateToAssignmentOverview()
+        {
+            fr_Content.Navigate(new Assignments.AssignmentOverview());
+        }
+
+        public void NavigateToEntryOverview()
+        {
+            fr_Content.Navigate(new Entries.EntryOverview());
+        }
+
+        public void NavigateToDashboardOverview()
+        {
+            fr_Content.Navigate(new Dashboard());
+        }
+        
+        public void NavigateToProjectTypes()
+        {
+            fr_Content.Navigate(new ProjectTypeOverview());
+        }
+
+        public void NavigateToAbout()
+        {
             fr_Content.Navigate(new About.About());
         }
+
+
 
         #endregion
 
@@ -139,6 +172,16 @@ namespace TakeMyTime.WPF
 
         public string CurrentCalendarWeek { get => string.Format("{0}: {1}", ResourceStringManager.GetResourceByKey("CalendarWeek"), DateTimeCultureConverter.GetCalendarWeek()); }
 
-        
+        #region Commands
+
+        public NavigationCommand DashboardCommand { get => new NavigationCommand(() => this.NavigateToDashboardOverview()); }
+        public NavigationCommand ProjectOverviewCommand { get => new NavigationCommand(() => this.NavigateToProjectOverview()); }
+        public NavigationCommand ProjectTypeCommand { get => new NavigationCommand(() => this.NavigateToProjectTypes()); }
+        public NavigationCommand AssignmentOverviewCommand { get => new NavigationCommand(() => this.NavigateToAssignmentOverview()); }
+        public NavigationCommand EntryCommand { get => new NavigationCommand(() => this.NavigateToEntryOverview()); }
+        public NavigationCommand AboutCommand { get => new NavigationCommand(() => this.NavigateToAbout()); }
+        public NavigationCommand ExitCommand { get => new NavigationCommand(() => Application.Current.Shutdown()); }
+
+        #endregion
     }
 }

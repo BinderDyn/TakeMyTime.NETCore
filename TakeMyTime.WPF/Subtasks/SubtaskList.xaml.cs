@@ -67,6 +67,8 @@ namespace TakeMyTime.WPF.Subtasks
             }
             this.btn_EditSubtask.IsEnabled = selectionNotNull;
             this.btn_DeleteSubtask.IsEnabled = selectionNotNull;
+            this.btn_TickSubtask.IsEnabled = selectionNotNull;
+            this.btn_AbortSubtask.IsEnabled = selectionNotNull;
         }
 
         private void btn_DeleteSubtask_Click(object sender, RoutedEventArgs e)
@@ -113,6 +115,30 @@ namespace TakeMyTime.WPF.Subtasks
         private void btn_SaveSubtasks_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_AbortSubtask_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SelectedSubtask != null)
+            {
+                var subtaskLogic = new SubtaskLogic();
+                subtaskLogic.SetSubtaskAborted(this.SelectedSubtask.Id);
+                subtaskLogic.Dispose();
+                this.Load(this.Assignment.Id);
+                RefreshBindings(this.PagingManager.CurrentPage);
+            }
+        }
+
+        private void btn_TickSubtask_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SelectedSubtask != null)
+            {
+                var subtaskLogic = new SubtaskLogic();
+                subtaskLogic.SetSubtaskTickedOff(this.SelectedSubtask.Id);
+                subtaskLogic.Dispose();
+                this.Load(this.Assignment.Id);
+                RefreshBindings(this.PagingManager.CurrentPage);
+            }
         }
 
         #endregion

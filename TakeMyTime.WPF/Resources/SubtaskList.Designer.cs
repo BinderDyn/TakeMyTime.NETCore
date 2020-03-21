@@ -97,6 +97,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Status ähnelt.
+        /// </summary>
+        public static string ColumnStatus {
+            get {
+                return ResourceManager.GetString("ColumnStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Back to assignment overview ähnelt.
         /// </summary>
         public static string Return {
@@ -111,6 +120,24 @@ namespace TakeMyTime.WPF.Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Abort subtask ähnelt.
+        /// </summary>
+        public static string TooltipButtonAbort {
+            get {
+                return ResourceManager.GetString("TooltipButtonAbort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tick off subtask ähnelt.
+        /// </summary>
+        public static string TooltipButtonTick {
+            get {
+                return ResourceManager.GetString("TooltipButtonTick", resourceCulture);
             }
         }
     }

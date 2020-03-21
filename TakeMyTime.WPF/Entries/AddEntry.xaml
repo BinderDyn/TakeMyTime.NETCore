@@ -43,6 +43,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.40*"></ColumnDefinition>
@@ -79,6 +80,13 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 SelectionChanged="cb_Subtask_SelectionChanged"></ComboBox>
+            <CheckBox x:Name="chebo_FinishesSubtask"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      Margin="0 20 0 0"
+                      Padding="2"
+                      Foreground="{StaticResource LightWhite}"
+                      Content="{x:Static resources:AddEntry.EntryFinishesSubtask}"></CheckBox>
         </Grid>
         <Button
             x:Name="btn_StartStop"
