@@ -23,41 +23,60 @@ namespace TakeMyTime.DAL
                 {
                     case DayOfWeek.Monday:
                         MondayTotalWorkingHours += durationAsHours;
-                        this.MondayAverageWorkingHours = Math.Round(durationAsHours / MondayTotalWorkingHours, 2);
-                        this.MondayValueShare = Math.Round(MondayAverageWorkingHours / TotalWorkingHours, 2);
+                        MondayEntryCount++;
+                        this.MondayAverageWorkingHours = Math.Round(MondayTotalWorkingHours / MondayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Tuesday:
                         TuesdayTotalWorkingHours += durationAsHours;
-                        this.TuesdayAverageWorkingHours = Math.Round(durationAsHours / TuesdayTotalWorkingHours, 2);
-                        this.TuesdayValueShare = Math.Round(TuesdayAverageWorkingHours / TotalWorkingHours, 2);
+                        TuesdayEntryCount++;
+                        this.TuesdayAverageWorkingHours = Math.Round(TuesdayTotalWorkingHours / TuesdayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Wednesday:
                         WednesdayTotalWorkingHours += durationAsHours;
-                        this.WednesdayAverageWorkingHours = Math.Round(durationAsHours / WednesdayTotalWorkingHours, 2);
-                        this.WednesdayValueShare = Math.Round(WednesdayTotalWorkingHours / TotalWorkingHours, 2);
+                        WednesdayEntryCount++;
+                        this.WednesdayAverageWorkingHours = Math.Round(WednesdayTotalWorkingHours / WednesdayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Thursday:
                         ThursdayTotalWorkingHours += durationAsHours;
-                        this.ThursdayAverageWorkingHours = Math.Round(durationAsHours / ThursdayTotalWorkingHours, 2);
-                        this.ThursdayValueShare = Math.Round(ThursdayTotalWorkingHours / TotalWorkingHours, 2);
+                        ThursdayEntryCount++;
+                        this.ThursdayAverageWorkingHours = Math.Round(ThursdayTotalWorkingHours / ThursdayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Friday:
                         FridayTotalWorkingHours += durationAsHours;
-                        this.FridayAverageWorkingHours = Math.Round(durationAsHours / FridayTotalWorkingHours, 2);
-                        this.FridayValueShare = Math.Round(FridayAverageWorkingHours / TotalWorkingHours, 2);
+                        FridayEntryCount++;
+                        this.FridayAverageWorkingHours = Math.Round(FridayTotalWorkingHours / FridayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Saturday:
                         SaturdayTotalWorkingHours += durationAsHours;
-                        this.SaturdayAverageWorkingHours = Math.Round(durationAsHours / SaturdayTotalWorkingHours, 2);
-                        this.SaturdayValueShare = Math.Round(SaturdayAverageWorkingHours / TotalWorkingHours, 2);
+                        SaturdayEntryCount++;
+                        this.SaturdayAverageWorkingHours = Math.Round(SaturdayTotalWorkingHours / SaturdayEntryCount, 2);
+                        
                         break;
                     case DayOfWeek.Sunday:
                         SundayTotalWorkingHours += durationAsHours;
-                        this.SundayAverageWorkingHours = Math.Round(durationAsHours / SundayTotalWorkingHours, 2);
-                        this.SundayValueShare = Math.Round(SundayAverageWorkingHours / TotalWorkingHours, 2);
+                        SundayEntryCount++;
+                        this.SundayAverageWorkingHours = Math.Round(SundayTotalWorkingHours / SundayEntryCount, 2);
                         break;
                 };
+
+                CalculateShares();
             }
+        }
+
+        private void CalculateShares()
+        {
+            this.MondayValueShare = Math.Round(MondayTotalWorkingHours / TotalWorkingHours, 2);
+            this.TuesdayValueShare = Math.Round(TuesdayTotalWorkingHours / TotalWorkingHours, 2);
+            this.WednesdayValueShare = Math.Round(WednesdayTotalWorkingHours / TotalWorkingHours, 2);
+            this.ThursdayValueShare = Math.Round(ThursdayTotalWorkingHours / TotalWorkingHours, 2);
+            this.FridayValueShare = Math.Round(FridayTotalWorkingHours / TotalWorkingHours, 2);
+            this.SaturdayValueShare = Math.Round(SaturdayTotalWorkingHours / TotalWorkingHours, 2);
+            this.SundayValueShare = Math.Round(SundayTotalWorkingHours / TotalWorkingHours, 2);
         }
 
         public IEnumerable<MostProductiveWeekDaysViewModel> GetResults()
@@ -120,23 +139,30 @@ namespace TakeMyTime.DAL
         public double MondayTotalWorkingHours { get; private set; }
         public double MondayValueShare { get; private set; }
         public double MondayAverageWorkingHours { get; private set; }
+        public double MondayEntryCount { get; set; }
         public double TuesdayTotalWorkingHours { get; private set; }
         public double TuesdayValueShare { get; private set; }
         public double TuesdayAverageWorkingHours { get; private set; }
+        public double TuesdayEntryCount { get; set; }
         public double WednesdayTotalWorkingHours { get; private set; }
         public double WednesdayValueShare { get; private set; }
         public double WednesdayAverageWorkingHours { get; private set; }
+        public double WednesdayEntryCount { get; set; }
         public double ThursdayTotalWorkingHours { get; private set; }
         public double ThursdayValueShare { get; private set; }
         public double ThursdayAverageWorkingHours { get; private set; }
+        public double ThursdayEntryCount { get; set; }
         public double FridayTotalWorkingHours { get; private set; }
         public double FridayValueShare { get; private set; }
         public double FridayAverageWorkingHours { get; private set; }
+        public double FridayEntryCount { get; set; }
         public double SaturdayTotalWorkingHours { get; private set; }
         public double SaturdayValueShare { get; private set; }
         public double SaturdayAverageWorkingHours { get; private set; }
+        public double SaturdayEntryCount { get; set; }
         public double SundayTotalWorkingHours { get; private set; }
         public double SundayValueShare { get; private set; }
         public double SundayAverageWorkingHours { get; private set; }
+        public double SundayEntryCount { get; set; }
     }
 }
