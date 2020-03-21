@@ -140,7 +140,9 @@ namespace TakeMyTime.WPF.Statistics
             var labels = new List<string>();
             foreach (var vm in viewModels)
             {
-                labels.Add(ResourceStringManager.GetResourceByKey(vm.Day.ToString()));
+                string formattedAvgHours = string.Format("{0}(Ø {1:0.00}h){2}(Total: {3:0.00}h)", System.Environment.NewLine,
+                    vm.AverageHours, System.Environment.NewLine, vm.TotalHours);
+                labels.Add(ResourceStringManager.GetResourceByKey(vm.Day.ToString()) + formattedAvgHours);
             }
 
             return labels.ToArray();

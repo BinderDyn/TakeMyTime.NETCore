@@ -92,7 +92,7 @@ namespace TakeMyTime.DAL.Repositories
             var entries = this.context.Entries
                 .Where(e => e.Project_Id == project_id);
 
-            foreach (var entry in entries)
+            foreach (var entry in entries.Where(e => e.DurationAsTicks.HasValue))
             {
                 results.Add(new ProductivityViewModel { X = entry.Date, Y = new TimeSpan(entry.DurationAsTicks.Value) });
             }
@@ -106,7 +106,7 @@ namespace TakeMyTime.DAL.Repositories
                 .Include(e => e.Project)
                 .Where(e => e.Project.ProjectStatus == EnumDefinition.ProjectStatus.Active)
                 .ToList();
-            var weekdayManager = new WeekdayProductivityManager(entries.Count());
+            var weekdayManager = new WeekdayProductivityManager();
 
             foreach (var entry in entries)
             {
