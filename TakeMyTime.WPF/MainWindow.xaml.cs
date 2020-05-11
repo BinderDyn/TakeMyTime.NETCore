@@ -35,7 +35,7 @@ namespace TakeMyTime.WPF
                 Logger.LogException(e);
                 MessageBox.Show(e.Message);
 #if DEBUG
-                throw e;
+                throw;
 #endif
             }
 
