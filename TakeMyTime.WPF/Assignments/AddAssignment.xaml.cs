@@ -46,19 +46,21 @@ namespace TakeMyTime.WPF.Assignments
 
         private void Load()
         {
-            if (EditMode)
-            {
-                var assignmentLogic = new AssignmentLogic();
-                this.Assignment = assignmentLogic.GetAssignmentById(this.Assignment.Id);
-                assignmentLogic.Dispose();
+            if (!EditMode) return;
+            var assignmentLogic = new AssignmentLogic();
+            this.Assignment = assignmentLogic.GetAssignmentById(this.Assignment.Id);
+            assignmentLogic.Dispose();
 
-                this.tb_AssignmentDescription.Text = this.Assignment.Description;
-                this.tb_AssignmentName.Text = this.Assignment.Name;
-                this.tb_AssignmentPlannedDurationHours.Text = Assignment.DurationPlannedAsTicks.HasValue ? new TimeSpan(this.Assignment.DurationPlannedAsTicks.Value).Hours.ToString() : null;
-                this.tb_AssignmentPlannedDurationMinutes.Text = Assignment.DurationPlannedAsTicks.HasValue ? new TimeSpan(this.Assignment.DurationPlannedAsTicks.Value).Minutes.ToString() : null;
-                this.dp_AssignmentDue.SelectedDate = this.Assignment.DateDue;
-                this.dp_Planned.SelectedDate = this.Assignment.DatePlanned;
-            }
+            this.tb_AssignmentDescription.Text = this.Assignment.Description;
+            this.tb_AssignmentName.Text = this.Assignment.Name;
+            this.tb_AssignmentPlannedDurationHours.Text = Assignment.DurationPlannedAsTicks.HasValue
+                ? new TimeSpan(this.Assignment.DurationPlannedAsTicks.Value).Hours.ToString()
+                : null;
+            this.tb_AssignmentPlannedDurationMinutes.Text = Assignment.DurationPlannedAsTicks.HasValue
+                ? new TimeSpan(this.Assignment.DurationPlannedAsTicks.Value).Minutes.ToString()
+                : null;
+            this.dp_AssignmentDue.SelectedDate = this.Assignment.DateDue;
+            this.dp_Planned.SelectedDate = this.Assignment.DatePlanned;
         }
 
         #region GUI Events

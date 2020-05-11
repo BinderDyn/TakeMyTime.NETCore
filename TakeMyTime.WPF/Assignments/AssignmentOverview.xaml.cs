@@ -42,7 +42,7 @@ namespace TakeMyTime.WPF.Assignments
         private void SetDefaultFilters()
         {
             this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.Single(pvm => pvm.Id == 0);
-            this.cb_StatusFilter.SelectedItem = cbi_Future;
+            this.cb_StatusFilter.SelectedItem = cbi_Active;
         }
 
         private void LoadProjectViewModels()
