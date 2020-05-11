@@ -180,6 +180,7 @@ namespace TakeMyTime.WPF.Entries
         {
             var entryLogic = new EntryLogic();
             this.EntryViewModels = entryLogic.GetAllEntries()
+                .OrderByDescending(e => e.Created)
                 .Select(e => new EntryViewModel(e))
                 .ToList();
             entryLogic.Dispose();

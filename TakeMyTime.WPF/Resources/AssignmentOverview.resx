@@ -150,6 +150,9 @@
   <data name="ColumnDueDate" xml:space="preserve">
     <value>Due to</value>
   </data>
+  <data name="ColumnDurationPlanned" xml:space="preserve">
+    <value>Estimated time needed</value>
+  </data>
   <data name="ColumnEdited" xml:space="preserve">
     <value>Edited</value>
   </data>
