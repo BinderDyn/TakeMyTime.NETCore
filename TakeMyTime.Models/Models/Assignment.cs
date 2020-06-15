@@ -82,6 +82,16 @@ namespace TakeMyTime.Models.Models
             return subtasks;
         }
 
+        public bool IsOvertime()
+        {
+            bool isOvertime = false;
+            if (this.DurationPlannedAsTicks.HasValue)
+            {
+                isOvertime = this.Subtasks?.Sum(s => s.Entries?.Sum(e => e.DurationAsTicks)) > this.DurationPlannedAsTicks;
+            }
+            return isOvertime;
+        }
+
         public interface IUpdateParam
         {
             string Name { get; set; }
