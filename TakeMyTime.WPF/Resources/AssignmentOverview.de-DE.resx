@@ -147,6 +147,9 @@
   <data name="ColumnDueDate" xml:space="preserve">
     <value>Fällig bis</value>
   </data>
+  <data name="ColumnDurationPlanned" xml:space="preserve">
+    <value>Geschätzte Zeit</value>
+  </data>
   <data name="ColumnEdited" xml:space="preserve">
     <value>Bearbeitet am</value>
   </data>

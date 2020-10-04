@@ -35,7 +35,7 @@ namespace TakeMyTime.WPF
                 Logger.LogException(e);
                 MessageBox.Show(e.Message);
 #if DEBUG
-                throw e;
+                throw;
 #endif
             }
 
@@ -67,8 +67,10 @@ namespace TakeMyTime.WPF
 
         private void ApplyMigrations()
         {
-            TakeMyTimeDbContext context = new TakeMyTimeDbContext();
-            context.Database.Migrate();
+            using (TakeMyTimeDbContext context = new TakeMyTimeDbContext())
+            {
+                context.Database.Migrate();
+            }
         }
 
         #region GUI Events
@@ -154,7 +156,7 @@ namespace TakeMyTime.WPF
         {
             fr_Content.Navigate(new Dashboard());
         }
-        
+
         public void NavigateToProjectTypes()
         {
             fr_Content.Navigate(new ProjectTypeOverview());

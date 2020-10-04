@@ -32,6 +32,14 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
+                <Label Content="{x:Static resources:ProjectOverview.OnlyActiveLabel}" 
+                       Foreground="{StaticResource LightWhite}"
+                       VerticalAlignment="Center"></Label>
+                <CheckBox x:Name="cbo_ShowOnlyActive" 
+                          Checked="cbo_ShowOnlyActive_Checked" 
+                          Unchecked="cbo_ShowOnlyActive_Unchecked" 
+                          Foreground="{StaticResource LightWhite}"
+                          Margin="5 0 20 0"></CheckBox>
                 <Button x:Name="btn_NewProject"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"

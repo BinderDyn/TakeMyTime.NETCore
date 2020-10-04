@@ -27,6 +27,7 @@ namespace TakeMyTime.WPF.Assignments
             this.ProjectId = assignment.Project_Id.Value;
             this.Planned = assignment.DatePlanned;
             this.HasSubtasks = assignment.Subtasks.Count() > 0;
+            this.DurationPlanned = assignment.DurationPlannedAsTicks.HasValue ? TimeSpan.FromTicks(assignment.DurationPlannedAsTicks.Value) : (TimeSpan?)null;
 
             this.StatusImage = GetImageByStatus(assignment.AssignmentStatus);
             this.StatusTooltip = GetStatusString(assignment.AssignmentStatus);
@@ -44,6 +45,8 @@ namespace TakeMyTime.WPF.Assignments
         public string EditedAsString { get => DateTimeCultureConverter.ConvertToLocalDateTimeFormat(this.Edited); }
         public DateTime? Planned { get; set; }
         public string PlannedAsString { get => DateTimeCultureConverter.GetCalendarWeek(this.Planned); }
+        public TimeSpan? DurationPlanned { get; set; }
+        public string DurationPlannedAsString { get => this.DurationPlanned.HasValue ? this.DurationPlanned.Value.ToString(@"hh\:mm") : "-"; }
         public int ProjectId { get; set; }
         public EnumDefinition.AssignmentStatus StatusAsEnum { get; set; }
         public Uri StatusImage { get; private set; }

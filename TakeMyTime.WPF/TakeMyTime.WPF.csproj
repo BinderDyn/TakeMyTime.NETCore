@@ -4,10 +4,25 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Copyright>Marvin Binder 2019</Copyright>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Calendar\**" />
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Drafts\**" />
+    <EmbeddedResource Remove="Calendar\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Drafts\**" />
+    <None Remove="Calendar\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Drafts\**" />
+    <Page Remove="Calendar\**" />
+    <Page Remove="Commands\**" />
+    <Page Remove="Drafts\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Images\activeIconSmall.png" />
@@ -205,12 +220,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Drafts\" />
-    <Folder Include="Calendar\" />
-    <Folder Include="Commands\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 using TakeMyTime.Common.Exceptions;
 
 using TakeMyTime.Models.Models;
@@ -79,6 +80,28 @@ namespace TakeMyTime.Models.Tests
             // ARRANGE
             var assignment = Assignment.Create(createParam);
             assignment.Subtasks.Add(Subtask.Create(new SubtaskCreateParam { Name = "Test subtask", Description = "123", Priority = SubtaskPriority.High }));
+
+            // ACT
+            var canDelete = assignment.CanDelete();
+
+            // ASSERT
+            Assert.IsFalse(canDelete);
+        }
+
+        [TestMethod]
+        public void IsOvertime_Test()
+        {
+            // ARRANGE
+            var assignment = Assignment.Create(createParam);
+            assignment.Subtasks.Add(Subtask.Create(new SubtaskCreateParam 
+            { 
+                Name = "Test subtask", 
+                Description = "123", 
+                Priority = SubtaskPriority.High
+            }));
+
+            var subtask = assignment.Subtasks.First();
+            // subtask.Entries.Add(new EntryCreateParam() { Date = DateTime.Now, })
 
             // ACT
             var canDelete = assignment.CanDelete();

@@ -5,6 +5,7 @@ using System.Linq;
 using TakeMyTime.DAL.uow;
 
 using TakeMyTime.Models.Models;
+using static Common.Enums.EnumDefinition;
 
 namespace TakeMyTime.BLL.Logic
 {
@@ -57,6 +58,16 @@ namespace TakeMyTime.BLL.Logic
             edit.Update(param);
 
             unitOfWork.Complete();
+        }
+
+        public void UpdateAssignmentStatus(int id, AssignmentStatus status)
+        {
+            var edit = unitOfWork.Assignments.Get(id);
+            if (edit != null)
+            {
+                edit.UpdateStatus(status);
+                unitOfWork.Complete();
+            }
         }
 
         public void DeleteAssignment(int id)

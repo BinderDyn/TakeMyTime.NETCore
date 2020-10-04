@@ -5,10 +5,12 @@ namespace TakeMyTime.Models.Models
 {
     public class Entry : Entity<Entry>
     {
+        public Entry() { }
+
         public static Entry Create(ICreateParam param)
         {
             var entry = new Entry();
-            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Subtask, param.Project);
+            entry.Init(param.Name, param.Comment, param.Started, param.Ended, param.Subtask, param.Project, param.DurationAsTicks);
             return entry;
         }
 
@@ -18,7 +20,7 @@ namespace TakeMyTime.Models.Models
             DateTime? ended,
             Subtask subtask = null,
             Project project = null,
-            int? assignment_Id = null)
+            long? duration = null)
         {
             this.Name = name;
             this.Comment = comment;
@@ -28,7 +30,7 @@ namespace TakeMyTime.Models.Models
             this.Project = project;
             this.Project_Id = project?.Id ?? null;
             this.Subtask = subtask;
-            this.Assignment_Id = assignment_Id;
+            this.DurationAsTicks = duration; 
             this.SetCreated();
         }
 
@@ -72,16 +74,16 @@ namespace TakeMyTime.Models.Models
         }
 
         [ForeignKey("Project")]
-        public int? Project_Id { get; set; }
+        public virtual int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
-        public int? Subtask_Id { get; set; }
+        public virtual int? Subtask_Id { get; set; }
         public virtual Subtask Subtask { get; set; }
-        public int? Assignment_Id { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime? Started { get; set; }
-        public DateTime? Ended { get; set; }
-        public long? DurationAsTicks { get; set; }
-        public string Comment { get; set; }
+        public virtual int? Assignment_Id { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual DateTime? Started { get; set; }
+        public virtual DateTime? Ended { get; set; }
+        public virtual long? DurationAsTicks { get; set; }
+        public virtual string Comment { get; set; }
 
 
     }

@@ -12,18 +12,6 @@
           "bin/placeholder/TakeMyTime.Common.dll": {}
         }
       }
-    },
-    ".NETCoreApp,Version=v3.1/win-x64": {
-      "TakeMyTime.Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/TakeMyTime.Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TakeMyTime.Common.dll": {}
-        }
-      }
     }
   },
   "libraries": {
@@ -94,16 +82,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[3.1.1, 3.1.1]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[3.1.1, 3.1.1]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[3.1.1, 3.1.1]"
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
           }
         ],
         "frameworkReferences": {
@@ -111,12 +91,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

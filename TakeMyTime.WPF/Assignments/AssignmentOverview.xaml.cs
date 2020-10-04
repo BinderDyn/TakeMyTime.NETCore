@@ -42,7 +42,7 @@ namespace TakeMyTime.WPF.Assignments
         private void SetDefaultFilters()
         {
             this.cb_ProjectSelection.SelectedItem = this.ProjectViewModels.Single(pvm => pvm.Id == 0);
-            this.cb_StatusFilter.SelectedItem = cbi_Future;
+            this.cb_StatusFilter.SelectedItem = cbi_Active;
         }
 
         private void LoadProjectViewModels()
@@ -60,7 +60,10 @@ namespace TakeMyTime.WPF.Assignments
         private void Load()
         {
             var assignmentLogic = new AssignmentLogic();
-            this.AssignmentViewModels = assignmentLogic.GetAllAssignments().Select(a => new AssignmentViewModel(a));
+            this.AssignmentViewModels = assignmentLogic.GetAllAssignments()
+                .Select(a => new AssignmentViewModel(a))
+                .OrderBy(avm => avm.DueDate)
+                .ThenBy(avm => avm.Planned);
             this.FilteredAssignmentViewModels = PipeThroughFilter(this.AssignmentViewModels);
             assignmentLogic.Dispose();
             this.PagingManager.Data = this.FilteredAssignmentViewModels.ToList();
@@ -110,25 +113,28 @@ namespace TakeMyTime.WPF.Assignments
             var projectLogic = new ProjectLogic();
             int? projectId = null;
             if (this.SelectedProject != null) projectId = this.SelectedProject.Id;
-            if (this.SelectedAssignment != null) projectId = this.SelectedAssignment.ProjectId;
-            var project = projectLogic.GetProjectById(projectId.Value);
-            projectLogic.Dispose();
-
-            if (editMode)
+            else if (this.SelectedAssignment != null) projectId = this.SelectedAssignment.ProjectId;
+            if (projectId.HasValue)
             {
-                var assignmentLogic = new AssignmentLogic();
-                var selectedAssignment = assignmentLogic.GetAssignmentById(this.SelectedAssignment.Id);
-                assignmentLogic.Dispose();
-                addAssignmentWindow = new AddAssignment(selectedAssignment.Id, selectedAssignment.Project_Id.Value);
-            }
-            else
-            {
-                addAssignmentWindow = new AddAssignment(project.Id);
-            }
+                var project = projectLogic.GetProjectById(projectId.Value);
+                projectLogic.Dispose();
 
-            addAssignmentWindow.ShowDialog();
-            this.Load();
-            this.RefreshBindings(this.PagingManager.CurrentPage);
+                if (editMode)
+                {
+                    var assignmentLogic = new AssignmentLogic();
+                    var selectedAssignment = assignmentLogic.GetAssignmentById(this.SelectedAssignment.Id);
+                    assignmentLogic.Dispose();
+                    addAssignmentWindow = new AddAssignment(selectedAssignment.Id, selectedAssignment.Project_Id.Value);
+                }
+                else
+                {
+                    addAssignmentWindow = new AddAssignment(project.Id);
+                }
+
+                addAssignmentWindow.ShowDialog();
+                this.Load();
+                this.RefreshBindings(this.PagingManager.CurrentPage);
+            }
         }
 
         private void btn_EditAssignment_Click(object sender, RoutedEventArgs e)

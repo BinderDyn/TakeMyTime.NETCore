@@ -1,20 +1,11 @@
 ﻿using Common.Enums;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using TakeMyTime.BLL.Logic;
 using TakeMyTime.Models.Models;
@@ -33,6 +24,7 @@ namespace TakeMyTime.WPF.Entries
         private DateTime? started = null;
         private DateTime? stopped = null;
         private DispatcherTimer timer;
+        private TimeSpan? timekeeperMax;
 
         public AddEntry(int projectId, int assignmentId)
         {
@@ -44,7 +36,7 @@ namespace TakeMyTime.WPF.Entries
             this.btn_StartStop.Content = ResourceStringManager.GetResourceByKey("ButtonTextStart");
             this.Load();
             this.cb_Subtask.SelectedItem = this.SubtaskViewModels.FirstOrDefault(s => s.Id > 0);
-            if (this.SubtaskViewModels.Count() == 0) this.chebo_FinishesSubtask.IsEnabled = false;
+            if (!this.SubtaskViewModels.Any()) this.chebo_FinishesSubtask.IsEnabled = false;
         }
 
         public AddEntry(int entry_id)
@@ -77,17 +69,15 @@ namespace TakeMyTime.WPF.Entries
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(this.tb_Name.Text))
+            if (string.IsNullOrWhiteSpace(this.tb_Name.Text)) return;
+            if (this.entry_id.HasValue)
             {
-                if (!this.entry_id.HasValue)
-                {
-                    this.stopped = DateTime.Now;
-                    this.CreateEntry();
-                }
-                else
-                {
-                    this.EditAndSaveEntry();
-                }
+                this.EditAndSaveEntry();
+            }
+            else
+            {
+                this.stopped = DateTime.Now;
+                this.CreateEntry();
             }
         }
 
@@ -102,6 +92,10 @@ namespace TakeMyTime.WPF.Entries
             {
                 this.SelectedSubtask = e.AddedItems[0] as SubtaskComboBoxViewModel;
                 this.tb_Name.Text = this.SelectedSubtask.Name;
+                var subtaskLogic = new SubtaskLogic();
+                var subtask = subtaskLogic.GetById(this.SelectedSubtask.Id);
+                this.timekeeperMax = new TimeSpan(subtask.Assignment.GetDifferenceOfPlannedAndElapsedTicks().GetValueOrDefault());
+                subtaskLogic.Dispose();
             }
         }
 
@@ -144,6 +138,7 @@ namespace TakeMyTime.WPF.Entries
             projectLogic.Dispose();
             var subtaskLogic = new SubtaskLogic();
             var subtask = subtaskLogic.GetById(this.SelectedSubtask.Id);
+            ChangeParentAssignmentToInProgress(subtask);
 
             var entryCreateViewModel = new EntryCreateViewModel
             {
@@ -161,6 +156,15 @@ namespace TakeMyTime.WPF.Entries
             subtaskLogic.Dispose();
 
             this.Close();
+        }
+
+        private static void ChangeParentAssignmentToInProgress(Subtask subtask)
+        {
+            // Update AssignmentStatus to InProgress
+            if (subtask == null) return;
+            var assignmentLogic = new AssignmentLogic();
+            assignmentLogic.UpdateAssignmentStatus(subtask.Assignment_Id.GetValueOrDefault(0), EnumDefinition.AssignmentStatus.InProgress);
+            assignmentLogic.Dispose();
         }
 
         public void StartStopTimer()
@@ -196,6 +200,10 @@ namespace TakeMyTime.WPF.Entries
         public void UpdateUI()
         {
             this.tb_Elapsed.Text = this.ElapsedAsString;
+            if (this.timekeeperMax.HasValue && this.DurationElapsed >= this.timekeeperMax.Value)
+            {
+                this.tb_Elapsed.Foreground = Brushes.Red;
+            }
             CommandManager.InvalidateRequerySuggested();
         }
 
