@@ -156,6 +156,9 @@
   <data name="EditProjectTooltip" xml:space="preserve">
     <value>Ausgewähltes Projekt bearbeiten</value>
   </data>
+  <data name="OnlyActiveLabel" xml:space="preserve">
+    <value>Zeige nur aktive</value>
+  </data>
   <data name="StatusTooltipActive" xml:space="preserve">
     <value>Aktiv</value>
   </data>

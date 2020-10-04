@@ -8,7 +8,7 @@ namespace TakeMyTime.Models.Models
 {
     public class ProjectType : Entity<ProjectType>, IModifiableEntity
     {
-        protected ProjectType() { }
+        public ProjectType() { }
 
         public static ProjectType Create(ICreateParam param)
         {

@@ -5,7 +5,7 @@ namespace TakeMyTime.Models.Models
 {
     public class Entry : Entity<Entry>
     {
-        protected Entry() { }
+        public Entry() { }
 
         public static Entry Create(ICreateParam param)
         {

@@ -15,7 +15,7 @@ namespace TakeMyTime.Models.Models
 {
     public class Assignment : Entity<Assignment>
     {
-        protected Assignment() { }
+        public Assignment() { }
 
         public static Assignment Create(ICreateParam param)
         {
