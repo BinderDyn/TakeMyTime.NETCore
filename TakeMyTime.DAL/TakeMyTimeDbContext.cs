@@ -27,6 +27,7 @@ namespace TakeMyTime.DAL
             }
 
             optionsBuilder.EnableSensitiveDataLogging(true);
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

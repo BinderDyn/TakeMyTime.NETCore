@@ -10,6 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Calendar\**" />
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Drafts\**" />
+    <EmbeddedResource Remove="Calendar\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Drafts\**" />
+    <None Remove="Calendar\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Drafts\**" />
+    <Page Remove="Calendar\**" />
+    <Page Remove="Commands\**" />
+    <Page Remove="Drafts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\activeIconSmall.png" />
     <None Remove="Images\archiveIconSmall.png" />
     <None Remove="Images\assignmentAbortedIconSmall.png" />
@@ -205,12 +220,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Drafts\" />
-    <Folder Include="Calendar\" />
-    <Folder Include="Commands\" />
   </ItemGroup>
 
   <ItemGroup>

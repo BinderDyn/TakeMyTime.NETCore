@@ -16,6 +16,8 @@ namespace TakeMyTime.Models.Models
     /// </summary>
     public class Project : Entity<Project>
     {
+        protected Project() { }
+
         public static Project Create(ICreateParam createParam)
         {
             Project project = new Project();

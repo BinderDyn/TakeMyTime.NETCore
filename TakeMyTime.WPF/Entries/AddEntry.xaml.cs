@@ -24,6 +24,7 @@ namespace TakeMyTime.WPF.Entries
         private DateTime? started = null;
         private DateTime? stopped = null;
         private DispatcherTimer timer;
+        private TimeSpan? timekeeperMax;
 
         public AddEntry(int projectId, int assignmentId)
         {
@@ -91,6 +92,10 @@ namespace TakeMyTime.WPF.Entries
             {
                 this.SelectedSubtask = e.AddedItems[0] as SubtaskComboBoxViewModel;
                 this.tb_Name.Text = this.SelectedSubtask.Name;
+                var subtaskLogic = new SubtaskLogic();
+                var subtask = subtaskLogic.GetById(this.SelectedSubtask.Id);
+                this.timekeeperMax = new TimeSpan(subtask.Assignment.GetDifferenceOfPlannedAndElapsedTicks().GetValueOrDefault());
+                subtaskLogic.Dispose();
             }
         }
 
@@ -195,6 +200,10 @@ namespace TakeMyTime.WPF.Entries
         public void UpdateUI()
         {
             this.tb_Elapsed.Text = this.ElapsedAsString;
+            if (this.timekeeperMax.HasValue && this.DurationElapsed >= this.timekeeperMax.Value)
+            {
+                this.tb_Elapsed.Foreground = Brushes.Red;
+            }
             CommandManager.InvalidateRequerySuggested();
         }
 

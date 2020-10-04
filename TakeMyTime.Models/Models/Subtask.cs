@@ -9,8 +9,9 @@ namespace TakeMyTime.Models.Models
 {
     public class Subtask : Entity<Subtask>
     {
-        private Subtask()
+        protected Subtask()
         {
+
         }
 
         public static Subtask Create(ICreateParam param)
@@ -76,13 +77,13 @@ namespace TakeMyTime.Models.Models
             SubtaskPriority Priority { get; set; }
         }
 
-        public SubtaskStatus Status { get; set; }
-        public SubtaskPriority Priority { get; set; }
+        public virtual SubtaskStatus Status { get; set; }
+        public virtual SubtaskPriority Priority { get; set; }
         public long? DurationTicks { get; set; }
         public string Description { get; set; }
         [ForeignKey("Assignment")]
         public virtual int? Assignment_Id { get; set; }
         public virtual Assignment Assignment { get; set; }
-        public ICollection<Entry> Entries { get; set; }
+        public virtual ICollection<Entry> Entries { get; set; }
     }
 }
