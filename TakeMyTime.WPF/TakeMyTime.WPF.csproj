@@ -7,6 +7,8 @@
     <Version>2.1.1</Version>
     <Copyright>Marvin Binder 2019</Copyright>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
