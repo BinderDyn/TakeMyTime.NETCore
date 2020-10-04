@@ -178,6 +178,15 @@ namespace TakeMyTime.WPF.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show only active ähnelt.
+        /// </summary>
+        public static string OnlyActiveLabel {
+            get {
+                return ResourceManager.GetString("OnlyActiveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
         /// </summary>
         public static string StatusTooltipActive {

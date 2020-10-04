@@ -41,7 +41,7 @@ namespace TakeMyTime.WPF.Projects
         {
             var projectLogic = new ProjectLogic();
             var loadedProjects = projectLogic.GetAllProjects();
-            var viewModels = loadedProjects.Select(lp => new ProjectViewModel(lp));
+            var viewModels = loadedProjects.Where(lp => this.ShowOnlyActive ? lp.ProjectStatus == EnumDefinition.ProjectStatus.Active : lp.Id > 0).Select(lp => new ProjectViewModel(lp));
             this.Projects = new List<ProjectViewModel>(viewModels);
             PagingManager.Data = this.Projects.ToList();
             lv_Projects.ItemsSource = PagingManager.Page(this.PagingManager.CurrentPage);
@@ -146,6 +146,20 @@ namespace TakeMyTime.WPF.Projects
             RefreshBindings(this.PagingManager.CurrentPage - 1);
         }
 
+        private void cbo_ShowOnlyActive_Checked(object sender, RoutedEventArgs e)
+        {
+            this.ShowOnlyActive = true;
+            this.Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
+        }
+
+        private void cbo_ShowOnlyActive_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.ShowOnlyActive = false;
+            this.Load();
+            this.RefreshBindings(this.PagingManager.CurrentPage);
+        }
+
         #endregion
 
         #region Properties
@@ -153,6 +167,9 @@ namespace TakeMyTime.WPF.Projects
         public IList<ProjectViewModel> Projects { get; set; }
         public ProjectViewModel SelectedProject { get; set; }
         public PagingManager<ProjectViewModel> PagingManager { get; set; }
+        public bool ShowOnlyActive { get; set; }
+
+
 
         #endregion
 
