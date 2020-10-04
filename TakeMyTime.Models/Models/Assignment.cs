@@ -15,6 +15,8 @@ namespace TakeMyTime.Models.Models
 {
     public class Assignment : Entity<Assignment>
     {
+        protected Assignment() { }
+
         public static Assignment Create(ICreateParam param)
         {
             Assignment assignment = new Assignment();
@@ -92,6 +94,16 @@ namespace TakeMyTime.Models.Models
             return isOvertime;
         }
 
+        public long? GetDifferenceOfPlannedAndElapsedTicks()
+        {
+            long? difference = null;
+            if (this.DurationPlannedAsTicks.HasValue)
+            {
+                difference = this.DurationPlannedAsTicks - this.Subtasks?.Sum(s => s.Entries?.Sum(e => e.DurationAsTicks));
+            }
+            return difference;
+        }
+
         public interface IUpdateParam
         {
             string Name { get; set; }
@@ -107,14 +119,14 @@ namespace TakeMyTime.Models.Models
         }
 
         [ForeignKey("Project")]
-        public int? Project_Id { get; set; }
+        public virtual int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
-        public DateTime? DatePlanned { get; set; }
-        public DateTime? DateDue { get; set; }
-        public long? DurationPlannedAsTicks { get; set; }
-        public AssignmentStatus AssignmentStatus { get; set; }
-        public string Description { get; set; }
-        public int TimesPushed { get; set; }
+        public virtual DateTime? DatePlanned { get; set; }
+        public virtual DateTime? DateDue { get; set; }
+        public virtual long? DurationPlannedAsTicks { get; set; }
+        public virtual AssignmentStatus AssignmentStatus { get; set; }
+        public virtual string Description { get; set; }
+        public virtual int TimesPushed { get; set; }
         public virtual ICollection<Subtask> Subtasks { get; set; }
     }
 

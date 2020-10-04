@@ -5,6 +5,8 @@ namespace TakeMyTime.Models.Models
 {
     public class Entry : Entity<Entry>
     {
+        protected Entry() { }
+
         public static Entry Create(ICreateParam param)
         {
             var entry = new Entry();
@@ -72,16 +74,16 @@ namespace TakeMyTime.Models.Models
         }
 
         [ForeignKey("Project")]
-        public int? Project_Id { get; set; }
+        public virtual int? Project_Id { get; set; }
         public virtual Project Project { get; set; }
-        public int? Subtask_Id { get; set; }
+        public virtual int? Subtask_Id { get; set; }
         public virtual Subtask Subtask { get; set; }
-        public int? Assignment_Id { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime? Started { get; set; }
-        public DateTime? Ended { get; set; }
-        public long? DurationAsTicks { get; set; }
-        public string Comment { get; set; }
+        public virtual int? Assignment_Id { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual DateTime? Started { get; set; }
+        public virtual DateTime? Ended { get; set; }
+        public virtual long? DurationAsTicks { get; set; }
+        public virtual string Comment { get; set; }
 
 
     }
